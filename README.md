@@ -37,6 +37,32 @@ Timeline perfetta = `+5` punti, `+3` di bonus e streak incrementata.
 
 Da Game Over, `Spazio` ricomincia subito.
 
+## Dataset
+
+205 eventi in gioco: i 55 originali più i 150 di [`data/events-150.json`](data/events-150.json),
+bilanciati per categoria (19/19/19/19/19/19/18/18) e distribuiti dall'anno 800 al 2023.
+
+> **Gli slug Wikipedia non sono stati verificati contro il sito.** Sono scelti in base alla
+> conoscenza dei titoli delle voci italiane, ma vanno controllati prima di considerarli
+> definitivi. Il controllo è automatico:
+>
+> ```bash
+> node data/verify-slugs.mjs            # elenca voci mancanti, redirect e pagine senza immagine
+> node data/verify-slugs.mjs --fix-report   # scrive data/slug-report.json
+> ```
+>
+> Uno slug sbagliato non rompe nulla: la carta ricade su mesh e icona di categoria.
+
+## Modalità di partita
+
+- **Classica** — uno Scudo Temporale assorbe il primo errore.
+- **Morte Intrepida** — nessuno scudo, un solo errore chiude la partita, punteggio finale ×1,5.
+
+La **difficoltà adattiva** (predefinita) stringe lo scarto fra gli eventi man mano che la streak
+sale: oltre 25 anni fino a streak 3, da 5 a 15 anni fino a 7, da 1 a 4 anni da 8 in poi. La coda
+guarda avanti — una carta viene scelta per la fascia in cui si troverà la streak quando verrà
+giocata, non per quella attuale. Restano disponibili le fasce fisse manuali.
+
 ## Design
 
 L'interfaccia è un sistema **Liquid Glass** costruito a strati:
