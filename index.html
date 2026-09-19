@@ -33,7 +33,7 @@
   --ruby:#ff2d55;
   --txt:#f3f6ff;
   --muted:#96a0c6;
-  --dim:#6a7398;
+  --dim:#8d97bd;   /* alzato: a #6a7398 il testo di supporto stava a 4.35:1, sotto il minimo WCAG AA */
 
   /* vetro */
   --g-bg:rgba(255,255,255,.055);
@@ -221,28 +221,33 @@ button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer
   backdrop-filter:var(--g-blur);-webkit-backdrop-filter:var(--g-blur);
   border:1px solid rgba(255,255,255,.2);
   box-shadow:0 14px 40px -12px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.3),
-             0 0 34px -10px rgba(0,243,255,.38)}
+             0 0 34px -10px rgba(255,209,102,.4)}
 /* perimetro luminoso */
 #refBar::before{content:"";position:absolute;inset:-1px;border-radius:23px;padding:1px;z-index:-1;
-  background:linear-gradient(120deg,rgba(0,243,255,.7),rgba(112,0,255,.25) 45%,rgba(255,0,160,.6));
+  background:linear-gradient(120deg,rgba(255,209,102,.85),rgba(255,176,32,.35) 48%,rgba(255,209,102,.7));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;opacity:.85}
 #refThumb{width:48px;height:48px;border-radius:15px;flex-shrink:0;background-size:cover;
   background-position:center;display:grid;place-items:center;font-size:23px;
   border:1px solid rgba(255,255,255,.22);box-shadow:0 6px 18px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.3)}
 #refMeta{min-width:0;flex:1;padding-right:58px}
-#refLabel{font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:850;margin-bottom:2px;
-  background:linear-gradient(90deg,var(--cyan),#8ef);-webkit-background-clip:text;background-clip:text;color:transparent}
+#refLabel{display:flex;align-items:center;gap:7px;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:850;margin-bottom:4px;color:#cfd8ee}
+/* Badge esplicito: la carta in alto è un dato noto, non una da indovinare. */
+.ref-badge{padding:3px 8px;border-radius:999px;letter-spacing:.14em;color:#12040c;
+  background:linear-gradient(120deg,var(--gold),#ffd98a);
+  box-shadow:0 0 14px rgba(255,209,102,.5);flex-shrink:0}
 #refTitle{font-size:14px;font-weight:750;line-height:1.28;letter-spacing:-.01em;
   overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+/* L'anno noto: oro, in contrasto con il ciano/magenta delle carte da giocare. */
 #refYear{position:absolute;top:-13px;right:10px;padding:7px 13px;border-radius:14px;
   font-size:22px;font-weight:900;letter-spacing:-.035em;font-variant-numeric:tabular-nums;line-height:1;
-  color:#eafcff;
-  background:linear-gradient(150deg,rgba(0,243,255,.3),rgba(9,11,28,.9) 65%);
+  color:#fff6e0;
+  background:linear-gradient(150deg,rgba(255,209,102,.34),rgba(9,11,28,.92) 65%);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border:1px solid rgba(0,243,255,.55);
-  text-shadow:0 0 16px rgba(0,243,255,.9);
-  box-shadow:0 0 22px rgba(0,243,255,.45),0 8px 20px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.3)}
+  border:1px solid rgba(255,209,102,.65);
+  text-shadow:0 0 16px rgba(255,176,32,.95);
+  box-shadow:0 0 24px rgba(255,176,32,.45),0 8px 20px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.3)}
 
 /* =====================================================================
    2. CARD — FULL BLEED + GLASS INFO OVERLAY
@@ -313,9 +318,12 @@ button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer
 .year-wrap{margin-top:2px}
 .year{--dh:1.16em;display:flex;align-items:flex-end;font-size:clamp(46px,13.5vw,62px);
   font-weight:900;letter-spacing:-.05em;line-height:.96;font-variant-numeric:tabular-nums}
-.year.mystery{color:rgba(255,255,255,.34);letter-spacing:.03em;
-  text-shadow:0 0 26px rgba(255,255,255,.22);animation:mystPulse 2.6s ease-in-out infinite}
-@keyframes mystPulse{0%,100%{opacity:.42}50%{opacity:.95}}
+/* Statico di proposito: un'animazione continua qui dentro obbligherebbe il
+   browser a ricalcolare il backdrop-filter del pannello a ogni fotogramma
+   (49 ms/frame misurati, contro 16.7 senza). */
+.year.mystery{letter-spacing:.03em;opacity:.7;
+  background:linear-gradient(118deg,rgba(255,255,255,.75),rgba(0,243,255,.5) 55%,rgba(255,0,160,.45));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
 .digit{height:var(--dh);overflow:hidden;display:inline-block}
 .reel{display:flex;flex-direction:column;transition:transform 1.05s cubic-bezier(.16,1,.3,1)}
 /* 8. motion blur dei rulli, in dissolvenza mentre rallentano */
@@ -672,14 +680,98 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
   transition:opacity .3s,transform .4s var(--spring)}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 
-/* boot */
-#boot{position:fixed;inset:0;z-index:90;display:grid;place-items:center;background:var(--bg);
-  transition:opacity .6s ease}
+/* =====================================================================
+   SKELETON LOADER — la forma della carta, non uno spinner generico
+   ===================================================================== */
+#boot{position:fixed;inset:0;z-index:90;display:flex;flex-direction:column;align-items:center;
+  justify-content:flex-start;background:var(--bg);transition:opacity .5s ease;
+  padding-top:calc(var(--nav-h) + max(10px,env(safe-area-inset-top)))}
 #boot.off{opacity:0;pointer-events:none}
-.spinner{width:46px;height:46px;border-radius:50%;border:3px solid rgba(255,255,255,.08);
-  border-top-color:var(--cyan);border-right-color:var(--magenta);animation:spin .9s linear infinite;
-  filter:drop-shadow(0 0 12px rgba(0,243,255,.6))}
-@keyframes spin{to{transform:rotate(360deg)}}
+.sk{position:relative;overflow:hidden;border-radius:18px;background:rgba(255,255,255,.055)}
+/* riflesso che scorre: una sola animazione di transform, resta sul compositor */
+.sk::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.11) 45%,rgba(255,255,255,.16) 55%,transparent);
+  animation:shimmer 1.5s infinite}
+@keyframes shimmer{to{transform:translateX(100%)}}
+.sk-ref{width:min(400px,calc(100vw - 32px));height:76px;border-radius:22px;margin:14px 0 16px}
+.sk-card{width:min(372px,calc(100vw - 56px));height:min(58vh,510px);border-radius:30px;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:20px;gap:11px}
+.sk-card::after{border-radius:30px}
+.sk-line{height:13px;border-radius:7px;background:rgba(255,255,255,.1);position:relative;z-index:2}
+.sk-line.w40{width:40%}.sk-line.w80{width:80%}.sk-line.w55{width:55%;height:34px;border-radius:10px}
+.sk-controls{display:flex;gap:10px;margin-top:18px;width:min(372px,calc(100vw - 56px))}
+.sk-btn{flex:1;height:50px;border-radius:20px}
+#bootLabel{margin-top:22px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:800;color:var(--muted)}
+
+/* descrizione mostrata quando l'immagine non arriva */
+.card-desc{margin-top:10px;font-size:12.5px;line-height:1.6;color:#d3dbf5;text-align:center;
+  max-width:88%;text-shadow:0 2px 10px rgba(0,0,0,.85)}
+.card-fallback-wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:0 18px 22%;pointer-events:none}
+
+/* banner offline */
+#netBadge{position:fixed;z-index:70;left:50%;transform:translate(-50%,-24px);
+  top:calc(var(--nav-h) + max(14px,env(safe-area-inset-top)));
+  padding:7px 15px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.03em;
+  display:flex;align-items:center;gap:7px;opacity:0;pointer-events:none;white-space:nowrap;
+  color:#ffd9a8;background:rgba(60,36,8,.88);border:1px solid rgba(255,176,32,.45);
+  box-shadow:0 10px 30px rgba(0,0,0,.5);transition:opacity .35s ease,transform .45s var(--spring)}
+#netBadge.on{opacity:1;transform:translate(-50%,0)}
+
+/* =====================================================================
+   FILTRI, IMPOSTAZIONI E MODALITÀ PRESTAZIONI
+   ===================================================================== */
+.sec{margin-top:24px}
+.chip-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.fchip{padding:7px 12px;border-radius:999px;font-size:11px;font-weight:750;letter-spacing:.02em;
+  color:var(--muted);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);
+  display:flex;align-items:center;gap:6px;transition:.22s var(--out)}
+.fchip:hover{color:#fff;background:rgba(255,255,255,.1)}
+.fchip[aria-pressed="true"]{color:#02131a;border-color:transparent;
+  background:linear-gradient(120deg,var(--cyan),#9df6ff);
+  box-shadow:0 4px 16px rgba(0,243,255,.4)}
+.seg{display:flex;gap:4px;padding:4px;border-radius:14px;margin-top:11px;
+  background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1)}
+.seg button{flex:1;padding:9px 6px;border-radius:11px;font-size:11.5px;font-weight:750;color:var(--muted);
+  transition:.22s var(--out)}
+.seg button[aria-pressed="true"]{color:#02131a;
+  background:linear-gradient(120deg,var(--cyan),#9df6ff);
+  box-shadow:0 3px 14px rgba(0,243,255,.38)}
+.seg button:not([aria-pressed="true"]):hover{color:#fff;background:rgba(255,255,255,.07)}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:11px;
+  padding:13px 15px;border-radius:17px;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.11)}
+.srow-txt{min-width:0}
+.srow b{display:block;font-size:13px;font-weight:750}
+.srow span{display:block;font-size:11px;color:var(--muted);margin-top:3px;line-height:1.5}
+.tgl{position:relative;flex-shrink:0;width:50px;height:29px;border-radius:999px;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);transition:.3s var(--out)}
+.tgl::after{content:"";position:absolute;top:2px;left:2px;width:23px;height:23px;border-radius:50%;
+  background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.45);transition:.3s var(--spring)}
+.tgl[aria-pressed="true"]{background:linear-gradient(120deg,var(--cyan),#6ee7ff);
+  border-color:transparent;box-shadow:0 0 18px rgba(0,243,255,.5)}
+.tgl[aria-pressed="true"]::after{transform:translateX(21px)}
+.mini-btn{flex-shrink:0;padding:8px 13px;border-radius:12px;font-size:11.5px;font-weight:750;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);transition:.22s var(--out)}
+.mini-btn:hover{background:rgba(255,255,255,.15)}
+.mini-btn:active{transform:scale(.94)}
+
+/* Modalità prestazioni: si spegne tutto ciò che ridisegna a ogni frame.
+   Stesso trattamento per chi ha chiesto meno animazioni a livello di sistema. */
+html.perf .orb{animation:none;opacity:.46}
+html.perf #grain{display:none}
+html.perf .card-emoji,html.perf .fire,html.perf .dot,html.perf .sk::after,
+html.perf #roList::before,html.perf .ro-card::before,html.perf .avatar-btn::before,
+html.perf .creator-av::before,html.perf .link-cta,html.perf #ghost.on,
+html.perf .laser-sparks::before,html.perf .laser-sparks::after,html.perf .reel.spinning{animation:none}
+html.perf .card-media{transition:opacity .3s ease}   /* niente zoom lento da 9s */
+html.perf .card-body{backdrop-filter:none;-webkit-backdrop-filter:none;
+  background:linear-gradient(to top,rgba(4,5,13,.93) 14%,rgba(4,5,13,.66) 56%,rgba(4,5,13,0) 100%)}
+html.perf .ro-card{backdrop-filter:none;-webkit-backdrop-filter:none;
+  background:linear-gradient(145deg,rgba(28,32,56,.9),rgba(16,19,38,.86))}
+html.perf #nav,html.perf #refBar,html.perf .sheet,html.perf #toast{
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 
 /* fallback glifi se il CDN delle icone non risponde */
 .ico-fb{font-family:inherit;font-weight:700;font-size:1em;line-height:1;display:inline-block;
@@ -709,8 +801,30 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
   .act{padding:11px 8px}
   .ro-head{margin-bottom:10px}
 }
+/* Mobile: le sheet si compattano e le azioni principali restano a portata di pollice */
+@media(max-width:480px){
+  .sheet{padding:20px 18px 18px;border-radius:26px;max-height:90vh}
+  .sheet h2{font-size:21px}
+  .stat-grid{margin-top:14px;gap:7px}
+  .stat{padding:11px 4px;border-radius:14px}
+  .stat b{font-size:19px}
+  .bio{margin-top:13px;padding:14px 15px;font-size:12.2px;line-height:1.68}
+  .creator-hero{padding:18px}
+  .creator-av{width:68px;height:68px;font-size:29px;margin-bottom:11px}
+  .link-btn{padding:13px;margin-top:9px}
+  .sec{margin-top:18px}
+  #goScore{font-size:clamp(62px,19vw,78px)}
+  #goReveal{margin-top:13px;padding:12px 14px;font-size:12px;line-height:1.62}
+  #goShield{margin-top:11px}
+  /* le azioni del game over restano ancorate in fondo alla sheet */
+  #gameOver .sheet{padding-bottom:0}
+  #gameOver .go-actions{position:sticky;bottom:0;padding:12px 0 16px;margin-top:14px;
+    background:linear-gradient(to top,rgba(10,12,28,.97) 68%,rgba(10,12,28,0));
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  #gameOver .go-actions .go-row:first-child{margin-top:0}
+}
 @media(max-width:430px){
-  .sheet{padding:22px;border-radius:26px}
+  .sheet{border-radius:24px}
   .stat-grid{gap:7px}
   .act{font-size:11px;letter-spacing:.06em;gap:6px;padding:13px 8px}
   .act svg{width:18px;height:18px}
@@ -764,7 +878,7 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
     <div id="refBar">
       <div id="refThumb">🏰</div>
       <div id="refMeta">
-        <div id="refLabel">Evento di riferimento</div>
+        <div id="refLabel"><span class="ref-badge">Riferimento</span> data nota</div>
         <div id="refTitle">—</div>
       </div>
       <div id="refYear">—</div>
@@ -839,14 +953,16 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
       <div class="stat"><b id="goAcc">0%</b><span>Precisione</span></div>
     </div>
     <div id="goReveal"></div>
-    <div class="go-row">
-      <button class="btn-glow" id="btnRestart"><i data-lucide="rotate-ccw"></i> Rigioca</button>
+    <div class="go-actions">
+      <div class="go-row">
+        <button class="btn-glow" id="btnRestart"><i data-lucide="rotate-ccw"></i> Rigioca</button>
+      </div>
+      <div class="go-row">
+        <button class="btn-ghost" id="btnStory"><i data-lucide="share-2"></i> Condividi</button>
+        <button class="btn-ghost" id="btnGoStats"><i data-lucide="bar-chart-3"></i> Statistiche</button>
+      </div>
+      <p style="font-size:10.5px;color:var(--dim);margin-top:13px">Premi <kbd>Spazio</kbd> per ricominciare</p>
     </div>
-    <div class="go-row">
-      <button class="btn-ghost" id="btnStory"><i data-lucide="image-down"></i> Genera Story</button>
-      <button class="btn-ghost" id="btnGoStats"><i data-lucide="bar-chart-3"></i> Statistiche</button>
-    </div>
-    <p style="font-size:10.5px;color:var(--dim);margin-top:15px">Premi <kbd>Spazio</kbd> per ricominciare</p>
   </div>
 </div>
 
@@ -866,8 +982,44 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
       <div class="eyebrow">Distribuzione punteggi</div>
       <div id="distChart"></div>
     </div>
-    <div style="margin-top:22px;display:flex;gap:10px">
-      <button class="btn-ghost" id="btnResetStats"><i data-lucide="trash-2"></i> Azzera dati</button>
+    <!-- FILTRI: argomento e difficoltà -->
+    <div class="sec">
+      <div class="eyebrow">Filtra per argomento</div>
+      <div class="chip-row" id="catChips"></div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">Difficoltà</div>
+      <div class="seg" id="diffSeg" role="group" aria-label="Difficoltà">
+        <button data-diff="all"       aria-pressed="true">Tutte</button>
+        <button data-diff="facile"    aria-pressed="false">Facile</button>
+        <button data-diff="media"     aria-pressed="false">Media</button>
+        <button data-diff="difficile" aria-pressed="false">Difficile</button>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin:9px 2px 0;line-height:1.6" id="diffHint"></p>
+    </div>
+
+    <!-- PRESTAZIONI E DATI -->
+    <div class="sec">
+      <div class="eyebrow">Prestazioni e dati</div>
+      <div class="srow">
+        <div class="srow-txt">
+          <b>Sfondo animato</b>
+          <span>Spegni le sfere in movimento e le sfocature se il dispositivo arranca.</span>
+        </div>
+        <button class="tgl" id="tglMotion" role="switch" aria-pressed="true" aria-label="Sfondo animato"></button>
+      </div>
+      <div class="srow">
+        <div class="srow-txt">
+          <b>Cache Wikipedia</b>
+          <span id="cacheInfo">0 schede salvate in locale</span>
+        </div>
+        <button class="mini-btn" id="btnClearCache">Svuota</button>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;display:flex;gap:10px">
+      <button class="btn-ghost" id="btnResetStats"><i data-lucide="trash-2"></i> Azzera statistiche</button>
     </div>
   </div>
 </div>
@@ -902,7 +1054,21 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
 
 <div id="toast"></div>
 <canvas id="storyCanvas" width="1080" height="1920" style="display:none"></canvas>
-<div id="boot"><div class="spinner"></div></div>
+<div id="netBadge" role="status" aria-live="polite">📡 Offline · si gioca lo stesso</div>
+
+<!-- Skeleton loader: ricalca la forma reale della schermata di gioco -->
+<div id="boot" aria-label="Caricamento" role="status">
+  <div class="sk sk-ref"></div>
+  <div class="sk sk-card">
+    <div class="sk-line w40"></div>
+    <div class="sk-line w80"></div>
+    <div class="sk-line w55"></div>
+  </div>
+  <div class="sk-controls">
+    <div class="sk sk-btn"></div><div class="sk sk-btn"></div><div class="sk sk-btn"></div>
+  </div>
+  <div id="bootLabel">Preparo la timeline</div>
+</div>
 
 <script>
 "use strict";
@@ -1027,6 +1193,14 @@ function ordinal(ev){
 }
 EVENTS.forEach(e => { e._ord = ordinal(e); });
 
+/** Prima frase di un testo, troncata con garbo. */
+function firstSentence(text, max){
+  const t = String(text).trim();
+  const dot = t.indexOf(". ");
+  let out = dot > 30 ? t.slice(0, dot + 1) : t;
+  if (out.length > max) out = out.slice(0, max).replace(/\s+\S*$/, "") + "…";
+  return out;
+}
 function shuffle(arr){
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--){ const j = rnd(i+1); [a[i],a[j]] = [a[j],a[i]]; }
@@ -1044,7 +1218,7 @@ const ICON_FALLBACK = {
   "volume-2":"\u{1F50A}", "volume-x":"\u{1F507}", "bar-chart-3":"\u{1F4CA}",
   "arrow-left":"\u2190", "arrow-right":"\u2192", "equal":"=", "shield":"\u{1F6E1}",
   "target":"\u{1F3AF}", "trophy":"\u{1F3C6}", "scan-line":"\u2261", "grip-vertical":"\u22EE",
-  "x":"\u2715", "rotate-ccw":"\u21BA", "image-down":"\u2913", "instagram":"\u25CE",
+  "x":"\u2715", "rotate-ccw":"\u21BA", "image-down":"\u2913", "share-2":"\u2934", "instagram":"\u25CE",
   "coffee":"\u2615", "trash-2":"\u{1F5D1}"
 };
 function icons(){
@@ -1148,24 +1322,109 @@ const SFX = {
  * 4. WIKIPEDIA REST API + PRELOADING INTELLIGENTE
  * ------------------------------------------------------------------ */
 const WIKI = {
-  cache: new Map(),     // slug -> { url:string|null }
-  pending: new Map(),   // slug -> Promise
+  /* --- cache su due livelli -------------------------------------------
+     mem:  Map di sessione, risposta immediata.
+     disk: localStorage, sopravvive al riavvio ed evita di richiamare la
+           REST API per eventi già visti. Teniamo solo i METADATI (url e
+           descrizione): i byte delle immagini stanno nella cache HTTP e,
+           quando l'app gira su http(s), nella cache del service worker.
+           Metterli in base64 qui saturerebbe la quota da ~5 MB in poche
+           carte, facendo sfrattare tutto il resto.                      */
+  KEY: "chronoglass_wiki_v1",
+  TTL: 14 * 24 * 60 * 60 * 1000,   // due settimane
+  TIMEOUT: 8000,
+  mem: new Map(),
+  pending: new Map(),
+  disk: null,
+  dirty: false,
+
+  loadDisk(){
+    if (this.disk) return this.disk;
+    this.disk = {};
+    try {
+      const raw = localStorage.getItem(this.KEY);
+      if (raw){
+        const parsed = JSON.parse(raw);
+        const now = Date.now();
+        for (const k in parsed){
+          if (parsed[k] && now - parsed[k].t < this.TTL) this.disk[k] = parsed[k];
+        }
+      }
+    } catch(e){ this.disk = {}; }   // JSON corrotto o storage negato: si riparte puliti
+    return this.disk;
+  },
+  flush(){
+    if (!this.dirty) return;
+    this.dirty = false;
+    try {
+      localStorage.setItem(this.KEY, JSON.stringify(this.disk));
+    } catch(e){
+      // quota piena: si buttano le voci più vecchie e si riprova una volta
+      try {
+        const entries = Object.entries(this.disk).sort((a,b) => b[1].t - a[1].t).slice(0, 60);
+        this.disk = Object.fromEntries(entries);
+        localStorage.setItem(this.KEY, JSON.stringify(this.disk));
+      } catch(e2){ /* storage non disponibile: si continua con la sola cache in RAM */ }
+    }
+  },
+  remember(slug, rec){
+    this.mem.set(slug, rec);
+    if (rec.transient) return;        // errori di rete non vanno persistiti
+    this.loadDisk()[slug] = { u: rec.url, d: rec.desc, t: Date.now() };
+    this.dirty = true;
+    clearTimeout(this._t);
+    this._t = setTimeout(() => this.flush(), 400);
+  },
+
   endpoint(slug){ return "https://it.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(slug); },
+
   get(slug){
-    if (this.cache.has(slug)) return Promise.resolve(this.cache.get(slug));
+    if (this.mem.has(slug)) return Promise.resolve(this.mem.get(slug));
     if (this.pending.has(slug)) return this.pending.get(slug);
-    const p = fetch(this.endpoint(slug), { headers:{ Accept:"application/json" } })
+
+    const hit = this.loadDisk()[slug];
+    if (hit){
+      const rec = { url: hit.u, desc: hit.d, cached: true };
+      this.mem.set(slug, rec);
+      if (rec.url) this.warm(rec.url);        // ricarica dalla cache HTTP, senza attesa
+      return Promise.resolve(rec);
+    }
+    // offline: nessuna chiamata, la carta usa subito il fallback grafico
+    if (navigator.onLine === false){
+      const rec = { url:null, desc:null, offline:true, transient:true };
+      this.mem.set(slug, rec);
+      return Promise.resolve(rec);
+    }
+
+    const ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    const timer = ctrl ? setTimeout(() => ctrl.abort(), this.TIMEOUT) : null;
+
+    const p = fetch(this.endpoint(slug), {
+        headers: { Accept: "application/json" },
+        signal: ctrl ? ctrl.signal : undefined
+      })
       .then(r => r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status)))
       .then(j => {
         const src = (j.originalimage && j.originalimage.source) || (j.thumbnail && j.thumbnail.source) || null;
         const url = src ? src.replace(/\/(\d+)px-/, "/800px-") : null;
-        return url ? this.warm(url).then(ok => ({ url: ok ? url : null })) : { url:null };
+        // niente lookbehind: su Safari < 16.4 è un errore di parsing e
+        // farebbe fallire l'intero script, non solo questa riga.
+        const desc = j.extract ? firstSentence(j.extract, 150) : null;
+        if (!url) return { url:null, desc };
+        return this.warm(url).then(ok => ({ url: ok ? url : null, desc }));
       })
-      .catch(() => ({ url:null }))
-      .then(res => { this.cache.set(slug, res); this.pending.delete(slug); return res; });
+      .catch(() => ({ url:null, desc:null, transient:true }))   // rete giù, 404, timeout
+      .then(rec => {
+        if (timer) clearTimeout(timer);
+        this.remember(slug, rec);
+        this.pending.delete(slug);
+        return rec;
+      });
+
     this.pending.set(slug, p);
     return p;
   },
+
   /* decodifica l'immagine in RAM prima dell'uso -> zero flicker */
   warm(url){
     return new Promise(res => {
@@ -1176,7 +1435,12 @@ const WIKI = {
       img.src = url;
     });
   },
-  preload(list){ list.filter(Boolean).forEach(ev => this.get(ev.wiki_slug)); }
+  preload(list){ list.filter(Boolean).forEach(ev => this.get(ev.wiki_slug)); },
+  clear(){
+    this.mem.clear(); this.disk = {}; this.dirty = false;
+    try { localStorage.removeItem(this.KEY); } catch(e){}
+  },
+  size(){ return Object.keys(this.loadDisk()).length; }
 };
 
 /* ------------------------------------------------------------------ *
@@ -1196,6 +1460,96 @@ const STORE = {
   saveStats(s){ localStorage.setItem(this.statsKey, JSON.stringify(s)); },
   reset(){ localStorage.removeItem(this.statsKey); localStorage.removeItem(this.bestKey); }
 };
+
+/* ------------------------------------------------------------------ *
+ * FILTRI (argomento + difficoltà)
+ * La difficoltà non è un'etichetta sui singoli eventi: dipende da quanto
+ * sono vicini nel tempo i due eventi messi a confronto. Due fatti a un anno
+ * di distanza sono difficili anche se notissimi.
+ * ------------------------------------------------------------------ */
+const FILTERS = {
+  KEY: "chronoglass_filters",
+  cats: [],           // vuoto = tutte le categorie
+  diff: "all",
+  load(){
+    try {
+      const f = JSON.parse(localStorage.getItem(this.KEY) || "null");
+      if (f){
+        this.cats = Array.isArray(f.cats) ? f.cats.filter(c => c in CATEGORIES) : [];
+        this.diff = ["all","facile","media","difficile"].includes(f.diff) ? f.diff : "all";
+      }
+    } catch(e){}
+    return this;
+  },
+  save(){ try { localStorage.setItem(this.KEY, JSON.stringify({ cats:this.cats, diff:this.diff })); } catch(e){} }
+};
+const DIFF_HINT = {
+  all:       "Tutti gli accostamenti, dai secoli di distanza ai mesi.",
+  facile:    "Eventi lontani almeno 25 anni: si ragiona per epoche.",
+  media:     "Distanza fra 6 e 24 anni: serve ricordare il decennio giusto.",
+  difficile: "Massimo 5 anni di distanza: qui contano mese e giorno."
+};
+const DIFF_BANDS = { facile:[25,Infinity], media:[6,24], difficile:[0,5] };
+
+/** Eventi selezionabili con i filtri attivi. */
+function activePool(){
+  if (!FILTERS.cats.length) return EVENTS;
+  const pool = EVENTS.filter(e => FILTERS.cats.includes(e.category));
+  return pool.length >= 6 ? pool : EVENTS;   // filtro troppo stretto: si torna a tutto
+}
+/** In quale fascia di difficoltà cade il confronto fra due eventi. */
+function bandOf(a, b){
+  const gap = Math.abs(a.year - b.year);
+  return gap <= 5 ? "difficile" : gap <= 24 ? "media" : "facile";
+}
+
+/* ------------------------------------------------------------------ *
+ * PRESTAZIONI — sfondo animato e sfocature disattivabili
+ * ------------------------------------------------------------------ */
+const PERF = {
+  KEY: "chronoglass_motion",
+  reduced: false,
+  apply(){ document.documentElement.classList.toggle("perf", this.reduced); },
+  set(v, persist){
+    this.reduced = !!v;
+    this.apply();
+    if (persist){ try { localStorage.setItem(this.KEY, this.reduced ? "0" : "1"); } catch(e){} }
+    const t = $("#tglMotion");
+    if (t) t.setAttribute("aria-pressed", String(!this.reduced));
+  },
+  init(){
+    let stored = null;
+    try { stored = localStorage.getItem(this.KEY); } catch(e){}
+    const sysReduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // La scelta esplicita dell'utente vince; altrimenti si segue il sistema.
+    this.userSet = stored !== null;
+    // La scelta esplicita vince su tutto; poi la preferenza di sistema;
+    // infine, solo al primo avvio, l'euristica su CPU/memoria.
+    this.set(this.userSet ? stored === "0" : (sysReduced || this.lowEndDefault()), false);
+  },
+  /* Nessuna auto-diagnosi a runtime. Misurare i fotogrammi per dedurre la
+     potenza del dispositivo si è rivelato inaffidabile: nei primi secondi
+     l'app si assesta e qualunque soglia o degrada la grafica a chi non ne ha
+     bisogno o non scatta dove servirebbe. Si usano invece due segnali
+     dichiarati dal dispositivo, e solo al primo avvio: la preferenza di
+     sistema per meno animazioni (già gestita in init) e una combinazione
+     conservativa di CPU e memoria. Resta sempre una scelta reversibile con
+     un tocco. */
+  lowEndDefault(){
+    const cores = navigator.hardwareConcurrency;
+    const mem   = navigator.deviceMemory;           // assente su Safari/Firefox
+    return !!(cores && cores <= 4 && mem && mem <= 4);
+  }
+};
+
+/* ------------------------------------------------------------------ *
+ * APTICA — vibrazioni brevi, ignorate dove non supportate
+ * ------------------------------------------------------------------ */
+const HAPTIC = { swipe:12, correct:[14,40,14], wrong:[40,70,40], shield:[18,40,18], win:[10,50,10,50,30] };
+function haptic(pattern){
+  if (!navigator.vibrate || PERF.reduced) return;   // in modalità prestazioni si resta immobili
+  try { navigator.vibrate(pattern); } catch(e){}
+}
 
 const DIST_BUCKETS = [[0,4,"0–4"],[5,9,"5–9"],[10,14,"10–14"],[15,19,"15–19"],[20,Infinity,"20+"]];
 
@@ -1250,10 +1604,22 @@ function edgeGlow(l, r, t){
 }
 const edgeReset = () => edgeGlow(0, 0, 0);
 
+/* La coda è una catena: ogni carta viene confrontata con quella che la
+   precede, quindi la difficoltà si applica coppia per coppia. */
 function fillQueue(){
-  const used = new Set([G.reference && G.reference.id].filter(Boolean));
-  const pool = shuffle(EVENTS.filter(e => !used.has(e.id) && !G.queue.some(q => q.id === e.id)));
-  G.queue = G.queue.concat(pool);
+  const used = new Set(G.queue.map(e => e.id));
+  if (G.reference) used.add(G.reference.id);
+  const avail = shuffle(activePool().filter(e => !used.has(e.id)));
+  let tail = G.queue.length ? G.queue[G.queue.length - 1] : G.reference;
+  const want = FILTERS.diff;
+
+  while (avail.length && G.queue.length < 14){
+    let i = -1;
+    if (want !== "all" && tail) i = avail.findIndex(e => bandOf(e, tail) === want);
+    if (i < 0) i = 0;            // nessun candidato nella fascia: si prosegue comunque
+    tail = avail.splice(i, 1)[0];
+    G.queue.push(tail);
+  }
 }
 
 /* Arte a tutto campo: mesh cyberpunk + emoji 3D fluttuante finché la foto
@@ -1263,18 +1629,42 @@ function mediaLayer(ev){
   const art = document.createElement("div");
   art.className = "card-art";
   art.style.background = c.mesh;
+
   const emoji = document.createElement("div");
   emoji.className = "card-emoji"; emoji.textContent = c.emoji;
+  const desc = document.createElement("div");
+  desc.className = "card-desc";
+  const wrap = document.createElement("div");
+  wrap.className = "card-fallback-wrap";
+  wrap.appendChild(emoji); wrap.appendChild(desc);
+
   const media = document.createElement("div");
   media.className = "card-media";
-  art.appendChild(emoji); art.appendChild(media);
+  art.appendChild(wrap); art.appendChild(media);
+
   WIKI.get(ev.wiki_slug).then(r => {
-    if (!r.url) return;
-    media.style.backgroundImage = 'url("' + r.url + '")';
-    requestAnimationFrame(() => media.classList.add("on"));
+    if (r.url){
+      media.style.backgroundImage = 'url("' + r.url + '")';
+      requestAnimationFrame(() => media.classList.add("on"));
+      return;
+    }
+    // Niente immagine: al posto del vuoto mettiamo il contesto che abbiamo.
+    desc.textContent = r.desc || FALLBACK_DESC[ev.category] || "Un momento che ha lasciato il segno.";
   });
   return art;
 }
+
+/* Frase di riserva per categoria, quando Wikipedia non risponde affatto. */
+const FALLBACK_DESC = {
+  "Spazio":      "Un passo oltre l'atmosfera.",
+  "Tecnologia":  "Una tecnologia che ha cambiato le abitudini di tutti.",
+  "Storia":      "Una data che ha riscritto gli equilibri del mondo.",
+  "Scienza":     "Una scoperta che ha spostato il confine del possibile.",
+  "Cinema":      "Un film entrato nell'immaginario collettivo.",
+  "Musica":      "Un suono che ha definito la sua epoca.",
+  "Sport":       "Un'impresa rimasta nella memoria di tutti.",
+  "Videogiochi": "Un titolo che ha creato un genere."
+};
 
 function buildCard(ev){
   const el = document.createElement("div");
@@ -1473,6 +1863,7 @@ function decide(choice){
   const res = judge(ev, choice);
 
   SFX.whoosh();
+  haptic(HAPTIC.swipe);              // colpetto breve alla conferma del gesto
   showOverlay(el, choice);
   edgeGlow(choice === "prima" ? 1 : 0, choice === "dopo" ? 1 : 0, choice === "same" ? 1 : 0);
   el.style.transition = "";
@@ -1495,9 +1886,11 @@ function decide(choice){
       if (choice === "same"){
         SFX.gold();
         goldConfetti();
+        haptic(HAPTIC.win);
         toast("STESSO ANNO! +3 punti bonus 🏆", 2200);
       } else {
         SFX.correct();
+        haptic(HAPTIC.correct);
         if (res.sameYear) toast("Stesso anno, ma hai indovinato il giorno esatto! +2", 2200);
       }
       syncHUD();
@@ -1508,14 +1901,14 @@ function decide(choice){
         el.classList.add("wrong");
         el.querySelector(".crack").classList.add("go");
         SFX.shatter();
-        if (navigator.vibrate) navigator.vibrate([18,40,18]);
+        haptic(HAPTIC.shield);
         toast("Scudo Temporale infranto — streak salva!", 2600);
         syncHUD();
         setTimeout(() => advance(true), 1900);
       } else {
         el.classList.add("wrong","shake");
         SFX.wrong();
-        if (navigator.vibrate) navigator.vibrate(160);
+        haptic(HAPTIC.wrong);   // doppia: si distingue dal colpetto dello swipe
         G.lastReveal = { ev, ref: G.reference, choice };
         setTimeout(() => endGame(), 1500);
       }
@@ -1571,8 +1964,25 @@ function winConfetti(){
 const RO = { items: [], selected: null, busy: false };
 const roList = $("#roList");
 
+/* Cinque eventi il cui intervallo complessivo rispecchia la difficoltà:
+   più è stretto, più è difficile ordinarli. */
+function roPickFive(){
+  const pool = activePool();
+  if (pool.length < 5) return shuffle(EVENTS).slice(0, 5);
+  if (FILTERS.diff === "all") return shuffle(pool).slice(0, 5);
+  const target = FILTERS.diff === "difficile" ? 12 : FILTERS.diff === "media" ? 70 : 500;
+  let best = null, bestScore = Infinity;
+  for (let i = 0; i < 40; i++){
+    const set = shuffle(pool).slice(0, 5);
+    const ys = set.map(e => e.year);
+    const score = Math.abs((Math.max.apply(null, ys) - Math.min.apply(null, ys)) - target);
+    if (score < bestScore){ bestScore = score; best = set; }
+  }
+  return best;
+}
+
 function roNewRound(){
-  RO.items = shuffle(EVENTS).slice(0, 5);
+  RO.items = roPickFive();
   RO.selected = null; RO.busy = false;
   $("#btnVerify").disabled = false;
   $("#btnVerify").innerHTML = '<i data-lucide="scan-line"></i> Verifica Timeline';
@@ -1754,13 +2164,13 @@ function roVerify(){
     } else if (G.shield){
       G.shield = false;
       SFX.shatter();
-      if (navigator.vibrate) navigator.vibrate([18,40,18]);
+      haptic(HAPTIC.shield);
       toast(hits + "/5 corrette — Scudo Temporale infranto!", 2800);
       syncHUD();
       setTimeout(roNewRound, 2200);
     } else {
       SFX.wrong();
-      if (navigator.vibrate) navigator.vibrate(160);
+      haptic(HAPTIC.wrong);
       G.lastReveal = { order: correct, hits };
       syncHUD();
       setTimeout(endGame, 1500);
@@ -1811,6 +2221,39 @@ function endGame(){
   updateGhost();
 }
 
+/* Chip delle categorie: mostrano quanti eventi restano selezionabili. */
+function renderFilters(){
+  const box = $("#catChips");
+  box.innerHTML = "";
+  Object.keys(CATEGORIES).forEach(name => {
+    const n = EVENTS.filter(e => e.category === name).length;
+    const on = FILTERS.cats.includes(name);
+    const b = document.createElement("button");
+    b.className = "fchip";
+    b.type = "button";
+    b.setAttribute("aria-pressed", String(on));
+    b.innerHTML = cat(name).emoji + " " + name + " <span style='opacity:.6'>" + n + "</span>";
+    b.addEventListener("click", () => {
+      const i = FILTERS.cats.indexOf(name);
+      if (i >= 0) FILTERS.cats.splice(i, 1); else FILTERS.cats.push(name);
+      FILTERS.save();
+      renderFilters();
+      SFX.pop();
+      const pool = activePool();
+      if (FILTERS.cats.length && pool === EVENTS)
+        toast("Troppi pochi eventi con questo filtro: uso tutte le categorie", 2600);
+      else
+        toast(FILTERS.cats.length ? pool.length + " eventi in gioco" : "Tutte le categorie attive", 1600);
+    });
+    box.appendChild(b);
+  });
+  $$("#diffSeg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.diff === FILTERS.diff)));
+  $("#diffHint").textContent = DIFF_HINT[FILTERS.diff];
+  $("#cacheInfo").textContent = WIKI.size() === 1
+    ? "1 scheda salvata in locale"
+    : WIKI.size() + " schede salvate in locale";
+}
+
 function renderStats(){
   const s = STORE.stats();
   $("#stGames").textContent = s.games;
@@ -1818,6 +2261,7 @@ function renderStats(){
   $("#stBest").textContent  = STORE.best;
   $("#stAvg").textContent   = s.games ? Math.round(s.totalScore / s.games) : 0;
   const max = Math.max(1, ...s.dist);
+  renderFilters();
   $("#distChart").innerHTML = DIST_BUCKETS.map((b, i) => {
     const v = s.dist[i] || 0;
     const w = Math.max(6, Math.round(v / max * 100));
@@ -1987,13 +2431,32 @@ function generateStory(){
   x.fillStyle = "#5b6485"; x.font = "700 23px " + F;
   x.fillText("chronoglass · by Antonio (@acrisci05)", W / 2, 1790);
 
-  c.toBlob(blob2 => {
+  /* Condivisione: si prova prima il foglio nativo con l'immagine (Instagram,
+     WhatsApp, Telegram...), poi il solo testo, infine il download. */
+  c.toBlob(async blob2 => {
     if (!blob2){ toast("Impossibile generare la story"); return; }
-    const file = new File([blob2], "chronoglass-story.png", { type:"image/png" });
-    if (navigator.canShare && navigator.canShare({ files:[file] })){
-      navigator.share({ files:[file], title:"ChronoGlass", text:"Ho fatto " + G.score + " punti su ChronoGlass!" })
-        .catch(() => downloadBlob(blob2));
-    } else downloadBlob(blob2);
+    const testo = "Ho fatto " + G.score + " punti su ChronoGlass, streak " + G.streak + ". Riesci a battermi?";
+    let file = null;
+    try { file = new File([blob2], "chronoglass-story.png", { type:"image/png" }); } catch(e){}
+
+    if (file && navigator.canShare && navigator.canShare({ files:[file] })){
+      try {
+        await navigator.share({ files:[file], title:"ChronoGlass", text:testo });
+        haptic(HAPTIC.swipe);
+        return;
+      } catch(err){
+        if (err && err.name === "AbortError") return;   // l'utente ha annullato: nessun fallback
+      }
+    }
+    if (navigator.share){
+      try {
+        await navigator.share({ title:"ChronoGlass", text:testo });
+        return;
+      } catch(err){
+        if (err && err.name === "AbortError") return;
+      }
+    }
+    downloadBlob(blob2);
   }, "image/png");
 }
 function downloadBlob(b){
@@ -2074,9 +2537,9 @@ function newGame(){
   syncHUD();
 
   if (G.mode === "swipe"){
-    const pool = shuffle(EVENTS);
-    setReference(pool[0]);
-    G.queue = pool.slice(1);
+    setReference(shuffle(activePool())[0]);
+    G.queue = [];
+    fillQueue();                 // la coda rispetta categorie e difficoltà
     renderDeck();
   } else {
     roNewRound();
@@ -2107,6 +2570,40 @@ function wire(){
     STORE.reset(); renderStats(); syncHUD();
     toast("Statistiche azzerate");
   });
+
+  /* --- filtri di difficoltà --- */
+  $$("#diffSeg button").forEach(b => b.addEventListener("click", () => {
+    FILTERS.diff = b.dataset.diff;
+    FILTERS.save();
+    renderFilters();
+    SFX.pop();
+    toast("Difficoltà: " + b.textContent, 1700);
+  }));
+
+  /* --- modalità prestazioni --- */
+  $("#tglMotion").addEventListener("click", () => {
+    PERF.set(!PERF.reduced, true);
+    PERF.userSet = true;
+    SFX.pop();
+    toast(PERF.reduced ? "Sfondo animato disattivato" : "Sfondo animato attivo", 1700);
+  });
+
+  /* --- svuota la cache di Wikipedia --- */
+  $("#btnClearCache").addEventListener("click", () => {
+    WIKI.clear();
+    renderFilters();
+    toast("Cache svuotata: le schede verranno riscaricate", 2400);
+  });
+
+  /* --- stato della rete: si avvisa senza bloccare nulla --- */
+  const paintNet = () => {
+    const off = navigator.onLine === false;
+    $("#netBadge").classList.toggle("on", off);
+    if (!off) WIKI.mem.forEach((rec, slug) => { if (rec.transient) WIKI.mem.delete(slug); });
+  };
+  window.addEventListener("online",  () => { paintNet(); toast("Di nuovo online 🌐", 1800); });
+  window.addEventListener("offline", () => { paintNet(); toast("Offline: immagini non disponibili", 2600); });
+  paintNet();
 
   const mute = $("#btnMute");
   const paintMute = () => {
@@ -2160,15 +2657,25 @@ function wire(){
 
 /* ---------- BOOT ---------- */
 function boot(){
+  PERF.init();          // prima di tutto: evita di animare e poi spegnere
+  FILTERS.load();
   icons();
   wire();
   installPWA();
   newGame();
-  WIKI.preload(EVENTS.slice(0, 6));
-  setTimeout(() => {
-    $("#boot").classList.add("off");
-    setTimeout(() => $("#boot").remove(), 700);
-  }, 420);
+  renderFilters();
+  WIKI.preload(activePool().slice(0, 6));
+
+  /* Lo skeleton se ne va appena la prima carta è nel DOM: non si aspetta
+     mai la rete, così offline o con Wikipedia lenta si gioca subito. */
+  const done = () => {
+    const b = $("#boot");
+    if (!b) return;
+    b.classList.add("off");
+    setTimeout(() => b.remove(), 600);
+  };
+  if (topCard()) requestAnimationFrame(() => setTimeout(done, 380));
+  else setTimeout(done, 600);
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
 else boot();

@@ -69,10 +69,38 @@ L'interfaccia è un sistema **Liquid Glass** costruito a strati:
   l'altro, seguiti dalla data completa in dissolvenza
 - **Statistiche locali** — partite, precisione, media e distribuzione dei punteggi in
   `localStorage`; il record di streak è salvato in `best_streak`
-- **Story generator** — un canvas 1080×1920 produce una card verticale in vetro con punteggio,
-  streak, precisione e QR, pronta per lo share nativo o il download
+- **Story generator e condivisione** — un canvas 1080×1920 produce una card verticale in
+  vetro con punteggio, streak, precisione e QR. Il pulsante *Condividi* usa la Web Share
+  API con l'immagine allegata (Instagram, WhatsApp, Telegram); se il dispositivo non
+  condivide file ripiega sul solo testo, e infine sul download
+- **Feedback aptico** — `navigator.vibrate()`: colpetto breve alla conferma dello swipe,
+  doppia vibrazione sull'errore, pattern lungo sul bonus. Silenzioso in modalità prestazioni
 - **PWA** — manifest inline (data URI) e service worker generato a runtime, per installare
   l'app sulla home screen
+
+## Filtri, offline e prestazioni
+
+Dalla modale **Statistiche** (icona grafico nella navbar):
+
+- **Filtra per argomento** — chip per categoria, con il numero di eventi disponibili.
+  Se la selezione lascia meno di 6 eventi si torna automaticamente a tutte le categorie.
+- **Difficoltà** — non è un'etichetta sui singoli eventi ma la distanza fra i due
+  confrontati: `Facile` ≥ 25 anni, `Media` 6–24, `Difficile` ≤ 5 anni, dove contano
+  mese e giorno. In Chrono-Reorder regola l'intervallo complessivo dei cinque eventi.
+- **Sfondo animato** — spegne sfere, sfocature e grana. Attivo di default se il sistema
+  chiede meno animazioni (`prefers-reduced-motion`) o se il dispositivo dichiara
+  ≤ 4 core **e** ≤ 4 GB. La scelta manuale vince sempre e viene ricordata.
+- **Cache Wikipedia** — mostra quante schede sono salvate in locale e permette di svuotarle.
+
+**Caching.** I metadati di ogni evento (URL immagine e descrizione) finiscono in
+`localStorage` con scadenza di 14 giorni: alla seconda partita nessuna scheda già vista
+richiama la REST API. I *byte* delle immagini non stanno lì — in base64 saturerebbero la
+quota da ~5 MB in poche carte — ma nella cache HTTP e, quando l'app gira su http(s), in
+quella del service worker.
+
+**Offline.** Se la rete manca, `WIKI.get()` non tenta nemmeno la chiamata e la carta usa
+subito mesh e emoji. Compare un badge discreto e il gioco resta completamente
+giocabile: lo skeleton non aspetta mai la rete per sparire.
 
 ## Note tecniche
 
@@ -82,6 +110,12 @@ L'interfaccia è un sistema **Liquid Glass** costruito a strati:
 - Il `backdrop-filter` dei pannelli viene sospeso durante il trascinamento (`:active`,
   `:has(.dragging)`): il backdrop andrebbe ricalcolato a ogni frame proprio mentre serve
   la massima fluidità.
+- Nessuna animazione continua dentro o dietro un pannello con `backdrop-filter`. Il
+  vecchio `????` pulsante costava da solo 49 ms/frame contro 16.7 da fermo: la sfocatura
+  veniva ricalcolata a ogni fotogramma. Ora è statico.
+- Niente auto-diagnosi delle prestazioni a runtime: misurare i fotogrammi per dedurre la
+  potenza del dispositivo si è rivelato inaffidabile (nei primi secondi l'app si assesta e
+  ogni soglia degradava la grafica a dispositivi sani). Si usano solo segnali dichiarati.
 - Il service worker viene registrato solo su `http(s)`; aprendo il file con `file://`
   la registrazione viene saltata e il resto dell'app funziona normalmente.
 
