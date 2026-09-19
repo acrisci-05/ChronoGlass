@@ -12,8 +12,18 @@ import fs from "node:fs";
 import path from "node:path";
 
 const HERE = path.dirname(new URL(import.meta.url).pathname);
-const file = path.join(HERE, "events-150.json");
-const events = JSON.parse(fs.readFileSync(file, "utf-8"));
+/* Controlla tutti i file del dataset presenti in data/. */
+const FILES = ["events-150.json", "cat-arte.json", "cat-letteratura.json",
+               "cat-geografia.json", "cat-spettacolo.json"];
+const events = [];
+for (const f of FILES) {
+  const full = path.join(HERE, f);
+  if (!fs.existsSync(full)) continue;
+  const items = JSON.parse(fs.readFileSync(full, "utf-8"));
+  for (const it of items) events.push({ id: it.id, wiki: it.wiki, file: f });
+  console.log(`caricato ${f}: ${items.length} elementi`);
+}
+if (!events.length) { console.error("nessun dataset trovato in data/"); process.exit(1); }
 const API = "https://it.wikipedia.org/api/rest_v1/page/summary/";
 const CONCURRENZA = 6;          // gentili con l'API
 const report = { ok: [], redirect: [], mancanti: [], senzaImmagine: [], errori: [] };

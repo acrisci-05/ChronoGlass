@@ -1,0 +1,478 @@
+[
+  {
+    "id": "lett_001",
+    "title": "Epopea di Gilgamesh",
+    "year": -2100,
+    "category": "letteratura",
+    "emoji": "𒀭",
+    "description": "Messo per iscritto in Mesopotamia il più antico poema epico conosciuto.",
+    "wiki": "Epopea_di_Gilgameš",
+    "approx": true
+  },
+  {
+    "id": "lett_002",
+    "title": "Composizione dell'Iliade",
+    "year": -750,
+    "category": "letteratura",
+    "emoji": "⚔️",
+    "description": "Omero fissa il canto dell'ira di Achille sotto le mura di Troia.",
+    "wiki": "Iliade",
+    "approx": true
+  },
+  {
+    "id": "lett_003",
+    "title": "Composizione dell'Odissea",
+    "year": -720,
+    "category": "letteratura",
+    "emoji": "🚢",
+    "description": "Il ritorno di Ulisse a Itaca diventa il modello di ogni viaggio narrato.",
+    "wiki": "Odissea",
+    "approx": true
+  },
+  {
+    "id": "lett_004",
+    "title": "Le liriche di Saffo",
+    "year": -600,
+    "category": "letteratura",
+    "emoji": "🪷",
+    "description": "Nell'isola di Lesbo Saffo dà voce alla poesia amorosa in prima persona.",
+    "wiki": "Saffo",
+    "approx": true
+  },
+  {
+    "id": "lett_005",
+    "title": "Eschilo mette in scena l'Orestea",
+    "year": -458,
+    "category": "letteratura",
+    "emoji": "🎭",
+    "description": "L'unica trilogia tragica greca giunta intera vince le Dionisie ad Atene.",
+    "wiki": "Orestea"
+  },
+  {
+    "id": "lett_006",
+    "title": "Erodoto pubblica le Storie",
+    "year": -440,
+    "category": "letteratura",
+    "emoji": "📜",
+    "description": "Nasce la storiografia: il racconto delle guerre persiane come indagine.",
+    "wiki": "Storie_(Erodoto)",
+    "approx": true
+  },
+  {
+    "id": "lett_007",
+    "title": "Sofocle, Edipo re",
+    "year": -429,
+    "category": "letteratura",
+    "emoji": "👁️",
+    "description": "La tragedia dell'uomo che scopre di essere ciò che cercava.",
+    "wiki": "Edipo_re",
+    "approx": true
+  },
+  {
+    "id": "lett_008",
+    "title": "Platone scrive La Repubblica",
+    "year": -375,
+    "category": "letteratura",
+    "emoji": "🏛️",
+    "description": "Il dialogo sulla giustizia che contiene il mito della caverna.",
+    "wiki": "La_Repubblica_(Platone)",
+    "approx": true
+  },
+  {
+    "id": "lett_009",
+    "title": "Virgilio lascia incompiuta l'Eneide",
+    "year": -19,
+    "category": "letteratura",
+    "emoji": "🔥",
+    "description": "Alla morte del poeta il poema di Enea resta senza revisione finale.",
+    "wiki": "Eneide"
+  },
+  {
+    "id": "lett_010",
+    "title": "Ovidio completa le Metamorfosi",
+    "year": 8,
+    "category": "letteratura",
+    "emoji": "🦋",
+    "description": "Duecentocinquanta miti incatenati dal tema della trasformazione.",
+    "wiki": "Metamorfosi_(Ovidio)"
+  },
+  {
+    "id": "lett_011",
+    "title": "Marco Aurelio scrive i Colloqui",
+    "year": 180,
+    "category": "letteratura",
+    "emoji": "🧘",
+    "description": "L'imperatore filosofo annota in greco i suoi appunti stoici privati.",
+    "wiki": "Colloqui_con_se_stesso",
+    "approx": true
+  },
+  {
+    "id": "lett_012",
+    "title": "Le mille e una notte",
+    "year": 900,
+    "category": "letteratura",
+    "emoji": "🪔",
+    "description": "Prende forma in arabo la raccolta di racconti incorniciati da Shahrazad.",
+    "wiki": "Le_mille_e_una_notte",
+    "approx": true
+  },
+  {
+    "id": "lett_013",
+    "title": "Il racconto di Genji",
+    "year": 1008,
+    "category": "letteratura",
+    "emoji": "🌸",
+    "description": "Murasaki Shikibu scrive alla corte giapponese quello che molti considerano il primo romanzo.",
+    "wiki": "Genji_monogatari",
+    "approx": true
+  },
+  {
+    "id": "lett_014",
+    "title": "Chanson de Roland",
+    "year": 1100,
+    "category": "letteratura",
+    "emoji": "🛡️",
+    "description": "Il più antico poema epico francese celebra la retroguardia di Carlo Magno.",
+    "wiki": "Chanson_de_Roland",
+    "approx": true
+  },
+  {
+    "id": "lett_015",
+    "title": "Dante completa la Divina Commedia",
+    "year": 1321,
+    "category": "letteratura",
+    "emoji": "🔥",
+    "description": "Poco prima di morire a Ravenna Dante termina il Paradiso.",
+    "wiki": "Divina_Commedia"
+  },
+  {
+    "id": "lett_016",
+    "title": "Boccaccio termina il Decameron",
+    "year": 1353,
+    "category": "letteratura",
+    "emoji": "🌹",
+    "description": "Cento novelle raccontate da dieci giovani in fuga dalla peste.",
+    "wiki": "Decameron"
+  },
+  {
+    "id": "lett_017",
+    "title": "I racconti di Canterbury",
+    "year": 1400,
+    "category": "letteratura",
+    "emoji": "🐎",
+    "description": "Chaucer lascia incompiuta la raccolta che fonda la letteratura inglese.",
+    "wiki": "I_racconti_di_Canterbury"
+  },
+  {
+    "id": "lett_018",
+    "title": "Ariosto pubblica l'Orlando Furioso",
+    "year": 1516,
+    "category": "letteratura",
+    "emoji": "🌙",
+    "description": "Il poema cavalleresco con il viaggio sulla Luna a recuperare il senno.",
+    "wiki": "Orlando_furioso"
+  },
+  {
+    "id": "lett_019",
+    "title": "Thomas More immagina Utopia",
+    "year": 1516,
+    "category": "letteratura",
+    "emoji": "🏝️",
+    "description": "Nasce la parola e il genere: l'isola dove tutto è ordinato e nulla esiste.",
+    "wiki": "Utopia_(More)"
+  },
+  {
+    "id": "lett_020",
+    "title": "Machiavelli, Il Principe",
+    "year": 1532,
+    "category": "letteratura",
+    "emoji": "♟️",
+    "description": "Pubblicato postumo il trattato che separa la politica dalla morale.",
+    "wiki": "Il_Principe"
+  },
+  {
+    "id": "lett_021",
+    "title": "Shakespeare scrive Amleto",
+    "year": 1601,
+    "category": "letteratura",
+    "emoji": "💀",
+    "description": "Il principe di Danimarca porta il dubbio interiore sulla scena teatrale.",
+    "wiki": "Amleto",
+    "approx": true
+  },
+  {
+    "id": "lett_022",
+    "title": "Cervantes, Don Chisciotte",
+    "year": 1605,
+    "category": "letteratura",
+    "emoji": "🐎",
+    "description": "Esce la prima parte del romanzo che ride dei libri e li ama insieme.",
+    "wiki": "Don_Chisciotte_della_Mancia"
+  },
+  {
+    "id": "lett_023",
+    "title": "Primo Folio di Shakespeare",
+    "year": 1623,
+    "category": "letteratura",
+    "emoji": "📖",
+    "description": "Gli amici raccolgono trentasei commedie e tragedie, salvandole dall'oblio.",
+    "wiki": "First_Folio"
+  },
+  {
+    "id": "lett_024",
+    "title": "Milton, Paradiso perduto",
+    "year": 1667,
+    "category": "letteratura",
+    "emoji": "😇",
+    "description": "Cieco e caduto in disgrazia, Milton detta l'epica della ribellione di Satana.",
+    "wiki": "Paradiso_perduto"
+  },
+  {
+    "id": "lett_025",
+    "title": "Defoe, Robinson Crusoe",
+    "year": 1719,
+    "category": "letteratura",
+    "emoji": "🏝️",
+    "description": "Il naufrago che ricostruisce una civiltà da solo inaugura il romanzo moderno.",
+    "wiki": "Robinson_Crusoe",
+    "dateStr": "25 Aprile 1719"
+  },
+  {
+    "id": "lett_026",
+    "title": "Swift, I viaggi di Gulliver",
+    "year": 1726,
+    "category": "letteratura",
+    "emoji": "🔭",
+    "description": "Satira feroce travestita da resoconto di viaggi tra giganti e cavalli parlanti.",
+    "wiki": "I_viaggi_di_Gulliver"
+  },
+  {
+    "id": "lett_027",
+    "title": "Goethe, I dolori del giovane Werther",
+    "year": 1774,
+    "category": "letteratura",
+    "emoji": "💔",
+    "description": "Il romanzo epistolare che scatena in Europa la moda del mal di vivere.",
+    "wiki": "I_dolori_del_giovane_Werther"
+  },
+  {
+    "id": "lett_028",
+    "title": "Jane Austen, Orgoglio e pregiudizio",
+    "year": 1813,
+    "category": "letteratura",
+    "emoji": "💍",
+    "description": "Elizabeth Bennet e Darcy definiscono per sempre la commedia sentimentale.",
+    "wiki": "Orgoglio_e_pregiudizio",
+    "dateStr": "28 Gennaio 1813"
+  },
+  {
+    "id": "lett_029",
+    "title": "Mary Shelley, Frankenstein",
+    "year": 1818,
+    "category": "letteratura",
+    "emoji": "⚡",
+    "description": "A vent'anni inventa la fantascienza con la creatura che chiede conto al creatore.",
+    "wiki": "Frankenstein",
+    "dateStr": "1 Gennaio 1818"
+  },
+  {
+    "id": "lett_030",
+    "title": "Manzoni, I promessi sposi",
+    "year": 1827,
+    "category": "letteratura",
+    "emoji": "⛪",
+    "description": "Esce la prima edizione del romanzo che darà una lingua comune all'Italia.",
+    "wiki": "I_promessi_sposi"
+  },
+  {
+    "id": "lett_031",
+    "title": "Poe pubblica Il corvo",
+    "year": 1845,
+    "category": "letteratura",
+    "emoji": "🐦‍⬛",
+    "description": "Il poema del rimpianto e del 'mai più' rende Poe celebre in una notte.",
+    "wiki": "Il_corvo_(Poe)",
+    "dateStr": "29 Gennaio 1845"
+  },
+  {
+    "id": "lett_032",
+    "title": "Melville, Moby Dick",
+    "year": 1851,
+    "category": "letteratura",
+    "emoji": "🐋",
+    "description": "La caccia alla balena bianca, ignorata in vita e canonica un secolo dopo.",
+    "wiki": "Moby_Dick"
+  },
+  {
+    "id": "lett_033",
+    "title": "Flaubert, Madame Bovary",
+    "year": 1856,
+    "category": "letteratura",
+    "emoji": "🥀",
+    "description": "Il romanzo che finisce sotto processo per oltraggio alla morale pubblica.",
+    "wiki": "Madame_Bovary"
+  },
+  {
+    "id": "lett_034",
+    "title": "Carroll, Alice nel Paese delle Meraviglie",
+    "year": 1865,
+    "category": "letteratura",
+    "emoji": "🐇",
+    "description": "La bambina che insegue un coniglio bianco cambia la letteratura per l'infanzia.",
+    "wiki": "Le_avventure_di_Alice_nel_Paese_delle_Meraviglie",
+    "dateStr": "26 Novembre 1865"
+  },
+  {
+    "id": "lett_035",
+    "title": "Dostoevskij, Delitto e castigo",
+    "year": 1866,
+    "category": "letteratura",
+    "emoji": "🪓",
+    "description": "Raskol'nikov uccide per dimostrare una teoria e non regge il proprio processo interiore.",
+    "wiki": "Delitto_e_castigo"
+  },
+  {
+    "id": "lett_036",
+    "title": "Tolstoj, Guerra e pace",
+    "year": 1869,
+    "category": "letteratura",
+    "emoji": "🎻",
+    "description": "Completato il romanzo che intreccia cinque famiglie alla campagna di Napoleone.",
+    "wiki": "Guerra_e_pace"
+  },
+  {
+    "id": "lett_037",
+    "title": "Verne, Il giro del mondo in 80 giorni",
+    "year": 1873,
+    "category": "letteratura",
+    "emoji": "🎈",
+    "description": "Phileas Fogg scommette che il pianeta è ormai piccolo abbastanza.",
+    "wiki": "Il_giro_del_mondo_in_80_giorni"
+  },
+  {
+    "id": "lett_038",
+    "title": "Collodi, Le avventure di Pinocchio",
+    "year": 1883,
+    "category": "letteratura",
+    "emoji": "🪵",
+    "description": "Il burattino che vuole diventare bambino esce in volume a Firenze.",
+    "wiki": "Le_avventure_di_Pinocchio"
+  },
+  {
+    "id": "lett_039",
+    "title": "Bram Stoker, Dracula",
+    "year": 1897,
+    "category": "letteratura",
+    "emoji": "🦇",
+    "description": "Il conte dei Carpazi fissa per sempre l'immaginario del vampiro.",
+    "wiki": "Dracula",
+    "dateStr": "26 Maggio 1897"
+  },
+  {
+    "id": "lett_040",
+    "title": "Proust, Dalla parte di Swann",
+    "year": 1913,
+    "category": "letteratura",
+    "emoji": "🍪",
+    "description": "Esce a spese dell'autore il primo volume della Ricerca del tempo perduto.",
+    "wiki": "Alla_ricerca_del_tempo_perduto",
+    "dateStr": "14 Novembre 1913"
+  },
+  {
+    "id": "lett_041",
+    "title": "Joyce pubblica Ulisse",
+    "year": 1922,
+    "category": "letteratura",
+    "emoji": "🌊",
+    "description": "Un solo giorno a Dublino diventa mille pagine e rifonda il romanzo.",
+    "wiki": "Ulisse_(Joyce)",
+    "dateStr": "2 Febbraio 1922"
+  },
+  {
+    "id": "lett_042",
+    "title": "Kafka, Il processo",
+    "year": 1925,
+    "category": "letteratura",
+    "emoji": "⚖️",
+    "description": "Pubblicato postumo contro le volontà dell'autore: Josef K. accusato di nulla.",
+    "wiki": "Il_processo"
+  },
+  {
+    "id": "lett_043",
+    "title": "Orwell pubblica 1984",
+    "year": 1949,
+    "category": "letteratura",
+    "emoji": "👁️",
+    "description": "Il Grande Fratello, la neolingua e il bispensiero entrano nel lessico comune.",
+    "wiki": "1984_(romanzo)",
+    "dateStr": "8 Giugno 1949"
+  },
+  {
+    "id": "lett_044",
+    "title": "Salinger, Il giovane Holden",
+    "year": 1951,
+    "category": "letteratura",
+    "emoji": "🧢",
+    "description": "La voce di Holden Caulfield inventa l'adolescenza letteraria del Novecento.",
+    "wiki": "Il_giovane_Holden",
+    "dateStr": "16 Luglio 1951"
+  },
+  {
+    "id": "lett_045",
+    "title": "Tolkien, La Compagnia dell'Anello",
+    "year": 1954,
+    "category": "letteratura",
+    "emoji": "💍",
+    "description": "Esce il primo volume del Signore degli Anelli e nasce il fantasy moderno.",
+    "wiki": "Il_Signore_degli_Anelli",
+    "dateStr": "29 Luglio 1954"
+  },
+  {
+    "id": "lett_046",
+    "title": "Harper Lee, Il buio oltre la siepe",
+    "year": 1960,
+    "category": "letteratura",
+    "emoji": "🐦",
+    "description": "Il razzismo del Sud americano visto dagli occhi di una bambina.",
+    "wiki": "Il_buio_oltre_la_siepe",
+    "dateStr": "11 Luglio 1960"
+  },
+  {
+    "id": "lett_047",
+    "title": "García Márquez, Cent'anni di solitudine",
+    "year": 1967,
+    "category": "letteratura",
+    "emoji": "🦋",
+    "description": "Macondo e i Buendía portano il realismo magico nel canone mondiale.",
+    "wiki": "Cent'anni_di_solitudine"
+  },
+  {
+    "id": "lett_048",
+    "title": "Umberto Eco, Il nome della rosa",
+    "year": 1980,
+    "category": "letteratura",
+    "emoji": "🔍",
+    "description": "Un giallo medievale in abbazia diventa un caso editoriale planetario.",
+    "wiki": "Il_nome_della_rosa"
+  },
+  {
+    "id": "lett_049",
+    "title": "Esce il primo Harry Potter",
+    "year": 1997,
+    "category": "letteratura",
+    "emoji": "⚡",
+    "description": "La pietra filosofale arriva in libreria in appena cinquecento copie.",
+    "wiki": "Harry_Potter_e_la_pietra_filosofale",
+    "dateStr": "26 Giugno 1997"
+  },
+  {
+    "id": "lett_050",
+    "title": "Nobel per la letteratura a Bob Dylan",
+    "year": 2016,
+    "category": "letteratura",
+    "emoji": "🎤",
+    "description": "Per la prima volta il premio va a un autore di canzoni.",
+    "wiki": "Bob_Dylan",
+    "dateStr": "13 Ottobre 2016"
+  }
+]
