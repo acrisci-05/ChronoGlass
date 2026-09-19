@@ -37,6 +37,24 @@ Timeline perfetta = `+5` punti, `+3` di bonus e streak incrementata.
 
 Da Game Over, `Spazio` ricomincia subito.
 
+## Design
+
+L'interfaccia è un sistema **Liquid Glass** costruito a strati:
+
+- **Sfondo mesh vivo** — quattro sfere neon (cyan, magenta, violetto, ambra) su piani diversi,
+  in moto continuo. La morbidezza viene dagli stop dei gradienti, non da un `filter: blur()`
+  a runtime: la scelta vale circa 2× di frame budget a parità di resa.
+- **Card full-bleed** — l'immagine (o il mesh cyberpunk di categoria con emoji 3D fluttuante)
+  occupa tutta la card; titolo, categoria e anno vivono in un pannello di vetro ancorato in
+  basso, con `backdrop-filter` che lascia trasparire il colore sottostante.
+- **Aura per categoria** — ogni card espone un accento RGB (`--accent`) che colora bordo,
+  alone esterno e pillola: Storia ambra, Tecnologia cyan, Musica magenta, e così via.
+- **Directional edge glow** — trascinando, il bordo dello schermo si accende nella direzione
+  del gesto: cyan a sinistra (PRIMA), magenta a destra (DOPO), oro verso l'alto (STESSO ANNO).
+- **Spina dorsale neon** in Chrono-Reorder, con nodi sferici che pulsano e diventano smeraldo
+  o rubino alla verifica, sotto un raggio laser con particelle.
+- **Motion blur dei rulli** durante la rivelazione dell'anno, sincronizzato con il tick meccanico.
+
 ## Caratteristiche
 
 - **Dataset** — 55 eventi verificati (79 d.C. → 2022) su 8 categorie, con 10 anni condivisi
@@ -58,8 +76,12 @@ Da Game Over, `Spazio` ricomincia subito.
 
 ## Note tecniche
 
-- CDN usate: Tailwind CSS, Lucide Icons, canvas-confetti. Se una CDN non è raggiungibile
-  l'interfaccia resta leggibile: le icone ricadono su glifi testuali.
+- CDN usate: Tailwind CSS, Lucide Icons, canvas-confetti. Il layout non dipende dalle classi
+  Tailwind: tutto lo stile critico è nel `<style>` inline, così l'app resta identica anche
+  senza rete. Se il CDN delle icone non risponde, i segnaposto ricadono su glifi testuali.
+- Il `backdrop-filter` dei pannelli viene sospeso durante il trascinamento (`:active`,
+  `:has(.dragging)`): il backdrop andrebbe ricalcolato a ogni frame proprio mentre serve
+  la massima fluidità.
 - Il service worker viene registrato solo su `http(s)`; aprendo il file con `file://`
   la registrazione viene saltata e il resto dell'app funziona normalmente.
 
