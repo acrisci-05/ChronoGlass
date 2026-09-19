@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "carlo-magno-imperatore",
+    "title": "Carlo Magno incoronato imperatore",
+    "year": 800,
+    "dateStr": "25 Dicembre 800",
+    "category": "storia",
+    "wiki": "Carlo_Magno"
+  },
+  {
+    "id": "magna-carta",
+    "title": "Re Giovanni firma la Magna Carta",
+    "year": 1215,
+    "dateStr": "15 Giugno 1215",
+    "category": "storia",
+    "wiki": "Magna_Carta"
+  },
+  {
+    "id": "caduta-costantinopoli",
+    "title": "Caduta di Costantinopoli",
+    "year": 1453,
+    "dateStr": "29 Maggio 1453",
+    "category": "storia",
+    "wiki": "Caduta_di_Costantinopoli"
+  },
+  {
+    "id": "indipendenza-usa",
+    "title": "Dichiarazione d'indipendenza americana",
+    "year": 1776,
+    "dateStr": "4 Luglio 1776",
+    "category": "storia",
+    "wiki": "Dichiarazione_di_indipendenza_degli_Stati_Uniti_d'America"
+  },
+  {
+    "id": "waterloo",
+    "title": "Napoleone sconfitto a Waterloo",
+    "year": 1815,
+    "dateStr": "18 Giugno 1815",
+    "category": "storia",
+    "wiki": "Battaglia_di_Waterloo"
+  },
+  {
+    "id": "spedizione-mille",
+    "title": "Garibaldi sbarca a Marsala",
+    "year": 1860,
+    "dateStr": "11 Maggio 1860",
+    "category": "storia",
+    "wiki": "Spedizione_dei_Mille"
+  },
+  {
+    "id": "presa-di-roma",
+    "title": "Breccia di Porta Pia",
+    "year": 1870,
+    "dateStr": "20 Settembre 1870",
+    "category": "storia",
+    "wiki": "Presa_di_Roma"
+  },
+  {
+    "id": "rivoluzione-ottobre",
+    "title": "Rivoluzione d'Ottobre in Russia",
+    "year": 1917,
+    "dateStr": "7 Novembre 1917",
+    "category": "storia",
+    "wiki": "Rivoluzione_d'ottobre"
+  },
+  {
+    "id": "marcia-su-roma",
+    "title": "Marcia su Roma",
+    "year": 1922,
+    "dateStr": "28 Ottobre 1922",
+    "category": "storia",
+    "wiki": "Marcia_su_Roma"
+  },
+  {
+    "id": "sbarco-normandia",
+    "title": "Sbarco in Normandia",
+    "year": 1944,
+    "dateStr": "6 Giugno 1944",
+    "category": "storia",
+    "wiki": "Sbarco_in_Normandia"
+  },
+  {
+    "id": "trattati-roma",
+    "title": "Firma dei Trattati di Roma",
+    "year": 1957,
+    "dateStr": "25 Marzo 1957",
+    "category": "storia",
+    "wiki": "Trattati_di_Roma"
+  },
+  {
+    "id": "crisi-missili-cuba",
+    "title": "Crisi dei missili di Cuba",
+    "year": 1962,
+    "dateStr": "16 Ottobre 1962",
+    "category": "storia",
+    "wiki": "Crisi_dei_missili_di_Cuba"
+  },
+  {
+    "id": "i-have-a-dream",
+    "title": "Il discorso 'I have a dream'",
+    "year": 1963,
+    "dateStr": "28 Agosto 1963",
+    "category": "storia",
+    "wiki": "Martin_Luther_King"
+  },
+  {
+    "id": "piazza-fontana",
+    "title": "Strage di piazza Fontana",
+    "year": 1969,
+    "dateStr": "12 Dicembre 1969",
+    "category": "storia",
+    "wiki": "Strage_di_piazza_Fontana"
+  },
+  {
+    "id": "rapimento-moro",
+    "title": "Rapimento di Aldo Moro",
+    "year": 1978,
+    "dateStr": "16 Marzo 1978",
+    "category": "storia",
+    "wiki": "Aldo_Moro"
+  },
+  {
+    "id": "strage-capaci",
+    "title": "Strage di Capaci",
+    "year": 1992,
+    "dateStr": "23 Maggio 1992",
+    "category": "storia",
+    "wiki": "Strage_di_Capaci"
+  },
+  {
+    "id": "fine-urss",
+    "title": "Dissoluzione dell'Unione Sovietica",
+    "year": 1991,
+    "dateStr": "26 Dicembre 1991",
+    "category": "storia",
+    "wiki": "Dissoluzione_dell'Unione_Sovietica"
+  },
+  {
+    "id": "papa-francesco",
+    "title": "Elezione di Papa Francesco",
+    "year": 2013,
+    "dateStr": "13 Marzo 2013",
+    "category": "storia",
+    "wiki": "Papa_Francesco"
+  },
+  {
+    "id": "assalto-campidoglio",
+    "title": "Assalto al Campidoglio",
+    "year": 2021,
+    "dateStr": "6 Gennaio 2021",
+    "category": "storia",
+    "wiki": "Assalto_al_Campidoglio_degli_Stati_Uniti_d'America"
+  },
+  {
+    "id": "laika",
+    "title": "Laika, primo essere vivente in orbita",
+    "year": 1957,
+    "dateStr": "3 Novembre 1957",
+    "category": "spazio",
+    "wiki": "Lajka"
+  },
+  {
+    "id": "tereshkova",
+    "title": "Tereshkova, prima donna nello spazio",
+    "year": 1963,
+    "dateStr": "16 Giugno 1963",
+    "category": "spazio",
+    "wiki": "Valentina_Vladimirovna_Tereškova"
+  },
+  {
+    "id": "leonov-passeggiata",
+    "title": "Prima passeggiata spaziale",
+    "year": 1965,
+    "dateStr": "18 Marzo 1965",
+    "category": "spazio",
+    "wiki": "Aleksej_Archipovič_Leonov"
+  },
+  {
+    "id": "apollo-13",
+    "title": "L'odissea di Apollo 13",
+    "year": 1970,
+    "dateStr": "11 Aprile 1970",
+    "category": "spazio",
+    "wiki": "Apollo_13"
+  },
+  {
+    "id": "apollo-17",
+    "title": "Apollo 17, ultimo uomo sulla Luna",
+    "year": 1972,
+    "dateStr": "7 Dicembre 1972",
+    "category": "spazio",
+    "wiki": "Apollo_17"
+  },
+  {
+    "id": "viking-1",
+    "title": "Viking 1 atterra su Marte",
+    "year": 1976,
+    "dateStr": "20 Luglio 1976",
+    "category": "spazio",
+    "wiki": "Viking_1"
+  },
+  {
+    "id": "voyager-1",
+    "title": "Lancio della sonda Voyager 1",
+    "year": 1977,
+    "dateStr": "5 Settembre 1977",
+    "category": "spazio",
+    "wiki": "Voyager_1"
+  },
+  {
+    "id": "primo-shuttle",
+    "title": "Primo volo dello Space Shuttle",
+    "year": 1981,
+    "dateStr": "12 Aprile 1981",
+    "category": "spazio",
+    "wiki": "Space_Shuttle"
+  },
+  {
+    "id": "challenger",
+    "title": "Disastro dello Shuttle Challenger",
+    "year": 1986,
+    "dateStr": "28 Gennaio 1986",
+    "category": "spazio",
+    "wiki": "Disastro_dello_Space_Shuttle_Challenger"
+  },
+  {
+    "id": "stazione-mir",
+    "title": "Lancio della stazione Mir",
+    "year": 1986,
+    "dateStr": "20 Febbraio 1986",
+    "category": "spazio",
+    "wiki": "Mir_(stazione_spaziale)"
+  },
+  {
+    "id": "iss-primo-modulo",
+    "title": "Primo modulo della Stazione Spaziale",
+    "year": 1998,
+    "dateStr": "20 Novembre 1998",
+    "category": "spazio",
+    "wiki": "Stazione_Spaziale_Internazionale"
+  },
+  {
+    "id": "huygens-titano",
+    "title": "Huygens atterra su Titano",
+    "year": 2005,
+    "dateStr": "14 Gennaio 2005",
+    "category": "spazio",
+    "wiki": "Huygens_(sonda_spaziale)"
+  },
+  {
+    "id": "philae-cometa",
+    "title": "Philae si posa su una cometa",
+    "year": 2014,
+    "dateStr": "12 Novembre 2014",
+    "category": "spazio",
+    "wiki": "Philae_(sonda_spaziale)"
+  },
+  {
+    "id": "new-horizons",
+    "title": "New Horizons sorvola Plutone",
+    "year": 2015,
+    "dateStr": "14 Luglio 2015",
+    "category": "spazio",
+    "wiki": "New_Horizons"
+  },
+  {
+    "id": "falcon-heavy",
+    "title": "Primo lancio del Falcon Heavy",
+    "year": 2018,
+    "dateStr": "6 Febbraio 2018",
+    "category": "spazio",
+    "wiki": "Falcon_Heavy"
+  },
+  {
+    "id": "foto-buco-nero",
+    "title": "Prima immagine di un buco nero",
+    "year": 2019,
+    "dateStr": "10 Aprile 2019",
+    "category": "spazio",
+    "wiki": "Event_Horizon_Telescope"
+  },
+  {
+    "id": "perseverance",
+    "title": "Perseverance atterra su Marte",
+    "year": 2021,
+    "dateStr": "18 Febbraio 2021",
+    "category": "spazio",
+    "wiki": "Perseverance_(rover)"
+  },
+  {
+    "id": "ingenuity",
+    "title": "Primo volo di un elicottero su Marte",
+    "year": 2021,
+    "dateStr": "19 Aprile 2021",
+    "category": "spazio",
+    "wiki": "Ingenuity_(elicottero)"
+  },
+  {
+    "id": "webb-immagini",
+    "title": "Prime immagini del telescopio Webb",
+    "year": 2022,
+    "dateStr": "12 Luglio 2022",
+    "category": "spazio",
+    "wiki": "Telescopio_spaziale_James_Webb"
+  },
+  {
+    "id": "sidereus-nuncius",
+    "title": "Galileo pubblica il Sidereus Nuncius",
+    "year": 1610,
+    "dateStr": "13 Marzo 1610",
+    "category": "scienza",
+    "wiki": "Sidereus_Nuncius"
+  },
+  {
+    "id": "principia-newton",
+    "title": "Newton pubblica i Principia",
+    "year": 1687,
+    "dateStr": "5 Luglio 1687",
+    "category": "scienza",
+    "wiki": "Philosophiae_Naturalis_Principia_Mathematica"
+  },
+  {
+    "id": "origine-specie",
+    "title": "Darwin pubblica L'origine delle specie",
+    "year": 1859,
+    "dateStr": "24 Novembre 1859",
+    "category": "scienza",
+    "wiki": "L'origine_delle_specie"
+  },
+  {
+    "id": "tavola-periodica",
+    "title": "Mendeleev presenta la tavola periodica",
+    "year": 1869,
+    "dateStr": "6 Marzo 1869",
+    "category": "scienza",
+    "wiki": "Tavola_periodica"
+  },
+  {
+    "id": "pasteur-rabbia",
+    "title": "Pasteur prova il vaccino antirabbico",
+    "year": 1885,
+    "dateStr": "6 Luglio 1885",
+    "category": "scienza",
+    "wiki": "Louis_Pasteur"
+  },
+  {
+    "id": "raggi-x",
+    "title": "Röntgen scopre i raggi X",
+    "year": 1895,
+    "dateStr": "8 Novembre 1895",
+    "category": "scienza",
+    "wiki": "Raggi_X"
+  },
+  {
+    "id": "curie-nobel",
+    "title": "Marie Curie riceve il Nobel",
+    "year": 1903,
+    "dateStr": "10 Dicembre 1903",
+    "category": "scienza",
+    "wiki": "Marie_Curie"
+  },
+  {
+    "id": "relativita-generale",
+    "title": "Einstein presenta la relatività generale",
+    "year": 1915,
+    "dateStr": "25 Novembre 1915",
+    "category": "scienza",
+    "wiki": "Relatività_generale"
+  },
+  {
+    "id": "trapianto-cuore",
+    "title": "Primo trapianto di cuore",
+    "year": 1967,
+    "dateStr": "3 Dicembre 1967",
+    "category": "scienza",
+    "wiki": "Christiaan_Barnard"
+  },
+  {
+    "id": "lucy-fossile",
+    "title": "Scoperta del fossile di Lucy",
+    "year": 1974,
+    "dateStr": "24 Novembre 1974",
+    "category": "scienza",
+    "wiki": "Lucy_(Australopithecus)"
+  },
+  {
+    "id": "louise-brown",
+    "title": "Nasce la prima bambina in provetta",
+    "year": 1978,
+    "dateStr": "25 Luglio 1978",
+    "category": "scienza",
+    "wiki": "Louise_Brown"
+  },
+  {
+    "id": "vaiolo-eradicato",
+    "title": "Il vaiolo dichiarato eradicato",
+    "year": 1980,
+    "dateStr": "8 Maggio 1980",
+    "category": "scienza",
+    "wiki": "Vaiolo"
+  },
+  {
+    "id": "buco-ozono",
+    "title": "Scoperto il buco nell'ozono",
+    "year": 1985,
+    "dateStr": "16 Maggio 1985",
+    "category": "scienza",
+    "wiki": "Buco_dell'ozono"
+  },
+  {
+    "id": "genoma-umano",
+    "title": "Completato il Progetto Genoma Umano",
+    "year": 2003,
+    "dateStr": "14 Aprile 2003",
+    "category": "scienza",
+    "wiki": "Progetto_genoma_umano"
+  },
+  {
+    "id": "bosone-higgs",
+    "title": "Annuncio del bosone di Higgs",
+    "year": 2012,
+    "dateStr": "4 Luglio 2012",
+    "category": "scienza",
+    "wiki": "Bosone_di_Higgs"
+  },
+  {
+    "id": "onde-gravitazionali",
+    "title": "Prima rilevazione di onde gravitazionali",
+    "year": 2016,
+    "dateStr": "11 Febbraio 2016",
+    "category": "scienza",
+    "wiki": "Onde_gravitazionali"
+  },
+  {
+    "id": "sars-cov-2-sequenza",
+    "title": "Sequenziato il genoma di SARS-CoV-2",
+    "year": 2020,
+    "dateStr": "11 Gennaio 2020",
+    "category": "scienza",
+    "wiki": "SARS-CoV-2"
+  },
+  {
+    "id": "primo-vaccino-covid",
+    "title": "Prima dose di vaccino anti-COVID",
+    "year": 2020,
+    "dateStr": "8 Dicembre 2020",
+    "category": "scienza",
+    "wiki": "Vaccino_anti-COVID-19"
+  },
+  {
+    "id": "crispr-nobel",
+    "title": "Nobel per le forbici genetiche CRISPR",
+    "year": 2020,
+    "dateStr": "7 Ottobre 2020",
+    "category": "scienza",
+    "wiki": "CRISPR"
+  },
+  {
+    "id": "primo-telegrafo",
+    "title": "Primo messaggio telegrafico di Morse",
+    "year": 1844,
+    "dateStr": "24 Maggio 1844",
+    "category": "tecnologia",
+    "wiki": "Samuel_Morse"
+  },
+  {
+    "id": "brevetto-telefono",
+    "title": "Bell brevetta il telefono",
+    "year": 1876,
+    "dateStr": "7 Marzo 1876",
+    "category": "tecnologia",
+    "wiki": "Alexander_Graham_Bell"
+  },
+  {
+    "id": "lampadina-edison",
+    "title": "Edison presenta la lampadina",
+    "year": 1879,
+    "dateStr": "31 Dicembre 1879",
+    "category": "tecnologia",
+    "wiki": "Thomas_Edison"
+  },
+  {
+    "id": "marconi-transatlantico",
+    "title": "Marconi trasmette oltre l'Atlantico",
+    "year": 1901,
+    "dateStr": "12 Dicembre 1901",
+    "category": "tecnologia",
+    "wiki": "Guglielmo_Marconi"
+  },
+  {
+    "id": "ford-model-t",
+    "title": "Esce la Ford Model T",
+    "year": 1908,
+    "dateStr": "1 Ottobre 1908",
+    "category": "tecnologia",
+    "wiki": "Ford_Model_T"
+  },
+  {
+    "id": "prima-tv-baird",
+    "title": "Prima dimostrazione della televisione",
+    "year": 1926,
+    "dateStr": "26 Gennaio 1926",
+    "category": "tecnologia",
+    "wiki": "John_Logie_Baird"
+  },
+  {
+    "id": "eniac",
+    "title": "Presentato l'ENIAC, primo calcolatore",
+    "year": 1946,
+    "dateStr": "14 Febbraio 1946",
+    "category": "tecnologia",
+    "wiki": "ENIAC"
+  },
+  {
+    "id": "transistor",
+    "title": "Invenzione del transistor",
+    "year": 1947,
+    "dateStr": "23 Dicembre 1947",
+    "category": "tecnologia",
+    "wiki": "Transistor"
+  },
+  {
+    "id": "arpanet",
+    "title": "Primo messaggio su ARPANET",
+    "year": 1969,
+    "dateStr": "29 Ottobre 1969",
+    "category": "tecnologia",
+    "wiki": "ARPANET"
+  },
+  {
+    "id": "intel-4004",
+    "title": "Intel presenta il primo microprocessore",
+    "year": 1971,
+    "dateStr": "15 Novembre 1971",
+    "category": "tecnologia",
+    "wiki": "Intel_4004"
+  },
+  {
+    "id": "prima-telefonata-cellulare",
+    "title": "Prima telefonata da un cellulare",
+    "year": 1973,
+    "dateStr": "3 Aprile 1973",
+    "category": "tecnologia",
+    "wiki": "Martin_Cooper"
+  },
+  {
+    "id": "apple-fondata",
+    "title": "Fondazione di Apple",
+    "year": 1976,
+    "dateStr": "1 Aprile 1976",
+    "category": "tecnologia",
+    "wiki": "Apple"
+  },
+  {
+    "id": "primo-cd",
+    "title": "Arriva in negozio il primo CD",
+    "year": 1982,
+    "dateStr": "1 Ottobre 1982",
+    "category": "tecnologia",
+    "wiki": "Compact_disc"
+  },
+  {
+    "id": "macintosh",
+    "title": "Presentazione del Macintosh",
+    "year": 1984,
+    "dateStr": "24 Gennaio 1984",
+    "category": "tecnologia",
+    "wiki": "Macintosh"
+  },
+  {
+    "id": "linux-annuncio",
+    "title": "Linus Torvalds annuncia Linux",
+    "year": 1991,
+    "dateStr": "25 Agosto 1991",
+    "category": "tecnologia",
+    "wiki": "Linux"
+  },
+  {
+    "id": "amazon-nasce",
+    "title": "Nasce Amazon",
+    "year": 1994,
+    "dateStr": "5 Luglio 1994",
+    "category": "tecnologia",
+    "wiki": "Amazon_(azienda)"
+  },
+  {
+    "id": "primo-tweet",
+    "title": "Il primo tweet della storia",
+    "year": 2006,
+    "dateStr": "21 Marzo 2006",
+    "category": "tecnologia",
+    "wiki": "Twitter"
+  },
+  {
+    "id": "bitcoin-genesi",
+    "title": "Primo blocco di Bitcoin",
+    "year": 2009,
+    "dateStr": "3 Gennaio 2009",
+    "category": "tecnologia",
+    "wiki": "Bitcoin"
+  },
+  {
+    "id": "instagram",
+    "title": "Lancio di Instagram",
+    "year": 2010,
+    "dateStr": "6 Ottobre 2010",
+    "category": "tecnologia",
+    "wiki": "Instagram"
+  },
+  {
+    "id": "lumiere-prima",
+    "title": "Prima proiezione dei fratelli Lumière",
+    "year": 1895,
+    "dateStr": "28 Dicembre 1895",
+    "category": "cinema",
+    "wiki": "Fratelli_Lumière"
+  },
+  {
+    "id": "cantante-di-jazz",
+    "title": "Il primo film sonoro",
+    "year": 1927,
+    "dateStr": "6 Ottobre 1927",
+    "category": "cinema",
+    "wiki": "Il_cantante_di_jazz"
+  },
+  {
+    "id": "biancaneve",
+    "title": "Biancaneve, primo lungometraggio Disney",
+    "year": 1937,
+    "dateStr": "21 Dicembre 1937",
+    "category": "cinema",
+    "wiki": "Biancaneve_e_i_sette_nani"
+  },
+  {
+    "id": "quarto-potere",
+    "title": "Esce Quarto potere",
+    "year": 1941,
+    "dateStr": "1 Maggio 1941",
+    "category": "cinema",
+    "wiki": "Quarto_potere"
+  },
+  {
+    "id": "ladri-di-biciclette",
+    "title": "Esce Ladri di biciclette",
+    "year": 1948,
+    "dateStr": "24 Novembre 1948",
+    "category": "cinema",
+    "wiki": "Ladri_di_biciclette"
+  },
+  {
+    "id": "la-dolce-vita",
+    "title": "Esce La dolce vita",
+    "year": 1960,
+    "dateStr": "3 Febbraio 1960",
+    "category": "cinema",
+    "wiki": "La_dolce_vita"
+  },
+  {
+    "id": "psyco",
+    "title": "Esce Psyco di Hitchcock",
+    "year": 1960,
+    "dateStr": "16 Giugno 1960",
+    "category": "cinema",
+    "wiki": "Psyco"
+  },
+  {
+    "id": "2001-odissea",
+    "title": "Esce 2001: Odissea nello spazio",
+    "year": 1968,
+    "dateStr": "2 Aprile 1968",
+    "category": "cinema",
+    "wiki": "2001:_Odissea_nello_spazio"
+  },
+  {
+    "id": "il-padrino",
+    "title": "Esce Il padrino",
+    "year": 1972,
+    "dateStr": "14 Marzo 1972",
+    "category": "cinema",
+    "wiki": "Il_padrino"
+  },
+  {
+    "id": "lo-squalo",
+    "title": "Esce Lo squalo",
+    "year": 1975,
+    "dateStr": "20 Giugno 1975",
+    "category": "cinema",
+    "wiki": "Lo_squalo"
+  },
+  {
+    "id": "et",
+    "title": "Esce E.T. l'extra-terrestre",
+    "year": 1982,
+    "dateStr": "11 Giugno 1982",
+    "category": "cinema",
+    "wiki": "E.T._l'extra-terrestre"
+  },
+  {
+    "id": "ritorno-al-futuro",
+    "title": "Esce Ritorno al futuro",
+    "year": 1985,
+    "dateStr": "3 Luglio 1985",
+    "category": "cinema",
+    "wiki": "Ritorno_al_futuro"
+  },
+  {
+    "id": "pulp-fiction",
+    "title": "Pulp Fiction a Cannes",
+    "year": 1994,
+    "dateStr": "21 Maggio 1994",
+    "category": "cinema",
+    "wiki": "Pulp_Fiction"
+  },
+  {
+    "id": "toy-story",
+    "title": "Toy Story, primo film in CGI",
+    "year": 1995,
+    "dateStr": "22 Novembre 1995",
+    "category": "cinema",
+    "wiki": "Toy_Story"
+  },
+  {
+    "id": "matrix",
+    "title": "Esce Matrix",
+    "year": 1999,
+    "dateStr": "31 Marzo 1999",
+    "category": "cinema",
+    "wiki": "Matrix"
+  },
+  {
+    "id": "signore-anelli",
+    "title": "La Compagnia dell'Anello al cinema",
+    "year": 2001,
+    "dateStr": "19 Dicembre 2001",
+    "category": "cinema",
+    "wiki": "Il_Signore_degli_Anelli_-_La_Compagnia_dell'Anello"
+  },
+  {
+    "id": "avatar",
+    "title": "Esce Avatar",
+    "year": 2009,
+    "dateStr": "18 Dicembre 2009",
+    "category": "cinema",
+    "wiki": "Avatar_(film_2009)"
+  },
+  {
+    "id": "parasite-oscar",
+    "title": "Parasite vince l'Oscar",
+    "year": 2020,
+    "dateStr": "9 Febbraio 2020",
+    "category": "cinema",
+    "wiki": "Parasite_(film_2019)"
+  },
+  {
+    "id": "oppenheimer",
+    "title": "Esce Oppenheimer",
+    "year": 2023,
+    "dateStr": "21 Luglio 2023",
+    "category": "cinema",
+    "wiki": "Oppenheimer_(film)"
+  },
+  {
+    "id": "nona-beethoven",
+    "title": "Prima della Nona di Beethoven",
+    "year": 1824,
+    "dateStr": "7 Maggio 1824",
+    "category": "musica",
+    "wiki": "Sinfonia_n._9_(Beethoven)"
+  },
+  {
+    "id": "aida-prima",
+    "title": "Prima assoluta dell'Aida",
+    "year": 1871,
+    "dateStr": "24 Dicembre 1871",
+    "category": "musica",
+    "wiki": "Aida"
+  },
+  {
+    "id": "heartbreak-hotel",
+    "title": "Elvis pubblica Heartbreak Hotel",
+    "year": 1956,
+    "dateStr": "27 Gennaio 1956",
+    "category": "musica",
+    "wiki": "Heartbreak_Hotel"
+  },
+  {
+    "id": "beatles-ed-sullivan",
+    "title": "I Beatles all'Ed Sullivan Show",
+    "year": 1964,
+    "dateStr": "9 Febbraio 1964",
+    "category": "musica",
+    "wiki": "The_Beatles"
+  },
+  {
+    "id": "sgt-pepper",
+    "title": "Esce Sgt. Pepper's dei Beatles",
+    "year": 1967,
+    "dateStr": "1 Giugno 1967",
+    "category": "musica",
+    "wiki": "Sgt._Pepper's_Lonely_Hearts_Club_Band"
+  },
+  {
+    "id": "dark-side-moon",
+    "title": "Esce The Dark Side of the Moon",
+    "year": 1973,
+    "dateStr": "1 Marzo 1973",
+    "category": "musica",
+    "wiki": "The_Dark_Side_of_the_Moon"
+  },
+  {
+    "id": "bohemian-rhapsody",
+    "title": "Esce Bohemian Rhapsody",
+    "year": 1975,
+    "dateStr": "31 Ottobre 1975",
+    "category": "musica",
+    "wiki": "Bohemian_Rhapsody"
+  },
+  {
+    "id": "morte-elvis",
+    "title": "Muore Elvis Presley",
+    "year": 1977,
+    "dateStr": "16 Agosto 1977",
+    "category": "musica",
+    "wiki": "Elvis_Presley"
+  },
+  {
+    "id": "back-in-black",
+    "title": "Esce Back in Black degli AC/DC",
+    "year": 1980,
+    "dateStr": "25 Luglio 1980",
+    "category": "musica",
+    "wiki": "Back_in_Black"
+  },
+  {
+    "id": "morte-lennon",
+    "title": "Assassinio di John Lennon",
+    "year": 1980,
+    "dateStr": "8 Dicembre 1980",
+    "category": "musica",
+    "wiki": "John_Lennon"
+  },
+  {
+    "id": "mtv-nasce",
+    "title": "MTV va in onda per la prima volta",
+    "year": 1981,
+    "dateStr": "1 Agosto 1981",
+    "category": "musica",
+    "wiki": "MTV"
+  },
+  {
+    "id": "like-a-virgin",
+    "title": "Madonna pubblica Like a Virgin",
+    "year": 1984,
+    "dateStr": "12 Novembre 1984",
+    "category": "musica",
+    "wiki": "Like_a_Virgin_(album)"
+  },
+  {
+    "id": "morte-mercury",
+    "title": "Muore Freddie Mercury",
+    "year": 1991,
+    "dateStr": "24 Novembre 1991",
+    "category": "musica",
+    "wiki": "Freddie_Mercury"
+  },
+  {
+    "id": "unplugged-nirvana",
+    "title": "I Nirvana registrano l'Unplugged",
+    "year": 1993,
+    "dateStr": "18 Novembre 1993",
+    "category": "musica",
+    "wiki": "MTV_Unplugged_in_New_York"
+  },
+  {
+    "id": "napster",
+    "title": "Nasce Napster",
+    "year": 1999,
+    "dateStr": "1 Giugno 1999",
+    "category": "musica",
+    "wiki": "Napster"
+  },
+  {
+    "id": "itunes-store",
+    "title": "Apre l'iTunes Store",
+    "year": 2003,
+    "dateStr": "28 Aprile 2003",
+    "category": "musica",
+    "wiki": "ITunes_Store"
+  },
+  {
+    "id": "spotify",
+    "title": "Lancio di Spotify",
+    "year": 2008,
+    "dateStr": "7 Ottobre 2008",
+    "category": "musica",
+    "wiki": "Spotify"
+  },
+  {
+    "id": "morte-jackson",
+    "title": "Muore Michael Jackson",
+    "year": 2009,
+    "dateStr": "25 Giugno 2009",
+    "category": "musica",
+    "wiki": "Michael_Jackson"
+  },
+  {
+    "id": "maneskin-eurovision",
+    "title": "I Måneskin vincono l'Eurovision",
+    "year": 2021,
+    "dateStr": "22 Maggio 2021",
+    "category": "musica",
+    "wiki": "Måneskin"
+  },
+  {
+    "id": "prime-olimpiadi",
+    "title": "Prime Olimpiadi moderne ad Atene",
+    "year": 1896,
+    "dateStr": "6 Aprile 1896",
+    "category": "sport",
+    "wiki": "Giochi_della_I_Olimpiade"
+  },
+  {
+    "id": "primo-tour",
+    "title": "Parte il primo Tour de France",
+    "year": 1903,
+    "dateStr": "1 Luglio 1903",
+    "category": "sport",
+    "wiki": "Tour_de_France"
+  },
+  {
+    "id": "primo-mondiale",
+    "title": "Primo Mondiale di calcio",
+    "year": 1930,
+    "dateStr": "13 Luglio 1930",
+    "category": "sport",
+    "wiki": "Campionato_mondiale_di_calcio_1930"
+  },
+  {
+    "id": "jesse-owens",
+    "title": "Jesse Owens trionfa a Berlino",
+    "year": 1936,
+    "dateStr": "3 Agosto 1936",
+    "category": "sport",
+    "wiki": "Jesse_Owens"
+  },
+  {
+    "id": "bannister",
+    "title": "Il miglio corso in meno di 4 minuti",
+    "year": 1954,
+    "dateStr": "6 Maggio 1954",
+    "category": "sport",
+    "wiki": "Roger_Bannister"
+  },
+  {
+    "id": "pele-1958",
+    "title": "Pelé campione del mondo a 17 anni",
+    "year": 1958,
+    "dateStr": "29 Giugno 1958",
+    "category": "sport",
+    "wiki": "Pelé"
+  },
+  {
+    "id": "ali-liston",
+    "title": "Cassius Clay batte Sonny Liston",
+    "year": 1964,
+    "dateStr": "25 Febbraio 1964",
+    "category": "sport",
+    "wiki": "Muhammad_Ali"
+  },
+  {
+    "id": "italia-germania",
+    "title": "Italia-Germania 4-3",
+    "year": 1970,
+    "dateStr": "17 Giugno 1970",
+    "category": "sport",
+    "wiki": "Italia-Germania_Ovest_4-3"
+  },
+  {
+    "id": "comaneci",
+    "title": "Nadia Comăneci e il 10 perfetto",
+    "year": 1976,
+    "dateStr": "18 Luglio 1976",
+    "category": "sport",
+    "wiki": "Nadia_Comăneci"
+  },
+  {
+    "id": "mondiale-1982",
+    "title": "L'Italia campione del mondo in Spagna",
+    "year": 1982,
+    "dateStr": "11 Luglio 1982",
+    "category": "sport",
+    "wiki": "Campionato_mondiale_di_calcio_1982"
+  },
+  {
+    "id": "morte-senna",
+    "title": "Muore Ayrton Senna a Imola",
+    "year": 1994,
+    "dateStr": "1 Maggio 1994",
+    "category": "sport",
+    "wiki": "Ayrton_Senna"
+  },
+  {
+    "id": "jordan-ultimo-titolo",
+    "title": "L'ultimo canestro di Jordan coi Bulls",
+    "year": 1998,
+    "dateStr": "14 Giugno 1998",
+    "category": "sport",
+    "wiki": "Michael_Jordan"
+  },
+  {
+    "id": "federer-nadal-2008",
+    "title": "La finale infinita di Wimbledon",
+    "year": 2008,
+    "dateStr": "6 Luglio 2008",
+    "category": "sport",
+    "wiki": "Roger_Federer"
+  },
+  {
+    "id": "bolt-record",
+    "title": "Usain Bolt e il record dei 100 metri",
+    "year": 2009,
+    "dateStr": "16 Agosto 2009",
+    "category": "sport",
+    "wiki": "Usain_Bolt"
+  },
+  {
+    "id": "leicester",
+    "title": "Il Leicester vince la Premier League",
+    "year": 2016,
+    "dateStr": "2 Maggio 2016",
+    "category": "sport",
+    "wiki": "Leicester_City_Football_Club"
+  },
+  {
+    "id": "italia-europei",
+    "title": "L'Italia campione d'Europa a Wembley",
+    "year": 2021,
+    "dateStr": "11 Luglio 2021",
+    "category": "sport",
+    "wiki": "Campionato_europeo_di_calcio_2020"
+  },
+  {
+    "id": "jacobs-oro",
+    "title": "Marcell Jacobs oro nei 100 metri",
+    "year": 2021,
+    "dateStr": "1 Agosto 2021",
+    "category": "sport",
+    "wiki": "Marcell_Jacobs"
+  },
+  {
+    "id": "messi-mondiale",
+    "title": "Messi alza la Coppa del Mondo",
+    "year": 2022,
+    "dateStr": "18 Dicembre 2022",
+    "category": "sport",
+    "wiki": "Campionato_mondiale_di_calcio_2022"
+  },
+  {
+    "id": "pong",
+    "title": "Esce Pong, il videogioco che iniziò tutto",
+    "year": 1972,
+    "dateStr": "29 Novembre 1972",
+    "category": "videogiochi",
+    "wiki": "Pong"
+  },
+  {
+    "id": "space-invaders",
+    "title": "Esce Space Invaders",
+    "year": 1978,
+    "dateStr": "1 Giugno 1978",
+    "category": "videogiochi",
+    "wiki": "Space_Invaders"
+  },
+  {
+    "id": "pac-man",
+    "title": "Esce Pac-Man",
+    "year": 1980,
+    "dateStr": "22 Maggio 1980",
+    "category": "videogiochi",
+    "wiki": "Pac-Man"
+  },
+  {
+    "id": "donkey-kong",
+    "title": "Esce Donkey Kong",
+    "year": 1981,
+    "dateStr": "9 Luglio 1981",
+    "category": "videogiochi",
+    "wiki": "Donkey_Kong_(videogioco_1981)"
+  },
+  {
+    "id": "game-boy",
+    "title": "Nintendo lancia il Game Boy",
+    "year": 1989,
+    "dateStr": "21 Aprile 1989",
+    "category": "videogiochi",
+    "wiki": "Game_Boy"
+  },
+  {
+    "id": "street-fighter-2",
+    "title": "Esce Street Fighter II",
+    "year": 1991,
+    "dateStr": "6 Febbraio 1991",
+    "category": "videogiochi",
+    "wiki": "Street_Fighter_II"
+  },
+  {
+    "id": "sonic",
+    "title": "Debutta Sonic the Hedgehog",
+    "year": 1991,
+    "dateStr": "23 Giugno 1991",
+    "category": "videogiochi",
+    "wiki": "Sonic_the_Hedgehog_(videogioco_1991)"
+  },
+  {
+    "id": "doom",
+    "title": "Esce Doom",
+    "year": 1993,
+    "dateStr": "10 Dicembre 1993",
+    "category": "videogiochi",
+    "wiki": "Doom_(videogioco_1993)"
+  },
+  {
+    "id": "pokemon-rosso-blu",
+    "title": "Escono Pokémon Rosso e Blu",
+    "year": 1996,
+    "dateStr": "27 Febbraio 1996",
+    "category": "videogiochi",
+    "wiki": "Pokémon_Rosso_e_Blu"
+  },
+  {
+    "id": "super-mario-64",
+    "title": "Esce Super Mario 64",
+    "year": 1996,
+    "dateStr": "23 Giugno 1996",
+    "category": "videogiochi",
+    "wiki": "Super_Mario_64"
+  },
+  {
+    "id": "the-sims",
+    "title": "Esce The Sims",
+    "year": 2000,
+    "dateStr": "4 Febbraio 2000",
+    "category": "videogiochi",
+    "wiki": "The_Sims"
+  },
+  {
+    "id": "gta-san-andreas",
+    "title": "Esce GTA San Andreas",
+    "year": 2004,
+    "dateStr": "26 Ottobre 2004",
+    "category": "videogiochi",
+    "wiki": "Grand_Theft_Auto:_San_Andreas"
+  },
+  {
+    "id": "world-of-warcraft",
+    "title": "Esce World of Warcraft",
+    "year": 2004,
+    "dateStr": "23 Novembre 2004",
+    "category": "videogiochi",
+    "wiki": "World_of_Warcraft"
+  },
+  {
+    "id": "wii",
+    "title": "Nintendo lancia il Wii",
+    "year": 2006,
+    "dateStr": "19 Novembre 2006",
+    "category": "videogiochi",
+    "wiki": "Wii"
+  },
+  {
+    "id": "minecraft",
+    "title": "Minecraft esce in versione completa",
+    "year": 2011,
+    "dateStr": "18 Novembre 2011",
+    "category": "videogiochi",
+    "wiki": "Minecraft"
+  },
+  {
+    "id": "pokemon-go",
+    "title": "Pokémon GO conquista il mondo",
+    "year": 2016,
+    "dateStr": "6 Luglio 2016",
+    "category": "videogiochi",
+    "wiki": "Pokémon_GO"
+  },
+  {
+    "id": "nintendo-switch",
+    "title": "Arriva Nintendo Switch",
+    "year": 2017,
+    "dateStr": "3 Marzo 2017",
+    "category": "videogiochi",
+    "wiki": "Nintendo_Switch"
+  },
+  {
+    "id": "fortnite-br",
+    "title": "Fortnite lancia Battle Royale",
+    "year": 2017,
+    "dateStr": "26 Settembre 2017",
+    "category": "videogiochi",
+    "wiki": "Fortnite"
+  }
+]
