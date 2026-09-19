@@ -78,6 +78,28 @@ L'interfaccia è un sistema **Liquid Glass** costruito a strati:
 - **PWA** — manifest inline (data URI) e service worker generato a runtime, per installare
   l'app sulla home screen
 
+## Esperienza visiva
+
+- **Splash screen** — logo con alone animato, barra di avanzamento e stato testuale agganciati
+  all'avvio vero (cache, primo round, prime immagini), con un tetto massimo perché offline non
+  resti mai appeso. Viene rimosso dal DOM: "Rigioca" non lo ripropone.
+- **Tilt 3D** — la carta in cima si inclina seguendo il puntatore e il trascinamento. Lo strato
+  che ruota (`.card-tilt`) è separato da quello che viene trascinato, così i due transform non
+  si sovrascrivono; il riflesso sta *sopra* il pannello in vetro, per non obbligare a
+  ricalcolare il `backdrop-filter` sotto.
+- **Icone neon procedurali** — un SVG a tratto per categoria (circuito, atomo, pellicola,
+  colonnato, gamepad…) al posto delle emoji quando manca l'immagine. Nella pillola resta
+  l'emoji: a 14px un'icona a tratto diventa illeggibile.
+- **Particelle** — esplosione neon dalla carta su risposta corretta e sul bonus stesso-anno.
+  Un solo canvas, simulazione basata sul tempo trascorso (non sui fotogrammi) e loop che si
+  spegne da sé quando l'ultima particella svanisce.
+- **Count-up** — punteggio, record e precisione salgono da zero con easing. Durante il
+  conteggio il `backdrop-filter` della sheet viene sospeso: ridipingerebbe a ogni fotogramma.
+- **Flip 3D in Chrono-Reorder** — alla verifica le carte ruotano e mostrano sul retro verdetto,
+  titolo e anno reale, smeraldo o rubino. Il backdrop è sospeso per la durata della rotazione.
+- **Storico del percorso** — nel Game Over, le carte azzeccate unite da una linea luminosa,
+  con in fondo quella su cui la catena si è spezzata.
+
 ## Filtri, offline e prestazioni
 
 Dalla modale **Statistiche** (icona grafico nella navbar):
