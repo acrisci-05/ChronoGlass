@@ -963,6 +963,47 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
   box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
 #goReveal b{color:#fff}
 
+/* =====================================================================
+   INVITO A INSTALLARE — compare in basso, dalla terza visita
+   ===================================================================== */
+#installBanner{position:fixed;z-index:72;left:50%;
+  bottom:calc(16px + env(safe-area-inset-bottom));
+  width:min(420px,calc(100vw - 24px));
+  display:flex;align-items:center;gap:13px;padding:14px 16px;border-radius:22px;
+  transform:translate(-50%,calc(100% + 32px));opacity:0;pointer-events:none;visibility:hidden;
+  background:linear-gradient(150deg,rgba(255,255,255,.12),rgba(255,255,255,.04) 55%,rgba(0,243,255,.08));
+  backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 22px 56px -16px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.3),
+             0 0 48px -20px rgba(0,243,255,.8);
+  transition:transform .5s var(--spring),opacity .35s ease,visibility 0s linear .5s}
+#installBanner.on{transform:translate(-50%,0);opacity:1;pointer-events:auto;visibility:visible;
+  transition:transform .5s var(--spring),opacity .35s ease,visibility 0s}
+.ib-ico{flex-shrink:0;width:40px;height:40px;border-radius:13px;display:grid;place-items:center;
+  color:var(--cyan);background:rgba(0,243,255,.14);border:1px solid rgba(0,243,255,.4);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
+.ib-ico svg{width:21px;height:21px}
+.ib-txt{flex:1;min-width:0}
+.ib-txt b{display:block;font-size:12.5px;font-weight:850;letter-spacing:-.01em}
+.ib-txt span{display:block;margin-top:3px;font-size:10.5px;line-height:1.45;
+  color:rgba(255,255,255,.75)}
+.ib-act{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+#btnInstallSi{padding:9px 15px;border-radius:12px;font-size:11.5px;font-weight:900;
+  letter-spacing:.06em;text-transform:uppercase;color:#02131a;white-space:nowrap;
+  background:linear-gradient(120deg,var(--cyan),#9df6ff);
+  box-shadow:0 6px 20px -4px rgba(0,243,255,.7),inset 0 1px 0 rgba(255,255,255,.7);
+  transition:transform .2s var(--spring),filter .2s}
+#btnInstallSi:hover{transform:translateY(-1px);filter:brightness(1.08)}
+#btnInstallSi:active{transform:scale(.94)}
+#btnInstallNo{padding:5px;border-radius:9px;font-size:10px;font-weight:750;
+  color:var(--dim);transition:color .2s}
+#btnInstallNo:hover{color:#fff}
+@media(max-width:420px){
+  #installBanner{gap:10px;padding:12px 13px}
+  .ib-ico{width:34px;height:34px}
+  .ib-txt span{display:none}
+}
+
 /* Lampo del nuovo record: un solo strato, opacità animata, niente
    backdrop-filter sotto. Vive fuori da qualunque pannello sfocato. */
 #recordFlash{position:fixed;inset:0;z-index:57;pointer-events:none;opacity:0;
@@ -1968,6 +2009,25 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
       <button id="btnStartRun">Avvia partita</button>
       <button class="lobby-share" id="btnLobbyShare">&#128279; Condividi ChronoGlass</button>
     </div>
+  </div>
+</div>
+
+<!-- ======================= INVITO A INSTALLARE ======================= -->
+<div id="installBanner" role="dialog" aria-labelledby="installTitolo" aria-live="polite">
+  <div class="ib-ico" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+      <rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/>
+      <path d="M12 7v6M9.5 10.5L12 13l2.5-2.5"/>
+    </svg>
+  </div>
+  <div class="ib-txt">
+    <b id="installTitolo">Aggiungi alla schermata Home</b>
+    <span>Si apre a tutto schermo e funziona anche senza connessione.</span>
+  </div>
+  <div class="ib-act">
+    <button id="btnInstallSi">Aggiungi</button>
+    <button id="btnInstallNo" aria-label="Non ora">Non ora</button>
   </div>
 </div>
 
@@ -3053,6 +3113,101 @@ const SFX = {
 /* ------------------------------------------------------------------ *
  * 4. WIKIPEDIA REST API + PRELOADING INTELLIGENTE
  * ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ *
+ * INDEXEDDB — schede e miniature che sopravvivono al volo in aereo
+ * localStorage regge i metadati (url + una frase: ~200 byte a carta) ma
+ * non i byte delle immagini: con 800 carte la quota da 5 MB salta alla
+ * decima foto. IndexedDB non ha quel tetto, quindi le miniature vanno lì.
+ * Tutto è opzionale: se il browser lo nega, l'app funziona come prima.
+ * ------------------------------------------------------------------ */
+const IDB = {
+  NOME: "chronoglass",
+  VER: 1,
+  db: null,
+  pronto: false,
+  slugConFoto: new Set(),   // indice sincrono: sapere subito se c'è la miniatura
+
+  apri(){
+    if (this._p) return this._p;
+    this._p = new Promise(res => {
+      let req;
+      try { req = indexedDB.open(this.NOME, this.VER); }
+      catch(e){ return res(null); }                 // modalità privata, storage negato
+      req.onupgradeneeded = () => {
+        const db = req.result;
+        if (!db.objectStoreNames.contains("schede")) db.createObjectStore("schede");
+        if (!db.objectStoreNames.contains("media"))  db.createObjectStore("media");
+      };
+      req.onsuccess = () => { this.db = req.result; this.pronto = true; res(this.db); };
+      req.onerror   = () => res(null);
+      req.onblocked = () => res(null);
+      setTimeout(() => res(this.db), 2500);         // non si resta appesi all'avvio
+    });
+    return this._p;
+  },
+
+  _tx(store, modo){
+    if (!this.db) return null;
+    try { return this.db.transaction(store, modo).objectStore(store); }
+    catch(e){ return null; }
+  },
+  get(store, k){
+    return this.apri().then(() => new Promise(res => {
+      const s = this._tx(store, "readonly");
+      if (!s) return res(null);
+      const r = s.get(k);
+      r.onsuccess = () => res(r.result || null);
+      r.onerror   = () => res(null);
+    }));
+  },
+  put(store, k, v){
+    return this.apri().then(() => new Promise(res => {
+      const s = this._tx(store, "readwrite");
+      if (!s) return res(false);
+      const r = s.put(v, k);
+      r.onsuccess = () => res(true);
+      r.onerror   = () => res(false);               // quota piena: pazienza
+    }));
+  },
+  /* All'avvio si legge solo l'elenco delle chiavi: poche centinaia di
+     stringhe, non i blob, quindi non pesa nulla. */
+  indicizza(){
+    return this.apri().then(() => new Promise(res => {
+      const s = this._tx("media", "readonly");
+      if (!s || !s.getAllKeys) return res(0);
+      const r = s.getAllKeys();
+      r.onsuccess = () => { this.slugConFoto = new Set(r.result || []); res(this.slugConFoto.size); };
+      r.onerror   = () => res(0);
+    }));
+  },
+  svuota(){
+    this.slugConFoto.clear();
+    return this.apri().then(() => new Promise(res => {
+      ["schede","media"].forEach(n => { const s = this._tx(n, "readwrite"); if (s) s.clear(); });
+      res(true);
+    }));
+  },
+  /* Scarica l'immagine una volta sola e la conserva come blob. Wikimedia
+     manda Access-Control-Allow-Origin: *, quindi il blob è leggibile. */
+  async salvaFoto(slug, url){
+    if (!url || this.slugConFoto.has(slug)) return null;
+    try {
+      const r = await fetch(url, { mode:"cors", credentials:"omit" });
+      if (!r.ok) return null;
+      const b = await r.blob();
+      if (b.size > 3e6) return null;                // oltre i 3 MB non vale la pena
+      const ok = await this.put("media", slug, b);
+      if (ok) this.slugConFoto.add(slug);
+      return b;
+    } catch(e){ return null; }                      // CORS negato o rete giù
+  },
+  async fotoUrl(slug){
+    const b = await this.get("media", slug);
+    if (!b) return null;
+    try { return URL.createObjectURL(b); } catch(e){ return null; }
+  }
+};
+
 const WIKI = {
   /* --- cache su due livelli -------------------------------------------
      mem:  Map di sessione, risposta immediata.
@@ -3117,11 +3272,23 @@ const WIKI = {
     const hit = this.loadDisk()[slug];
     if (hit){
       const rec = { url: hit.u, desc: hit.d, cached: true };
+      /* Senza rete la foto remota non arriverebbe: se la miniatura è in
+         IndexedDB la si serve da lì e la carta resta illustrata. */
+      if (rec.url && navigator.onLine === false && IDB.slugConFoto.has(slug)){
+        const p = IDB.fotoUrl(slug).then(u => {
+          const r = { url: u || null, desc: hit.d, cached: true, locale: !!u };
+          this.mem.set(slug, r);
+          this.pending.delete(slug);
+          return r;
+        });
+        this.pending.set(slug, p);
+        return p;
+      }
       this.mem.set(slug, rec);
       if (rec.url) this.warm(rec.url);        // ricarica dalla cache HTTP, senza attesa
       return Promise.resolve(rec);
     }
-    // offline: nessuna chiamata, la carta usa subito il fallback grafico
+    // offline e mai vista: la carta usa subito il fallback grafico
     if (navigator.onLine === false){
       const rec = { url:null, desc:null, offline:true, transient:true };
       this.mem.set(slug, rec);
@@ -3143,7 +3310,11 @@ const WIKI = {
         // farebbe fallire l'intero script, non solo questa riga.
         const desc = j.extract ? firstSentence(j.extract, 96) : null;
         if (!url) return { url:null, desc };
-        return this.warm(url).then(ok => ({ url: ok ? url : null, desc }));
+        return this.warm(url).then(ok => {
+          // copia locale per il prossimo volo in aereo: non blocca la carta
+          if (ok) IDB.salvaFoto(slug, url);
+          return { url: ok ? url : null, desc };
+        });
       })
       .catch(() => ({ url:null, desc:null, transient:true }))   // rete giù, 404, timeout
       .then(rec => {
@@ -3171,8 +3342,13 @@ const WIKI = {
   clear(){
     this.mem.clear(); this.disk = {}; this.dirty = false;
     try { localStorage.removeItem(this.KEY); } catch(e){}
+    IDB.svuota();
+    if (navigator.serviceWorker && navigator.serviceWorker.controller){
+      navigator.serviceWorker.controller.postMessage({ tipo:"svuota" });
+    }
   },
-  size(){ return Object.keys(this.loadDisk()).length; }
+  size(){ return Object.keys(this.loadDisk()).length; },
+  fotoOffline(){ return IDB.slugConFoto.size; }
 };
 
 /* ------------------------------------------------------------------ *
@@ -4886,8 +5062,13 @@ function renderFilters(){
       " · " + activePool().length + " carte";
   }
   const ci = $("#cacheInfo");
-  if (ci) ci.textContent = WIKI.size() === 1 ? "1 scheda salvata in locale"
-                                             : WIKI.size() + " schede salvate in locale";
+  if (ci){
+    const foto = WIKI.fotoOffline();
+    ci.textContent = (WIKI.size() === 1 ? "1 scheda salvata in locale"
+                                        : WIKI.size() + " schede salvate in locale") +
+                     (foto ? " · " + foto + (foto === 1 ? " foto disponibile offline"
+                                                        : " foto disponibili offline") : "");
+  }
   const ta = $("#tglAudio");
   if (ta) ta.setAttribute("aria-pressed", String(!SFX.muted));
 }
@@ -5128,51 +5309,138 @@ function downloadBlob(b){
  * 10. PWA (manifest inline + service worker inline) & BOOT
  * ------------------------------------------------------------------ */
 function installPWA(){
-  const icon = "data:image/svg+xml," + encodeURIComponent(
-    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'>" +
-    "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>" +
-    "<stop offset='0' stop-color='#22d3ee'/><stop offset='1' stop-color='#ff2fd0'/></linearGradient></defs>" +
-    "<rect width='512' height='512' rx='112' fill='#0b0d17'/>" +
-    "<circle cx='256' cy='256' r='150' fill='none' stroke='url(#g)' stroke-width='28'/>" +
-    "<path d='M256 150 V268 L340 316' stroke='url(#g)' stroke-width='28' stroke-linecap='round' fill='none'/></svg>");
-  const manifest = {
-    name: "ChronoGlass — Prima o Dopo?",
-    short_name: "ChronoGlass",
-    description: "Metti alla prova il tuo intuito temporale: swipe, riordina e scopri quando è successo davvero.",
-    start_url: ".",
-    scope: ".",
-    display: "standalone",
-    orientation: "portrait",
-    background_color: "#0b0d17",
-    theme_color: "#0b0d17",
-    categories: ["games","education"],
-    icons: [
-      { src: icon, sizes: "192x192", type: "image/svg+xml", purpose: "any" },
-      { src: icon, sizes: "512x512", type: "image/svg+xml", purpose: "any maskable" }
-    ]
-  };
+  /* Il manifest come file vero (manifest.webmanifest) è la via che i
+     browser riconoscono per l'installazione. Il data: URI resta solo come
+     ripiego per chi apre index.html da solo, senza gli altri file. */
   const link = document.createElement("link");
   link.rel = "manifest";
-  link.href = "data:application/manifest+json," + encodeURIComponent(JSON.stringify(manifest));
+  link.href = "./manifest.webmanifest";
+  link.onerror = () => {
+    const icon = "data:image/svg+xml," + encodeURIComponent(
+      "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'>" +
+      "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>" +
+      "<stop offset='0' stop-color='#00f2fe'/><stop offset='1' stop-color='#ff0080'/></linearGradient></defs>" +
+      "<rect width='512' height='512' rx='112' fill='#0b0d17'/>" +
+      "<circle cx='256' cy='256' r='150' fill='none' stroke='url(#g)' stroke-width='26'/>" +
+      "<path d='M256 152v104l78 44' stroke='#fff' stroke-width='26' stroke-linecap='round' fill='none'/></svg>");
+    link.href = "data:application/manifest+json," + encodeURIComponent(JSON.stringify({
+      name:"ChronoGlass — Prima o Dopo?", short_name:"ChronoGlass",
+      start_url:".", scope:".", display:"standalone",
+      background_color:"#0b0d17", theme_color:"#0b0d17",
+      icons:[{ src:icon, sizes:"512x512", type:"image/svg+xml", purpose:"any maskable" }]
+    }));
+  };
   document.head.appendChild(link);
 
-  // Service worker generato al volo: cache-first sul documento, network per il resto.
+  /* Il worker DEVE stare in un file suo. Quello generato da un Blob veniva
+     rifiutato da tutti i browser ("protocollo blob: non supportato") e la
+     registrazione falliva in silenzio: l'app non è mai stata offline. */
   if (!("serviceWorker" in navigator) || location.protocol === "file:") return;
-  const sw = [
-    "const C='chronoglass-v1';",
-    "self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(C).then(c=>c.add(new Request(self.registration.scope,{cache:'reload'}))).catch(()=>{}))});",
-    "self.addEventListener('activate',e=>{e.waitUntil(self.clients.claim())});",
-    "self.addEventListener('fetch',e=>{",
-    " if(e.request.method!=='GET')return;",
-    " if(e.request.mode==='navigate'){e.respondWith(fetch(e.request).then(r=>{const cl=r.clone();caches.open(C).then(c=>c.put(e.request,cl));return r}).catch(()=>caches.match(e.request).then(m=>m||caches.match(self.registration.scope))));return}",
-    " e.respondWith(caches.match(e.request).then(m=>m||fetch(e.request).then(r=>{if(r.ok&&e.request.url.startsWith('http')){const cl=r.clone();caches.open(C).then(c=>c.put(e.request,cl))}return r}).catch(()=>m)));",
-    "});"
-  ].join("\n");
-  try {
-    const url = URL.createObjectURL(new Blob([sw], { type:"text/javascript" }));
-    navigator.serviceWorker.register(url).catch(() => {});
-  } catch(e){ /* alcuni browser bloccano i worker da blob: l'app resta comunque giocabile */ }
+  navigator.serviceWorker.register("./sw.js", { scope: "./" })
+    .then(reg => {
+      PWA.sw = reg;
+      // una versione nuova pronta: si applica al prossimo avvio, senza strappi
+      reg.addEventListener("updatefound", () => {
+        const nuovo = reg.installing;
+        if (!nuovo) return;
+        nuovo.addEventListener("statechange", () => {
+          if (nuovo.state === "installed" && navigator.serviceWorker.controller){
+            toast("Aggiornamento pronto: riapri l'app", 3200);
+          }
+        });
+      });
+    })
+    .catch(() => { /* HTTPS assente o registrazione negata: si gioca online */ });
 }
+
+/* ------------------------------------------------------------------ *
+ * INSTALLAZIONE — invito discreto dopo qualche visita
+ * Il browser emette beforeinstallprompt solo se l'app è installabile
+ * (manifest valido, service worker attivo, https). Noi lo mettiamo da
+ * parte e lo tiriamo fuori quando l'utente ha già capito cos'è il gioco.
+ * ------------------------------------------------------------------ */
+const PWA = {
+  KEY_VISITE: "cg_visite",
+  KEY_RIFIUTO: "cg_install_no",
+  VISITE_MIN: 3,              // alla terza visita, non alla prima
+  prompt: null,
+  sw: null,
+
+  /* Una visita per sessione: ricaricare la pagina dieci volte di fila non
+     deve valere dieci visite. */
+  contaVisita(){
+    let n = 0;
+    try {
+      if (!sessionStorage.getItem("cg_sessione")){
+        sessionStorage.setItem("cg_sessione", "1");
+        n = (parseInt(localStorage.getItem(this.KEY_VISITE) || "0", 10) || 0) + 1;
+        localStorage.setItem(this.KEY_VISITE, String(n));
+      } else {
+        n = parseInt(localStorage.getItem(this.KEY_VISITE) || "1", 10) || 1;
+      }
+    } catch(e){ n = 1; }
+    return n;
+  },
+  visite(){
+    try { return parseInt(localStorage.getItem(this.KEY_VISITE) || "0", 10) || 0; }
+    catch(e){ return 0; }
+  },
+  giaInstallata(){
+    return window.matchMedia("(display-mode: standalone)").matches ||
+           window.navigator.standalone === true;
+  },
+  rifiutata(){
+    try { return localStorage.getItem(this.KEY_RIFIUTO) === "1"; } catch(e){ return false; }
+  },
+
+  init(){
+    this.contaVisita();
+    window.addEventListener("beforeinstallprompt", e => {
+      e.preventDefault();                 // il banner lo mostriamo noi, quando serve
+      this.prompt = e;
+      this.forseMostra();
+    });
+    window.addEventListener("appinstalled", () => {
+      this.nascondi();
+      try { localStorage.setItem(this.KEY_RIFIUTO, "1"); } catch(e){}
+      toast("ChronoGlass installato! Ora gioca anche offline 📲", 3000);
+    });
+    const b = $("#installBanner");
+    if (!b) return;
+    $("#btnInstallSi").addEventListener("click", () => this.installa());
+    $("#btnInstallNo").addEventListener("click", () => {
+      this.nascondi();
+      try { localStorage.setItem(this.KEY_RIFIUTO, "1"); } catch(e){}
+    });
+  },
+
+  forseMostra(){
+    if (!this.prompt || this.rifiutata() || this.giaInstallata()) return;
+    if (this.visite() < this.VISITE_MIN) return;
+    if (LOBBY.aperta || (typeof TUTORIAL !== "undefined" && TUTORIAL.attivo)) return;
+    const b = $("#installBanner");
+    if (!b || b.classList.contains("on")) return;
+    b.classList.add("on");
+    SFX.pop();
+  },
+  nascondi(){
+    const b = $("#installBanner");
+    if (b) b.classList.remove("on");
+  },
+  async installa(){
+    if (!this.prompt) return;
+    this.nascondi();
+    const p = this.prompt;
+    this.prompt = null;
+    try {
+      p.prompt();
+      const { outcome } = await p.userChoice;
+      if (outcome === "dismissed"){
+        try { localStorage.setItem(this.KEY_RIFIUTO, "1"); } catch(e){}
+      }
+    } catch(e){ /* il prompt si può usare una volta sola */ }
+  }
+};
 
 /* ------------------------------------------------------------------ *
  * LOBBY PRE-PARTITA
@@ -5521,6 +5789,8 @@ function boot(){
   wire();
   bindDeckTilt();
   installPWA();
+  PWA.init();
+  IDB.indicizza().then(n => { if (n) console.info("ChronoGlass: " + n + " miniature disponibili offline"); });
 
   const cached = WIKI.size();                  // legge e ripulisce la cache su disco
   SPLASH.step(34, cached ? "Cache locale: " + cached + " schede" : "Verifica cache locale…");
