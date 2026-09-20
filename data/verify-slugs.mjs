@@ -12,18 +12,27 @@ import fs from "node:fs";
 import path from "node:path";
 
 const HERE = path.dirname(new URL(import.meta.url).pathname);
-/* Controlla tutti i file del dataset presenti in data/. */
-const FILES = ["events-150.json", "cat-arte.json", "cat-letteratura.json",
-               "cat-geografia.json", "cat-spettacolo.json"];
+/* Legge OGNI file .json della cartella data/: una lista fissa si dimentica
+   sempre qualcosa quando il dataset cresce. */
+const FILES = fs.readdirSync(HERE)
+  .filter(f => f.endsWith(".json") && f !== "slug-report.json")
+  .sort();
 const events = [];
 for (const f of FILES) {
-  const full = path.join(HERE, f);
-  if (!fs.existsSync(full)) continue;
-  const items = JSON.parse(fs.readFileSync(full, "utf-8"));
-  for (const it of items) events.push({ id: it.id, wiki: it.wiki, file: f });
-  console.log(`caricato ${f}: ${items.length} elementi`);
+  let items;
+  try { items = JSON.parse(fs.readFileSync(path.join(HERE, f), "utf-8")); }
+  catch (e) { console.warn(`  ${f}: non è JSON valido, saltato`); continue; }
+  if (!Array.isArray(items)) continue;
+  let n = 0;
+  for (const it of items) {
+    if (!it || !it.wiki) continue;
+    events.push({ id: it.id, wiki: it.wiki, file: f });
+    n++;
+  }
+  console.log(`caricato ${f}: ${n} elementi con slug`);
 }
 if (!events.length) { console.error("nessun dataset trovato in data/"); process.exit(1); }
+console.log(`\ntotale da verificare: ${events.length} slug\n`);
 const API = "https://it.wikipedia.org/api/rest_v1/page/summary/";
 const CONCURRENZA = 6;          // gentili con l'API
 const report = { ok: [], redirect: [], mancanti: [], senzaImmagine: [], errori: [] };
@@ -65,6 +74,15 @@ console.log("redirect (ok ma da aggiornare):", report.redirect.length);
 console.log("VOCI MANCANTI      :", report.mancanti.length);
 console.log("senza immagine     :", report.senzaImmagine.length, "(la card userà mesh + icona)");
 console.log("errori di rete     :", report.errori.length);
+
+if (report.errori.length === events.length) {
+  console.log("\n⚠️  TUTTE le richieste sono fallite: è la rete, non il dataset.");
+  console.log("   Wikipedia non è raggiungibile da qui (proxy, firewall o offline).");
+  console.log("   Nessuna conclusione possibile sugli slug: rilancia da una rete aperta.");
+} else if (report.errori.length > events.length * 0.2) {
+  console.log("\n⚠️  Oltre un quinto delle richieste è fallito per motivi di rete:");
+  console.log("   i risultati qui sopra sono parziali, conviene rilanciare.");
+}
 
 if (report.redirect.length) {
   console.log("\n-- redirect: sostituisci lo slug con il titolo canonico --");

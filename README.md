@@ -61,14 +61,21 @@ fatto documentato.
 
 > **Gli slug Wikipedia non sono stati verificati contro il sito.** Sono scelti in base alla
 > conoscenza dei titoli delle voci italiane, ma vanno controllati prima di considerarli
-> definitivi. Il controllo è automatico:
+> definitivi. Uno slug sbagliato non rompe nulla: la carta ricade su mesh e icona.
+>
+> Due strumenti, uno offline e uno online:
 >
 > ```bash
-> node data/verify-slugs.mjs            # elenca voci mancanti, redirect e pagine senza immagine
+> node data/lint-slugs.mjs              # offline: errori strutturali + casi a rischio
+> node data/lint-slugs.mjs --dettaglio  # elenco completo dei casi da controllare
+>
+> node data/verify-slugs.mjs            # online: voci mancanti, redirect, pagine senza immagine
 > node data/verify-slugs.mjs --fix-report   # scrive data/slug-report.json
 > ```
 >
-> Uno slug sbagliato non rompe nulla: la carta ricade su mesh e icona di categoria.
+> `verify-slugs.mjs` legge da solo ogni `.json` della cartella `data/`, così non dimentica
+> i file aggiunti in seguito. Se tutte le richieste falliscono lo dice esplicitamente,
+> invece di far sembrare che il dataset sia a posto.
 
 ## Modalità di partita
 
