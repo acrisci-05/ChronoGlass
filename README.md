@@ -61,7 +61,7 @@ prestazioni.
 
 ## Dataset
 
-**600 carte, 50 esatte per ciascuna delle 12 categorie**, dal 3500 a.C. al 2023.
+**800 carte, 50 esatte per ciascuna delle 16 categorie**, dal 3500 a.C. al 2023.
 Gli anni avanti Cristo sono numeri negativi e vengono mostrati come «44 a.C.»; la funzione
 di ordinamento del gioco li gestisce correttamente, anche fra mesi dello stesso anno negativo.
 

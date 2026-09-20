@@ -1,0 +1,462 @@
+[
+  {
+    "id": "nat_001",
+    "title": "Il cane entra nei villaggi umani",
+    "year": -9000,
+    "category": "natura",
+    "emoji": "🐕",
+    "description": "Lupi meno diffidenti seguono i cacciatori e diventano compagni di caccia e guardia.",
+    "wiki": "Cane",
+    "approx": true
+  },
+  {
+    "id": "nat_002",
+    "title": "Il cavallo viene addomesticato nelle steppe",
+    "year": -3500,
+    "category": "natura",
+    "emoji": "🐎",
+    "description": "Nelle praterie del Kazakistan si impara a cavalcare: cambiano guerra e commercio.",
+    "wiki": "Cavallo",
+    "approx": true
+  },
+  {
+    "id": "nat_003",
+    "title": "I giardini pensili stupiscono Babilonia",
+    "year": -600,
+    "category": "natura",
+    "emoji": "🌴",
+    "description": "Terrazze irrigate a gradoni: l'unica meraviglia antica di cui non si trova traccia.",
+    "wiki": "Giardini_pensili_di_Babilonia",
+    "approx": true
+  },
+  {
+    "id": "nat_004",
+    "title": "Aristotele classifica gli animali",
+    "year": -343,
+    "category": "natura",
+    "emoji": "🐙",
+    "description": "Osserva e dissezione cinquecento specie: il primo trattato di zoologia della storia.",
+    "wiki": "Historia_animalium",
+    "approx": true
+  },
+  {
+    "id": "nat_005",
+    "title": "Plinio raccoglie tutto il sapere naturale",
+    "year": 77,
+    "category": "natura",
+    "emoji": "📚",
+    "description": "Trentasette libri su piante, animali e minerali, fra osservazione e leggenda.",
+    "wiki": "Naturalis_historia"
+  },
+  {
+    "id": "nat_006",
+    "title": "Nasce a Pisa il primo orto botanico",
+    "year": 1544,
+    "category": "natura",
+    "emoji": "🌱",
+    "description": "Luca Ghini lo fonda per studiare le piante medicinali dal vivo, non sui libri.",
+    "wiki": "Orto_botanico_di_Pisa"
+  },
+  {
+    "id": "nat_007",
+    "title": "Si estingue il dodo di Mauritius",
+    "year": 1662,
+    "category": "natura",
+    "emoji": "🦤",
+    "description": "In meno di un secolo marinai, ratti e maiali cancellano l'uccello che non sapeva volare.",
+    "wiki": "Raphus_cucullatus",
+    "approx": true
+  },
+  {
+    "id": "nat_008",
+    "title": "Linneo ordina la natura in Systema Naturae",
+    "year": 1735,
+    "category": "natura",
+    "emoji": "🔖",
+    "description": "Due nomi latini per ogni specie: un sistema che usiamo ancora oggi.",
+    "wiki": "Systema_Naturae"
+  },
+  {
+    "id": "nat_009",
+    "title": "Buffon pubblica la Histoire naturelle",
+    "year": 1749,
+    "category": "natura",
+    "emoji": "📖",
+    "description": "Trentasei volumi che raccontano la natura in francese elegante, letti in tutti i salotti.",
+    "wiki": "Georges-Louis_Leclerc_de_Buffon"
+  },
+  {
+    "id": "nat_010",
+    "title": "Aprono i Kew Gardens a Londra",
+    "year": 1759,
+    "category": "natura",
+    "emoji": "🌿",
+    "description": "Da giardino reale a più grande collezione vivente di piante del pianeta.",
+    "wiki": "Royal_Botanic_Gardens"
+  },
+  {
+    "id": "nat_011",
+    "title": "Priestley scopre che le piante rinnovano l'aria",
+    "year": 1771,
+    "category": "natura",
+    "emoji": "🍃",
+    "description": "Un rametto di menta ravviva la candela spenta sotto la campana di vetro.",
+    "wiki": "Fotosintesi_clorofilliana"
+  },
+  {
+    "id": "nat_012",
+    "title": "Lo stambecco alpino salvato dall'estinzione",
+    "year": 1856,
+    "category": "natura",
+    "emoji": "🐐",
+    "description": "Restano poche decine di capi nel Gran Paradiso: una riserva di caccia li protegge.",
+    "wiki": "Capra_ibex",
+    "approx": true
+  },
+  {
+    "id": "nat_013",
+    "title": "Wallace spedisce a Darwin il suo saggio",
+    "year": 1858,
+    "category": "natura",
+    "emoji": "✉",
+    "description": "Dall'Indonesia arriva un manoscritto con la stessa identica intuizione sulla selezione.",
+    "wiki": "Alfred_Russel_Wallace"
+  },
+  {
+    "id": "nat_014",
+    "title": "Haeckel conia la parola ecologia",
+    "year": 1866,
+    "category": "natura",
+    "emoji": "🔗",
+    "description": "Serve un nome per lo studio dei rapporti fra gli organismi e il loro ambiente.",
+    "wiki": "Ernst_Haeckel"
+  },
+  {
+    "id": "nat_015",
+    "title": "Yellowstone diventa il primo parco nazionale",
+    "year": 1872,
+    "category": "natura",
+    "emoji": "🌋",
+    "description": "Geyser e bisonti sottratti alla speculazione: nasce l'idea stessa di parco.",
+    "wiki": "Parco_nazionale_di_Yellowstone"
+  },
+  {
+    "id": "nat_016",
+    "title": "Viene battezzato l'albero General Sherman",
+    "year": 1879,
+    "category": "natura",
+    "emoji": "🌲",
+    "description": "La sequoia gigante più grande del mondo per volume, alta come un palazzo.",
+    "wiki": "General_Sherman_(albero)"
+  },
+  {
+    "id": "nat_017",
+    "title": "Il bisonte americano sull'orlo dell'estinzione",
+    "year": 1889,
+    "category": "natura",
+    "emoji": "🦬",
+    "description": "Da decine di milioni a poche centinaia di capi in un solo secolo di caccia.",
+    "wiki": "Bison_bison",
+    "approx": true
+  },
+  {
+    "id": "nat_018",
+    "title": "John Muir fonda il Sierra Club",
+    "year": 1892,
+    "category": "natura",
+    "emoji": "⛰",
+    "description": "Lo scozzese innamorato dello Yosemite organizza i primi ambientalisti americani.",
+    "wiki": "John_Muir"
+  },
+  {
+    "id": "nat_019",
+    "title": "Muore Martha, ultimo piccione migratore",
+    "year": 1914,
+    "category": "natura",
+    "emoji": "🕊",
+    "description": "Oscuravano il cielo a miliardi: l'ultima esemplare si spegne in uno zoo.",
+    "wiki": "Ectopistes_migratorius"
+  },
+  {
+    "id": "nat_020",
+    "title": "Nasce il Parco nazionale del Gran Paradiso",
+    "year": 1922,
+    "category": "natura",
+    "emoji": "🏔",
+    "description": "La riserva di caccia reale diventa il primo parco nazionale italiano.",
+    "wiki": "Parco_nazionale_del_Gran_Paradiso"
+  },
+  {
+    "id": "nat_021",
+    "title": "Istituito il Parco nazionale d'Abruzzo",
+    "year": 1923,
+    "category": "natura",
+    "emoji": "🐻",
+    "description": "Orso bruno marsicano e camoscio appenninico trovano un rifugio protetto.",
+    "wiki": "Parco_nazionale_d'Abruzzo,_Lazio_e_Molise"
+  },
+  {
+    "id": "nat_022",
+    "title": "Riemerge il celacanto dato per estinto",
+    "year": 1938,
+    "category": "natura",
+    "emoji": "🐟",
+    "description": "Un pesce creduto scomparso da settanta milioni di anni finisce in una rete sudafricana.",
+    "wiki": "Latimeria_chalumnae"
+  },
+  {
+    "id": "nat_023",
+    "title": "Nasce l'Unione internazionale per la conservazione",
+    "year": 1948,
+    "category": "natura",
+    "emoji": "🌍",
+    "description": "A Fontainebleau governi e scienziati si organizzano per proteggere la natura.",
+    "wiki": "IUCN"
+  },
+  {
+    "id": "nat_024",
+    "title": "La malattia di Minamata rivela il mercurio",
+    "year": 1956,
+    "category": "natura",
+    "emoji": "🏭",
+    "description": "Gli scarichi di una fabbrica avvelenano pesci e abitanti della baia giapponese.",
+    "wiki": "Malattia_di_Minamata"
+  },
+  {
+    "id": "nat_025",
+    "title": "Jane Goodall arriva a Gombe",
+    "year": 1960,
+    "category": "natura",
+    "emoji": "🐒",
+    "description": "Scopre che gli scimpanzé costruiscono strumenti: la definizione di uomo va riscritta.",
+    "wiki": "Jane_Goodall"
+  },
+  {
+    "id": "nat_026",
+    "title": "Inizia il prosciugamento del lago d'Aral",
+    "year": 1960,
+    "category": "natura",
+    "emoji": "🏜",
+    "description": "I fiumi vengono deviati per il cotone: il quarto lago del mondo comincia a sparire.",
+    "wiki": "Lago_d'Aral",
+    "approx": true
+  },
+  {
+    "id": "nat_027",
+    "title": "Fondato il WWF a Morges",
+    "year": 1961,
+    "category": "natura",
+    "emoji": "🐼",
+    "description": "Il panda gigante diventa il simbolo scelto perché riconoscibile anche in bianco e nero.",
+    "wiki": "WWF"
+  },
+  {
+    "id": "nat_028",
+    "title": "Rachel Carson pubblica Primavera silenziosa",
+    "year": 1962,
+    "category": "natura",
+    "emoji": "🐦",
+    "description": "Il libro sui pesticidi accende il movimento ambientalista e porta al bando del DDT.",
+    "wiki": "Primavera_silenziosa"
+  },
+  {
+    "id": "nat_029",
+    "title": "La Cina istituisce riserve per il panda gigante",
+    "year": 1963,
+    "category": "natura",
+    "emoji": "🐼",
+    "description": "Le foreste di bambù del Sichuan vengono chiuse al taglio per salvare la specie.",
+    "wiki": "Ailuropoda_melanoleuca",
+    "approx": true
+  },
+  {
+    "id": "nat_030",
+    "title": "Si celebra la prima Giornata della Terra",
+    "year": 1970,
+    "category": "natura",
+    "emoji": "🌎",
+    "description": "Venti milioni di americani in piazza: l'ambiente entra nell'agenda politica.",
+    "wiki": "Giornata_della_Terra"
+  },
+  {
+    "id": "nat_031",
+    "title": "Nasce Greenpeace da una barca da pesca",
+    "year": 1971,
+    "category": "natura",
+    "emoji": "🚢",
+    "description": "Un peschereccio salpa da Vancouver per ostacolare un test nucleare in Alaska.",
+    "wiki": "Greenpeace"
+  },
+  {
+    "id": "nat_032",
+    "title": "Il lupo appenninico diventa specie protetta",
+    "year": 1971,
+    "category": "natura",
+    "emoji": "🐺",
+    "description": "Ne restano un centinaio: la caccia viene vietata e la popolazione risale lentamente.",
+    "wiki": "Canis_lupus_italicus"
+  },
+  {
+    "id": "nat_033",
+    "title": "Lovelock formula l'ipotesi Gaia",
+    "year": 1972,
+    "category": "natura",
+    "emoji": "🌐",
+    "description": "La Terra vista come un unico organismo che regola da sé la propria temperatura.",
+    "wiki": "Ipotesi_Gaia"
+  },
+  {
+    "id": "nat_034",
+    "title": "Entra in vigore la convenzione CITES",
+    "year": 1973,
+    "category": "natura",
+    "emoji": "🛃",
+    "description": "Avorio, pellicce e specie rare non possono più attraversare le frontiere liberamente.",
+    "wiki": "CITES"
+  },
+  {
+    "id": "nat_035",
+    "title": "L'India lancia il Project Tiger",
+    "year": 1973,
+    "category": "natura",
+    "emoji": "🐅",
+    "description": "Riserve dedicate per fermare il crollo della tigre del Bengala.",
+    "wiki": "Panthera_tigris"
+  },
+  {
+    "id": "nat_036",
+    "title": "La Grande barriera corallina diventa parco marino",
+    "year": 1975,
+    "category": "natura",
+    "emoji": "🐠",
+    "description": "Duemila chilometri di corallo australiano messi sotto tutela dal governo.",
+    "wiki": "Grande_barriera_corallina"
+  },
+  {
+    "id": "nat_037",
+    "title": "Una nube di diossina investe Seveso",
+    "year": 1976,
+    "category": "natura",
+    "emoji": "☁",
+    "description": "L'esplosione di un reattore chimico contamina la Brianza e cambia le leggi europee.",
+    "wiki": "Disastro_di_Seveso"
+  },
+  {
+    "id": "nat_038",
+    "title": "Comincia la grande deforestazione amazzonica",
+    "year": 1979,
+    "category": "natura",
+    "emoji": "🌳",
+    "description": "Strade e allevamenti aprono la foresta: i satelliti iniziano a misurarne la perdita.",
+    "wiki": "Foresta_amazzonica",
+    "approx": true
+  },
+  {
+    "id": "nat_039",
+    "title": "Moratoria internazionale sulla caccia alle balene",
+    "year": 1986,
+    "category": "natura",
+    "emoji": "🐋",
+    "description": "Dopo due secoli di arpioni la balenottera azzurra smette di essere un bersaglio legale.",
+    "wiki": "Balaenoptera_musculus"
+  },
+  {
+    "id": "nat_040",
+    "title": "Il rapporto Brundtland definisce la sostenibilità",
+    "year": 1987,
+    "category": "natura",
+    "emoji": "📗",
+    "description": "Soddisfare i bisogni di oggi senza compromettere quelli di chi verrà dopo.",
+    "wiki": "Rapporto_Brundtland"
+  },
+  {
+    "id": "nat_041",
+    "title": "Firmato il protocollo di Montréal",
+    "year": 1987,
+    "category": "natura",
+    "emoji": "🧊",
+    "description": "I clorofluorocarburi vengono messi al bando: l'accordo ambientale più efficace di sempre.",
+    "wiki": "Protocollo_di_Montréal"
+  },
+  {
+    "id": "nat_042",
+    "title": "L'IPCC pubblica il primo rapporto sul clima",
+    "year": 1990,
+    "category": "natura",
+    "emoji": "📊",
+    "description": "Centinaia di scienziati concordano: l'uomo sta scaldando il pianeta.",
+    "wiki": "IPCC"
+  },
+  {
+    "id": "nat_043",
+    "title": "Il Summit della Terra riunisce Rio",
+    "year": 1992,
+    "category": "natura",
+    "emoji": "🇧🇷",
+    "description": "Centosettantotto paesi firmano le convenzioni su clima e biodiversità.",
+    "wiki": "Summit_della_Terra"
+  },
+  {
+    "id": "nat_044",
+    "title": "I lupi tornano a Yellowstone",
+    "year": 1995,
+    "category": "natura",
+    "emoji": "🐺",
+    "description": "Reintrodotti dopo settant'anni, cambiano perfino il corso dei fiumi del parco.",
+    "wiki": "Canis_lupus"
+  },
+  {
+    "id": "nat_045",
+    "title": "Individuata l'isola di plastica del Pacifico",
+    "year": 1997,
+    "category": "natura",
+    "emoji": "🌊",
+    "description": "Un velista attraversa per giorni una zuppa di frammenti grande quanto un continente.",
+    "wiki": "Isola_di_plastica"
+  },
+  {
+    "id": "nat_046",
+    "title": "Gli alveari si svuotano senza spiegazione",
+    "year": 2006,
+    "category": "natura",
+    "emoji": "🐝",
+    "description": "Le api operaie abbandonano l'arnia e non tornano: allarme per l'impollinazione.",
+    "wiki": "Sindrome_dello_spopolamento_degli_alveari"
+  },
+  {
+    "id": "nat_047",
+    "title": "Apre la banca dei semi alle Svalbard",
+    "year": 2008,
+    "category": "natura",
+    "emoji": "🌾",
+    "description": "Un bunker nel permafrost artico custodisce copie di tutte le colture del pianeta.",
+    "wiki": "Svalbard_Global_Seed_Vault"
+  },
+  {
+    "id": "nat_048",
+    "title": "Muore Lonesome George alle Galapagos",
+    "year": 2012,
+    "category": "natura",
+    "emoji": "🐢",
+    "description": "L'ultima tartaruga gigante di Pinta si spegne senza aver lasciato discendenti.",
+    "wiki": "Lonesome_George"
+  },
+  {
+    "id": "nat_049",
+    "title": "Firmato l'Accordo di Parigi sul clima",
+    "year": 2015,
+    "category": "natura",
+    "emoji": "🌡",
+    "description": "Centonovantacinque paesi si impegnano a restare sotto i due gradi di riscaldamento.",
+    "wiki": "Accordo_di_Parigi"
+  },
+  {
+    "id": "nat_050",
+    "title": "Greta Thunberg inizia lo sciopero per il clima",
+    "year": 2018,
+    "category": "natura",
+    "emoji": "📋",
+    "description": "Una quindicenne si siede da sola davanti al parlamento svedese con un cartello.",
+    "wiki": "Greta_Thunberg"
+  }
+]

@@ -1,0 +1,470 @@
+[
+  {
+    "id": "mod_001",
+    "title": "In Cina si tesse la prima seta",
+    "year": -2700,
+    "category": "moda",
+    "emoji": "🧵",
+    "description": "Il filo del baco diventa segreto di stato: chi lo esporta rischia la vita.",
+    "wiki": "Seta",
+    "approx": true
+  },
+  {
+    "id": "mod_002",
+    "title": "L'Egitto veste il lino plissettato",
+    "year": -1500,
+    "category": "moda",
+    "emoji": "🪡",
+    "description": "Tuniche bianche e trasparenti, segno di purezza e di ricchezza sul Nilo.",
+    "wiki": "Lino_(tessuto)",
+    "approx": true
+  },
+  {
+    "id": "mod_003",
+    "title": "A Tiro si estrae la porpora dai molluschi",
+    "year": -1500,
+    "category": "moda",
+    "emoji": "🐚",
+    "description": "Servono migliaia di murici per un grammo: il colore diventa privilegio dei re.",
+    "wiki": "Porpora",
+    "approx": true
+  },
+  {
+    "id": "mod_004",
+    "title": "La toga distingue il cittadino romano",
+    "year": -500,
+    "category": "moda",
+    "emoji": "🏛",
+    "description": "Un unico taglio di lana avvolto sul corpo: indossarla è un diritto, non una scelta.",
+    "wiki": "Toga",
+    "approx": true
+  },
+  {
+    "id": "mod_005",
+    "title": "Il kimono prende forma in Giappone",
+    "year": 700,
+    "category": "moda",
+    "emoji": "👘",
+    "description": "Maniche larghe e linee dritte: un abito che si indossa uguale per secoli.",
+    "wiki": "Kimono",
+    "approx": true
+  },
+  {
+    "id": "mod_006",
+    "title": "Il bottone diventa chiusura",
+    "year": 1200,
+    "category": "moda",
+    "emoji": "🔘",
+    "description": "Prima solo ornamento, ora entra nell'asola e permette abiti aderenti al corpo.",
+    "wiki": "Bottone",
+    "approx": true
+  },
+  {
+    "id": "mod_007",
+    "title": "Il merletto nasce fra Venezia e le Fiandre",
+    "year": 1400,
+    "category": "moda",
+    "emoji": "🕸",
+    "description": "Ago e fuselli trasformano il filo in trine che valgono quanto i gioielli.",
+    "wiki": "Merletto",
+    "approx": true
+  },
+  {
+    "id": "mod_008",
+    "title": "Il corsetto stringe la silhouette europea",
+    "year": 1500,
+    "category": "moda",
+    "emoji": "🎀",
+    "description": "Stecche di balena e lacci ridisegnano il busto femminile per quattro secoli.",
+    "wiki": "Corsetto",
+    "approx": true
+  },
+  {
+    "id": "mod_009",
+    "title": "Caterina de' Medici porta il tacco in Francia",
+    "year": 1533,
+    "category": "moda",
+    "emoji": "👠",
+    "description": "Bassa di statura, si fa costruire scarpe rialzate per le nozze reali.",
+    "wiki": "Tacco",
+    "approx": true
+  },
+  {
+    "id": "mod_010",
+    "title": "I croati portano la cravatta a Parigi",
+    "year": 1660,
+    "category": "moda",
+    "emoji": "👔",
+    "description": "I soldati mercenari annodano una sciarpa al collo: la corte francese la copia subito.",
+    "wiki": "Cravatta",
+    "approx": true
+  },
+  {
+    "id": "mod_011",
+    "title": "Luigi XIV impone la parrucca a corte",
+    "year": 1665,
+    "category": "moda",
+    "emoji": "🎭",
+    "description": "Il re la adotta per nascondere la calvizie: diventa obbligo sociale per i nobili.",
+    "wiki": "Parrucca",
+    "approx": true
+  },
+  {
+    "id": "mod_012",
+    "title": "Debutta il cappello a cilindro",
+    "year": 1797,
+    "category": "moda",
+    "emoji": "🎩",
+    "description": "A Londra il primo che lo indossa viene accusato di spaventare i passanti.",
+    "wiki": "Cappello_a_cilindro",
+    "approx": true
+  },
+  {
+    "id": "mod_013",
+    "title": "La regina Vittoria sposa in bianco",
+    "year": 1840,
+    "category": "moda",
+    "emoji": "👰",
+    "description": "Rompe la tradizione degli abiti colorati e fonda un costume che dura ancora.",
+    "wiki": "Abito_da_sposa"
+  },
+  {
+    "id": "mod_014",
+    "title": "Singer rende la macchina da cucire domestica",
+    "year": 1851,
+    "category": "moda",
+    "emoji": "🪡",
+    "description": "Rate mensili e pedale: cucire in casa smette di essere un lavoro da sarti.",
+    "wiki": "Macchina_per_cucire"
+  },
+  {
+    "id": "mod_015",
+    "title": "Un diciottenne scopre il primo colore sintetico",
+    "year": 1856,
+    "category": "moda",
+    "emoji": "🟣",
+    "description": "Cercando un farmaco contro la malaria, Perkin ottiene un viola brillante.",
+    "wiki": "Mauveina"
+  },
+  {
+    "id": "mod_016",
+    "title": "Borsalino inizia a fabbricare cappelli ad Alessandria",
+    "year": 1857,
+    "category": "moda",
+    "emoji": "🎩",
+    "description": "Feltro di coniglio lavorato a mano: il nome diventerà sinonimo di cappello.",
+    "wiki": "Borsalino_(azienda)"
+  },
+  {
+    "id": "mod_017",
+    "title": "Worth fonda l'alta moda a Parigi",
+    "year": 1858,
+    "category": "moda",
+    "emoji": "✂",
+    "description": "Firma i suoi abiti come un artista e fa sfilare modelle vive davanti alle clienti.",
+    "wiki": "Charles_Frederick_Worth"
+  },
+  {
+    "id": "mod_018",
+    "title": "Levi Strauss brevetta i rivetti sui pantaloni",
+    "year": 1873,
+    "category": "moda",
+    "emoji": "👖",
+    "description": "Tela robusta e chiodini di rame per i cercatori d'oro: nascono i jeans.",
+    "wiki": "Levi_Strauss"
+  },
+  {
+    "id": "mod_019",
+    "title": "Esce il primo numero di Vogue",
+    "year": 1892,
+    "category": "moda",
+    "emoji": "📖",
+    "description": "Settimanale mondano di New York, diventerà la bibbia dello stile.",
+    "wiki": "Vogue_(periodico)"
+  },
+  {
+    "id": "mod_020",
+    "title": "La cerniera lampo diventa pratica",
+    "year": 1913,
+    "category": "moda",
+    "emoji": "🤐",
+    "description": "Denti metallici e cursore: ci vorranno vent'anni perché la moda la accetti.",
+    "wiki": "Cerniera_lampo"
+  },
+  {
+    "id": "mod_021",
+    "title": "Il reggiseno viene brevettato",
+    "year": 1914,
+    "category": "moda",
+    "emoji": "🎀",
+    "description": "Due fazzoletti e un nastro: una giovane newyorkese archivia il corsetto.",
+    "wiki": "Reggiseno"
+  },
+  {
+    "id": "mod_022",
+    "title": "Burberry veste gli ufficiali col trench",
+    "year": 1914,
+    "category": "moda",
+    "emoji": "🧥",
+    "description": "Gabardine impermeabile, spalline e cintura: l'uniforme di trincea passa alla moda.",
+    "wiki": "Burberry",
+    "approx": true
+  },
+  {
+    "id": "mod_023",
+    "title": "Converse presenta la All Star",
+    "year": 1917,
+    "category": "moda",
+    "emoji": "👟",
+    "description": "Scarpa da basket in tela: diventerà l'anti-divisa di generazioni di ragazzi.",
+    "wiki": "Converse_(azienda)"
+  },
+  {
+    "id": "mod_024",
+    "title": "Le flapper accorciano le gonne",
+    "year": 1920,
+    "category": "moda",
+    "emoji": "💃",
+    "description": "Capelli corti, vita bassa e sigaretta: la ragazza degli anni ruggenti scandalizza.",
+    "wiki": "Flapper",
+    "approx": true
+  },
+  {
+    "id": "mod_025",
+    "title": "Coco Chanel lancia il suo profumo",
+    "year": 1921,
+    "category": "moda",
+    "emoji": "🌸",
+    "description": "Aldeidi e ottantalcune essenze in una boccetta squadrata da laboratorio.",
+    "wiki": "Coco_Chanel"
+  },
+  {
+    "id": "mod_026",
+    "title": "Guccio Gucci apre bottega a Firenze",
+    "year": 1921,
+    "category": "moda",
+    "emoji": "👜",
+    "description": "Pelletteria per viaggiatori inglesi: il cuoio toscano diventa lusso internazionale.",
+    "wiki": "Gucci"
+  },
+  {
+    "id": "mod_027",
+    "title": "Nasce la casa Fendi a Roma",
+    "year": 1925,
+    "category": "moda",
+    "emoji": "🐾",
+    "description": "Bottega di pellicce e pelletteria in via del Plebiscito, gestita da una coppia.",
+    "wiki": "Fendi"
+  },
+  {
+    "id": "mod_028",
+    "title": "Rolex crea l'Oyster impermeabile",
+    "year": 1926,
+    "category": "moda",
+    "emoji": "⌚",
+    "description": "Cassa avvitata come un'ostrica: una nuotatrice la porta attraverso la Manica.",
+    "wiki": "Rolex"
+  },
+  {
+    "id": "mod_029",
+    "title": "Il nylon esce dai laboratori DuPont",
+    "year": 1935,
+    "category": "moda",
+    "emoji": "🧶",
+    "description": "La prima fibra interamente sintetica: le calze di seta hanno i giorni contati.",
+    "wiki": "Nylon"
+  },
+  {
+    "id": "mod_030",
+    "title": "Ray-Ban protegge gli occhi dei piloti",
+    "year": 1937,
+    "category": "moda",
+    "emoji": "🕶",
+    "description": "Lenti verdi antiriflesso e montatura leggera per chi vola controsole.",
+    "wiki": "Ray-Ban"
+  },
+  {
+    "id": "mod_031",
+    "title": "Il bikini esplode a Parigi",
+    "year": 1946,
+    "category": "moda",
+    "emoji": "👙",
+    "description": "Presentato in piscina da una spogliarellista: nessuna modella voleva indossarlo.",
+    "wiki": "Bikini"
+  },
+  {
+    "id": "mod_032",
+    "title": "Dior presenta il New Look",
+    "year": 1947,
+    "category": "moda",
+    "emoji": "👗",
+    "description": "Spalle morbide, vita strettissima e gonne ampie: la Francia dimentica il razionamento.",
+    "wiki": "Christian_Dior"
+  },
+  {
+    "id": "mod_033",
+    "title": "Adidas nasce a Herzogenaurach",
+    "year": 1949,
+    "category": "moda",
+    "emoji": "👟",
+    "description": "Dopo la rottura fra fratelli calzolai, le tre strisce diventano un marchio.",
+    "wiki": "Adidas"
+  },
+  {
+    "id": "mod_034",
+    "title": "La Sala Bianca lancia il Made in Italy",
+    "year": 1951,
+    "category": "moda",
+    "emoji": "🇮🇹",
+    "description": "A Firenze i compratori americani scoprono i sarti italiani: nasce un'industria.",
+    "wiki": "Made_in_Italy"
+  },
+  {
+    "id": "mod_035",
+    "title": "I Missoni aprono un laboratorio di maglieria",
+    "year": 1953,
+    "category": "moda",
+    "emoji": "🌈",
+    "description": "Righe e zigzag colorati da telai rimessi a nuovo in un garage di Gallarate.",
+    "wiki": "Missoni"
+  },
+  {
+    "id": "mod_036",
+    "title": "Le Dr. Martens arrivano in fabbrica",
+    "year": 1960,
+    "category": "moda",
+    "emoji": "🥾",
+    "description": "Suola ad aria per operai: punk e skinhead la trasformeranno in una bandiera.",
+    "wiki": "Dr._Martens"
+  },
+  {
+    "id": "mod_037",
+    "title": "Valentino apre il suo atelier a Roma",
+    "year": 1960,
+    "category": "moda",
+    "emoji": "❤",
+    "description": "Via Condotti: in pochi anni il suo rosso diventa un colore con il nome proprio.",
+    "wiki": "Valentino_Garavani"
+  },
+  {
+    "id": "mod_038",
+    "title": "Mary Quant accorcia la minigonna",
+    "year": 1965,
+    "category": "moda",
+    "emoji": "🦵",
+    "description": "Nella boutique di King's Road l'orlo sale sopra il ginocchio e fa il giro del mondo.",
+    "wiki": "Minigonna"
+  },
+  {
+    "id": "mod_039",
+    "title": "Saint Laurent mette lo smoking alle donne",
+    "year": 1966,
+    "category": "moda",
+    "emoji": "🤵",
+    "description": "Un ristorante di New York rifiuta l'ingresso a chi lo indossa: diventa un caso.",
+    "wiki": "Yves_Saint_Laurent_(stilista)"
+  },
+  {
+    "id": "mod_040",
+    "title": "Vivienne Westwood veste il punk londinese",
+    "year": 1971,
+    "category": "moda",
+    "emoji": "🧷",
+    "description": "Spille da balia, strappi e slogan: il negozio di King's Road diventa un manifesto.",
+    "wiki": "Vivienne_Westwood",
+    "approx": true
+  },
+  {
+    "id": "mod_041",
+    "title": "Nike presenta la suola a cialda",
+    "year": 1972,
+    "category": "moda",
+    "emoji": "👟",
+    "description": "Un allenatore cola gomma nella piastra per waffle della moglie e ottiene il grip.",
+    "wiki": "Nike_(azienda)"
+  },
+  {
+    "id": "mod_042",
+    "title": "Giorgio Armani destruttura la giacca",
+    "year": 1975,
+    "category": "moda",
+    "emoji": "🧥",
+    "description": "Toglie fodere e imbottiture: il completo maschile diventa morbido come un cardigan.",
+    "wiki": "Giorgio_Armani"
+  },
+  {
+    "id": "mod_043",
+    "title": "Zara apre il primo negozio a La Coruña",
+    "year": 1975,
+    "category": "moda",
+    "emoji": "🏬",
+    "description": "Produzione rapidissima e collezioni sempre nuove: nasce il modello fast fashion.",
+    "wiki": "Zara_(azienda)"
+  },
+  {
+    "id": "mod_044",
+    "title": "Gianni Versace firma la sua prima collezione",
+    "year": 1978,
+    "category": "moda",
+    "emoji": "🦁",
+    "description": "Colori accesi e maglia metallica: Milano si prende la scena internazionale.",
+    "wiki": "Gianni_Versace"
+  },
+  {
+    "id": "mod_045",
+    "title": "Swatch salva l'orologeria svizzera",
+    "year": 1983,
+    "category": "moda",
+    "emoji": "⌚",
+    "description": "Plastica, pochi pezzi e prezzo basso contro l'invasione dei quarzi giapponesi.",
+    "wiki": "Swatch"
+  },
+  {
+    "id": "mod_046",
+    "title": "Hermès disegna una borsa per Jane Birkin",
+    "year": 1984,
+    "category": "moda",
+    "emoji": "👜",
+    "description": "Nasce su un sacchetto per l'aereo dopo una conversazione fra due passeggeri.",
+    "wiki": "Hermès"
+  },
+  {
+    "id": "mod_047",
+    "title": "Prada trasforma il nylon in lusso",
+    "year": 1984,
+    "category": "moda",
+    "emoji": "🖤",
+    "description": "Il tessuto dei paracadute diventa uno zaino che costa quanto una borsa di pelle.",
+    "wiki": "Prada"
+  },
+  {
+    "id": "mod_048",
+    "title": "Le supermodelle diventano star globali",
+    "year": 1990,
+    "category": "moda",
+    "emoji": "📸",
+    "description": "Cinque ragazze in copertina insieme: le modelle valgono più degli abiti che indossano.",
+    "wiki": "Naomi_Campbell",
+    "approx": true
+  },
+  {
+    "id": "mod_049",
+    "title": "Il grunge porta il flanello in passerella",
+    "year": 1991,
+    "category": "moda",
+    "emoji": "🎸",
+    "description": "Camicie a quadri e jeans sdruciti da Seattle: una collezione fa infuriare i critici.",
+    "wiki": "Grunge",
+    "approx": true
+  },
+  {
+    "id": "mod_050",
+    "title": "Il Met Gala diventa l'evento della moda",
+    "year": 1995,
+    "category": "moda",
+    "emoji": "🎟",
+    "description": "Anna Wintour ne prende le redini e lo trasforma nella notte più fotografata dell'anno.",
+    "wiki": "Met_Gala",
+    "approx": true
+  }
+]

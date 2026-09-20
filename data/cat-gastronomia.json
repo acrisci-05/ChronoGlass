@@ -1,0 +1,483 @@
+[
+  {
+    "id": "gas_001",
+    "title": "Nasce la vinificazione nel Caucaso",
+    "year": -6000,
+    "category": "gastronomia",
+    "emoji": "🍇",
+    "description": "Nei villaggi del Caucaso l'uva viene fatta fermentare in grandi giare interrate.",
+    "wiki": "Vino",
+    "approx": true
+  },
+  {
+    "id": "gas_002",
+    "title": "Primi formaggi nel Neolitico",
+    "year": -5500,
+    "category": "gastronomia",
+    "emoji": "🧀",
+    "description": "Setacci forati in terracotta rivelano che il latte veniva già cagliato e scolato.",
+    "wiki": "Formaggio",
+    "approx": true
+  },
+  {
+    "id": "gas_003",
+    "title": "La birra scorre in Mesopotamia",
+    "year": -3500,
+    "category": "gastronomia",
+    "emoji": "🍺",
+    "description": "I sumeri la bevono con la cannuccia e la usano perfino per pagare i salari.",
+    "wiki": "Birra",
+    "approx": true
+  },
+  {
+    "id": "gas_004",
+    "title": "L'olivo colonizza il Mediterraneo",
+    "year": -4000,
+    "category": "gastronomia",
+    "emoji": "🫒",
+    "description": "Dalla Siria alla Grecia l'olio diventa cibo, medicina, cosmetico e combustibile.",
+    "wiki": "Olio_di_oliva",
+    "approx": true
+  },
+  {
+    "id": "gas_005",
+    "title": "Il pane lievitato in Egitto",
+    "year": -3000,
+    "category": "gastronomia",
+    "emoji": "🍞",
+    "description": "Sulle rive del Nilo si scopre che l'impasto lasciato riposare gonfia e profuma.",
+    "wiki": "Pane",
+    "approx": true
+  },
+  {
+    "id": "gas_006",
+    "title": "Il cacao dei popoli mesoamericani",
+    "year": -2000,
+    "category": "gastronomia",
+    "emoji": "🍫",
+    "description": "Olmechi e maya lo bevono amaro e speziato, riservato a sacerdoti e nobili.",
+    "wiki": "Cioccolato",
+    "approx": true
+  },
+  {
+    "id": "gas_007",
+    "title": "La leggenda della prima tazza di tè",
+    "year": -2737,
+    "category": "gastronomia",
+    "emoji": "🍵",
+    "description": "Secondo la tradizione cinese alcune foglie cadono per caso nell'acqua dell'imperatore.",
+    "wiki": "Tè",
+    "approx": true
+  },
+  {
+    "id": "gas_008",
+    "title": "Il garum insaporisce Roma",
+    "year": -100,
+    "category": "gastronomia",
+    "emoji": "🐟",
+    "description": "La salsa di pesce fermentato viene prodotta in enormi vasche e spedita in tutto l'impero.",
+    "wiki": "Garum",
+    "approx": true
+  },
+  {
+    "id": "gas_009",
+    "title": "Apicio raccoglie le ricette romane",
+    "year": 10,
+    "category": "gastronomia",
+    "emoji": "📜",
+    "description": "Il più antico ricettario giunto fino a noi: dromedario, fenicotteri e salse fortissime.",
+    "wiki": "De_re_coquinaria",
+    "approx": true
+  },
+  {
+    "id": "gas_010",
+    "title": "La forchetta arriva a Venezia",
+    "year": 1004,
+    "category": "gastronomia",
+    "emoji": "🍴",
+    "description": "Una principessa bizantina la porta in laguna e scandalizza chi mangia con le mani.",
+    "wiki": "Forchetta",
+    "approx": true
+  },
+  {
+    "id": "gas_011",
+    "title": "Gli arabi portano lo zucchero in Sicilia",
+    "year": 1150,
+    "category": "gastronomia",
+    "emoji": "🍯",
+    "description": "Le canne coltivate nell'isola rendono dolce una cucina che conosceva solo il miele.",
+    "wiki": "Zucchero",
+    "approx": true
+  },
+  {
+    "id": "gas_012",
+    "title": "Al-Idrisi descrive i maccheroni siciliani",
+    "year": 1154,
+    "category": "gastronomia",
+    "emoji": "🍝",
+    "description": "Il geografo racconta di fili di semola essiccati a Trabia ed esportati via mare.",
+    "wiki": "Pasta",
+    "approx": true
+  },
+  {
+    "id": "gas_013",
+    "title": "Il Milione racconta le spezie d'Oriente",
+    "year": 1298,
+    "category": "gastronomia",
+    "emoji": "🌶",
+    "description": "Il resoconto di Marco Polo accende in Europa la fame di pepe, cannella e zenzero.",
+    "wiki": "Il_Milione"
+  },
+  {
+    "id": "gas_014",
+    "title": "I monaci inventano il Parmigiano Reggiano",
+    "year": 1200,
+    "category": "gastronomia",
+    "emoji": "🧀",
+    "description": "Nelle abbazie della pianura padana nasce una forma che dura anni senza guastarsi.",
+    "wiki": "Parmigiano_Reggiano",
+    "approx": true
+  },
+  {
+    "id": "gas_015",
+    "title": "Il caffè diventa bevanda nello Yemen",
+    "year": 1450,
+    "category": "gastronomia",
+    "emoji": "☕",
+    "description": "I sufi di Mokha tostano i chicchi per restare svegli durante le preghiere notturne.",
+    "wiki": "Caffè",
+    "approx": true
+  },
+  {
+    "id": "gas_016",
+    "title": "Il peperoncino attraversa l'Atlantico",
+    "year": 1493,
+    "category": "gastronomia",
+    "emoji": "🌶",
+    "description": "Colombo lo scambia per una varietà di pepe: in un secolo conquista mezzo mondo.",
+    "wiki": "Peperoncino",
+    "approx": true
+  },
+  {
+    "id": "gas_017",
+    "title": "Il mais approda in Europa",
+    "year": 1495,
+    "category": "gastronomia",
+    "emoji": "🌽",
+    "description": "La pianta americana sfamerà intere regioni, e in Veneto diventerà polenta.",
+    "wiki": "Mais",
+    "approx": true
+  },
+  {
+    "id": "gas_018",
+    "title": "Cortés porta il cacao alla corte spagnola",
+    "year": 1528,
+    "category": "gastronomia",
+    "emoji": "🍫",
+    "description": "Zuccherato e servito caldo, il cacao diventa il vizio segreto dell'aristocrazia.",
+    "wiki": "Cacao",
+    "approx": true
+  },
+  {
+    "id": "gas_019",
+    "title": "Il pomodoro entra negli orti italiani",
+    "year": 1540,
+    "category": "gastronomia",
+    "emoji": "🍅",
+    "description": "Per decenni resta una curiosità ornamentale: lo credono velenoso.",
+    "wiki": "Pomodoro",
+    "approx": true
+  },
+  {
+    "id": "gas_020",
+    "title": "La patata sbarca in Spagna",
+    "year": 1570,
+    "category": "gastronomia",
+    "emoji": "🥔",
+    "description": "Dalle Ande all'Europa: diffidata a lungo, diventerà il pane dei poveri.",
+    "wiki": "Patata",
+    "approx": true
+  },
+  {
+    "id": "gas_021",
+    "title": "Il tacchino arriva dalle Americhe",
+    "year": 1520,
+    "category": "gastronomia",
+    "emoji": "🦃",
+    "description": "Gli spagnoli lo importano dal Messico: in pochi decenni è sulle tavole di corte.",
+    "wiki": "Tacchino_comune",
+    "approx": true
+  },
+  {
+    "id": "gas_022",
+    "title": "Le prime casse di tè attraccano ad Amsterdam",
+    "year": 1610,
+    "category": "gastronomia",
+    "emoji": "🍵",
+    "description": "La Compagnia delle Indie apre la rotta che renderà l'Inghilterra un paese di bevitori di tè.",
+    "wiki": "Camellia_sinensis",
+    "approx": true
+  },
+  {
+    "id": "gas_023",
+    "title": "Apre a Parigi il Café Procope",
+    "year": 1686,
+    "category": "gastronomia",
+    "emoji": "☕",
+    "description": "Il siciliano Procopio serve caffè e gelati: nasce il caffè letterario europeo.",
+    "wiki": "Café_Procope"
+  },
+  {
+    "id": "gas_024",
+    "title": "Lo champagne prende le bollicine",
+    "year": 1697,
+    "category": "gastronomia",
+    "emoji": "🍾",
+    "description": "Il monaco Dom Pérignon perfeziona l'assemblaggio dei vini della regione francese.",
+    "wiki": "Champagne_(vino)",
+    "approx": true
+  },
+  {
+    "id": "gas_025",
+    "title": "Nasce il Caffè Florian in piazza San Marco",
+    "year": 1720,
+    "category": "gastronomia",
+    "emoji": "☕",
+    "description": "Il più antico caffè d'Italia ancora aperto: salotto di Casanova, Goethe e Byron.",
+    "wiki": "Caffè_Florian"
+  },
+  {
+    "id": "gas_026",
+    "title": "Il conte di Sandwich chiede carne fra due fette",
+    "year": 1762,
+    "category": "gastronomia",
+    "emoji": "🥪",
+    "description": "Per non lasciare il tavolo da gioco ordina un pasto che si mangia con una mano sola.",
+    "wiki": "Sandwich",
+    "approx": true
+  },
+  {
+    "id": "gas_027",
+    "title": "Appert inventa la conserva ermetica",
+    "year": 1809,
+    "category": "gastronomia",
+    "emoji": "🫙",
+    "description": "Bottiglie sigillate e bollite: Napoleone premia chi sa nutrire un esercito in marcia.",
+    "wiki": "Nicolas_Appert"
+  },
+  {
+    "id": "gas_028",
+    "title": "Il croissant conquista Parigi",
+    "year": 1839,
+    "category": "gastronomia",
+    "emoji": "🥐",
+    "description": "Un ufficiale austriaco apre una boulangerie e porta il kipferl viennese in Francia.",
+    "wiki": "Croissant",
+    "approx": true
+  },
+  {
+    "id": "gas_029",
+    "title": "Gaspare Campari inventa il suo bitter",
+    "year": 1857,
+    "category": "gastronomia",
+    "emoji": "🍹",
+    "description": "A Novara Gaspare Campari mette a punto un bitter rosso di erbe e scorze d'arancia.",
+    "wiki": "Campari_(bevanda)",
+    "approx": true
+  },
+  {
+    "id": "gas_030",
+    "title": "Pasteur salva il vino dalla fermentazione",
+    "year": 1864,
+    "category": "gastronomia",
+    "emoji": "🔬",
+    "description": "Riscaldare brevemente il liquido uccide i microbi: il metodo prende il suo nome.",
+    "wiki": "Pastorizzazione"
+  },
+  {
+    "id": "gas_031",
+    "title": "Un farmacista di Atlanta inventa la Coca-Cola",
+    "year": 1886,
+    "category": "gastronomia",
+    "emoji": "🥤",
+    "description": "Nasce come sciroppo medicinale contro il mal di testa, venduto a bicchieri in farmacia.",
+    "wiki": "Coca-Cola"
+  },
+  {
+    "id": "gas_032",
+    "title": "La pizza Margherita a Napoli",
+    "year": 1889,
+    "category": "gastronomia",
+    "emoji": "🍕",
+    "description": "Pomodoro, mozzarella e basilico: il tricolore in una pizza dedicata alla regina.",
+    "wiki": "Pizza_Margherita"
+  },
+  {
+    "id": "gas_033",
+    "title": "Esce la prima Guida Michelin",
+    "year": 1900,
+    "category": "gastronomia",
+    "emoji": "⭐",
+    "description": "Regalata agli automobilisti francesi, elenca officine e locande lungo le strade.",
+    "wiki": "Guida_Michelin"
+  },
+  {
+    "id": "gas_034",
+    "title": "Bezzera brevetta la macchina per l'espresso",
+    "year": 1901,
+    "category": "gastronomia",
+    "emoji": "☕",
+    "description": "Il vapore sotto pressione riduce il caffè a pochi secondi: nasce il bar all'italiana.",
+    "wiki": "Macchina_per_caffè_espresso"
+  },
+  {
+    "id": "gas_035",
+    "title": "L'hamburger conquista la fiera di Saint Louis",
+    "year": 1904,
+    "category": "gastronomia",
+    "emoji": "🍔",
+    "description": "Polpetta di manzo dentro un panino tondo: cibo di strada che diventa simbolo americano.",
+    "wiki": "Hamburger",
+    "approx": true
+  },
+  {
+    "id": "gas_036",
+    "title": "Il frigorifero entra in casa",
+    "year": 1913,
+    "category": "gastronomia",
+    "emoji": "❄",
+    "description": "Il primo modello domestico elettrico cambia la spesa, la conservazione e le ricette.",
+    "wiki": "Frigorifero"
+  },
+  {
+    "id": "gas_037",
+    "title": "Il conte Negroni chiede più gin",
+    "year": 1919,
+    "category": "gastronomia",
+    "emoji": "🍸",
+    "description": "A Firenze sostituisce il seltz dell'americano con il gin: nasce un cocktail immortale.",
+    "wiki": "Negroni_(cocktail)",
+    "approx": true
+  },
+  {
+    "id": "gas_038",
+    "title": "Bialetti presenta la Moka Express",
+    "year": 1933,
+    "category": "gastronomia",
+    "emoji": "☕",
+    "description": "Alluminio ottagonale e caffè sul fornello: entrerà in quasi tutte le case italiane.",
+    "wiki": "Moka"
+  },
+  {
+    "id": "gas_039",
+    "title": "I fratelli McDonald aprono a San Bernardino",
+    "year": 1940,
+    "category": "gastronomia",
+    "emoji": "🍟",
+    "description": "Menu ridotto e cucina a catena di montaggio: il fast food diventa un sistema.",
+    "wiki": "McDonald's"
+  },
+  {
+    "id": "gas_040",
+    "title": "Ferrero crea la pasta gianduja",
+    "year": 1946,
+    "category": "gastronomia",
+    "emoji": "🍫",
+    "description": "Ad Alba il cacao scarseggia: si allunga con le nocciole delle Langhe.",
+    "wiki": "Ferrero_(azienda)"
+  },
+  {
+    "id": "gas_041",
+    "title": "Il forno a microonde esce dal laboratorio",
+    "year": 1947,
+    "category": "gastronomia",
+    "emoji": "📡",
+    "description": "Un radarista nota la barretta di cioccolato sciolta in tasca e capisce tutto.",
+    "wiki": "Forno_a_microonde"
+  },
+  {
+    "id": "gas_042",
+    "title": "Ancel Keys studia la dieta del Cilento",
+    "year": 1958,
+    "category": "gastronomia",
+    "emoji": "🫒",
+    "description": "Il fisiologo americano collega olio, verdure e pesce alla salute del cuore.",
+    "wiki": "Ancel_Keys"
+  },
+  {
+    "id": "gas_043",
+    "title": "Arriva la Nutella sugli scaffali",
+    "year": 1964,
+    "category": "gastronomia",
+    "emoji": "🍫",
+    "description": "La crema spalmabile prende il nome definitivo e diventa colazione di generazioni.",
+    "wiki": "Nutella"
+  },
+  {
+    "id": "gas_044",
+    "title": "Il sushi apre a Los Angeles",
+    "year": 1966,
+    "category": "gastronomia",
+    "emoji": "🍣",
+    "description": "Il primo locale giapponese fuori dalla comunità nipponica prepara l'onda mondiale.",
+    "wiki": "Sushi",
+    "approx": true
+  },
+  {
+    "id": "gas_045",
+    "title": "La nouvelle cuisine alleggerisce la Francia",
+    "year": 1970,
+    "category": "gastronomia",
+    "emoji": "🍽",
+    "description": "Porzioni piccole, cotture brevi, niente salse pesanti: i critici le danno un nome.",
+    "wiki": "Nouvelle_cuisine",
+    "approx": true
+  },
+  {
+    "id": "gas_046",
+    "title": "Il tiramisù esce dalle trattorie trevigiane",
+    "year": 1980,
+    "category": "gastronomia",
+    "emoji": "🍰",
+    "description": "Savoiardi, caffè e mascarpone: il dolce italiano più copiato al mondo.",
+    "wiki": "Tiramisù",
+    "approx": true
+  },
+  {
+    "id": "gas_047",
+    "title": "Nasce Slow Food a Bra",
+    "year": 1986,
+    "category": "gastronomia",
+    "emoji": "🐌",
+    "description": "Contro l'apertura di un fast food a Roma parte un movimento gastronomico globale.",
+    "wiki": "Slow_Food"
+  },
+  {
+    "id": "gas_048",
+    "title": "Il Bocuse d'Or premia i cuochi come atleti",
+    "year": 1987,
+    "category": "gastronomia",
+    "emoji": "🏆",
+    "description": "A Lione la cucina diventa gara cronometrata davanti a un pubblico in tribuna.",
+    "wiki": "Bocuse_d'Or"
+  },
+  {
+    "id": "gas_049",
+    "title": "Ferran Adrià rivoluziona elBulli",
+    "year": 1997,
+    "category": "gastronomia",
+    "emoji": "🧪",
+    "description": "Sifoni, sferificazioni e arie: la cucina catalana diventa laboratorio.",
+    "wiki": "ElBulli",
+    "approx": true
+  },
+  {
+    "id": "gas_050",
+    "title": "L'Unesco riconosce la dieta mediterranea",
+    "year": 2010,
+    "category": "gastronomia",
+    "emoji": "🫒",
+    "description": "Patrimonio immateriale dell'umanità: non solo cibo, ma un modo di stare a tavola.",
+    "wiki": "Dieta_mediterranea"
+  }
+]

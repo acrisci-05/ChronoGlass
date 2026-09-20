@@ -2036,7 +2036,7 @@ const EVENTS = [
   { id:"super-mario",       title:"Uscita di Super Mario Bros.",              year:1985, date_full:"13 Settembre 1985",  wiki_slug:"Super_Mario_Bros.",                                   category:"Videogiochi" },
   { id:"chernobyl",         title:"Disastro nucleare di Černobyl'",           year:1986, date_full:"26 Aprile 1986",     wiki_slug:"Disastro_di_Černobyl'",                               category:"Storia" },
   { id:"maradona",          title:"La Mano de Dios di Maradona",              year:1986, date_full:"22 Giugno 1986",     wiki_slug:"Diego_Armando_Maradona",                              category:"Sport" },
-  { id:"fall-berlin-wall",  title:"Caduta del Muro di Berlino",               year:1989, date_full:"9 Novembre 1989",    wiki_slug:"Muro_di_Berlino",                                     category:"Storia" },
+  { id:"fall-berlin-wall",  title:"Caduta del Muro di Berlino",               year:1989, date_full:"9 Novembre 1989",    wiki_slug:"Caduta_del_muro_di_Berlino",                                     category:"Storia" },
   { id:"mandela",           title:"Nelson Mandela esce dal carcere",          year:1990, date_full:"11 Febbraio 1990",   wiki_slug:"Nelson_Mandela",                                      category:"Storia" },
   { id:"hubble",            title:"Lancio del telescopio Hubble",             year:1990, date_full:"24 Aprile 1990",     wiki_slug:"Telescopio_spaziale_Hubble",                          category:"Spazio" },
   { id:"www-public",        title:"Il World Wide Web diventa pubblico",       year:1991, date_full:"6 Agosto 1991",      wiki_slug:"World_Wide_Web",                                      category:"Tecnologia" },
@@ -2604,7 +2604,215 @@ const EVENTS = [
   { id:"spo_127", title:"Il Grande Slam d'oro di Steffi Graf", year:1988, date_full:"1988", wiki_slug:"Steffi_Graf", category:"Sport", desc:"Quattro tornei più l'oro olimpico nello stesso anno: mai riuscito ad altri." },
   { id:"spo_128", title:"Phelps vince otto ori a Pechino", year:2008, date_full:"17 Agosto 2008", wiki_slug:"Michael_Phelps", category:"Sport", desc:"Record assoluto di medaglie d'oro in una singola edizione olimpica." },
   { id:"spo_129", title:"Il Milan rimonta e perde a Istanbul", year:2005, date_full:"25 Maggio 2005", wiki_slug:"Finale_della_UEFA_Champions_League_2005", category:"Sport", desc:"Tre gol di svantaggio recuperati dal Liverpool in sei minuti." },
-  { id:"spo_130", title:"Kipchoge scende sotto le due ore", year:2019, date_full:"12 Ottobre 2019", wiki_slug:"Eliud_Kipchoge", category:"Sport", desc:"A Vienna corre la maratona in 1:59:40, fuori dalle regole ufficiali." }
+  { id:"spo_130", title:"Kipchoge scende sotto le due ore", year:2019, date_full:"12 Ottobre 2019", wiki_slug:"Eliud_Kipchoge", category:"Sport", desc:"A Vienna corre la maratona in 1:59:40, fuori dalle regole ufficiali." },
+
+  /* ---- Gastronomia ---- */
+  { id:"gas_001", title:"Nasce la vinificazione nel Caucaso", year:-6000, date_full:"6000 a.C.", wiki_slug:"Vino", category:"Gastronomia", desc:"Nei villaggi del Caucaso l'uva viene fatta fermentare in grandi giare interrate.", approx:true },
+  { id:"gas_002", title:"Primi formaggi nel Neolitico", year:-5500, date_full:"5500 a.C.", wiki_slug:"Formaggio", category:"Gastronomia", desc:"Setacci forati in terracotta rivelano che il latte veniva già cagliato e scolato.", approx:true },
+  { id:"gas_003", title:"La birra scorre in Mesopotamia", year:-3500, date_full:"3500 a.C.", wiki_slug:"Birra", category:"Gastronomia", desc:"I sumeri la bevono con la cannuccia e la usano perfino per pagare i salari.", approx:true },
+  { id:"gas_004", title:"L'olivo colonizza il Mediterraneo", year:-4000, date_full:"4000 a.C.", wiki_slug:"Olio_di_oliva", category:"Gastronomia", desc:"Dalla Siria alla Grecia l'olio diventa cibo, medicina, cosmetico e combustibile.", approx:true },
+  { id:"gas_005", title:"Il pane lievitato in Egitto", year:-3000, date_full:"3000 a.C.", wiki_slug:"Pane", category:"Gastronomia", desc:"Sulle rive del Nilo si scopre che l'impasto lasciato riposare gonfia e profuma.", approx:true },
+  { id:"gas_006", title:"Il cacao dei popoli mesoamericani", year:-2000, date_full:"2000 a.C.", wiki_slug:"Cioccolato", category:"Gastronomia", desc:"Olmechi e maya lo bevono amaro e speziato, riservato a sacerdoti e nobili.", approx:true },
+  { id:"gas_007", title:"La leggenda della prima tazza di tè", year:-2737, date_full:"2737 a.C.", wiki_slug:"Tè", category:"Gastronomia", desc:"Secondo la tradizione cinese alcune foglie cadono per caso nell'acqua dell'imperatore.", approx:true },
+  { id:"gas_008", title:"Il garum insaporisce Roma", year:-100, date_full:"100 a.C.", wiki_slug:"Garum", category:"Gastronomia", desc:"La salsa di pesce fermentato viene prodotta in enormi vasche e spedita in tutto l'impero.", approx:true },
+  { id:"gas_009", title:"Apicio raccoglie le ricette romane", year:10, date_full:"10", wiki_slug:"De_re_coquinaria", category:"Gastronomia", desc:"Il più antico ricettario giunto fino a noi: dromedario, fenicotteri e salse fortissime.", approx:true },
+  { id:"gas_010", title:"La forchetta arriva a Venezia", year:1004, date_full:"1004", wiki_slug:"Forchetta", category:"Gastronomia", desc:"Una principessa bizantina la porta in laguna e scandalizza chi mangia con le mani.", approx:true },
+  { id:"gas_011", title:"Gli arabi portano lo zucchero in Sicilia", year:1150, date_full:"1150", wiki_slug:"Zucchero", category:"Gastronomia", desc:"Le canne coltivate nell'isola rendono dolce una cucina che conosceva solo il miele.", approx:true },
+  { id:"gas_012", title:"Al-Idrisi descrive i maccheroni siciliani", year:1154, date_full:"1154", wiki_slug:"Pasta", category:"Gastronomia", desc:"Il geografo racconta di fili di semola essiccati a Trabia ed esportati via mare.", approx:true },
+  { id:"gas_013", title:"Il Milione racconta le spezie d'Oriente", year:1298, date_full:"1298", wiki_slug:"Il_Milione", category:"Gastronomia", desc:"Il resoconto di Marco Polo accende in Europa la fame di pepe, cannella e zenzero." },
+  { id:"gas_014", title:"I monaci inventano il Parmigiano Reggiano", year:1200, date_full:"1200", wiki_slug:"Parmigiano_Reggiano", category:"Gastronomia", desc:"Nelle abbazie della pianura padana nasce una forma che dura anni senza guastarsi.", approx:true },
+  { id:"gas_015", title:"Il caffè diventa bevanda nello Yemen", year:1450, date_full:"1450", wiki_slug:"Caffè", category:"Gastronomia", desc:"I sufi di Mokha tostano i chicchi per restare svegli durante le preghiere notturne.", approx:true },
+  { id:"gas_016", title:"Il peperoncino attraversa l'Atlantico", year:1493, date_full:"1493", wiki_slug:"Peperoncino", category:"Gastronomia", desc:"Colombo lo scambia per una varietà di pepe: in un secolo conquista mezzo mondo.", approx:true },
+  { id:"gas_017", title:"Il mais approda in Europa", year:1495, date_full:"1495", wiki_slug:"Mais", category:"Gastronomia", desc:"La pianta americana sfamerà intere regioni, e in Veneto diventerà polenta.", approx:true },
+  { id:"gas_018", title:"Cortés porta il cacao alla corte spagnola", year:1528, date_full:"1528", wiki_slug:"Cacao", category:"Gastronomia", desc:"Zuccherato e servito caldo, il cacao diventa il vizio segreto dell'aristocrazia.", approx:true },
+  { id:"gas_019", title:"Il pomodoro entra negli orti italiani", year:1540, date_full:"1540", wiki_slug:"Pomodoro", category:"Gastronomia", desc:"Per decenni resta una curiosità ornamentale: lo credono velenoso.", approx:true },
+  { id:"gas_020", title:"La patata sbarca in Spagna", year:1570, date_full:"1570", wiki_slug:"Patata", category:"Gastronomia", desc:"Dalle Ande all'Europa: diffidata a lungo, diventerà il pane dei poveri.", approx:true },
+  { id:"gas_021", title:"Il tacchino arriva dalle Americhe", year:1520, date_full:"1520", wiki_slug:"Tacchino_comune", category:"Gastronomia", desc:"Gli spagnoli lo importano dal Messico: in pochi decenni è sulle tavole di corte.", approx:true },
+  { id:"gas_022", title:"Le prime casse di tè attraccano ad Amsterdam", year:1610, date_full:"1610", wiki_slug:"Camellia_sinensis", category:"Gastronomia", desc:"La Compagnia delle Indie apre la rotta che renderà l'Inghilterra un paese di bevitori di tè.", approx:true },
+  { id:"gas_023", title:"Apre a Parigi il Café Procope", year:1686, date_full:"1686", wiki_slug:"Café_Procope", category:"Gastronomia", desc:"Il siciliano Procopio serve caffè e gelati: nasce il caffè letterario europeo." },
+  { id:"gas_024", title:"Lo champagne prende le bollicine", year:1697, date_full:"1697", wiki_slug:"Champagne_(vino)", category:"Gastronomia", desc:"Il monaco Dom Pérignon perfeziona l'assemblaggio dei vini della regione francese.", approx:true },
+  { id:"gas_025", title:"Nasce il Caffè Florian in piazza San Marco", year:1720, date_full:"1720", wiki_slug:"Caffè_Florian", category:"Gastronomia", desc:"Il più antico caffè d'Italia ancora aperto: salotto di Casanova, Goethe e Byron." },
+  { id:"gas_026", title:"Il conte di Sandwich chiede carne fra due fette", year:1762, date_full:"1762", wiki_slug:"Sandwich", category:"Gastronomia", desc:"Per non lasciare il tavolo da gioco ordina un pasto che si mangia con una mano sola.", approx:true },
+  { id:"gas_027", title:"Appert inventa la conserva ermetica", year:1809, date_full:"1809", wiki_slug:"Nicolas_Appert", category:"Gastronomia", desc:"Bottiglie sigillate e bollite: Napoleone premia chi sa nutrire un esercito in marcia." },
+  { id:"gas_028", title:"Il croissant conquista Parigi", year:1839, date_full:"1839", wiki_slug:"Croissant", category:"Gastronomia", desc:"Un ufficiale austriaco apre una boulangerie e porta il kipferl viennese in Francia.", approx:true },
+  { id:"gas_029", title:"Gaspare Campari inventa il suo bitter", year:1857, date_full:"1857", wiki_slug:"Campari_(bevanda)", category:"Gastronomia", desc:"A Novara Gaspare Campari mette a punto un bitter rosso di erbe e scorze d'arancia.", approx:true },
+  { id:"gas_030", title:"Pasteur salva il vino dalla fermentazione", year:1864, date_full:"1864", wiki_slug:"Pastorizzazione", category:"Gastronomia", desc:"Riscaldare brevemente il liquido uccide i microbi: il metodo prende il suo nome." },
+  { id:"gas_031", title:"Un farmacista di Atlanta inventa la Coca-Cola", year:1886, date_full:"1886", wiki_slug:"Coca-Cola", category:"Gastronomia", desc:"Nasce come sciroppo medicinale contro il mal di testa, venduto a bicchieri in farmacia." },
+  { id:"gas_032", title:"La pizza Margherita a Napoli", year:1889, date_full:"1889", wiki_slug:"Pizza_Margherita", category:"Gastronomia", desc:"Pomodoro, mozzarella e basilico: il tricolore in una pizza dedicata alla regina." },
+  { id:"gas_033", title:"Esce la prima Guida Michelin", year:1900, date_full:"1900", wiki_slug:"Guida_Michelin", category:"Gastronomia", desc:"Regalata agli automobilisti francesi, elenca officine e locande lungo le strade." },
+  { id:"gas_034", title:"Bezzera brevetta la macchina per l'espresso", year:1901, date_full:"1901", wiki_slug:"Macchina_per_caffè_espresso", category:"Gastronomia", desc:"Il vapore sotto pressione riduce il caffè a pochi secondi: nasce il bar all'italiana." },
+  { id:"gas_035", title:"L'hamburger conquista la fiera di Saint Louis", year:1904, date_full:"1904", wiki_slug:"Hamburger", category:"Gastronomia", desc:"Polpetta di manzo dentro un panino tondo: cibo di strada che diventa simbolo americano.", approx:true },
+  { id:"gas_036", title:"Il frigorifero entra in casa", year:1913, date_full:"1913", wiki_slug:"Frigorifero", category:"Gastronomia", desc:"Il primo modello domestico elettrico cambia la spesa, la conservazione e le ricette." },
+  { id:"gas_037", title:"Il conte Negroni chiede più gin", year:1919, date_full:"1919", wiki_slug:"Negroni_(cocktail)", category:"Gastronomia", desc:"A Firenze sostituisce il seltz dell'americano con il gin: nasce un cocktail immortale.", approx:true },
+  { id:"gas_038", title:"Bialetti presenta la Moka Express", year:1933, date_full:"1933", wiki_slug:"Moka", category:"Gastronomia", desc:"Alluminio ottagonale e caffè sul fornello: entrerà in quasi tutte le case italiane." },
+  { id:"gas_039", title:"I fratelli McDonald aprono a San Bernardino", year:1940, date_full:"1940", wiki_slug:"McDonald's", category:"Gastronomia", desc:"Menu ridotto e cucina a catena di montaggio: il fast food diventa un sistema." },
+  { id:"gas_040", title:"Ferrero crea la pasta gianduja", year:1946, date_full:"1946", wiki_slug:"Ferrero_(azienda)", category:"Gastronomia", desc:"Ad Alba il cacao scarseggia: si allunga con le nocciole delle Langhe." },
+  { id:"gas_041", title:"Il forno a microonde esce dal laboratorio", year:1947, date_full:"1947", wiki_slug:"Forno_a_microonde", category:"Gastronomia", desc:"Un radarista nota la barretta di cioccolato sciolta in tasca e capisce tutto." },
+  { id:"gas_042", title:"Ancel Keys studia la dieta del Cilento", year:1958, date_full:"1958", wiki_slug:"Ancel_Keys", category:"Gastronomia", desc:"Il fisiologo americano collega olio, verdure e pesce alla salute del cuore." },
+  { id:"gas_043", title:"Arriva la Nutella sugli scaffali", year:1964, date_full:"1964", wiki_slug:"Nutella", category:"Gastronomia", desc:"La crema spalmabile prende il nome definitivo e diventa colazione di generazioni." },
+  { id:"gas_044", title:"Il sushi apre a Los Angeles", year:1966, date_full:"1966", wiki_slug:"Sushi", category:"Gastronomia", desc:"Il primo locale giapponese fuori dalla comunità nipponica prepara l'onda mondiale.", approx:true },
+  { id:"gas_045", title:"La nouvelle cuisine alleggerisce la Francia", year:1970, date_full:"1970", wiki_slug:"Nouvelle_cuisine", category:"Gastronomia", desc:"Porzioni piccole, cotture brevi, niente salse pesanti: i critici le danno un nome.", approx:true },
+  { id:"gas_046", title:"Il tiramisù esce dalle trattorie trevigiane", year:1980, date_full:"1980", wiki_slug:"Tiramisù", category:"Gastronomia", desc:"Savoiardi, caffè e mascarpone: il dolce italiano più copiato al mondo.", approx:true },
+  { id:"gas_047", title:"Nasce Slow Food a Bra", year:1986, date_full:"1986", wiki_slug:"Slow_Food", category:"Gastronomia", desc:"Contro l'apertura di un fast food a Roma parte un movimento gastronomico globale." },
+  { id:"gas_048", title:"Il Bocuse d'Or premia i cuochi come atleti", year:1987, date_full:"1987", wiki_slug:"Bocuse_d'Or", category:"Gastronomia", desc:"A Lione la cucina diventa gara cronometrata davanti a un pubblico in tribuna." },
+  { id:"gas_049", title:"Ferran Adrià rivoluziona elBulli", year:1997, date_full:"1997", wiki_slug:"ElBulli", category:"Gastronomia", desc:"Sifoni, sferificazioni e arie: la cucina catalana diventa laboratorio.", approx:true },
+  { id:"gas_050", title:"L'Unesco riconosce la dieta mediterranea", year:2010, date_full:"2010", wiki_slug:"Dieta_mediterranea", category:"Gastronomia", desc:"Patrimonio immateriale dell'umanità: non solo cibo, ma un modo di stare a tavola." },
+
+  /* ---- Moda ---- */
+  { id:"mod_001", title:"In Cina si tesse la prima seta", year:-2700, date_full:"2700 a.C.", wiki_slug:"Seta", category:"Moda", desc:"Il filo del baco diventa segreto di stato: chi lo esporta rischia la vita.", approx:true },
+  { id:"mod_002", title:"L'Egitto veste il lino plissettato", year:-1500, date_full:"1500 a.C.", wiki_slug:"Lino_(tessuto)", category:"Moda", desc:"Tuniche bianche e trasparenti, segno di purezza e di ricchezza sul Nilo.", approx:true },
+  { id:"mod_003", title:"A Tiro si estrae la porpora dai molluschi", year:-1500, date_full:"1500 a.C.", wiki_slug:"Porpora", category:"Moda", desc:"Servono migliaia di murici per un grammo: il colore diventa privilegio dei re.", approx:true },
+  { id:"mod_004", title:"La toga distingue il cittadino romano", year:-500, date_full:"500 a.C.", wiki_slug:"Toga", category:"Moda", desc:"Un unico taglio di lana avvolto sul corpo: indossarla è un diritto, non una scelta.", approx:true },
+  { id:"mod_005", title:"Il kimono prende forma in Giappone", year:700, date_full:"700", wiki_slug:"Kimono", category:"Moda", desc:"Maniche larghe e linee dritte: un abito che si indossa uguale per secoli.", approx:true },
+  { id:"mod_006", title:"Il bottone diventa chiusura", year:1200, date_full:"1200", wiki_slug:"Bottone", category:"Moda", desc:"Prima solo ornamento, ora entra nell'asola e permette abiti aderenti al corpo.", approx:true },
+  { id:"mod_007", title:"Il merletto nasce fra Venezia e le Fiandre", year:1400, date_full:"1400", wiki_slug:"Merletto", category:"Moda", desc:"Ago e fuselli trasformano il filo in trine che valgono quanto i gioielli.", approx:true },
+  { id:"mod_008", title:"Il corsetto stringe la silhouette europea", year:1500, date_full:"1500", wiki_slug:"Corsetto", category:"Moda", desc:"Stecche di balena e lacci ridisegnano il busto femminile per quattro secoli.", approx:true },
+  { id:"mod_009", title:"Caterina de' Medici porta il tacco in Francia", year:1533, date_full:"1533", wiki_slug:"Tacco", category:"Moda", desc:"Bassa di statura, si fa costruire scarpe rialzate per le nozze reali.", approx:true },
+  { id:"mod_010", title:"I croati portano la cravatta a Parigi", year:1660, date_full:"1660", wiki_slug:"Cravatta", category:"Moda", desc:"I soldati mercenari annodano una sciarpa al collo: la corte francese la copia subito.", approx:true },
+  { id:"mod_011", title:"Luigi XIV impone la parrucca a corte", year:1665, date_full:"1665", wiki_slug:"Parrucca", category:"Moda", desc:"Il re la adotta per nascondere la calvizie: diventa obbligo sociale per i nobili.", approx:true },
+  { id:"mod_012", title:"Debutta il cappello a cilindro", year:1797, date_full:"1797", wiki_slug:"Cappello_a_cilindro", category:"Moda", desc:"A Londra il primo che lo indossa viene accusato di spaventare i passanti.", approx:true },
+  { id:"mod_013", title:"La regina Vittoria sposa in bianco", year:1840, date_full:"1840", wiki_slug:"Abito_da_sposa", category:"Moda", desc:"Rompe la tradizione degli abiti colorati e fonda un costume che dura ancora." },
+  { id:"mod_014", title:"Singer rende la macchina da cucire domestica", year:1851, date_full:"1851", wiki_slug:"Macchina_per_cucire", category:"Moda", desc:"Rate mensili e pedale: cucire in casa smette di essere un lavoro da sarti." },
+  { id:"mod_015", title:"Un diciottenne scopre il primo colore sintetico", year:1856, date_full:"1856", wiki_slug:"Mauveina", category:"Moda", desc:"Cercando un farmaco contro la malaria, Perkin ottiene un viola brillante." },
+  { id:"mod_016", title:"Borsalino inizia a fabbricare cappelli ad Alessandria", year:1857, date_full:"1857", wiki_slug:"Borsalino_(azienda)", category:"Moda", desc:"Feltro di coniglio lavorato a mano: il nome diventerà sinonimo di cappello." },
+  { id:"mod_017", title:"Worth fonda l'alta moda a Parigi", year:1858, date_full:"1858", wiki_slug:"Charles_Frederick_Worth", category:"Moda", desc:"Firma i suoi abiti come un artista e fa sfilare modelle vive davanti alle clienti." },
+  { id:"mod_018", title:"Levi Strauss brevetta i rivetti sui pantaloni", year:1873, date_full:"1873", wiki_slug:"Levi_Strauss", category:"Moda", desc:"Tela robusta e chiodini di rame per i cercatori d'oro: nascono i jeans." },
+  { id:"mod_019", title:"Esce il primo numero di Vogue", year:1892, date_full:"1892", wiki_slug:"Vogue_(periodico)", category:"Moda", desc:"Settimanale mondano di New York, diventerà la bibbia dello stile." },
+  { id:"mod_020", title:"La cerniera lampo diventa pratica", year:1913, date_full:"1913", wiki_slug:"Cerniera_lampo", category:"Moda", desc:"Denti metallici e cursore: ci vorranno vent'anni perché la moda la accetti." },
+  { id:"mod_021", title:"Il reggiseno viene brevettato", year:1914, date_full:"1914", wiki_slug:"Reggiseno", category:"Moda", desc:"Due fazzoletti e un nastro: una giovane newyorkese archivia il corsetto." },
+  { id:"mod_022", title:"Burberry veste gli ufficiali col trench", year:1914, date_full:"1914", wiki_slug:"Burberry", category:"Moda", desc:"Gabardine impermeabile, spalline e cintura: l'uniforme di trincea passa alla moda.", approx:true },
+  { id:"mod_023", title:"Converse presenta la All Star", year:1917, date_full:"1917", wiki_slug:"Converse_(azienda)", category:"Moda", desc:"Scarpa da basket in tela: diventerà l'anti-divisa di generazioni di ragazzi." },
+  { id:"mod_024", title:"Le flapper accorciano le gonne", year:1920, date_full:"1920", wiki_slug:"Flapper", category:"Moda", desc:"Capelli corti, vita bassa e sigaretta: la ragazza degli anni ruggenti scandalizza.", approx:true },
+  { id:"mod_025", title:"Coco Chanel lancia il suo profumo", year:1921, date_full:"1921", wiki_slug:"Coco_Chanel", category:"Moda", desc:"Aldeidi e ottantalcune essenze in una boccetta squadrata da laboratorio." },
+  { id:"mod_026", title:"Guccio Gucci apre bottega a Firenze", year:1921, date_full:"1921", wiki_slug:"Gucci", category:"Moda", desc:"Pelletteria per viaggiatori inglesi: il cuoio toscano diventa lusso internazionale." },
+  { id:"mod_027", title:"Nasce la casa Fendi a Roma", year:1925, date_full:"1925", wiki_slug:"Fendi", category:"Moda", desc:"Bottega di pellicce e pelletteria in via del Plebiscito, gestita da una coppia." },
+  { id:"mod_028", title:"Rolex crea l'Oyster impermeabile", year:1926, date_full:"1926", wiki_slug:"Rolex", category:"Moda", desc:"Cassa avvitata come un'ostrica: una nuotatrice la porta attraverso la Manica." },
+  { id:"mod_029", title:"Il nylon esce dai laboratori DuPont", year:1935, date_full:"1935", wiki_slug:"Nylon", category:"Moda", desc:"La prima fibra interamente sintetica: le calze di seta hanno i giorni contati." },
+  { id:"mod_030", title:"Ray-Ban protegge gli occhi dei piloti", year:1937, date_full:"1937", wiki_slug:"Ray-Ban", category:"Moda", desc:"Lenti verdi antiriflesso e montatura leggera per chi vola controsole." },
+  { id:"mod_031", title:"Il bikini esplode a Parigi", year:1946, date_full:"1946", wiki_slug:"Bikini", category:"Moda", desc:"Presentato in piscina da una spogliarellista: nessuna modella voleva indossarlo." },
+  { id:"mod_032", title:"Dior presenta il New Look", year:1947, date_full:"1947", wiki_slug:"Christian_Dior", category:"Moda", desc:"Spalle morbide, vita strettissima e gonne ampie: la Francia dimentica il razionamento." },
+  { id:"mod_033", title:"Adidas nasce a Herzogenaurach", year:1949, date_full:"1949", wiki_slug:"Adidas", category:"Moda", desc:"Dopo la rottura fra fratelli calzolai, le tre strisce diventano un marchio." },
+  { id:"mod_034", title:"La Sala Bianca lancia il Made in Italy", year:1951, date_full:"1951", wiki_slug:"Made_in_Italy", category:"Moda", desc:"A Firenze i compratori americani scoprono i sarti italiani: nasce un'industria." },
+  { id:"mod_035", title:"I Missoni aprono un laboratorio di maglieria", year:1953, date_full:"1953", wiki_slug:"Missoni", category:"Moda", desc:"Righe e zigzag colorati da telai rimessi a nuovo in un garage di Gallarate." },
+  { id:"mod_036", title:"Le Dr. Martens arrivano in fabbrica", year:1960, date_full:"1960", wiki_slug:"Dr._Martens", category:"Moda", desc:"Suola ad aria per operai: punk e skinhead la trasformeranno in una bandiera." },
+  { id:"mod_037", title:"Valentino apre il suo atelier a Roma", year:1960, date_full:"1960", wiki_slug:"Valentino_Garavani", category:"Moda", desc:"Via Condotti: in pochi anni il suo rosso diventa un colore con il nome proprio." },
+  { id:"mod_038", title:"Mary Quant accorcia la minigonna", year:1965, date_full:"1965", wiki_slug:"Minigonna", category:"Moda", desc:"Nella boutique di King's Road l'orlo sale sopra il ginocchio e fa il giro del mondo." },
+  { id:"mod_039", title:"Saint Laurent mette lo smoking alle donne", year:1966, date_full:"1966", wiki_slug:"Yves_Saint_Laurent_(stilista)", category:"Moda", desc:"Un ristorante di New York rifiuta l'ingresso a chi lo indossa: diventa un caso." },
+  { id:"mod_040", title:"Vivienne Westwood veste il punk londinese", year:1971, date_full:"1971", wiki_slug:"Vivienne_Westwood", category:"Moda", desc:"Spille da balia, strappi e slogan: il negozio di King's Road diventa un manifesto.", approx:true },
+  { id:"mod_041", title:"Nike presenta la suola a cialda", year:1972, date_full:"1972", wiki_slug:"Nike_(azienda)", category:"Moda", desc:"Un allenatore cola gomma nella piastra per waffle della moglie e ottiene il grip." },
+  { id:"mod_042", title:"Giorgio Armani destruttura la giacca", year:1975, date_full:"1975", wiki_slug:"Giorgio_Armani", category:"Moda", desc:"Toglie fodere e imbottiture: il completo maschile diventa morbido come un cardigan." },
+  { id:"mod_043", title:"Zara apre il primo negozio a La Coruña", year:1975, date_full:"1975", wiki_slug:"Zara_(azienda)", category:"Moda", desc:"Produzione rapidissima e collezioni sempre nuove: nasce il modello fast fashion." },
+  { id:"mod_044", title:"Gianni Versace firma la sua prima collezione", year:1978, date_full:"1978", wiki_slug:"Gianni_Versace", category:"Moda", desc:"Colori accesi e maglia metallica: Milano si prende la scena internazionale." },
+  { id:"mod_045", title:"Swatch salva l'orologeria svizzera", year:1983, date_full:"1983", wiki_slug:"Swatch", category:"Moda", desc:"Plastica, pochi pezzi e prezzo basso contro l'invasione dei quarzi giapponesi." },
+  { id:"mod_046", title:"Hermès disegna una borsa per Jane Birkin", year:1984, date_full:"1984", wiki_slug:"Hermès", category:"Moda", desc:"Nasce su un sacchetto per l'aereo dopo una conversazione fra due passeggeri." },
+  { id:"mod_047", title:"Prada trasforma il nylon in lusso", year:1984, date_full:"1984", wiki_slug:"Prada", category:"Moda", desc:"Il tessuto dei paracadute diventa uno zaino che costa quanto una borsa di pelle." },
+  { id:"mod_048", title:"Le supermodelle diventano star globali", year:1990, date_full:"1990", wiki_slug:"Naomi_Campbell", category:"Moda", desc:"Cinque ragazze in copertina insieme: le modelle valgono più degli abiti che indossano.", approx:true },
+  { id:"mod_049", title:"Il grunge porta il flanello in passerella", year:1991, date_full:"1991", wiki_slug:"Grunge", category:"Moda", desc:"Camicie a quadri e jeans sdruciti da Seattle: una collezione fa infuriare i critici.", approx:true },
+  { id:"mod_050", title:"Il Met Gala diventa l'evento della moda", year:1995, date_full:"1995", wiki_slug:"Met_Gala", category:"Moda", desc:"Anna Wintour ne prende le redini e lo trasforma nella notte più fotografata dell'anno.", approx:true },
+
+  /* ---- Natura ---- */
+  { id:"nat_001", title:"Il cane entra nei villaggi umani", year:-9000, date_full:"9000 a.C.", wiki_slug:"Cane", category:"Natura", desc:"Lupi meno diffidenti seguono i cacciatori e diventano compagni di caccia e guardia.", approx:true },
+  { id:"nat_002", title:"Il cavallo viene addomesticato nelle steppe", year:-3500, date_full:"3500 a.C.", wiki_slug:"Cavallo", category:"Natura", desc:"Nelle praterie del Kazakistan si impara a cavalcare: cambiano guerra e commercio.", approx:true },
+  { id:"nat_003", title:"I giardini pensili stupiscono Babilonia", year:-600, date_full:"600 a.C.", wiki_slug:"Giardini_pensili_di_Babilonia", category:"Natura", desc:"Terrazze irrigate a gradoni: l'unica meraviglia antica di cui non si trova traccia.", approx:true },
+  { id:"nat_004", title:"Aristotele classifica gli animali", year:-343, date_full:"343 a.C.", wiki_slug:"Historia_animalium", category:"Natura", desc:"Osserva e dissezione cinquecento specie: il primo trattato di zoologia della storia.", approx:true },
+  { id:"nat_005", title:"Plinio raccoglie tutto il sapere naturale", year:77, date_full:"77", wiki_slug:"Naturalis_historia", category:"Natura", desc:"Trentasette libri su piante, animali e minerali, fra osservazione e leggenda." },
+  { id:"nat_006", title:"Nasce a Pisa il primo orto botanico", year:1544, date_full:"1544", wiki_slug:"Orto_botanico_di_Pisa", category:"Natura", desc:"Luca Ghini lo fonda per studiare le piante medicinali dal vivo, non sui libri." },
+  { id:"nat_007", title:"Si estingue il dodo di Mauritius", year:1662, date_full:"1662", wiki_slug:"Raphus_cucullatus", category:"Natura", desc:"In meno di un secolo marinai, ratti e maiali cancellano l'uccello che non sapeva volare.", approx:true },
+  { id:"nat_008", title:"Linneo ordina la natura in Systema Naturae", year:1735, date_full:"1735", wiki_slug:"Systema_Naturae", category:"Natura", desc:"Due nomi latini per ogni specie: un sistema che usiamo ancora oggi." },
+  { id:"nat_009", title:"Buffon pubblica la Histoire naturelle", year:1749, date_full:"1749", wiki_slug:"Georges-Louis_Leclerc_de_Buffon", category:"Natura", desc:"Trentasei volumi che raccontano la natura in francese elegante, letti in tutti i salotti." },
+  { id:"nat_010", title:"Aprono i Kew Gardens a Londra", year:1759, date_full:"1759", wiki_slug:"Royal_Botanic_Gardens", category:"Natura", desc:"Da giardino reale a più grande collezione vivente di piante del pianeta." },
+  { id:"nat_011", title:"Priestley scopre che le piante rinnovano l'aria", year:1771, date_full:"1771", wiki_slug:"Fotosintesi_clorofilliana", category:"Natura", desc:"Un rametto di menta ravviva la candela spenta sotto la campana di vetro." },
+  { id:"nat_012", title:"Lo stambecco alpino salvato dall'estinzione", year:1856, date_full:"1856", wiki_slug:"Capra_ibex", category:"Natura", desc:"Restano poche decine di capi nel Gran Paradiso: una riserva di caccia li protegge.", approx:true },
+  { id:"nat_013", title:"Wallace spedisce a Darwin il suo saggio", year:1858, date_full:"1858", wiki_slug:"Alfred_Russel_Wallace", category:"Natura", desc:"Dall'Indonesia arriva un manoscritto con la stessa identica intuizione sulla selezione." },
+  { id:"nat_014", title:"Haeckel conia la parola ecologia", year:1866, date_full:"1866", wiki_slug:"Ernst_Haeckel", category:"Natura", desc:"Serve un nome per lo studio dei rapporti fra gli organismi e il loro ambiente." },
+  { id:"nat_015", title:"Yellowstone diventa il primo parco nazionale", year:1872, date_full:"1872", wiki_slug:"Parco_nazionale_di_Yellowstone", category:"Natura", desc:"Geyser e bisonti sottratti alla speculazione: nasce l'idea stessa di parco." },
+  { id:"nat_016", title:"Viene battezzato l'albero General Sherman", year:1879, date_full:"1879", wiki_slug:"General_Sherman_(albero)", category:"Natura", desc:"La sequoia gigante più grande del mondo per volume, alta come un palazzo." },
+  { id:"nat_017", title:"Il bisonte americano sull'orlo dell'estinzione", year:1889, date_full:"1889", wiki_slug:"Bison_bison", category:"Natura", desc:"Da decine di milioni a poche centinaia di capi in un solo secolo di caccia.", approx:true },
+  { id:"nat_018", title:"John Muir fonda il Sierra Club", year:1892, date_full:"1892", wiki_slug:"John_Muir", category:"Natura", desc:"Lo scozzese innamorato dello Yosemite organizza i primi ambientalisti americani." },
+  { id:"nat_019", title:"Muore Martha, ultimo piccione migratore", year:1914, date_full:"1914", wiki_slug:"Ectopistes_migratorius", category:"Natura", desc:"Oscuravano il cielo a miliardi: l'ultima esemplare si spegne in uno zoo." },
+  { id:"nat_020", title:"Nasce il Parco nazionale del Gran Paradiso", year:1922, date_full:"1922", wiki_slug:"Parco_nazionale_del_Gran_Paradiso", category:"Natura", desc:"La riserva di caccia reale diventa il primo parco nazionale italiano." },
+  { id:"nat_021", title:"Istituito il Parco nazionale d'Abruzzo", year:1923, date_full:"1923", wiki_slug:"Parco_nazionale_d'Abruzzo,_Lazio_e_Molise", category:"Natura", desc:"Orso bruno marsicano e camoscio appenninico trovano un rifugio protetto." },
+  { id:"nat_022", title:"Riemerge il celacanto dato per estinto", year:1938, date_full:"1938", wiki_slug:"Latimeria_chalumnae", category:"Natura", desc:"Un pesce creduto scomparso da settanta milioni di anni finisce in una rete sudafricana." },
+  { id:"nat_023", title:"Nasce l'Unione internazionale per la conservazione", year:1948, date_full:"1948", wiki_slug:"IUCN", category:"Natura", desc:"A Fontainebleau governi e scienziati si organizzano per proteggere la natura." },
+  { id:"nat_024", title:"La malattia di Minamata rivela il mercurio", year:1956, date_full:"1956", wiki_slug:"Malattia_di_Minamata", category:"Natura", desc:"Gli scarichi di una fabbrica avvelenano pesci e abitanti della baia giapponese." },
+  { id:"nat_025", title:"Jane Goodall arriva a Gombe", year:1960, date_full:"1960", wiki_slug:"Jane_Goodall", category:"Natura", desc:"Scopre che gli scimpanzé costruiscono strumenti: la definizione di uomo va riscritta." },
+  { id:"nat_026", title:"Inizia il prosciugamento del lago d'Aral", year:1960, date_full:"1960", wiki_slug:"Lago_d'Aral", category:"Natura", desc:"I fiumi vengono deviati per il cotone: il quarto lago del mondo comincia a sparire.", approx:true },
+  { id:"nat_027", title:"Fondato il WWF a Morges", year:1961, date_full:"1961", wiki_slug:"WWF", category:"Natura", desc:"Il panda gigante diventa il simbolo scelto perché riconoscibile anche in bianco e nero." },
+  { id:"nat_028", title:"Rachel Carson pubblica Primavera silenziosa", year:1962, date_full:"1962", wiki_slug:"Primavera_silenziosa", category:"Natura", desc:"Il libro sui pesticidi accende il movimento ambientalista e porta al bando del DDT." },
+  { id:"nat_029", title:"La Cina istituisce riserve per il panda gigante", year:1963, date_full:"1963", wiki_slug:"Ailuropoda_melanoleuca", category:"Natura", desc:"Le foreste di bambù del Sichuan vengono chiuse al taglio per salvare la specie.", approx:true },
+  { id:"nat_030", title:"Si celebra la prima Giornata della Terra", year:1970, date_full:"1970", wiki_slug:"Giornata_della_Terra", category:"Natura", desc:"Venti milioni di americani in piazza: l'ambiente entra nell'agenda politica." },
+  { id:"nat_031", title:"Nasce Greenpeace da una barca da pesca", year:1971, date_full:"1971", wiki_slug:"Greenpeace", category:"Natura", desc:"Un peschereccio salpa da Vancouver per ostacolare un test nucleare in Alaska." },
+  { id:"nat_032", title:"Il lupo appenninico diventa specie protetta", year:1971, date_full:"1971", wiki_slug:"Canis_lupus_italicus", category:"Natura", desc:"Ne restano un centinaio: la caccia viene vietata e la popolazione risale lentamente." },
+  { id:"nat_033", title:"Lovelock formula l'ipotesi Gaia", year:1972, date_full:"1972", wiki_slug:"Ipotesi_Gaia", category:"Natura", desc:"La Terra vista come un unico organismo che regola da sé la propria temperatura." },
+  { id:"nat_034", title:"Entra in vigore la convenzione CITES", year:1973, date_full:"1973", wiki_slug:"CITES", category:"Natura", desc:"Avorio, pellicce e specie rare non possono più attraversare le frontiere liberamente." },
+  { id:"nat_035", title:"L'India lancia il Project Tiger", year:1973, date_full:"1973", wiki_slug:"Panthera_tigris", category:"Natura", desc:"Riserve dedicate per fermare il crollo della tigre del Bengala." },
+  { id:"nat_036", title:"La Grande barriera corallina diventa parco marino", year:1975, date_full:"1975", wiki_slug:"Grande_barriera_corallina", category:"Natura", desc:"Duemila chilometri di corallo australiano messi sotto tutela dal governo." },
+  { id:"nat_037", title:"Una nube di diossina investe Seveso", year:1976, date_full:"1976", wiki_slug:"Disastro_di_Seveso", category:"Natura", desc:"L'esplosione di un reattore chimico contamina la Brianza e cambia le leggi europee." },
+  { id:"nat_038", title:"Comincia la grande deforestazione amazzonica", year:1979, date_full:"1979", wiki_slug:"Foresta_amazzonica", category:"Natura", desc:"Strade e allevamenti aprono la foresta: i satelliti iniziano a misurarne la perdita.", approx:true },
+  { id:"nat_039", title:"Moratoria internazionale sulla caccia alle balene", year:1986, date_full:"1986", wiki_slug:"Balaenoptera_musculus", category:"Natura", desc:"Dopo due secoli di arpioni la balenottera azzurra smette di essere un bersaglio legale." },
+  { id:"nat_040", title:"Il rapporto Brundtland definisce la sostenibilità", year:1987, date_full:"1987", wiki_slug:"Rapporto_Brundtland", category:"Natura", desc:"Soddisfare i bisogni di oggi senza compromettere quelli di chi verrà dopo." },
+  { id:"nat_041", title:"Firmato il protocollo di Montréal", year:1987, date_full:"1987", wiki_slug:"Protocollo_di_Montréal", category:"Natura", desc:"I clorofluorocarburi vengono messi al bando: l'accordo ambientale più efficace di sempre." },
+  { id:"nat_042", title:"L'IPCC pubblica il primo rapporto sul clima", year:1990, date_full:"1990", wiki_slug:"IPCC", category:"Natura", desc:"Centinaia di scienziati concordano: l'uomo sta scaldando il pianeta." },
+  { id:"nat_043", title:"Il Summit della Terra riunisce Rio", year:1992, date_full:"1992", wiki_slug:"Summit_della_Terra", category:"Natura", desc:"Centosettantotto paesi firmano le convenzioni su clima e biodiversità." },
+  { id:"nat_044", title:"I lupi tornano a Yellowstone", year:1995, date_full:"1995", wiki_slug:"Canis_lupus", category:"Natura", desc:"Reintrodotti dopo settant'anni, cambiano perfino il corso dei fiumi del parco." },
+  { id:"nat_045", title:"Individuata l'isola di plastica del Pacifico", year:1997, date_full:"1997", wiki_slug:"Isola_di_plastica", category:"Natura", desc:"Un velista attraversa per giorni una zuppa di frammenti grande quanto un continente." },
+  { id:"nat_046", title:"Gli alveari si svuotano senza spiegazione", year:2006, date_full:"2006", wiki_slug:"Sindrome_dello_spopolamento_degli_alveari", category:"Natura", desc:"Le api operaie abbandonano l'arnia e non tornano: allarme per l'impollinazione." },
+  { id:"nat_047", title:"Apre la banca dei semi alle Svalbard", year:2008, date_full:"2008", wiki_slug:"Svalbard_Global_Seed_Vault", category:"Natura", desc:"Un bunker nel permafrost artico custodisce copie di tutte le colture del pianeta." },
+  { id:"nat_048", title:"Muore Lonesome George alle Galapagos", year:2012, date_full:"2012", wiki_slug:"Lonesome_George", category:"Natura", desc:"L'ultima tartaruga gigante di Pinta si spegne senza aver lasciato discendenti." },
+  { id:"nat_049", title:"Firmato l'Accordo di Parigi sul clima", year:2015, date_full:"2015", wiki_slug:"Accordo_di_Parigi", category:"Natura", desc:"Centonovantacinque paesi si impegnano a restare sotto i due gradi di riscaldamento." },
+  { id:"nat_050", title:"Greta Thunberg inizia lo sciopero per il clima", year:2018, date_full:"2018", wiki_slug:"Greta_Thunberg", category:"Natura", desc:"Una quindicenne si siede da sola davanti al parlamento svedese con un cartello." },
+
+  /* ---- Miti & Idee ---- */
+  { id:"mit_001", title:"Nelle piramidi compaiono i Testi funerari", year:-2350, date_full:"2350 a.C.", wiki_slug:"Testi_delle_piramidi", category:"Miti & Idee", desc:"Formule incise nelle camere reali per accompagnare il faraone fra le stelle.", approx:true },
+  { id:"mit_002", title:"Ur-Nammu incide la legge più antica", year:-2100, date_full:"2100 a.C.", wiki_slug:"Codice_di_Ur-Nammu", category:"Miti & Idee", desc:"Multe in argento invece di mutilazioni: tre secoli prima del taglione babilonese.", approx:true },
+  { id:"mit_003", title:"Gli egizi scrivono il Libro dei morti", year:-1550, date_full:"1550 a.C.", wiki_slug:"Libro_dei_morti", category:"Miti & Idee", desc:"Formule su papiro per guidare l'anima attraverso le prove dell'aldilà.", approx:true },
+  { id:"mit_004", title:"Il labirinto di Cnosso custodisce il Minotauro", year:-1400, date_full:"1400 a.C.", wiki_slug:"Minotauro", category:"Miti & Idee", desc:"Filo, mostro e inganno: la storia cretese che dà il nome a ogni percorso senza uscita.", approx:true },
+  { id:"mit_005", title:"La Torah prende forma", year:-1200, date_full:"1200 a.C.", wiki_slug:"Torah", category:"Miti & Idee", desc:"Cinque libri che fondano il monoteismo e la legge di un popolo intero.", approx:true },
+  { id:"mit_006", title:"Prometeo ruba il fuoco agli dei", year:-700, date_full:"700 a.C.", wiki_slug:"Prometeo", category:"Miti & Idee", desc:"Incatenato a una rupe per aver dato agli uomini la tecnica: il mito del progresso.", approx:true },
+  { id:"mit_007", title:"Esiodo racconta la nascita degli dei", year:-700, date_full:"700 a.C.", wiki_slug:"Teogonia", category:"Miti & Idee", desc:"Dal Caos a Zeus: la prima genealogia divina messa in ordine dai greci.", approx:true },
+  { id:"mit_008", title:"Le Upanishad interrogano l'assoluto", year:-700, date_full:"700 a.C.", wiki_slug:"Upanishad", category:"Miti & Idee", desc:"Maestri e discepoli nella foresta discutono del sé e del principio di tutto.", approx:true },
+  { id:"mit_009", title:"Zarathustra predica il dualismo persiano", year:-600, date_full:"600 a.C.", wiki_slug:"Zoroastrismo", category:"Miti & Idee", desc:"Bene e male in lotta aperta: una visione che influenzerà tre religioni.", approx:true },
+  { id:"mit_010", title:"Siddhartha raggiunge l'illuminazione", year:-528, date_full:"528 a.C.", wiki_slug:"Siddhartha_Gautama", category:"Miti & Idee", desc:"Sotto un albero di fico decide di non alzarsi finché non avrà capito il dolore.", approx:true },
+  { id:"mit_011", title:"I discepoli raccolgono i Dialoghi di Confucio", year:-500, date_full:"500 a.C.", wiki_slug:"Dialoghi_(Confucio)", category:"Miti & Idee", desc:"Frasi brevi su rito, famiglia e governo: la spina dorsale della Cina imperiale.", approx:true },
+  { id:"mit_012", title:"Circola il Tao Te Ching", year:-400, date_full:"400 a.C.", wiki_slug:"Tao_Te_Ching", category:"Miti & Idee", desc:"Ottantuno poesie sul vuoto e sul non agire, attribuite a un archivista in fuga.", approx:true },
+  { id:"mit_013", title:"Socrate beve la cicuta ad Atene", year:-399, date_full:"399 a.C.", wiki_slug:"Socrate", category:"Miti & Idee", desc:"Condannato per empietà, rifiuta la fuga: morire secondo le leggi è la sua ultima lezione." },
+  { id:"mit_014", title:"Platone scrive la Repubblica", year:-375, date_full:"375 a.C.", wiki_slug:"Repubblica_(Platone)", category:"Miti & Idee", desc:"Lo stato ideale, il mito della caverna e i filosofi al governo.", approx:true },
+  { id:"mit_015", title:"Platone racconta Atlantide", year:-360, date_full:"360 a.C.", wiki_slug:"Atlantide", category:"Miti & Idee", desc:"Due dialoghi descrivono un'isola potentissima inghiottita dal mare in un giorno.", approx:true },
+  { id:"mit_016", title:"Aristotele definisce la felicità nell'Etica", year:-340, date_full:"340 a.C.", wiki_slug:"Etica_Nicomachea", category:"Miti & Idee", desc:"La virtù come giusto mezzo e l'abitudine come palestra del carattere.", approx:true },
+  { id:"mit_017", title:"Diogene sfida Alessandro dalla sua botte", year:-340, date_full:"340 a.C.", wiki_slug:"Diogene_di_Sinope", category:"Miti & Idee", desc:"Chiede solo che si sposti dal sole: il cinismo greco ridicolizza il potere.", approx:true },
+  { id:"mit_018", title:"Zenone insegna sotto il portico dipinto", year:-300, date_full:"300 a.C.", wiki_slug:"Stoicismo", category:"Miti & Idee", desc:"Distinguere ciò che dipende da noi da ciò che non dipende: nasce lo stoicismo.", approx:true },
+  { id:"mit_019", title:"Lucrezio canta gli atomi in De rerum natura", year:-55, date_full:"55 a.C.", wiki_slug:"De_rerum_natura", category:"Miti & Idee", desc:"Un poema in esametri per liberare gli uomini dalla paura degli dei e della morte.", approx:true },
+  { id:"mit_020", title:"Epitteto insegna a distinguere ciò che dipende da noi", year:108, date_full:"108", wiki_slug:"Epitteto", category:"Miti & Idee", desc:"Schiavo liberato e poi maestro: le sue lezioni vengono trascritte dagli allievi.", approx:true },
+  { id:"mit_021", title:"Agostino pubblica le Confessioni", year:398, date_full:"398", wiki_slug:"Confessioni_(Agostino)", category:"Miti & Idee", desc:"La prima autobiografia interiore della letteratura occidentale.", approx:true },
+  { id:"mit_022", title:"Viene completata la rivelazione del Corano", year:632, date_full:"632", wiki_slug:"Corano", category:"Miti & Idee", desc:"Centoquattordici sure recitate in ventitré anni e poi raccolte in un unico testo.", approx:true },
+  { id:"mit_023", title:"Averroè commenta Aristotele a Cordova", year:1180, date_full:"1180", wiki_slug:"Averroè", category:"Miti & Idee", desc:"I suoi commenti riportano il filosofo greco all'Europa latina attraverso l'islam.", approx:true },
+  { id:"mit_024", title:"Tommaso d'Aquino lascia incompiuta la Summa", year:1274, date_full:"1274", wiki_slug:"Summa_theologiae", category:"Miti & Idee", desc:"Concilia Aristotele e cristianesimo, poi smette di scrivere dopo una visione." },
+  { id:"mit_025", title:"Erasmo pubblica l'Elogio della follia", year:1511, date_full:"1511", wiki_slug:"Elogio_della_follia", category:"Miti & Idee", desc:"La Follia in persona tiene un discorso e mette in ridicolo teologi e potenti." },
+  { id:"mit_026", title:"Tommaso Moro immagina Utopia", year:1516, date_full:"1516", wiki_slug:"Utopia_(Moro)", category:"Miti & Idee", desc:"Un'isola dove non esiste proprietà privata: il nome significa luogo che non c'è." },
+  { id:"mit_027", title:"Lutero diffonde le novantacinque tesi", year:1517, date_full:"1517", wiki_slug:"Novantacinque_tesi", category:"Miti & Idee", desc:"Contro le indulgenze: la stampa le porta in tutta Europa in poche settimane." },
+  { id:"mit_028", title:"Cartesio pubblica il Discorso sul metodo", year:1637, date_full:"1637", wiki_slug:"Discorso_sul_metodo", category:"Miti & Idee", desc:"Dubitare di tutto fino a trovare l'unica certezza: penso, dunque sono." },
+  { id:"mit_029", title:"Hobbes descrive il Leviatano", year:1651, date_full:"1651", wiki_slug:"Leviatano_(Hobbes)", category:"Miti & Idee", desc:"Senza stato la vita è solitaria, brutale e breve: meglio cedere la libertà per la pace." },
+  { id:"mit_030", title:"Il parlamento inglese vara l'Habeas corpus", year:1679, date_full:"1679", wiki_slug:"Habeas_corpus", category:"Miti & Idee", desc:"Chi arresta deve presentare il detenuto a un giudice: fine delle prigioni arbitrarie." },
+  { id:"mit_031", title:"Locke fonda il liberalismo politico", year:1689, date_full:"1689", wiki_slug:"Due_trattati_sul_governo", category:"Miti & Idee", desc:"Vita, libertà e proprietà sono diritti naturali: il governo serve a proteggerli." },
+  { id:"mit_032", title:"Esce il primo volume dell'Encyclopédie", year:1751, date_full:"1751", wiki_slug:"Encyclopédie", category:"Miti & Idee", desc:"Diderot e d'Alembert mettono tutto il sapere in ordine alfabetico, e in discussione." },
+  { id:"mit_033", title:"Rousseau scrive Il contratto sociale", year:1762, date_full:"1762", wiki_slug:"Il_contratto_sociale", category:"Miti & Idee", desc:"L'uomo è nato libero e ovunque è in catene: la sovranità appartiene al popolo." },
+  { id:"mit_034", title:"Beccaria condanna la tortura e la pena di morte", year:1764, date_full:"1764", wiki_slug:"Dei_delitti_e_delle_pene", category:"Miti & Idee", desc:"Un libretto anonimo di un venticinquenne milanese cambia il diritto penale europeo." },
+  { id:"mit_035", title:"Kant pubblica la Critica della ragion pura", year:1781, date_full:"1781", wiki_slug:"Critica_della_ragion_pura", category:"Miti & Idee", desc:"Non è la mente che si adatta al mondo, ma il mondo che ci appare secondo la mente." },
+  { id:"mit_036", title:"Viene firmata la Costituzione americana", year:1787, date_full:"1787", wiki_slug:"Costituzione_degli_Stati_Uniti_d'America", category:"Miti & Idee", desc:"Tre poteri che si controllano a vicenda: la carta fondamentale più antica ancora in vigore." },
+  { id:"mit_037", title:"La Francia proclama i diritti dell'uomo", year:1789, date_full:"1789", wiki_slug:"Dichiarazione_dei_diritti_dell'uomo_e_del_cittadino", category:"Miti & Idee", desc:"Gli uomini nascono liberi e uguali nei diritti: diciassette articoli che fanno il giro del mondo." },
+  { id:"mit_038", title:"Mary Wollstonecraft rivendica i diritti delle donne", year:1792, date_full:"1792", wiki_slug:"Rivendicazione_dei_diritti_della_donna", category:"Miti & Idee", desc:"Se le donne sembrano inferiori è perché nessuno le istruisce: il primo testo femminista." },
+  { id:"mit_039", title:"Hegel pubblica la Fenomenologia dello spirito", year:1807, date_full:"1807", wiki_slug:"Fenomenologia_dello_spirito", category:"Miti & Idee", desc:"La coscienza che attraversa le sue figure fino al sapere assoluto." },
+  { id:"mit_040", title:"Marx ed Engels firmano il Manifesto", year:1848, date_full:"1848", wiki_slug:"Manifesto_del_Partito_Comunista", category:"Miti & Idee", desc:"Uno spettro si aggira per l'Europa: trenta pagine che accendono un secolo." },
+  { id:"mit_041", title:"Mill difende la libertà dell'individuo", year:1859, date_full:"1859", wiki_slug:"Sulla_libertà", category:"Miti & Idee", desc:"Il potere può limitarci solo per impedire un danno ad altri, mai per il nostro bene." },
+  { id:"mit_042", title:"Esce il primo libro del Capitale", year:1867, date_full:"1867", wiki_slug:"Il_Capitale", category:"Miti & Idee", desc:"L'analisi del plusvalore e della merce: il testo economico più discusso di sempre." },
+  { id:"mit_043", title:"Nietzsche fa parlare Zarathustra", year:1883, date_full:"1883", wiki_slug:"Così_parlò_Zarathustra", category:"Miti & Idee", desc:"Il superuomo, l'eterno ritorno e la morte di Dio in forma di poema." },
+  { id:"mit_044", title:"Freud interpreta i sogni", year:1899, date_full:"1899", wiki_slug:"L'interpretazione_dei_sogni", category:"Miti & Idee", desc:"La via regia all'inconscio: il libro vende poche copie e ci mette anni a farsi leggere." },
+  { id:"mit_045", title:"Wittgenstein chiude il Tractatus", year:1921, date_full:"1921", wiki_slug:"Tractatus_logico-philosophicus", category:"Miti & Idee", desc:"Su ciò di cui non si può parlare si deve tacere: sette proposizioni numerate." },
+  { id:"mit_046", title:"Heidegger pubblica Essere e tempo", year:1927, date_full:"1927", wiki_slug:"Essere_e_tempo", category:"Miti & Idee", desc:"L'esistenza come progetto gettato nel mondo e rivolto alla propria fine." },
+  { id:"mit_047", title:"L'ONU proclama i diritti umani universali", year:1948, date_full:"1948", wiki_slug:"Dichiarazione_universale_dei_diritti_umani", category:"Miti & Idee", desc:"Trenta articoli approvati a Parigi senza nessun voto contrario." },
+  { id:"mit_048", title:"Simone de Beauvoir scrive Il secondo sesso", year:1949, date_full:"1949", wiki_slug:"Il_secondo_sesso", category:"Miti & Idee", desc:"Donna non si nasce, lo si diventa: la frase che apre il femminismo contemporaneo." },
+  { id:"mit_049", title:"Kuhn introduce i paradigmi scientifici", year:1962, date_full:"1962", wiki_slug:"La_struttura_delle_rivoluzioni_scientifiche", category:"Miti & Idee", desc:"La scienza non avanza per accumulo ma per rotture: il termine rivoluzione entra nel lessico." },
+  { id:"mit_050", title:"Rawls ripensa la giustizia dietro un velo", year:1971, date_full:"1971", wiki_slug:"Una_teoria_della_giustizia", category:"Miti & Idee", desc:"Scegliere le regole senza sapere che posto occuperemo nella società." }
 ];
 
 /* Ogni categoria porta: emoji 3D, mesh gradient cyberpunk per il fondo full-bleed,
@@ -2645,7 +2853,19 @@ const CATEGORIES = {
     grad:"linear-gradient(145deg,#0f766e,#38c8a0)" },
   "Spettacolo": { emoji:"📺", accent:"255 110 199",
     mesh:"radial-gradient(circle at 20% 20%,#ff6ec7 0%,transparent 52%),radial-gradient(circle at 84% 24%,#8278ff 0%,transparent 52%),radial-gradient(circle at 56% 90%,#ffd166 0%,transparent 55%),linear-gradient(158deg,#2b0a25,#160a38)",
-    grad:"linear-gradient(145deg,#9d174d,#ff6ec7)" }
+    grad:"linear-gradient(145deg,#9d174d,#ff6ec7)" },
+  "Gastronomia": { emoji:"🍳", accent:"255 183 3",
+    mesh:"radial-gradient(circle at 20% 18%,#ffb703 0%,transparent 52%),radial-gradient(circle at 82% 26%,#fb8500 0%,transparent 52%),radial-gradient(circle at 52% 90%,#e63946 0%,transparent 55%),linear-gradient(158deg,#2b1806,#3a1205)",
+    grad:"linear-gradient(145deg,#b45309,#ffb703)" },
+  "Moda": { emoji:"👗", accent:"247 37 133",
+    mesh:"radial-gradient(circle at 18% 22%,#f72585 0%,transparent 52%),radial-gradient(circle at 84% 20%,#b5179e 0%,transparent 52%),radial-gradient(circle at 56% 92%,#4cc9f0 0%,transparent 55%),linear-gradient(158deg,#2c0620,#1b0733)",
+    grad:"linear-gradient(145deg,#9d174d,#f72585)" },
+  "Natura": { emoji:"🌿", accent:"16 185 129",
+    mesh:"radial-gradient(circle at 22% 20%,#10b981 0%,transparent 52%),radial-gradient(circle at 80% 26%,#34d399 0%,transparent 50%),radial-gradient(circle at 54% 92%,#0891b2 0%,transparent 55%),linear-gradient(158deg,#04231a,#052e2b)",
+    grad:"linear-gradient(145deg,#065f46,#10b981)" },
+  "Miti & Idee": { emoji:"🏛️", accent:"99 102 241",
+    mesh:"radial-gradient(circle at 20% 20%,#6366f1 0%,transparent 52%),radial-gradient(circle at 82% 24%,#a78bfa 0%,transparent 52%),radial-gradient(circle at 54% 90%,#f59e0b 0%,transparent 52%),linear-gradient(158deg,#111038,#1b1147)",
+    grad:"linear-gradient(145deg,#3730a3,#6366f1)" }
 };
 const cat = c => CATEGORIES[c] || { emoji:"⏳", accent:"150 160 198",
   mesh:"radial-gradient(circle at 30% 25%,#3b4a6b 0%,transparent 55%),linear-gradient(158deg,#10121f,#1b1e33)",
@@ -2982,7 +3202,7 @@ const STORE = {
 const FILTERS = {
   KEY: "chronoglass_filters",
   cats: [],           // vuoto = tutte le categorie
-  diff: "adattiva",   // predefinito: la difficoltà segue la streak
+  diff: "adattiva",   // predefinito: la difficoltà segue il punteggio
   run: "classica",
   load(){
     try {
@@ -2997,18 +3217,22 @@ const FILTERS = {
   },
   save(){ try { localStorage.setItem(this.KEY, JSON.stringify({ cats:this.cats, diff:this.diff, run:this.run })); } catch(e){} }
 };
-/* Difficoltà adattiva: lo scarto fra riferimento e carta si stringe man mano
-   che la streak sale. È la progressione tipica dei giochi "higher or lower". */
+/* La difficoltà segue il PUNTEGGIO, non la streak: la streak si azzera solo
+   a fine partita, mentre il punteggio racconta quanto sei andato avanti
+   davvero in questa run. Le tre fasce sono quelle dell'esperienza voluta:
+   prima epoche lontanissime, poi lo stesso secolo, infine pochi anni. */
 const ADAPT_BANDS = [
-  { fino: 3, min: 25, max: Infinity, nome: "facile"    },   // streak 0-3
-  { fino: 7, min: 5,  max: 15,       nome: "media"     },   // streak 4-7
-  { fino: Infinity, min: 1, max: 4,  nome: "hardcore"  }    // streak 8+
+  { fino: 5,  min: 200, max: Infinity, nome: "epoche",  etichetta: "Epoche lontane" },
+  { fino: 15, min: 10,  max: 99,       nome: "secolo",  etichetta: "Stesso secolo"  },
+  { fino: Infinity, min: 0, max: 6,    nome: "manciata", etichetta: "Pochi anni"     }
 ];
-function adaptBand(streak){
-  return ADAPT_BANDS.find(b => streak <= b.fino) || ADAPT_BANDS[ADAPT_BANDS.length - 1];
+/* Il punteggio con cui verrà giocata la carta: quelle già in coda non sono
+   ancora state contate, quindi si guarda avanti di tante posizioni. */
+function adaptBand(punti){
+  return ADAPT_BANDS.find(b => punti <= b.fino) || ADAPT_BANDS[ADAPT_BANDS.length - 1];
 }
 const DIFF_HINT = {
-  adattiva:  "Si stringe da sola: oltre 25 anni all'inizio, 1-4 anni dopo 8 risposte giuste.",
+  adattiva:  "Si stringe col punteggio: secoli fino a 5 punti, stesso secolo fino a 15, pochi anni oltre.",
   all:       "Tutti gli accostamenti, dai secoli di distanza ai mesi.",
   facile:    "Eventi lontani almeno 25 anni: si ragiona per epoche.",
   media:     "Distanza fra 6 e 24 anni: serve ricordare il decennio giusto.",
@@ -3101,6 +3325,7 @@ const G = {
   reference: null,
   lastReveal: null,
   recordFesteggiato: false,
+  fascia: null,     // fascia di difficoltà corrente, per accorgersi del cambio
   path: []          // storico visivo delle carte giocate (non influenza il punteggio)
 };
 
@@ -3307,12 +3532,24 @@ function fillQueue(){
     let i = -1;
     if (tail){
       if (want === "adattiva"){
-        // la fascia dipende da dove si troverà la streak quando si giocherà la carta
-        const b = adaptBand(G.streak + G.queue.length);
+        // la fascia dipende dal punteggio che avrai quando giocherai la carta
+        const b = adaptBand(G.score + G.queue.length);
         i = avail.findIndex(e => {
           const g = Math.abs(e.year - tail.year);
           return g >= b.min && g <= b.max;
         });
+        /* Nessun candidato nella fascia (capita con pochi argomenti attivi):
+           si ripiega sull'evento più vicino alla fascia, non sul primo della
+           lista, altrimenti la curva salta del tutto. */
+        if (i < 0 && avail.length){
+          let best = 0, bestD = Infinity;
+          avail.forEach((e, k) => {
+            const g = Math.abs(e.year - tail.year);
+            const d = g < b.min ? b.min - g : (g > b.max ? g - b.max : 0);
+            if (d < bestD){ bestD = d; best = k; }
+          });
+          i = best;
+        }
       } else if (want !== "all"){
         i = avail.findIndex(e => bandOf(e, tail) === want);
       }
@@ -3442,7 +3679,28 @@ const ICON_ART = {
     '<rect x="6" y="14" width="52" height="34" rx="6" class="g-core"/>' +
     '<path d="M24 54h16M32 48v6"/>' +
     '<path d="M18 14L30 4M40 14L52 4" class="g-dim"/>' +
-    '<circle cx="46" cy="40" r="2.6" fill="currentColor" stroke="none"/>'
+    '<circle cx="46" cy="40" r="2.6" fill="currentColor" stroke="none"/>',
+  /* Padella con manico e vapore */
+  "Gastronomia":
+    '<ellipse cx="28" cy="40" rx="17" ry="9" class="g-core"/>' +
+    '<path d="M45 38l14-5"/>' +
+    '<path d="M22 24c0-4 4-4 4-8M32 24c0-4 4-4 4-8" class="g-dim"/>',
+  /* Gruccia con abito */
+  "Moda":
+    '<path d="M32 12a4 4 0 1 1 4 4c-2 0-4 1-4 4"/>' +
+    '<path d="M32 20L12 40h40L32 20z" class="g-core"/>' +
+    '<path d="M20 40l4 16h16l4-16"/>' +
+    '<path d="M26 46h12" class="g-dim"/>',
+  /* Foglia con nervature */
+  "Natura":
+    '<path d="M46 14C26 14 14 26 14 46c20 4 34-8 34-22 0-4-1-8-2-10z" class="g-core"/>' +
+    '<path d="M44 16L16 48"/>' +
+    '<path d="M36 22l-4 10M30 28l-4 10M24 34l-3 8" class="g-dim"/>',
+  /* Tempio con frontone e colonne */
+  "Miti & Idee":
+    '<path d="M32 8L8 22h48L32 8z" class="g-core"/>' +
+    '<path d="M14 22v24M24 22v24M40 22v24M50 22v24"/>' +
+    '<path d="M8 50h48M10 56h44" class="g-dim"/>'
 };
 /** SVG completo dell'icona di categoria, pronto da inserire. */
 function iconArt(category, cls){
@@ -3471,7 +3729,11 @@ const FALLBACK_DESC = {
   "Arte":        "Un'opera che ha cambiato lo sguardo di tutti.",
   "Letteratura": "Pagine che hanno spostato i confini del racconto.",
   "Geografia":   "Un limite del mondo conosciuto spostato più in là.",
-  "Spettacolo":  "Un momento che è entrato nell'immaginario collettivo."
+  "Spettacolo":  "Un momento che è entrato nell'immaginario collettivo.",
+  "Gastronomia": "Un sapore che ha cambiato il modo di stare a tavola.",
+  "Moda":        "Un capo che ha ridisegnato la silhouette di un'epoca.",
+  "Natura":      "Un passaggio nel rapporto fra l'uomo e il pianeta.",
+  "Miti & Idee": "Un'idea che ha riscritto il modo di pensare il mondo."
 };
 
 function buildCard(ev){
@@ -3843,11 +4105,18 @@ function advance(chain){
     setTimeout(() => el.remove(), 520);
   }
   G.queue.shift();
-  /* In modalità adattiva, se la streak ha cambiato fascia, la coda già pronta
-     non rispecchia più la difficoltà giusta: si rigenera tenendo la prossima. */
-  if (FILTERS.diff === "adattiva" && G.queue.length > 1 &&
-      adaptBand(G.streak).nome !== adaptBand(G.streak - 1).nome){
-    G.queue = G.queue.slice(0, 1);
+  /* Cambio di fascia: la coda già pronta non rispecchia più la difficoltà
+     giusta, quindi si butta tenendo solo la carta che sta per entrare.
+     Il punteggio può saltare di 3 con il bonus "stesso anno", perciò si
+     confronta la fascia con quella dell'ultimo controllo, non con score-1. */
+  if (FILTERS.diff === "adattiva"){
+    const fascia = adaptBand(G.score).nome;
+    if (G.fascia && G.fascia !== fascia){
+      if (G.queue.length > 1) G.queue = G.queue.slice(0, 1);
+      const b = ADAPT_BANDS.find(x => x.nome === fascia);
+      if (b) toast("Difficoltà: " + b.etichetta, 1900);
+    }
+    G.fascia = fascia;
   }
   if (G.queue.length < 6) fillQueue();
 
@@ -5014,6 +5283,7 @@ function newGame(){
   G.score = 0; G.streak = 0; G.answers = 0; G.correct = 0;
   G.shield = RUNS[FILTERS.run].scudi > 0; G.over = false; G.locked = false; G.lastReveal = null;
   G.queue = []; G.reference = null; G.path = []; G.recordFesteggiato = false;
+  G.fascia = null;
   $("#swipeControls").classList.remove("busy");
   closeSheet("gameOver");
   $("#gameOver").classList.remove("fractured", "fracturing");

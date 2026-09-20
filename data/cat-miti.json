@@ -1,0 +1,474 @@
+[
+  {
+    "id": "mit_001",
+    "title": "Nelle piramidi compaiono i Testi funerari",
+    "year": -2350,
+    "category": "miti",
+    "emoji": "𓉔",
+    "description": "Formule incise nelle camere reali per accompagnare il faraone fra le stelle.",
+    "wiki": "Testi_delle_piramidi",
+    "approx": true
+  },
+  {
+    "id": "mit_002",
+    "title": "Ur-Nammu incide la legge più antica",
+    "year": -2100,
+    "category": "miti",
+    "emoji": "📏",
+    "description": "Multe in argento invece di mutilazioni: tre secoli prima del taglione babilonese.",
+    "wiki": "Codice_di_Ur-Nammu",
+    "approx": true
+  },
+  {
+    "id": "mit_003",
+    "title": "Gli egizi scrivono il Libro dei morti",
+    "year": -1550,
+    "category": "miti",
+    "emoji": "𓂀",
+    "description": "Formule su papiro per guidare l'anima attraverso le prove dell'aldilà.",
+    "wiki": "Libro_dei_morti",
+    "approx": true
+  },
+  {
+    "id": "mit_004",
+    "title": "Il labirinto di Cnosso custodisce il Minotauro",
+    "year": -1400,
+    "category": "miti",
+    "emoji": "🐂",
+    "description": "Filo, mostro e inganno: la storia cretese che dà il nome a ogni percorso senza uscita.",
+    "wiki": "Minotauro",
+    "approx": true
+  },
+  {
+    "id": "mit_005",
+    "title": "La Torah prende forma",
+    "year": -1200,
+    "category": "miti",
+    "emoji": "📜",
+    "description": "Cinque libri che fondano il monoteismo e la legge di un popolo intero.",
+    "wiki": "Torah",
+    "approx": true
+  },
+  {
+    "id": "mit_006",
+    "title": "Prometeo ruba il fuoco agli dei",
+    "year": -700,
+    "category": "miti",
+    "emoji": "🔥",
+    "description": "Incatenato a una rupe per aver dato agli uomini la tecnica: il mito del progresso.",
+    "wiki": "Prometeo",
+    "approx": true
+  },
+  {
+    "id": "mit_007",
+    "title": "Esiodo racconta la nascita degli dei",
+    "year": -700,
+    "category": "miti",
+    "emoji": "⚡",
+    "description": "Dal Caos a Zeus: la prima genealogia divina messa in ordine dai greci.",
+    "wiki": "Teogonia",
+    "approx": true
+  },
+  {
+    "id": "mit_008",
+    "title": "Le Upanishad interrogano l'assoluto",
+    "year": -700,
+    "category": "miti",
+    "emoji": "🕉",
+    "description": "Maestri e discepoli nella foresta discutono del sé e del principio di tutto.",
+    "wiki": "Upanishad",
+    "approx": true
+  },
+  {
+    "id": "mit_009",
+    "title": "Zarathustra predica il dualismo persiano",
+    "year": -600,
+    "category": "miti",
+    "emoji": "🔥",
+    "description": "Bene e male in lotta aperta: una visione che influenzerà tre religioni.",
+    "wiki": "Zoroastrismo",
+    "approx": true
+  },
+  {
+    "id": "mit_010",
+    "title": "Siddhartha raggiunge l'illuminazione",
+    "year": -528,
+    "category": "miti",
+    "emoji": "🪷",
+    "description": "Sotto un albero di fico decide di non alzarsi finché non avrà capito il dolore.",
+    "wiki": "Siddhartha_Gautama",
+    "approx": true
+  },
+  {
+    "id": "mit_011",
+    "title": "I discepoli raccolgono i Dialoghi di Confucio",
+    "year": -500,
+    "category": "miti",
+    "emoji": "🎋",
+    "description": "Frasi brevi su rito, famiglia e governo: la spina dorsale della Cina imperiale.",
+    "wiki": "Dialoghi_(Confucio)",
+    "approx": true
+  },
+  {
+    "id": "mit_012",
+    "title": "Circola il Tao Te Ching",
+    "year": -400,
+    "category": "miti",
+    "emoji": "☯",
+    "description": "Ottantuno poesie sul vuoto e sul non agire, attribuite a un archivista in fuga.",
+    "wiki": "Tao_Te_Ching",
+    "approx": true
+  },
+  {
+    "id": "mit_013",
+    "title": "Socrate beve la cicuta ad Atene",
+    "year": -399,
+    "category": "miti",
+    "emoji": "🏺",
+    "description": "Condannato per empietà, rifiuta la fuga: morire secondo le leggi è la sua ultima lezione.",
+    "wiki": "Socrate"
+  },
+  {
+    "id": "mit_014",
+    "title": "Platone scrive la Repubblica",
+    "year": -375,
+    "category": "miti",
+    "emoji": "🏛",
+    "description": "Lo stato ideale, il mito della caverna e i filosofi al governo.",
+    "wiki": "Repubblica_(Platone)",
+    "approx": true
+  },
+  {
+    "id": "mit_015",
+    "title": "Platone racconta Atlantide",
+    "year": -360,
+    "category": "miti",
+    "emoji": "🌊",
+    "description": "Due dialoghi descrivono un'isola potentissima inghiottita dal mare in un giorno.",
+    "wiki": "Atlantide",
+    "approx": true
+  },
+  {
+    "id": "mit_016",
+    "title": "Aristotele definisce la felicità nell'Etica",
+    "year": -340,
+    "category": "miti",
+    "emoji": "🦉",
+    "description": "La virtù come giusto mezzo e l'abitudine come palestra del carattere.",
+    "wiki": "Etica_Nicomachea",
+    "approx": true
+  },
+  {
+    "id": "mit_017",
+    "title": "Diogene sfida Alessandro dalla sua botte",
+    "year": -340,
+    "category": "miti",
+    "emoji": "🛢",
+    "description": "Chiede solo che si sposti dal sole: il cinismo greco ridicolizza il potere.",
+    "wiki": "Diogene_di_Sinope",
+    "approx": true
+  },
+  {
+    "id": "mit_018",
+    "title": "Zenone insegna sotto il portico dipinto",
+    "year": -300,
+    "category": "miti",
+    "emoji": "🧘",
+    "description": "Distinguere ciò che dipende da noi da ciò che non dipende: nasce lo stoicismo.",
+    "wiki": "Stoicismo",
+    "approx": true
+  },
+  {
+    "id": "mit_019",
+    "title": "Lucrezio canta gli atomi in De rerum natura",
+    "year": -55,
+    "category": "miti",
+    "emoji": "⚛",
+    "description": "Un poema in esametri per liberare gli uomini dalla paura degli dei e della morte.",
+    "wiki": "De_rerum_natura",
+    "approx": true
+  },
+  {
+    "id": "mit_020",
+    "title": "Epitteto insegna a distinguere ciò che dipende da noi",
+    "year": 108,
+    "category": "miti",
+    "emoji": "⛓",
+    "description": "Schiavo liberato e poi maestro: le sue lezioni vengono trascritte dagli allievi.",
+    "wiki": "Epitteto",
+    "approx": true
+  },
+  {
+    "id": "mit_021",
+    "title": "Agostino pubblica le Confessioni",
+    "year": 398,
+    "category": "miti",
+    "emoji": "✝",
+    "description": "La prima autobiografia interiore della letteratura occidentale.",
+    "wiki": "Confessioni_(Agostino)",
+    "approx": true
+  },
+  {
+    "id": "mit_022",
+    "title": "Viene completata la rivelazione del Corano",
+    "year": 632,
+    "category": "miti",
+    "emoji": "☪",
+    "description": "Centoquattordici sure recitate in ventitré anni e poi raccolte in un unico testo.",
+    "wiki": "Corano",
+    "approx": true
+  },
+  {
+    "id": "mit_023",
+    "title": "Averroè commenta Aristotele a Cordova",
+    "year": 1180,
+    "category": "miti",
+    "emoji": "🕌",
+    "description": "I suoi commenti riportano il filosofo greco all'Europa latina attraverso l'islam.",
+    "wiki": "Averroè",
+    "approx": true
+  },
+  {
+    "id": "mit_024",
+    "title": "Tommaso d'Aquino lascia incompiuta la Summa",
+    "year": 1274,
+    "category": "miti",
+    "emoji": "⛪",
+    "description": "Concilia Aristotele e cristianesimo, poi smette di scrivere dopo una visione.",
+    "wiki": "Summa_theologiae"
+  },
+  {
+    "id": "mit_025",
+    "title": "Erasmo pubblica l'Elogio della follia",
+    "year": 1511,
+    "category": "miti",
+    "emoji": "🃏",
+    "description": "La Follia in persona tiene un discorso e mette in ridicolo teologi e potenti.",
+    "wiki": "Elogio_della_follia"
+  },
+  {
+    "id": "mit_026",
+    "title": "Tommaso Moro immagina Utopia",
+    "year": 1516,
+    "category": "miti",
+    "emoji": "🏝",
+    "description": "Un'isola dove non esiste proprietà privata: il nome significa luogo che non c'è.",
+    "wiki": "Utopia_(Moro)"
+  },
+  {
+    "id": "mit_027",
+    "title": "Lutero diffonde le novantacinque tesi",
+    "year": 1517,
+    "category": "miti",
+    "emoji": "🔨",
+    "description": "Contro le indulgenze: la stampa le porta in tutta Europa in poche settimane.",
+    "wiki": "Novantacinque_tesi"
+  },
+  {
+    "id": "mit_028",
+    "title": "Cartesio pubblica il Discorso sul metodo",
+    "year": 1637,
+    "category": "miti",
+    "emoji": "💭",
+    "description": "Dubitare di tutto fino a trovare l'unica certezza: penso, dunque sono.",
+    "wiki": "Discorso_sul_metodo"
+  },
+  {
+    "id": "mit_029",
+    "title": "Hobbes descrive il Leviatano",
+    "year": 1651,
+    "category": "miti",
+    "emoji": "👑",
+    "description": "Senza stato la vita è solitaria, brutale e breve: meglio cedere la libertà per la pace.",
+    "wiki": "Leviatano_(Hobbes)"
+  },
+  {
+    "id": "mit_030",
+    "title": "Il parlamento inglese vara l'Habeas corpus",
+    "year": 1679,
+    "category": "miti",
+    "emoji": "⛓",
+    "description": "Chi arresta deve presentare il detenuto a un giudice: fine delle prigioni arbitrarie.",
+    "wiki": "Habeas_corpus"
+  },
+  {
+    "id": "mit_031",
+    "title": "Locke fonda il liberalismo politico",
+    "year": 1689,
+    "category": "miti",
+    "emoji": "🤝",
+    "description": "Vita, libertà e proprietà sono diritti naturali: il governo serve a proteggerli.",
+    "wiki": "Due_trattati_sul_governo"
+  },
+  {
+    "id": "mit_032",
+    "title": "Esce il primo volume dell'Encyclopédie",
+    "year": 1751,
+    "category": "miti",
+    "emoji": "📚",
+    "description": "Diderot e d'Alembert mettono tutto il sapere in ordine alfabetico, e in discussione.",
+    "wiki": "Encyclopédie"
+  },
+  {
+    "id": "mit_033",
+    "title": "Rousseau scrive Il contratto sociale",
+    "year": 1762,
+    "category": "miti",
+    "emoji": "🗳",
+    "description": "L'uomo è nato libero e ovunque è in catene: la sovranità appartiene al popolo.",
+    "wiki": "Il_contratto_sociale"
+  },
+  {
+    "id": "mit_034",
+    "title": "Beccaria condanna la tortura e la pena di morte",
+    "year": 1764,
+    "category": "miti",
+    "emoji": "⚖",
+    "description": "Un libretto anonimo di un venticinquenne milanese cambia il diritto penale europeo.",
+    "wiki": "Dei_delitti_e_delle_pene"
+  },
+  {
+    "id": "mit_035",
+    "title": "Kant pubblica la Critica della ragion pura",
+    "year": 1781,
+    "category": "miti",
+    "emoji": "🧠",
+    "description": "Non è la mente che si adatta al mondo, ma il mondo che ci appare secondo la mente.",
+    "wiki": "Critica_della_ragion_pura"
+  },
+  {
+    "id": "mit_036",
+    "title": "Viene firmata la Costituzione americana",
+    "year": 1787,
+    "category": "miti",
+    "emoji": "🇺🇸",
+    "description": "Tre poteri che si controllano a vicenda: la carta fondamentale più antica ancora in vigore.",
+    "wiki": "Costituzione_degli_Stati_Uniti_d'America"
+  },
+  {
+    "id": "mit_037",
+    "title": "La Francia proclama i diritti dell'uomo",
+    "year": 1789,
+    "category": "miti",
+    "emoji": "🕊",
+    "description": "Gli uomini nascono liberi e uguali nei diritti: diciassette articoli che fanno il giro del mondo.",
+    "wiki": "Dichiarazione_dei_diritti_dell'uomo_e_del_cittadino"
+  },
+  {
+    "id": "mit_038",
+    "title": "Mary Wollstonecraft rivendica i diritti delle donne",
+    "year": 1792,
+    "category": "miti",
+    "emoji": "♀",
+    "description": "Se le donne sembrano inferiori è perché nessuno le istruisce: il primo testo femminista.",
+    "wiki": "Rivendicazione_dei_diritti_della_donna"
+  },
+  {
+    "id": "mit_039",
+    "title": "Hegel pubblica la Fenomenologia dello spirito",
+    "year": 1807,
+    "category": "miti",
+    "emoji": "🌀",
+    "description": "La coscienza che attraversa le sue figure fino al sapere assoluto.",
+    "wiki": "Fenomenologia_dello_spirito"
+  },
+  {
+    "id": "mit_040",
+    "title": "Marx ed Engels firmano il Manifesto",
+    "year": 1848,
+    "category": "miti",
+    "emoji": "🚩",
+    "description": "Uno spettro si aggira per l'Europa: trenta pagine che accendono un secolo.",
+    "wiki": "Manifesto_del_Partito_Comunista"
+  },
+  {
+    "id": "mit_041",
+    "title": "Mill difende la libertà dell'individuo",
+    "year": 1859,
+    "category": "miti",
+    "emoji": "🗣",
+    "description": "Il potere può limitarci solo per impedire un danno ad altri, mai per il nostro bene.",
+    "wiki": "Sulla_libertà"
+  },
+  {
+    "id": "mit_042",
+    "title": "Esce il primo libro del Capitale",
+    "year": 1867,
+    "category": "miti",
+    "emoji": "🏭",
+    "description": "L'analisi del plusvalore e della merce: il testo economico più discusso di sempre.",
+    "wiki": "Il_Capitale"
+  },
+  {
+    "id": "mit_043",
+    "title": "Nietzsche fa parlare Zarathustra",
+    "year": 1883,
+    "category": "miti",
+    "emoji": "🦅",
+    "description": "Il superuomo, l'eterno ritorno e la morte di Dio in forma di poema.",
+    "wiki": "Così_parlò_Zarathustra"
+  },
+  {
+    "id": "mit_044",
+    "title": "Freud interpreta i sogni",
+    "year": 1899,
+    "category": "miti",
+    "emoji": "🛋",
+    "description": "La via regia all'inconscio: il libro vende poche copie e ci mette anni a farsi leggere.",
+    "wiki": "L'interpretazione_dei_sogni"
+  },
+  {
+    "id": "mit_045",
+    "title": "Wittgenstein chiude il Tractatus",
+    "year": 1921,
+    "category": "miti",
+    "emoji": "🔇",
+    "description": "Su ciò di cui non si può parlare si deve tacere: sette proposizioni numerate.",
+    "wiki": "Tractatus_logico-philosophicus"
+  },
+  {
+    "id": "mit_046",
+    "title": "Heidegger pubblica Essere e tempo",
+    "year": 1927,
+    "category": "miti",
+    "emoji": "⏳",
+    "description": "L'esistenza come progetto gettato nel mondo e rivolto alla propria fine.",
+    "wiki": "Essere_e_tempo"
+  },
+  {
+    "id": "mit_047",
+    "title": "L'ONU proclama i diritti umani universali",
+    "year": 1948,
+    "category": "miti",
+    "emoji": "🌍",
+    "description": "Trenta articoli approvati a Parigi senza nessun voto contrario.",
+    "wiki": "Dichiarazione_universale_dei_diritti_umani"
+  },
+  {
+    "id": "mit_048",
+    "title": "Simone de Beauvoir scrive Il secondo sesso",
+    "year": 1949,
+    "category": "miti",
+    "emoji": "♀",
+    "description": "Donna non si nasce, lo si diventa: la frase che apre il femminismo contemporaneo.",
+    "wiki": "Il_secondo_sesso"
+  },
+  {
+    "id": "mit_049",
+    "title": "Kuhn introduce i paradigmi scientifici",
+    "year": 1962,
+    "category": "miti",
+    "emoji": "🔬",
+    "description": "La scienza non avanza per accumulo ma per rotture: il termine rivoluzione entra nel lessico.",
+    "wiki": "La_struttura_delle_rivoluzioni_scientifiche"
+  },
+  {
+    "id": "mit_050",
+    "title": "Rawls ripensa la giustizia dietro un velo",
+    "year": 1971,
+    "category": "miti",
+    "emoji": "🎭",
+    "description": "Scegliere le regole senza sapere che posto occuperemo nella società.",
+    "wiki": "Una_teoria_della_giustizia"
+  }
+]
