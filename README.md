@@ -20,9 +20,15 @@ Una card misteriosa contro l'evento di riferimento. Decidi con un gesto:
 Se i due eventi cadono nello stesso anno e rispondi PRIMA/DOPO, il confronto scende a
 giorno e mese: non vieni penalizzato per una scelta che è comunque cronologicamente corretta.
 
-Ogni partita parte con uno **Scudo Temporale**: il primo errore manda in frantumi il vetro
-(crepe animate + suono di vetro rotto) ma salva la streak. Il secondo errore chiude la partita.
-Quando ti avvicini a due punti dal tuo record, un **ghost** luminoso appare sullo sfondo.
+Ogni partita parte con uno **Scudo Temporale**: finché è intatto la carta in cima è avvolta in
+una **bolla di vetro curvo** con bordo neon ciano. Al primo errore la bolla si spacca in
+frammenti (`.shatter-effect`) con bagliore rosa e suono di vetro rotto, ma salva la streak.
+Il secondo errore chiude la partita. Quando ti avvicini a due punti dal tuo record, un
+**ghost** luminoso appare sullo sfondo.
+
+La **Lente Quantistica** è un aiuto monouso per partita: nella modalità Swipe rivela il secolo
+della carta in un badge che resta fino alla risposta; in Chrono-Reorder spegne a `opacity .3`
+le carte fuori posto e conferma in verde quelle già al loro posto, senza svelare l'ordine.
 
 ### 🧩 Chrono-Reorder
 Cinque eventi in colonna, da ordinare dal più antico al più recente. Tre modi per farlo:
@@ -147,8 +153,41 @@ L'interfaccia è un sistema **Liquid Glass** costruito a strati:
   conteggio il `backdrop-filter` della sheet viene sospeso: ridipingerebbe a ogni fotogramma.
 - **Flip 3D in Chrono-Reorder** — alla verifica le carte ruotano e mostrano sul retro verdetto,
   titolo e anno reale, smeraldo o rubino. Il backdrop è sospeso per la durata della rotazione.
-- **Storico del percorso** — nel Game Over, le carte azzeccate unite da una linea luminosa,
-  con in fondo quella su cui la catena si è spezzata.
+- **Storico del percorso** — nel Game Over, le carte giocate come nodi su una linea luminosa
+  (ciano se azzeccate, rubino se sbagliate), con anno, icona di categoria e titolo. Un
+  selettore passa dall'ordine di gioco alla linea temporale reale, e un clic su un nodo apre
+  un popover con miniatura, data completa, categoria ed esito.
+- **Odometro a rulli** — l'anno si rivela come un contachilometri in vetro fumé: ogni cifra è
+  una finestrella con dentro una striscia di numeri che scorre, con giri crescenti da sinistra
+  a destra e una sola transizione di `transform` per rullo. A rullo fermo le cifre escono dalla
+  finestrella e ricevono un lampo neon: dentro, `overflow:hidden` ritaglierebbe l'alone in un
+  rettangolo.
+- **Logo cangiante** — un orologio disegnato a tratto in navbar e nello splash, con lancette e
+  ingranaggio che ruotano e un `hue-rotate` continuo. Misurato dentro la navbar (che ha
+  `backdrop-filter`): 1,15 ms/frame contro 1,11 da fermo, cioè dentro il rumore di misura.
+- **Fine partita cinematografica** — 1,5 s di `Riavvolgimento` con le carte giocate che sfilano
+  all'indietro su fondo a scansione, poi le **crepe nel vetro** (`.glass-fracture`) che si
+  disegnano in neon viola e rosso dietro al pannello. Per quel secondo il `backdrop-filter`
+  dell'overlay resta sospeso.
+- **Passaporto Temporale** — nelle Statistiche, un badge olografico che si inclina in 3D
+  seguendo il puntatore (`rotateX`/`rotateY`) e assegna un grado in base al record: Recluta,
+  Viaggiatore, Crononauta, Custode del Tempo, Signore del Tempo.
+
+## Condividi & QR
+
+L'icona di condivisione in navbar (sotto i 620px il link in fondo alla Lobby) e il pulsante
+`Condividi` del Game Over aprono `#shareModal`: un pannello in vetro liquido con il QR Code
+generato al volo da `api.qrserver.com` nei colori dell'app, il link in evidenza e — se arrivi
+dal Game Over — il punteggio appena fatto.
+
+- **Condividi** usa `navigator.share` per il foglio nativo di sistema (WhatsApp, Telegram,
+  Stories); su desktop ripiega sulla copia negli appunti.
+- **Copia link** passa da `navigator.clipboard.writeText`, con `execCommand` di riserva sui
+  contesti non sicuri, e conferma con un toast.
+- **Scarica QR** scarica il `.png`: l'immagine è su un altro dominio, quindi l'attributo
+  `download` da solo verrebbe ignorato e si passa da `fetch` + blob.
+- Se il QR non arriva (offline, o rete che blocca il servizio) la scheda resta leggibile con i
+  mirini disegnati a CSS e rimanda a "Copia link".
 
 ## Filtri, offline e prestazioni
 
@@ -188,6 +227,9 @@ giocabile: lo skeleton non aspetta mai la rete per sparire.
 - Niente auto-diagnosi delle prestazioni a runtime: misurare i fotogrammi per dedurre la
   potenza del dispositivo si è rivelato inaffidabile (nei primi secondi l'app si assesta e
   ogni soglia degradava la grafica a dispositivi sani). Si usano solo segnali dichiarati.
+- Le crepe del Game Over e il riavvolgimento sono animazioni **a colpo singolo**, non continue:
+  durano meno di un secondo e in quella finestra il backdrop dell'overlay e quello della sheet
+  (già sospeso dal count-up) restano spenti.
 - Il service worker viene registrato solo su `http(s)`; aprendo il file con `file://`
   la registrazione viene saltata e il resto dell'app funziona normalmente.
 
