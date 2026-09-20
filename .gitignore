@@ -1,0 +1,4 @@
+# Screenshot e output dei test visivi: non fanno parte dell'app.
+undefined/
+*.png
+!docs/**/*.png
