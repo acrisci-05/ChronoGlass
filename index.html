@@ -198,6 +198,33 @@ button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer
   box-shadow:0 8px 20px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.3)}
 .icon-btn:active{transform:scale(.9)}
 .icon-btn svg{width:17px;height:17px}
+/* I tre cerchi della navbar. Le icone sono SVG inline: prima dipendevano dal
+   CDN di Lucide e, quando non rispondeva, restavano cerchi vuoti. */
+.nav-icon-btn{width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.2);
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+  transition:transform .25s cubic-bezier(.4,0,.2,1),background .25s cubic-bezier(.4,0,.2,1),
+             border-color .25s cubic-bezier(.4,0,.2,1),box-shadow .25s cubic-bezier(.4,0,.2,1)}
+.nav-icon-btn svg{width:20px;height:20px;display:block;
+  filter:drop-shadow(0 0 5px currentColor)}
+.nav-icon-btn:hover,.nav-icon-btn:active{transform:scale(1.1);
+  background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4)}
+#btnAudio{color:#00f2fe}
+#btnStats{color:#a855f7}
+#btnShare{color:#ff0080}
+#btnAudio:hover{box-shadow:0 0 12px rgba(0,242,254,.5)}
+#btnStats:hover{box-shadow:0 0 12px rgba(168,85,247,.5)}
+#btnShare:hover{box-shadow:0 0 12px rgba(255,0,128,.5)}
+/* Altoparlante acceso o barrato: si scambiano due SVG già presenti, senza
+   ricostruire il markup a ogni clic. */
+#btnAudio .ic-off{display:none}
+#btnAudio.muted{color:rgba(255,255,255,.3)}
+#btnAudio.muted .ic-on{display:none}
+#btnAudio.muted .ic-off{display:block}
+#btnAudio.muted svg{filter:none}
 /* avatar con aura che pulsa tra rosa e azzurro */
 .avatar-btn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;position:relative;
   font-weight:900;font-size:16px;color:#fff;letter-spacing:.02em;
@@ -415,13 +442,21 @@ html.perf .frame-sk::after{animation:none}
 #roList:active .ro-face,#roList:has(.dragging) .ro-face{
   background:linear-gradient(145deg,rgba(28,32,56,.92),rgba(16,19,38,.88))}
 
-.pill{align-self:flex-start;font-size:10px;font-weight:850;letter-spacing:.14em;text-transform:uppercase;
-  padding:6px 13px 6px 9px;border-radius:999px;display:flex;align-items:center;gap:7px;color:#fff;
-  position:relative;
-  background:rgb(var(--accent) / .3);
-  border:1px solid rgb(var(--accent) / .7);
-  box-shadow:0 0 18px rgb(var(--accent) / .3),inset 0 1px 0 rgba(255,255,255,.22);
-  text-shadow:0 1px 6px rgba(0,0,0,.7)}
+/* --accent arriva dalla categoria della carta: il tag prende il neon
+   dell'argomento nel testo, non solo nello sfondo, altrimenti sotto il
+   velo scuro del pannello la codifica di colore non si legge. */
+.pill{position:absolute;top:13px;left:13px;z-index:3;
+  font-size:10px;font-weight:850;letter-spacing:.14em;text-transform:uppercase;
+  padding:6px 13px 6px 9px;border-radius:999px;display:flex;align-items:center;gap:7px;
+  color:rgb(var(--accent));
+  /* Piastrina scura sotto il neon: il mesh della carta e' dello stesso
+     colore dell'accento, quindi senza fondo il tag sparirebbe dentro lo
+     sfondo proprio sulle categorie piu' sature. */
+  background:linear-gradient(140deg,rgba(3,4,14,.9),rgba(3,4,14,.78)),
+             rgb(var(--accent) / .25);
+  border:1px solid rgb(var(--accent) / .8);
+  box-shadow:0 0 20px rgb(var(--accent) / .42),inset 0 1px 0 rgba(255,255,255,.18);
+  text-shadow:0 0 10px rgb(var(--accent) / .85)}
 .pill-ico{font-size:12px;line-height:1;filter:drop-shadow(0 0 7px rgb(var(--accent) / .95))}
 .card-title{font-size:clamp(20px,5.4vw,26px);font-weight:850;line-height:1.14;letter-spacing:-.03em;
   text-shadow:0 2px 20px rgba(0,0,0,.9),0 0 42px rgba(0,0,0,.65),0 0 22px rgb(var(--accent) / .28)}
@@ -554,8 +589,13 @@ html.perf .frame-sk::after{animation:none}
 .act-dopo{color:var(--magenta);text-shadow:0 0 14px rgba(255,0,160,.7)}
 .act-dopo:hover{border-color:rgba(255,0,160,.6);background:linear-gradient(160deg,rgba(255,0,160,.22),rgba(255,0,160,.05));
   box-shadow:0 0 34px rgba(255,0,160,.45),inset 0 1px 0 rgba(255,255,255,.35);transform:translateY(-3px)}
+/* La giocata da +3 punti: bordo ambra e alone dorato costante, cosi' si
+   distingue al volo da PRIMA e DOPO anche senza leggere l'etichetta. */
 .act-same{color:var(--gold);text-shadow:0 0 14px rgba(255,209,102,.75);flex:1.15;
-  border-color:rgba(255,209,102,.36)}
+  border:1px solid rgba(255,191,0,.5);
+  background:linear-gradient(160deg,rgba(255,191,0,.14),rgba(255,176,32,.03));
+  box-shadow:0 0 18px -2px rgba(255,191,0,.35),inset 0 1px 0 rgba(255,255,255,.22)}
+.act-same .bonus{opacity:1;color:#ffd166;text-shadow:0 0 10px rgba(255,191,0,.8)}
 .act-same:hover{border-color:rgba(255,209,102,.7);background:linear-gradient(160deg,rgba(255,209,102,.24),rgba(255,176,32,.05));
   box-shadow:0 0 36px rgba(255,209,102,.5),inset 0 1px 0 rgba(255,255,255,.35);transform:translateY(-3px)}
 .act .lbl{line-height:1.12;text-align:center}
@@ -859,13 +899,21 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
 .path-item:focus-visible .path-dot,.path-item.active .path-dot{transform:scale(1.5)}
 .path-dot{transition:transform .25s var(--spring)}
 /* Popover glassmorphic del nodo */
-#pathPop{margin-top:12px;border-radius:18px;padding:13px 15px;display:flex;gap:12px;align-items:center;
+#pathPop{margin-top:12px;border-radius:18px;padding:13px 15px;display:flex;gap:11px;
+  flex-direction:column;align-items:stretch;
   background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
   border:1px solid rgba(255,255,255,.2);
   box-shadow:0 14px 34px -12px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.28);
   animation:popIn .3s var(--out) both;text-align:left}
 @keyframes popIn{from{opacity:0;transform:translate3d(0,8px,0)}to{opacity:1;transform:none}}
 #pathPop[hidden]{display:none}
+.pop-row{display:flex;gap:12px;align-items:center}
+/* Curiosità: separata da un filo di luce, così non si confonde col titolo. */
+.pop-fact{font-size:11.5px;line-height:1.55;color:#dfe6ff;padding-top:11px;
+  border-top:1px solid rgba(255,255,255,.14)}
+.pop-fact[hidden]{display:none}
+.pop-fact b{font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:850;
+  color:var(--gold);margin-right:7px}
 .pop-thumb{width:52px;height:52px;border-radius:14px;flex-shrink:0;background-size:cover;
   background-position:center 20%;display:grid;place-items:center;
   border:1px solid rgba(255,255,255,.2);color:rgb(var(--pa,0 243 255))}
@@ -914,6 +962,14 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
   border:1px solid rgba(255,45,85,.26);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
 #goReveal b{color:#fff}
+
+/* Lampo del nuovo record: un solo strato, opacità animata, niente
+   backdrop-filter sotto. Vive fuori da qualunque pannello sfocato. */
+#recordFlash{position:fixed;inset:0;z-index:57;pointer-events:none;opacity:0;
+  background:radial-gradient(70% 45% at 50% 52%,rgba(255,209,102,.34),transparent 62%),
+             radial-gradient(120% 90% at 50% 100%,rgba(255,0,160,.22),transparent 58%)}
+#recordFlash.on{animation:recFlash 2s cubic-bezier(.22,1,.3,1) 1 both}
+@keyframes recFlash{0%{opacity:0}14%{opacity:1}55%{opacity:.5}100%{opacity:0}}
 
 /* toast */
 #toast{position:fixed;z-index:80;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));
@@ -1031,6 +1087,11 @@ html.perf .ro-face{backdrop-filter:none;-webkit-backdrop-filter:none;
 html.perf .ro-inner{transition-duration:.45s}
 html.perf #nav,html.perf #refBar,html.perf .sheet,html.perf #toast{
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+/* I tre cerchi hanno un backdrop-filter dentro la navbar, che ne ha già uno:
+   sfocature annidate, misurate a 0,23 ms/frame. In modalità prestazioni si
+   spengono e restano il vetro e il colore dell'icona. */
+html.perf .nav-icon-btn{backdrop-filter:none;-webkit-backdrop-filter:none;
+  background:rgba(255,255,255,.1)}
 
 /* =====================================================================
    SPLASH SCREEN — prima schermata, solo all'apertura del sito
@@ -1132,16 +1193,18 @@ html.perf .sp-inner{animation:none}
 .lobby-tab:hover{background:rgba(255,255,255,.1);transform:translateY(-1px)}
 .lobby-tab:active{transform:scale(.97)}
 .lobby-tab b{display:block;font-size:13px;font-weight:800;letter-spacing:-.01em}
-.lobby-tab span{display:block;font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+/* Erano su --muted (#96a0c6): al sole, su telefono, sparivano. */
+.lobby-tab span{display:block;font-size:10.5px;color:rgba(255,255,255,.85);
+  margin-top:4px;line-height:1.45}
 .lobby-tab .tab-ico{font-size:17px;display:block;margin-bottom:6px}
 .lobby-tab[aria-pressed="true"]{border-color:rgba(0,243,255,.7);
   background:linear-gradient(150deg,rgba(0,243,255,.2),rgba(0,243,255,.05));
   box-shadow:0 0 26px rgba(0,243,255,.32),inset 0 1px 0 rgba(255,255,255,.28)}
-.lobby-tab[aria-pressed="true"] span{color:#cfe9f5}
+.lobby-tab[aria-pressed="true"] span{color:#e4f6fd}
 .lobby-tab.danger[aria-pressed="true"]{border-color:rgba(255,45,85,.75);
   background:linear-gradient(150deg,rgba(255,45,85,.22),rgba(255,45,85,.05));
   box-shadow:0 0 26px rgba(255,45,85,.32),inset 0 1px 0 rgba(255,255,255,.24)}
-.lobby-tab.danger[aria-pressed="true"] span{color:#f6d3da}
+.lobby-tab.danger[aria-pressed="true"] span{color:#fae4e9}
 /* griglia delle 12 categorie */
 .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:8px}
 .cat-tile{display:flex;align-items:center;gap:9px;padding:10px 11px;border-radius:15px;text-align:left;
@@ -1160,11 +1223,19 @@ html.perf .sp-inner{animation:none}
   box-shadow:0 0 22px rgb(var(--ca) / .3),inset 0 1px 0 rgba(255,255,255,.22)}
 .cat-tile[aria-pressed="true"] .ct-count{color:#dbe6ff}
 .lobby-quick{display:flex;gap:7px}
-.lobby-quick button{padding:5px 11px;border-radius:999px;font-size:10px;font-weight:800;
-  letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);transition:.2s var(--out)}
-.lobby-quick button:hover{color:#fff;background:rgba(255,255,255,.13)}
-.lobby-quick button:active{transform:scale(.94)}
+.lobby-quick button{padding:7px 14px;border-radius:999px;font-size:10.5px;font-weight:850;
+  letter-spacing:.08em;text-transform:uppercase;color:#e8eeff;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
+  transition:transform .18s var(--spring),background .2s var(--out),
+             border-color .2s var(--out),box-shadow .2s var(--out)}
+.btn-select-all:hover{color:#fff;background:rgba(0,243,255,.18);border-color:rgba(0,243,255,.6);
+  box-shadow:0 0 16px -2px rgba(0,243,255,.6),inset 0 1px 0 rgba(255,255,255,.28)}
+.btn-select-none:hover{color:#fff;background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.48)}
+.lobby-quick button:active{transform:scale(.9);
+  background:rgba(0,243,255,.3);border-color:rgba(0,243,255,.85);
+  box-shadow:0 0 20px rgba(0,243,255,.75),inset 0 2px 6px rgba(0,0,0,.4)}
+.lobby-quick button:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(0,243,255,.45)}
 #lobbyCount{font-size:11px;font-weight:750;color:var(--muted);text-align:center;margin-top:12px}
 #lobbyCount b{color:#fff}
 #lobbyCount.warn{color:var(--gold)}
@@ -1196,9 +1267,24 @@ html.perf .sp-inner{animation:none}
 #btnPlay:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(0,243,255,.7)}
 #btnPlay:active{transform:scale(.93)}
 @media(max-width:560px){ #btnPlay{padding:8px 12px} #btnPlay .lbl-long{display:none} }
-/* Su schermo stretto la navbar non ha più spazio: l'icona Condividi
-   sparisce e resta il link nel piede della Lobby. */
-@media(max-width:620px){ #btnShare{display:none} }
+/* Sotto i 620px i tre cerchi rimpiccioliscono per restare tutti visibili:
+   nasconderne uno vorrebbe dire togliere una funzione dalla navbar.
+   Il link nel piede della Lobby resta come seconda via. */
+@media(max-width:620px){
+  .nav-right{gap:5px}
+  .nav-icon-btn{width:34px;height:34px}
+  .nav-icon-btn svg{width:17px;height:17px}
+  .avatar-btn{width:34px;height:34px;font-size:14px}
+}
+@media(max-width:400px){
+  #nav{padding-left:11px;padding-right:6px}
+  .nav-right{gap:4px}
+  .nav-icon-btn{width:31px;height:31px}
+  .nav-icon-btn svg{width:15px;height:15px}
+  .avatar-btn{width:31px;height:31px;font-size:13px}
+  .streak-chip{padding:6px 9px;font-size:12px}
+  .mode-btn{padding:6px 10px}
+}
 .lobby-share{display:block;width:100%;margin-top:10px;padding:9px;border-radius:13px;
   font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
   background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);transition:.22s var(--out)}
@@ -1320,7 +1406,7 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
 .verify-row{display:flex;align-items:center;gap:10px;width:min(372px,calc(100vw - 40px));margin:0 auto}
 .verify-row .btn-glow{flex:1;min-width:0}
 /* Badge del secolo: compare sulla carta e resta fino alla risposta. */
-.lens-badge{position:absolute;top:12px;left:12px;z-index:7;
+.lens-badge{position:absolute;top:49px;left:13px;z-index:7;
   padding:8px 13px;border-radius:999px;font-size:11px;font-weight:850;letter-spacing:.12em;
   text-transform:uppercase;color:#001820;
   background:linear-gradient(120deg,#8ff4ff,#00f3ff 55%,#67e8ff);
@@ -1537,9 +1623,10 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
 
   <div class="nav-right">
     <button id="btnPlay" title="Nuova partita">▶ <span class="lbl-long">Gioca</span></button>
-    <button class="icon-btn" id="btnMute" title="Audio on/off" aria-label="Attiva o disattiva audio"><i data-lucide="volume-2"></i></button>
-    <button class="icon-btn" id="btnShare" title="Condividi ChronoGlass" aria-label="Condividi"><i data-lucide="share-2"></i></button>
-    <button class="icon-btn" id="btnStats" title="Statistiche" aria-label="Statistiche"><i data-lucide="bar-chart-3"></i></button>
+    <button class="icon-btn nav-icon-btn" id="btnAudio" title="Audio on/off"
+            aria-label="Attiva o disattiva audio" aria-pressed="true"><svg class="ic-on" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg><svg class="ic-off" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M22 9l-6 6"/><path d="M16 9l6 6"/></svg></button>
+    <button class="icon-btn nav-icon-btn" id="btnShare" title="Condividi ChronoGlass" aria-label="Condividi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-4"/><path d="M8.6 13.4l6.8 4"/></svg></button>
+    <button class="icon-btn nav-icon-btn" id="btnStats" title="Statistiche" aria-label="Statistiche"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><rect x="4" y="12" width="3.6" height="6"/><rect x="10.2" y="8" width="3.6" height="10"/><rect x="16.4" y="4" width="3.6" height="14"/></svg></button>
     <button class="avatar-btn" id="btnCreator" title="Il creatore" aria-label="Info sul creatore">A</button>
   </div>
 </header>
@@ -1574,7 +1661,7 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
         <span class="sweep" aria-hidden="true"></span>
         <i data-lucide="arrow-left"></i><span class="lbl">Prima</span>
       </button>
-      <button class="act act-same" id="btnSame" title="STESSO ANNO (freccia su)">
+      <button class="act act-same" id="btnSameYear" title="STESSO ANNO (freccia su) — +3 punti bonus">
         <span class="sweep" aria-hidden="true"></span>
         <i data-lucide="equal"></i><span class="lbl">Stesso anno<span class="bonus">+3 bonus</span></span>
       </button>
@@ -1867,8 +1954,8 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
         <div class="lobby-label">
           <span>Argomenti</span>
           <span class="lobby-quick">
-            <button type="button" id="btnCatAll">Tutti</button>
-            <button type="button" id="btnCatNone">Nessuno</button>
+            <button type="button" class="btn-select-all" id="btnCatAll">Tutti</button>
+            <button type="button" class="btn-select-none" id="btnCatNone">Nessuno</button>
           </span>
         </div>
         <div class="cat-grid" id="lobbyCats"></div>
@@ -1884,6 +1971,7 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
   </div>
 </div>
 
+<div id="recordFlash" aria-hidden="true"></div>
 <div id="toast"></div>
 <canvas id="storyCanvas" width="1080" height="1920" style="display:none"></canvas>
 <canvas id="fx" aria-hidden="true"></canvas>
@@ -2726,7 +2814,20 @@ const SFX = {
     this.noise({ dur:1.4, vol:.05, type:"bandpass", f0:900, f1:4200, q:3 });
   },
   pop(){ this.tone({ freq:520, to:880, dur:.09, type:"sine", vol:.1 }); },
-  swap(){ this.tone({ freq:340, to:620, dur:.11, type:"triangle", vol:.09 }); }
+  swap(){ this.tone({ freq:340, to:620, dur:.11, type:"triangle", vol:.09 }); },
+
+  /* Alias parlanti sui suoni già sintetizzati qui sopra: nessun MP3, tutto
+     generato al volo da oscillatori e rumore filtrato. */
+  playSuccess(){ this.correct(); },      // chime ascendente e pulito
+  playError(){ this.wrong(); },          // tono basso con oscillazione
+  playCardSwipe(){ this.whoosh(); },     // rumore bianco filtrato: vetro che scorre
+  playShatter(){ this.shatter(); },      // impatto e rottura dello Scudo
+  /* Fanfara del record personale: quarta, quinta, ottava in salita. */
+  playRecord(){
+    [660, 880, 1320, 1760].forEach((f, i) =>
+      this.tone({ freq:f, to:f * 1.02, dur:.34, type:"triangle", vol:.12, delay:i * .085 }));
+    this.tone({ freq:120, to:60, dur:.5, type:"sine", vol:.12, delay:.05 });
+  }
 };
 
 /* ------------------------------------------------------------------ *
@@ -2999,6 +3100,7 @@ const G = {
   queue: [],
   reference: null,
   lastReveal: null,
+  recordFesteggiato: false,
   path: []          // storico visivo delle carte giocate (non influenza il punteggio)
 };
 
@@ -3389,7 +3491,6 @@ function buildCard(ev){
 
   const body = document.createElement("div"); body.className = "card-body";
   body.innerHTML =
-    '<span class="pill"><span class="pill-ico">' + c.emoji + '</span>' + ev.category + '</span>' +
     '<h2 class="card-title"></h2>' +
     '<p class="card-desc"></p>' +
     '<div class="year-wrap"><div class="year mystery">????</div><div class="date-full"></div></div>';
@@ -3402,6 +3503,11 @@ function buildCard(ev){
   const veil = document.createElement("div"); veil.className = "card-veil"; tilt.appendChild(veil);
   const spec = document.createElement("div"); spec.className = "card-spec"; tilt.appendChild(spec);
   tilt.appendChild(body);
+
+  // tag della categoria sopra l'immagine, fuori dalla maschera del pannello
+  tilt.insertAdjacentHTML("beforeend",
+    '<span class="pill card-category-tag"><span class="pill-ico">' + c.emoji + '</span>' +
+    ev.category + '</span>');
 
   // riflesso sopra il pannello: spostarlo non tocca il backdrop sottostante
   const shine = document.createElement("div");
@@ -3656,7 +3762,7 @@ function decide(choice){
       el.classList.add("correct");
       G.streak++;
       G.score += res.bonus;
-      if (G.streak > STORE.best) STORE.best = G.streak;
+      if (G.streak > STORE.best){ STORE.best = G.streak; celebraRecord(); }
       G.path.push({ ev, ok:true });          // solo per lo storico mostrato a fine partita
       if (choice === "same"){
         SFX.arpeggio();
@@ -3755,6 +3861,30 @@ function advance(chain){
   WIKI.preload(G.queue.slice(1, 4));
   G.locked = false;
   updateGhost();
+}
+
+/* Scatta nell'istante esatto in cui la streak supera il record salvato,
+   una volta sola per partita: se continui a salire non riparte a ogni turno. */
+function celebraRecord(){
+  if (G.recordFesteggiato) return;
+  G.recordFesteggiato = true;
+  haptic([80, 40, 80]);
+  SFX.playRecord();
+  if (typeof confetti === "function"){
+    const opts = { spread:105, ticks:210, gravity:.85, scalar:1.15,
+                   colors:["#00f3ff","#ff00a0","#7c3aed","#ffd166","#ffffff"] };
+    confetti(Object.assign({}, opts, { particleCount:110, origin:{ x:.5, y:.55 }, startVelocity:48 }));
+    confetti(Object.assign({}, opts, { particleCount:55, origin:{ x:.12, y:.66 }, angle:55 }));
+    confetti(Object.assign({}, opts, { particleCount:55, origin:{ x:.88, y:.66 }, angle:125 }));
+  } else {
+    FX.burst($("#deckWrap") || document.body, FX_BONUS, 90, 10);   // niente CDN: particelle nostre
+  }
+  const flash = $("#recordFlash");
+  if (flash && !PERF.reduced){
+    flash.classList.remove("on"); void flash.offsetHeight; flash.classList.add("on");
+    setTimeout(() => flash.classList.remove("on"), 2000);
+  }
+  toast("NUOVO RECORD: " + G.streak + " di fila! \u{1F3C6}", 2600);
 }
 
 function goldConfetti(){
@@ -3989,8 +4119,10 @@ function roVerify(){
     G.score += hits + (perfect ? 3 : 0);
     if (perfect){
       G.streak++;
-      if (G.streak > STORE.best) STORE.best = G.streak;
+      const nuovoRecord = G.streak > STORE.best;
+      if (nuovoRecord){ STORE.best = G.streak; }
       SFX.gold(); winConfetti();
+      if (nuovoRecord) celebraRecord();
       toast("Timeline perfetta! +" + (hits + 3) + " punti 🎉", 2400);
       syncHUD();
       setTimeout(roNewRound, 1700);
@@ -4385,14 +4517,17 @@ function showPathPop(i){
   const ev = voce.ev, c = cat(ev.category);
   const rec = WIKI.mem.get(ev.wiki_slug);
   pop.innerHTML =
-    '<div class="pop-thumb"></div>' +
-    '<div class="pop-meta">' +
-      '<div class="pop-title"></div>' +
-      '<div class="pop-date"></div>' +
-      '<div class="pop-cat"></div>' +
+    '<div class="pop-row">' +
+      '<div class="pop-thumb"></div>' +
+      '<div class="pop-meta">' +
+        '<div class="pop-title"></div>' +
+        '<div class="pop-date"></div>' +
+        '<div class="pop-cat"></div>' +
+      '</div>' +
+      '<span class="pop-verdict ' + (voce.ok ? "ok" : "ko") + '">' +
+        (voce.ok ? "Giusta" : "Sbagliata") + "</span>" +
     '</div>' +
-    '<span class="pop-verdict ' + (voce.ok ? "ok" : "ko") + '">' +
-      (voce.ok ? "Giusta" : "Sbagliata") + "</span>";
+    '<div class="pop-fact"><b>Lo sapevi?</b> <span></span></div>';
 
   const th = pop.querySelector(".pop-thumb");
   th.style.setProperty("--pa", c.accent);
@@ -4402,6 +4537,16 @@ function showPathPop(i){
   pop.querySelector(".pop-title").textContent = ev.title;
   pop.querySelector(".pop-date").textContent  = ev.date_full || yearLabel(ev.year);
   pop.querySelector(".pop-cat").textContent   = ev.category;
+
+  /* La curiosità è il primo periodo dell'estratto di Wikipedia se la scheda
+     è in cache, altrimenti la descrizione del dataset. */
+  const fatto = pop.querySelector(".pop-fact");
+  const testo = (rec && rec.desc) || ev.desc || FALLBACK_DESC[ev.category] || "";
+  if (testo){
+    fatto.querySelector("span").textContent = firstSentence(testo, 170);
+    fatto.hidden = false;
+  } else fatto.hidden = true;
+
   pop.hidden = false;
   SFX.pop();
 }
@@ -4868,7 +5013,7 @@ function setMode(mode){
 function newGame(){
   G.score = 0; G.streak = 0; G.answers = 0; G.correct = 0;
   G.shield = RUNS[FILTERS.run].scudi > 0; G.over = false; G.locked = false; G.lastReveal = null;
-  G.queue = []; G.reference = null; G.path = [];
+  G.queue = []; G.reference = null; G.path = []; G.recordFesteggiato = false;
   $("#swipeControls").classList.remove("busy");
   closeSheet("gameOver");
   $("#gameOver").classList.remove("fractured", "fracturing");
@@ -4892,7 +5037,7 @@ function wire(){
 
   $("#btnPrima").addEventListener("click", () => decide("prima"));
   $("#btnDopo").addEventListener("click", () => decide("dopo"));
-  $("#btnSame").addEventListener("click", () => decide("same"));
+  $("#btnSameYear").addEventListener("click", () => decide("same"));
   $("#btnVerify").addEventListener("click", roVerify);
   $("#btnRestart").addEventListener("click", newGame);
   // dal Game Over la condivisione passa dal modale, col punteggio già dentro
@@ -4996,13 +5141,13 @@ function wire(){
   window.addEventListener("offline", () => { paintNet(); toast("Offline: immagini non disponibili", 2600); });
   paintNet();
 
-  const mute = $("#btnMute");
+  const mute = $("#btnAudio");
   const paintMute = () => {
-    mute.innerHTML = '<i data-lucide="' + (SFX.muted ? "volume-x" : "volume-2") + '"></i>';
-    mute.style.color = SFX.muted ? "rgba(255,255,255,.28)" : "";
+    mute.classList.toggle("muted", SFX.muted);
+    mute.setAttribute("aria-pressed", String(!SFX.muted));
+    mute.title = SFX.muted ? "Audio disattivato" : "Audio attivo";
     const ta = $("#tglAudio");
     if (ta) ta.setAttribute("aria-pressed", String(!SFX.muted));
-    icons();
   };
   /* Un solo punto di verità per l'audio: navbar e impostazioni lo condividono. */
   window.setMuted = v => {

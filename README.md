@@ -17,6 +17,11 @@ Una card misteriosa contro l'evento di riferimento. Decidi con un gesto:
 | Swipe a destra | `→` | **DOPO** — è successo dopo il riferimento |
 | Swipe in alto | `↑` | **STESSO ANNO** — stesso anno solare, **+3 punti** e coriandoli oro |
 
+Trascinando, la carta si inclina in 3D e si accende del colore della scelta: ciano a
+sinistra, rosa a destra, oro verso l'alto. Si conferma oltre i 95px in orizzontale o 105px
+in verticale, oppure con uno scatto rapido. Il pulsante centrale ha bordo ambra e alone
+dorato costante: la giocata da +3 punti si riconosce senza leggere l'etichetta.
+
 Se i due eventi cadono nello stesso anno e rispondi PRIMA/DOPO, il confronto scende a
 giorno e mese: non vieni penalizzato per una scelta che è comunque cronologicamente corretta.
 
@@ -156,7 +161,8 @@ L'interfaccia è un sistema **Liquid Glass** costruito a strati:
 - **Storico del percorso** — nel Game Over, le carte giocate come nodi su una linea luminosa
   (ciano se azzeccate, rubino se sbagliate), con anno, icona di categoria e titolo. Un
   selettore passa dall'ordine di gioco alla linea temporale reale, e un clic su un nodo apre
-  un popover con miniatura, data completa, categoria ed esito.
+  un popover con miniatura, data completa, categoria, esito e un **"Lo sapevi?"** preso
+  dall'estratto di Wikipedia in cache o, in mancanza, dalla descrizione del dataset.
 - **Odometro a rulli** — l'anno si rivela come un contachilometri in vetro fumé: ogni cifra è
   una finestrella con dentro una striscia di numeri che scorre, con giri crescenti da sinistra
   a destra e una sola transizione di `transform` per rullo. A rullo fermo le cifre escono dalla
@@ -172,6 +178,26 @@ L'interfaccia è un sistema **Liquid Glass** costruito a strati:
 - **Passaporto Temporale** — nelle Statistiche, un badge olografico che si inclina in 3D
   seguendo il puntatore (`rotateX`/`rotateY`) e assegna un grado in base al record: Recluta,
   Viaggiatore, Crononauta, Custode del Tempo, Signore del Tempo.
+- **Tag della categoria** — sopra l'immagine, con il neon dell'argomento nel testo, nel bordo
+  e nell'alone, su una piastrina scura che gli tiene il contrasto sopra 4,5:1 su tutte e
+  dodici le categorie. Stava dentro il pannello, dove la maschera che ne sfuma il bordo
+  superiore lo scoloriva.
+- **Celebrazione del record** — nell'istante in cui la streak supera il record salvato:
+  coriandoli neon, lampo dorato a tutto schermo, fanfara sintetizzata e
+  `navigator.vibrate([80, 40, 80])`. Scatta una volta sola per partita, non a ogni turno
+  successivo.
+
+## Navbar
+
+Tre cerchi in vetro a destra, con l'icona disegnata **inline** e un colore per
+funzione: **audio** ciano `#00f2fe`, **condividi** magenta `#ff0080`, **statistiche**
+viola `#a855f7`. Prima le icone arrivavano dal CDN di Lucide e, quando non rispondeva,
+restavano tre cerchi vuoti; ora non dipendono da niente di esterno. Sotto i 620px
+rimpiccioliscono (34px, poi 31px sotto i 400px) invece di sparire.
+
+Il tasto audio fa da interruttore unico per tutta l'app — navbar e Archivio leggono
+lo stesso stato — e lo salva in `localStorage` (`cg_muted`), quindi resta come l'hai
+lasciato anche dopo un ricaricamento.
 
 ## Condividi & QR
 
@@ -215,6 +241,10 @@ giocabile: lo skeleton non aspetta mai la rete per sparire.
 
 ## Note tecniche
 
+- Suoni tutti sintetizzati sul momento con la Web Audio API, nessun file audio:
+  `playSuccess` (chime ascendente), `playError` (tono basso oscillante), `playCardSwipe`
+  (rumore bianco filtrato), `playShatter` (impatto e rottura), `playRecord` (fanfara).
+  La celebrazione del record ripiega sulle particelle interne se `canvas-confetti` non c'è.
 - CDN usate: Tailwind CSS, Lucide Icons, canvas-confetti. Il layout non dipende dalle classi
   Tailwind: tutto lo stile critico è nel `<style>` inline, così l'app resta identica anche
   senza rete. Se il CDN delle icone non risponde, i segnaposto ricadono su glifi testuali.
