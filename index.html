@@ -148,11 +148,25 @@ button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer
 .logo-text{font-weight:850;letter-spacing:-.025em;font-size:15.5px;white-space:nowrap;
   background:linear-gradient(95deg,#fff 5%,var(--cyan) 52%,var(--magenta));
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;background:var(--cyan);
-  box-shadow:0 0 14px var(--cyan);animation:pulseDot 2.4s ease-in-out infinite}
-@keyframes pulseDot{
-  0%,100%{background:var(--cyan);box-shadow:0 0 10px var(--cyan),0 0 22px rgba(0,243,255,.55);transform:scale(1)}
-  50%{background:var(--magenta);box-shadow:0 0 14px var(--magenta),0 0 30px rgba(255,0,160,.6);transform:scale(1.4)}}
+/* Logo: una macchina del tempo disegnata a tratto. Il bagliore cangiante e'
+   un'animazione di filter su un solo elemento di 22px: misurata dentro la
+   navbar (che ha backdrop-filter) non sposta l'ago sul costo per fotogramma. */
+.chrono-logo-svg{width:22px;height:22px;flex-shrink:0;display:block;overflow:visible;
+  color:var(--cyan);animation:chronoGlow 8s linear infinite}
+@keyframes chronoGlow{
+  0%{filter:drop-shadow(0 0 6px rgba(0,242,254,.8)) hue-rotate(0deg)}
+  50%{filter:drop-shadow(0 0 10px rgba(255,0,128,.8)) hue-rotate(180deg)}
+  100%{filter:drop-shadow(0 0 6px rgba(0,242,254,.8)) hue-rotate(360deg)}}
+.chrono-logo-svg .cg-dial{stroke:url(#cgGrad);stroke-width:2.6;fill:none}
+.chrono-logo-svg .cg-tick{stroke:rgba(255,255,255,.55);stroke-width:2;stroke-linecap:round}
+.chrono-logo-svg .cg-gear{stroke:url(#cgGrad);stroke-width:2;fill:none;opacity:.85;
+  transform-origin:16px 16px;animation:cgSpin 9s linear infinite}
+.chrono-logo-svg .cg-hand{stroke:#fff;stroke-width:2.4;stroke-linecap:round;
+  transform-origin:16px 16px}
+.chrono-logo-svg .cg-hand-m{animation:cgSpin 4s linear infinite}
+.chrono-logo-svg .cg-hand-h{animation:cgSpin 24s linear infinite}
+.chrono-logo-svg .cg-pin{fill:#fff}
+@keyframes cgSpin{to{transform:rotate(360deg)}}
 .nav-center{display:flex;align-items:center;gap:9px;min-width:0}
 .mode-switch{display:flex;align-items:center;gap:4px;padding:4px;border-radius:999px;
   background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.1);
@@ -385,7 +399,7 @@ html.perf .frame-sk::after{animation:none}
              radial-gradient(90% 55% at 50% -10%,rgba(255,255,255,.14),transparent 60%)}
 /* pannello informativo in vetro, ancorato in basso */
 .card-body{position:absolute;left:0;right:0;bottom:0;padding:20px 20px 22px;
-  display:flex;flex-direction:column;gap:10px;
+  display:flex;flex-direction:column;gap:8px;
   background:linear-gradient(to top,rgba(4,5,13,.8) 12%,rgba(4,5,13,.44) 58%,rgba(4,5,13,0) 100%);
   backdrop-filter:blur(17px) saturate(135%);-webkit-backdrop-filter:blur(17px) saturate(135%);
   -webkit-mask-image:linear-gradient(to top,#000 62%,rgba(0,0,0,.55) 82%,transparent 100%);
@@ -420,20 +434,38 @@ html.perf .frame-sk::after{animation:none}
 .year.mystery{letter-spacing:.03em;opacity:.7;
   background:linear-gradient(118deg,rgba(255,255,255,.75),rgba(0,243,255,.5) 55%,rgba(255,0,160,.45));
   -webkit-background-clip:text;background-clip:text;color:transparent}
-/* Cifre dell'odometro: larghezza fissa perché non ballino mentre girano. */
-.odo{display:inline-block;min-width:.62em;text-align:center;
-  background:linear-gradient(118deg,#fff 8%,var(--cyan) 52%,var(--magenta) 96%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  transition:transform .18s var(--spring)}
-.odo.locked{transform:scale(1)}
-.odo-suffix{font-size:.46em;letter-spacing:.02em;margin-left:.12em;align-self:flex-end;
-  padding-bottom:.18em;color:var(--muted);font-weight:800}
-.odo:not(.locked){filter:blur(.6px);opacity:.85}
-.reel span{height:var(--dh);line-height:var(--dh);display:block;
+/* ---- ODOMETRO: rulli di vetro fume' ----
+   Ogni cifra e' una finestrella con overflow:hidden dentro cui scorre una
+   striscia di numeri. Il rullo si ferma con una sola transizione di
+   transform: nessun ridisegno per fotogramma. */
+.digit{position:relative;display:inline-block;min-width:.62em;height:var(--dh);
+  overflow:hidden;vertical-align:bottom;border-radius:.09em;
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(4,6,18,.28) 46%,rgba(255,255,255,.05));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.07),inset 0 .06em .14em rgba(0,0,0,.5);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 24%,#000 76%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0,#000 24%,#000 76%,transparent 100%)}
+/* Riflesso curvo del cilindro: statico, resta dentro il ritaglio. */
+.digit::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.28) 0,rgba(255,255,255,.03) 30%,
+             transparent 52%,rgba(0,0,0,.22) 100%)}
+.reel{display:block;transform:translate3d(0,0,0);will-change:transform}
+.reel span{height:var(--dh);line-height:var(--dh);display:block;text-align:center;
   background:linear-gradient(118deg,#fff 8%,var(--cyan) 52%,var(--magenta) 96%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
-/* niente glow sulle cifre: .digit ha overflow:hidden e ritaglierebbe l'alone
-   in un rettangolo netto dietro l'anno */
+/* Cifre a riposo: fuori dalla finestrella, quindi l'alone neon non viene
+   ritagliato in un rettangolo come accadeva mettendolo dentro .digit. */
+.odo{display:inline-block;min-width:.62em;text-align:center;
+  background:linear-gradient(118deg,#fff 8%,var(--cyan) 52%,var(--magenta) 96%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.odo-suffix{font-size:.46em;letter-spacing:.02em;margin-left:.12em;align-self:flex-end;
+  padding-bottom:.18em;color:var(--muted);font-weight:800}
+/* Riflesso neon all'arresto: un solo lampo, non un'animazione continua
+   (sopra c'e' il backdrop-filter del pannello). */
+.year.settled{animation:yearFlash .85s cubic-bezier(.22,1,.3,1) 1 both}
+@keyframes yearFlash{
+  0%{filter:drop-shadow(0 0 0 rgba(0,243,255,0));transform:scale(1.06)}
+  30%{filter:drop-shadow(0 0 14px rgba(0,243,255,.95)) drop-shadow(0 0 26px rgba(255,0,160,.6))}
+  100%{filter:drop-shadow(0 0 7px rgba(0,243,255,.45));transform:scale(1)}}
 .date-full{font-size:14px;font-weight:650;color:#c3cbe8;letter-spacing:.03em;
   opacity:0;transform:translateY(7px);
   transition:opacity .5s ease .25s,transform .5s var(--out) .25s}
@@ -720,8 +752,11 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
 .sheet h2{margin:0;font-size:24px;font-weight:900;letter-spacing:-.035em;
   text-shadow:0 0 14px rgba(0,243,255,.35),0 0 34px rgba(255,0,160,.18)}
 .eyebrow{font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:850;margin-bottom:7px;
+  line-height:1.5;
   background:linear-gradient(90deg,var(--cyan),var(--magenta));
   -webkit-background-clip:text;background-clip:text;color:transparent}
+/* Il titolo del Game Over arrivava a filo del bordo superiore della sheet. */
+#gameOver .sheet{padding-top:30px;z-index:2}
 
 /* 7b. modale creatore */
 .creator-hero{position:relative;overflow:hidden;border-radius:24px;padding:22px;text-align:center;
@@ -818,7 +853,7 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
 .path-head{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:850;
   color:var(--muted);text-align:left}
 .seg-sm{margin-top:0;padding:3px;border-radius:11px}
-.seg-sm button{padding:6px 10px;font-size:10px;border-radius:8px}
+.seg-sm button{padding:6px 10px;font-size:10px;border-radius:8px;white-space:nowrap}
 .path-item{cursor:pointer}
 .path-item:focus-visible{outline:none}
 .path-item:focus-visible .path-dot,.path-item.active .path-dot{transform:scale(1.5)}
@@ -914,13 +949,18 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
 #bootLabel{margin-top:22px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
   font-weight:800;color:var(--muted)}
 
-/* descrizione mostrata quando l'immagine non arriva */
-.card-desc{margin-top:13px;font-size:12px;line-height:1.55;color:#f2f5ff;text-align:center;
-  max-width:84%;font-weight:600;
-  text-shadow:0 1px 3px rgba(0,0,0,.95),0 2px 14px rgba(0,0,0,.9),0 0 26px rgba(0,0,0,.7);
+/* Descrizione dell'evento: vive nel flusso del pannello, subito sotto il
+   titolo. Niente position:absolute e niente stati :hover/:active — prima
+   stava in un livello sovrapposto e si leggeva solo tenendo premuto, perche'
+   il backdrop-filter del pannello la sfocava. */
+.card-desc{margin:0;font-size:12.5px;line-height:1.5;color:#e9eeff;font-weight:600;
+  opacity:1;letter-spacing:.005em;
+  text-shadow:0 1px 3px rgba(0,0,0,.92),0 2px 12px rgba(0,0,0,.75);
   overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.card-desc:empty{display:none}
+/* Nel riquadro resta la sola icona, centrata nella fascia dell'immagine. */
 .card-fallback-wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
-  justify-content:flex-end;padding:0 18px 30%;pointer-events:none}
+  justify-content:center;padding:0 18px 42%;pointer-events:none}
 
 /* banner offline */
 #netBadge{position:fixed;z-index:70;left:50%;transform:translate(-50%,-24px);
@@ -978,10 +1018,11 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
    Stesso trattamento per chi ha chiesto meno animazioni a livello di sistema. */
 html.perf .orb{animation:none;opacity:.46}
 html.perf #grain{display:none}
-html.perf .card-emoji,html.perf .fire,html.perf .dot,html.perf .sk::after,
+html.perf .card-emoji,html.perf .fire,html.perf .sk::after,
 html.perf #roList::before,html.perf .ro-card::before,html.perf .avatar-btn::before,
 html.perf .creator-av::before,html.perf .link-cta,html.perf #ghost.on,
-html.perf .laser-sparks::before,html.perf .laser-sparks::after,html.perf .reel.spinning{animation:none}
+html.perf .laser-sparks::before,html.perf .laser-sparks::after,
+html.perf .chrono-logo-svg,html.perf .chrono-logo-svg *{animation:none}
 html.perf .card-media{transition:opacity .3s ease}   /* niente zoom lento da 9s */
 html.perf .card-body{backdrop-filter:none;-webkit-backdrop-filter:none;
   background:linear-gradient(to top,rgba(4,5,13,.93) 14%,rgba(4,5,13,.66) 56%,rgba(4,5,13,0) 100%)}
@@ -1013,6 +1054,8 @@ html.perf #nav,html.perf #refBar,html.perf .sheet,html.perf #toast{
 .sp-mark{position:relative;display:flex;align-items:center;gap:13px}
 .sp-ring{position:relative;width:54px;height:54px;flex-shrink:0}
 .sp-ring svg{width:100%;height:100%;display:block}
+/* Nello splash il marchio sta dentro l'anello di caricamento. */
+.sp-ring .chrono-logo-svg{position:absolute;inset:18%;width:64%;height:64%}
 .sp-ring .sp-track{stroke:rgba(255,255,255,.12)}
 .sp-ring .sp-arc{stroke:url(#spg);stroke-linecap:round;
   stroke-dasharray:150;stroke-dashoffset:40;transform-origin:50% 50%;
@@ -1153,6 +1196,13 @@ html.perf .sp-inner{animation:none}
 #btnPlay:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(0,243,255,.7)}
 #btnPlay:active{transform:scale(.93)}
 @media(max-width:560px){ #btnPlay{padding:8px 12px} #btnPlay .lbl-long{display:none} }
+/* Su schermo stretto la navbar non ha più spazio: l'icona Condividi
+   sparisce e resta il link nel piede della Lobby. */
+@media(max-width:620px){ #btnShare{display:none} }
+.lobby-share{display:block;width:100%;margin-top:10px;padding:9px;border-radius:13px;
+  font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);transition:.22s var(--out)}
+.lobby-share:hover{color:#8ee9ff;background:rgba(0,243,255,.12);border-color:rgba(0,243,255,.4)}
 html.perf #preGameLobby{backdrop-filter:blur(6px)}
 html.perf .lobby-sheet{backdrop-filter:blur(10px)}
 
@@ -1167,6 +1217,206 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
 .icon-btn .ico-fb{font-size:16px}
 .act .ico-fb{font-size:19px}
 .btn-glow .ico-fb,.btn-ghost .ico-fb,.link-btn .ico-fb{font-size:16px}
+
+/* =====================================================================
+   CONDIVIDI & QR — modale in vetro liquido
+   ===================================================================== */
+#shareModal .sheet{width:min(400px,100%);text-align:center;padding-top:30px;
+  border:1px solid rgba(0,243,255,.34);
+  box-shadow:0 34px 80px -18px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.3),
+             0 0 70px -22px rgba(0,243,255,.75)}
+.share-head{display:flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:20px}
+.share-head h2{font-size:22px}
+/* La scheda del QR: vetro con bagliore neon che respira sul bordo, statico. */
+.qr-card{position:relative;margin:0 auto;width:min(258px,72vw);aspect-ratio:1;
+  border-radius:24px;display:grid;place-items:center;overflow:hidden;
+  background:linear-gradient(155deg,rgba(255,255,255,.12),rgba(255,255,255,.035) 52%,rgba(0,243,255,.09));
+  border:1px solid rgba(0,243,255,.4);
+  box-shadow:0 0 36px -6px rgba(0,243,255,.55),inset 0 1px 0 rgba(255,255,255,.28)}
+.qr-card img{width:82%;height:82%;object-fit:contain;display:block;
+  filter:drop-shadow(0 0 12px rgba(0,243,255,.85));
+  opacity:0;transition:opacity .45s ease}
+.qr-card img.on{opacity:1}
+.qr-sk{position:absolute;inset:0;display:grid;place-items:center;font-size:11px;font-weight:800;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--dim);padding:0 18px;text-align:center}
+.qr-card.ready .qr-sk{display:none}
+/* Mirini disegnati a CSS: restano anche se il QR remoto non arriva. */
+.qr-corner{position:absolute;width:26px;height:26px;border:2px solid rgba(0,243,255,.75);
+  border-radius:7px;pointer-events:none}
+.qr-corner.tl{top:11px;left:11px;border-right:0;border-bottom:0}
+.qr-corner.tr{top:11px;right:11px;border-left:0;border-bottom:0}
+.qr-corner.bl{bottom:11px;left:11px;border-right:0;border-top:0}
+.qr-corner.br{bottom:11px;right:11px;border-left:0;border-top:0}
+.share-link{margin:18px auto 0;display:flex;align-items:center;justify-content:center;gap:9px;
+  max-width:100%;padding:11px 15px;border-radius:14px;
+  font-size:12px;font-weight:750;letter-spacing:.02em;color:#d7e2ff;
+  background:rgba(0,0,0,.34);border:1px solid rgba(255,255,255,.14);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.share-link b{color:var(--cyan);font-weight:850}
+.share-link span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:rtl;text-align:left}
+#shareScore{margin:16px auto 0;font-size:12.5px;line-height:1.5;font-weight:700;color:#e6ecff;
+  padding:12px 15px;border-radius:16px;
+  background:linear-gradient(140deg,rgba(255,0,160,.16),rgba(112,0,255,.1));
+  border:1px solid rgba(255,0,160,.32)}
+#shareScore b{color:var(--gold)}
+#shareScore[hidden]{display:none}
+.share-actions{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.share-row{display:flex;gap:10px}
+.share-row>*{flex:1;min-width:0}
+
+/* =====================================================================
+   BOLLA DI VETRO — lo Scudo Temporale avvolge la carta in cima
+   ===================================================================== */
+.shield-bubble{position:absolute;inset:-2px;border-radius:31px;pointer-events:none;z-index:4;
+  opacity:0;transition:opacity .4s ease,transform .5s var(--spring);
+  transform:scale(1.02);
+  border:1.5px solid rgba(0,243,255,.72);
+  box-shadow:0 0 34px -4px rgba(0,243,255,.6),inset 0 0 26px -6px rgba(0,243,255,.55);
+  /* Il blur resta sul bordo: al centro il vetro e' limpido e la foto si legge.
+     Cosi' il backdrop-filter lavora su una corona sottile, non su tutta la carta. */
+  backdrop-filter:blur(4px) saturate(120%);-webkit-backdrop-filter:blur(4px) saturate(120%);
+  -webkit-mask-image:radial-gradient(118% 106% at 50% 50%,transparent 58%,#000 82%);
+  mask-image:radial-gradient(118% 106% at 50% 50%,transparent 58%,#000 82%)}
+#deck.shield-on .card:first-child:not(.gone) .shield-bubble{opacity:1;transform:scale(1)}
+/* Durante il trascinamento niente ricalcolo del backdrop. */
+#deck:active .shield-bubble,html.perf .shield-bubble{
+  backdrop-filter:none;-webkit-backdrop-filter:none}
+/* Riflesso curvo sopra la bolla: un gradiente fermo, non un'animazione. */
+.shield-bubble::after{content:"";position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(126deg,rgba(255,255,255,.22) 0,transparent 26%),
+             radial-gradient(70% 40% at 50% 0%,rgba(0,243,255,.3),transparent 62%)}
+.shield-bubble.shatter-effect{animation:bubbleBlow .62s cubic-bezier(.3,1.4,.5,1) forwards}
+@keyframes bubbleBlow{
+  0%{opacity:1;transform:scale(1)}
+  22%{opacity:1;transform:scale(1.07)}
+  100%{opacity:0;transform:scale(1.22)}}
+/* Schegge: poligoni ritagliati che volano via con un alone rosa. */
+.shard{position:absolute;inset:0;pointer-events:none;z-index:5;
+  background:linear-gradient(130deg,rgba(255,255,255,.75),rgba(255,0,160,.5) 55%,rgba(0,243,255,.45));
+  mix-blend-mode:screen;will-change:transform,opacity;
+  animation:shardFly .74s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes shardFly{
+  0%{opacity:.95;transform:translate3d(0,0,0) rotate(0deg) scale(1)}
+  100%{opacity:0;transform:translate3d(var(--sx),var(--sy),0) rotate(var(--sr)) scale(.72)}}
+
+/* =====================================================================
+   LENTE QUANTISTICA — un aiuto per partita
+   ===================================================================== */
+.lens-btn{display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 16px;border-radius:999px;font-size:12px;font-weight:850;letter-spacing:.04em;
+  color:#c9f6ff;white-space:nowrap;
+  background:linear-gradient(140deg,rgba(0,243,255,.2),rgba(112,0,255,.14));
+  border:1px solid rgba(0,243,255,.46);
+  box-shadow:0 0 22px -6px rgba(0,243,255,.7),inset 0 1px 0 rgba(255,255,255,.2);
+  transition:transform .22s var(--spring),opacity .25s ease,box-shadow .25s ease}
+.lens-btn svg{width:17px;height:17px;flex-shrink:0}
+.lens-btn:active{transform:scale(.94)}
+.lens-btn[disabled]{opacity:.32;pointer-events:none;box-shadow:none}
+#btnLens{position:absolute;top:8px;right:8px;z-index:62;padding:10px 13px;
+  background:linear-gradient(140deg,rgba(0,243,255,.26),rgba(6,10,26,.82));
+  backdrop-filter:none;-webkit-backdrop-filter:none}
+#btnLens .lens-lbl{display:none}
+@media(min-width:620px){ #btnLens .lens-lbl{display:inline} }
+.verify-row{display:flex;align-items:center;gap:10px;width:min(372px,calc(100vw - 40px));margin:0 auto}
+.verify-row .btn-glow{flex:1;min-width:0}
+/* Badge del secolo: compare sulla carta e resta fino alla risposta. */
+.lens-badge{position:absolute;top:12px;left:12px;z-index:7;
+  padding:8px 13px;border-radius:999px;font-size:11px;font-weight:850;letter-spacing:.12em;
+  text-transform:uppercase;color:#001820;
+  background:linear-gradient(120deg,#8ff4ff,#00f3ff 55%,#67e8ff);
+  box-shadow:0 0 24px -3px rgba(0,243,255,.85),inset 0 1px 0 rgba(255,255,255,.7);
+  animation:lensIn .45s cubic-bezier(.16,1,.3,1) both}
+@keyframes lensIn{from{opacity:0;transform:translate3d(0,-10px,0) scale(.86)}to{opacity:1;transform:none}}
+/* In Chrono-Reorder la lente spegne le posizioni sbagliate. */
+.ro-card.lens-off{opacity:.3;filter:saturate(.35)}
+.ro-card.lens-ok{box-shadow:0 0 0 1.5px rgba(0,255,163,.7),0 0 26px -8px rgba(0,255,163,.8)}
+
+/* =====================================================================
+   GAME OVER — crepe nel vetro e riavvolgimento
+   ===================================================================== */
+.glass-fracture{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;
+  transition:opacity .5s ease}
+.glass-fracture svg{width:100%;height:100%;display:block}
+.glass-fracture path{fill:none;stroke:url(#fracGrad);stroke-width:1.6;stroke-linecap:round;
+  stroke-dasharray:1200;stroke-dashoffset:1200;
+  filter:drop-shadow(0 0 7px rgba(170,60,255,.85))}
+#gameOver.fractured .glass-fracture{opacity:1}
+#gameOver.fractured .glass-fracture path{animation:fracDraw .95s cubic-bezier(.22,1,.3,1) forwards}
+@keyframes fracDraw{to{stroke-dashoffset:0}}
+/* Mentre le crepe si disegnano il backdrop dell'overlay resta sospeso:
+   ridisegnarlo a ogni fotogramma costerebbe piu' dell'effetto stesso. */
+#gameOver.fracturing{backdrop-filter:none;-webkit-backdrop-filter:none;
+  background:rgba(3,4,12,.93)}
+
+/* Riavvolgimento: 1,5 s di nastro che torna indietro prima del verdetto. */
+#rewind{position:fixed;inset:0;z-index:59;display:none;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 50%,rgba(90,10,60,.4),rgba(3,4,12,.92) 68%)}
+#rewind.on{display:block}
+.rw-scan{position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(180deg,rgba(255,255,255,.05) 0 2px,transparent 2px 5px);
+  animation:rwScan 1.5s linear forwards}
+@keyframes rwScan{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-60px,0)}}
+.rw-label{position:absolute;top:50%;left:0;right:0;text-align:center;
+  transform:translateY(-50%);font-size:clamp(20px,6.2vw,28px);font-weight:900;
+  letter-spacing:.22em;text-transform:uppercase;color:#fff;
+  text-shadow:0 0 22px rgba(255,0,160,.9),0 0 46px rgba(112,0,255,.7);
+  animation:rwPulse 1.5s ease-in-out forwards}
+@keyframes rwPulse{0%{opacity:0;transform:translateY(-50%) scale(.9)}
+  18%{opacity:1;transform:translateY(-50%) scale(1)}
+  82%{opacity:1}100%{opacity:0;transform:translateY(-50%) scale(1.06)}}
+.rw-item{position:absolute;left:50%;top:50%;white-space:nowrap;
+  padding:9px 16px;border-radius:14px;font-size:12.5px;font-weight:800;color:#e8eeff;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 12px 34px -12px rgba(0,0,0,.9);
+  will-change:transform,opacity;animation:rwFly .62s cubic-bezier(.3,.8,.3,1) forwards}
+.rw-item b{color:var(--cyan)}
+@keyframes rwFly{
+  0%{opacity:0;transform:translate3d(-50%,var(--ry),0) scale(.8)}
+  25%{opacity:1}
+  100%{opacity:0;transform:translate3d(calc(-50% + 78vw),var(--ry),0) scale(1.05)}}
+
+/* =====================================================================
+   PASSAPORTO TEMPORALE — badge olografico con inclinazione 3D
+   ===================================================================== */
+.passport{--px:0deg;--py:0deg;position:relative;margin:22px 0 4px;padding:18px;border-radius:22px;
+  overflow:hidden;text-align:left;
+  transform-style:preserve-3d;transform:perspective(760px) rotateX(var(--px)) rotateY(var(--py));
+  transition:transform .32s cubic-bezier(.22,1,.3,1);
+  background:linear-gradient(142deg,rgba(255,255,255,.14),rgba(0,243,255,.07) 38%,
+             rgba(255,0,160,.09) 68%,rgba(255,255,255,.05));
+  border:1px solid rgba(255,255,255,.24);
+  box-shadow:0 22px 50px -18px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.34)}
+.passport.tilting{transition:none}
+/* Ologramma: un gradiente fermo che scorre solo quando la scheda si inclina. */
+.passport::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 28%,rgba(255,255,255,.3) 44%,
+             rgba(0,243,255,.28) 52%,rgba(255,0,160,.26) 60%,transparent 76%);
+  transform:translate3d(var(--holo,0%),0,0);transition:transform .32s ease;opacity:.55}
+.pp-top{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  position:relative;z-index:2}
+.pp-eyebrow{font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:850;color:#8ee9ff}
+.pp-rank{margin-top:3px;font-size:19px;font-weight:900;letter-spacing:-.02em;
+  background:linear-gradient(100deg,#fff 6%,var(--cyan) 50%,var(--magenta));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.pp-seal{width:52px;height:52px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;
+  font-size:23px;
+  background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.4),rgba(0,243,255,.16) 54%,rgba(112,0,255,.2));
+  border:1px solid rgba(255,255,255,.34);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 0 22px -6px rgba(0,243,255,.8)}
+.pp-rows{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
+.pp-cell{padding:9px 11px;border-radius:13px;background:rgba(0,0,0,.28);
+  border:1px solid rgba(255,255,255,.1)}
+.pp-cell span{display:block;font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:800;color:var(--dim)}
+.pp-cell b{display:block;margin-top:3px;font-size:15px;font-weight:900;color:#fff;
+  font-variant-numeric:tabular-nums}
+.pp-next{position:relative;z-index:2;margin-top:13px}
+.pp-next-lbl{display:flex;justify-content:space-between;font-size:10px;font-weight:800;
+  letter-spacing:.06em;color:var(--dim);margin-bottom:6px}
+.pp-track{height:6px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
+.pp-fill{height:100%;border-radius:99px;transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--cyan),var(--magenta));
+  box-shadow:0 0 14px rgba(0,243,255,.7)}
 
 /* =====================================================================
    RESPONSIVE / PERFORMANCE
@@ -1218,9 +1468,9 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
   .act svg{width:18px;height:18px}
 }
 @media(prefers-reduced-motion:reduce){
-  .orb,.fire,.dot,#ghost.on,.link-cta,.card-emoji,#roList::before,.ro-card::before,
+  .orb,.fire,#ghost.on,.link-cta,.card-emoji,#roList::before,.ro-card::before,
   .avatar-btn::before,.creator-av::before,.laser-sparks::before,.laser-sparks::after{animation:none!important}
-  .reel.spinning{animation:none!important}
+  .chrono-logo-svg,.chrono-logo-svg *{animation:none!important}
 }
 </style>
 </head>
@@ -1236,14 +1486,14 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
   <div class="sp-inner">
     <div class="sp-mark">
       <div class="sp-ring">
-        <svg viewBox="0 0 56 56" fill="none" aria-hidden="true">
+        <svg class="sp-halo" viewBox="0 0 56 56" fill="none" aria-hidden="true">
           <defs><linearGradient id="spg" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stop-color="#00f3ff"/><stop offset="1" stop-color="#ff00a0"/>
           </linearGradient></defs>
           <circle class="sp-track" cx="28" cy="28" r="24" stroke-width="3"/>
           <circle class="sp-arc" cx="28" cy="28" r="24" stroke-width="3"/>
-          <path d="M28 15 V29 L38 34" stroke="url(#spg)" stroke-width="3" stroke-linecap="round"/>
         </svg>
+        <svg class="chrono-logo-svg" viewBox="0 0 32 32" fill="none" aria-hidden="true"><g class="cg-gear"><path d="M16 1.6v3M16 27.4v3M30.4 16h-3M4.6 16h-3M26.2 5.8l-2.1 2.1M7.9 24.1l-2.1 2.1M26.2 26.2l-2.1-2.1M7.9 7.9L5.8 5.8"/></g><circle class="cg-dial" cx="16" cy="16" r="10.5"/><path class="cg-tick" d="M16 7.5v1.8M16 22.7v1.8M24.5 16h-1.8M9.3 16H7.5"/><path class="cg-hand cg-hand-h" d="M16 16V10.8"/><path class="cg-hand cg-hand-m" d="M16 16h5.6"/><circle class="cg-pin" cx="16" cy="16" r="1.5"/></svg>
       </div>
       <div class="sp-word">ChronoGlass</div>
       <div class="sp-glow" aria-hidden="true">
@@ -1262,6 +1512,7 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
   <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="orb o4"></div>
   <div class="mesh-veil"></div>
 </div>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><linearGradient id="cgGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00f2fe"/><stop offset="1" stop-color="#ff0080"/></linearGradient></defs></svg>
 <div id="grain" aria-hidden="true"></div>
 
 <!-- bagliori di bordo che reagiscono alla direzione dello swipe -->
@@ -1272,7 +1523,7 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
 <!-- ======================= NAVBAR — FLOATING GLASS ISLAND ======================= -->
 <header id="nav">
   <div class="logo">
-    <span class="dot"></span>
+    <svg class="chrono-logo-svg" viewBox="0 0 32 32" fill="none" aria-hidden="true"><g class="cg-gear"><path d="M16 1.6v3M16 27.4v3M30.4 16h-3M4.6 16h-3M26.2 5.8l-2.1 2.1M7.9 24.1l-2.1 2.1M26.2 26.2l-2.1-2.1M7.9 7.9L5.8 5.8"/></g><circle class="cg-dial" cx="16" cy="16" r="10.5"/><path class="cg-tick" d="M16 7.5v1.8M16 22.7v1.8M24.5 16h-1.8M9.3 16H7.5"/><path class="cg-hand cg-hand-h" d="M16 16V10.8"/><path class="cg-hand cg-hand-m" d="M16 16h5.6"/><circle class="cg-pin" cx="16" cy="16" r="1.5"/></svg>
     <span class="logo-text">ChronoGlass</span>
   </div>
 
@@ -1287,6 +1538,7 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
   <div class="nav-right">
     <button id="btnPlay" title="Nuova partita">▶ <span class="lbl-long">Gioca</span></button>
     <button class="icon-btn" id="btnMute" title="Audio on/off" aria-label="Attiva o disattiva audio"><i data-lucide="volume-2"></i></button>
+    <button class="icon-btn" id="btnShare" title="Condividi ChronoGlass" aria-label="Condividi"><i data-lucide="share-2"></i></button>
     <button class="icon-btn" id="btnStats" title="Statistiche" aria-label="Statistiche"><i data-lucide="bar-chart-3"></i></button>
     <button class="avatar-btn" id="btnCreator" title="Il creatore" aria-label="Info sul creatore">A</button>
   </div>
@@ -1312,6 +1564,8 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
         <circle cx="44" cy="56" r="6" fill="#05060f"/><circle cx="76" cy="56" r="6" fill="#05060f"/>
       </svg>
       <div id="ghostLabel">record in vista</div>
+      <button class="lens-btn" id="btnLens" title="Lente Quantistica — un solo uso per partita"
+              aria-label="Lente Quantistica"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="M15.6 15.6L21 21"/><path d="M6.6 10.5h7.8M10.5 6.6v7.8"/></svg><span class="lens-lbl">Lente</span></button>
       <div id="deck"></div>
     </div>
 
@@ -1355,7 +1609,11 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
         <span class="laser-sparks"></span>
       </div>
     </div>
-    <button class="btn-glow" id="btnVerify"><i data-lucide="scan-line"></i> Verifica Timeline</button>
+    <div class="verify-row">
+      <button class="lens-btn" id="btnLens2" title="Lente Quantistica — un solo uso per partita"
+              aria-label="Lente Quantistica"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="M15.6 15.6L21 21"/><path d="M6.6 10.5h7.8M10.5 6.6v7.8"/></svg></button>
+      <button class="btn-glow" id="btnVerify"><i data-lucide="scan-line"></i> Verifica Timeline</button>
+    </div>
     <div id="scoreRow2">
       <div class="score-chip"><i data-lucide="target" style="width:13px;height:13px"></i> Punti <b id="navScore2">0</b></div>
       <div class="score-chip"><i data-lucide="trophy" style="width:13px;height:13px"></i> Record <b id="navBest2">0</b></div>
@@ -1365,6 +1623,23 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
 
 <!-- ======================= GAME OVER ======================= -->
 <div class="overlay" id="gameOver">
+  <div class="glass-fracture" aria-hidden="true">
+    <svg viewBox="0 0 400 700" preserveAspectRatio="xMidYMid slice">
+      <defs><linearGradient id="fracGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ff2d55"/><stop offset="1" stop-color="#a03cff"/>
+      </linearGradient></defs>
+      <path d="M200 350 L196 180 L150 60 L120 0"/>
+      <path d="M196 180 L300 120 L400 40"/>
+      <path d="M196 180 L90 130 L0 70"/>
+      <path d="M200 350 L60 300 L0 280"/>
+      <path d="M200 350 L360 320 L400 330"/>
+      <path d="M200 350 L210 520 L170 700"/>
+      <path d="M210 520 L330 570 L400 620"/>
+      <path d="M210 520 L70 590 L0 640"/>
+      <path d="M300 120 L340 250 L360 320"/>
+      <path d="M90 130 L50 240 L60 300"/>
+    </svg>
+  </div>
   <div class="sheet">
     <div class="eyebrow" id="goEyebrow">Tempo scaduto</div>
     <h2 id="goTitle">Game Over</h2>
@@ -1402,12 +1677,67 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
   </div>
 </div>
 
+<!-- ======================= CONDIVIDI & QR ======================= -->
+<div class="overlay" id="shareModal">
+  <div class="sheet">
+    <button class="sheet-close" data-close="shareModal" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="share-head">
+      <div class="eyebrow">Passaparola</div>
+      <h2>Sfida la Linea Temporale &#8987;</h2>
+    </div>
+
+    <div class="qr-card" id="qrCard">
+      <div class="qr-sk" id="qrSk">Genero il codice&hellip;</div>
+      <img id="qrImg" alt="Codice QR per aprire ChronoGlass" width="250" height="250">
+      <i class="qr-corner tl"></i><i class="qr-corner tr"></i>
+      <i class="qr-corner bl"></i><i class="qr-corner br"></i>
+    </div>
+
+    <div class="share-link"><b>&#128279;</b><span id="shareUrl">chronoglass.app</span></div>
+    <div id="shareScore" hidden></div>
+
+    <div class="share-actions">
+      <button class="btn-glow" id="btnShareNative"><i data-lucide="share-2"></i> Condividi</button>
+      <div class="share-row">
+        <button class="btn-ghost" id="btnShareCopy"><i data-lucide="copy"></i> Copia link</button>
+        <button class="btn-ghost" id="btnShareQr"><i data-lucide="download"></i> Scarica QR</button>
+      </div>
+      <button class="btn-ghost" id="btnShareStory"><i data-lucide="image"></i> Genera story con il punteggio</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= RIAVVOLGIMENTO ======================= -->
+<div id="rewind" aria-hidden="true">
+  <div class="rw-scan"></div>
+  <div class="rw-label">&#9194; Riavvolgimento</div>
+</div>
+
 <!-- ======================= STATISTICHE ======================= -->
 <div class="overlay" id="statsModal">
   <div class="sheet">
     <button class="sheet-close" data-close="statsModal" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     <div class="eyebrow">Il tuo archivio</div>
     <h2>Statistiche</h2>
+
+    <div class="passport" id="passport">
+      <div class="pp-top">
+        <div>
+          <div class="pp-eyebrow">Passaporto Temporale</div>
+          <div class="pp-rank" id="ppRank">Recluta</div>
+        </div>
+        <div class="pp-seal" id="ppSeal">&#9201;</div>
+      </div>
+      <div class="pp-rows">
+        <div class="pp-cell"><span>Record streak</span><b id="ppBest">0</b></div>
+        <div class="pp-cell"><span>Punti totali</span><b id="ppTotal">0</b></div>
+      </div>
+      <div class="pp-next">
+        <div class="pp-next-lbl"><i id="ppNextLbl">Prossimo grado</i><i id="ppNextVal">&mdash;</i></div>
+        <div class="pp-track"><div class="pp-fill" id="ppFill" style="width:0%"></div></div>
+      </div>
+    </div>
+
     <div class="stat-grid">
       <div class="stat"><b id="stGames">0</b><span>Partite</span></div>
       <div class="stat"><b id="stAcc">0%</b><span>Precisione</span></div>
@@ -1549,6 +1879,7 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
     <div class="lobby-foot">
       <p id="lobbySummary"></p>
       <button id="btnStartRun">Avvia partita</button>
+      <button class="lobby-share" id="btnLobbyShare">&#128279; Condividi ChronoGlass</button>
     </div>
   </div>
 </div>
@@ -2154,7 +2485,7 @@ const EVENTS = [
   { id:"vid_125", title:"Angry Birds e il gioco da telefono", year:2009, date_full:"11 Dicembre 2009", wiki_slug:"Angry_Birds", category:"Videogiochi", desc:"Il mobile gaming diventa un mercato di massa da un'app da un dollaro." },
   { id:"vid_126", title:"Dark Souls impone la sua difficoltà", year:2011, date_full:"22 Settembre 2011", wiki_slug:"Dark_Souls", category:"Videogiochi", desc:"Morire come meccanica di apprendimento genera un sottogenere." },
   { id:"vid_127", title:"GTA V incassa un miliardo in tre giorni", year:2013, date_full:"17 Settembre 2013", wiki_slug:"Grand_Theft_Auto_V", category:"Videogiochi", desc:"Il lancio di intrattenimento più redditizio della storia." },
-  { id:"vid_128", title:"Among Us esplode durante la pandemia", year:2020, date_full:"2020", wiki_slug:"Among_Us", category:"Videogiochi", desc:"Uscito nel 2018, diventa fenomeno mondiale due anni dopo grazie allo streaming." },
+  { id:"vid_128", title:"Among Us esplode durante la pandemia", year:2020, date_full:"2020", wiki_slug:"Among_Us", category:"Videogiochi", desc:"Un gioco di deduzione sociale diventa fenomeno mondiale grazie allo streaming." },
   { id:"vid_129", title:"Baldur's Gate 3 vince il Game of the Year", year:2023, date_full:"3 Agosto 2023", wiki_slug:"Baldur's_Gate_III", category:"Videogiochi", desc:"Il gioco di ruolo alza l'asticella delle conseguenze narrative." },
   { id:"spo_101", title:"Prima Olimpiade antica a Olimpia", year:-776, date_full:"776 a.C.", wiki_slug:"Giochi_olimpici_antichi", category:"Sport", desc:"La corsa dello stadio apre il conteggio del tempo per i greci.", approx:true },
   { id:"spo_102", title:"Fondazione della Football Association", year:1863, date_full:"26 Ottobre 1863", wiki_slug:"Football_Association", category:"Sport", desc:"A Londra si scrivono le regole che separano il calcio dal rugby." },
@@ -2283,7 +2614,8 @@ const ICON_FALLBACK = {
   "arrow-left":"\u2190", "arrow-right":"\u2192", "equal":"=", "shield":"\u{1F6E1}",
   "target":"\u{1F3AF}", "trophy":"\u{1F3C6}", "scan-line":"\u2261", "grip-vertical":"\u22EE",
   "x":"\u2715", "rotate-ccw":"\u21BA", "image-down":"\u2913", "share-2":"\u2934", "instagram":"\u25CE",
-  "coffee":"\u2615", "trash-2":"\u{1F5D1}"
+  "coffee":"\u2615", "trash-2":"\u{1F5D1}",
+  "copy":"\u29C9", "download":"\u2B07", "image":"\u{1F5BC}"
 };
 function icons(){
   if (window.lucide && lucide.createIcons){ try { lucide.createIcons(); } catch(e){} }
@@ -2387,6 +2719,11 @@ const SFX = {
   laser(){
     this.tone({ freq:2400, to:280, dur:1.25, type:"sawtooth", vol:.055 });
     this.noise({ dur:1.25, vol:.045, type:"bandpass", f0:3400, f1:400, q:6 });
+  },
+  /* Nastro che torna indietro: glissando all'insu' piu' fruscio di testina. */
+  rewind(){
+    this.tone({ freq:280, to:1500, dur:1.4, type:"sawtooth", vol:.05 });
+    this.noise({ dur:1.4, vol:.05, type:"bandpass", f0:900, f1:4200, q:3 });
   },
   pop(){ this.tone({ freq:520, to:880, dur:.09, type:"sine", vol:.1 }); },
   swap(){ this.tone({ freq:340, to:620, dur:.11, type:"triangle", vol:.09 }); }
@@ -2673,6 +3010,7 @@ function syncHUD(){
   $("#navBest2").textContent  = STORE.best;
   const chip = $("#shieldChip");
   chip.classList.toggle("broken", !G.shield);
+  syncShield();
   if (FILTERS.run === "intrepida"){
     chip.classList.add("broken");
     chip.innerHTML = '<span style="font-size:13px">💀</span> Morte Intrepida ×1,5';
@@ -2885,7 +3223,7 @@ function fillQueue(){
 
 /* Arte a tutto campo: mesh cyberpunk + emoji 3D fluttuante finché la foto
    di Wikipedia non è pronta; poi la foto entra in dissolvenza sopra. */
-function mediaLayer(ev){
+function mediaLayer(ev, desc){
   const c = cat(ev.category);
   const art = document.createElement("div");
   art.className = "card-art";
@@ -2903,19 +3241,16 @@ function mediaLayer(ev){
   const emoji = document.createElement("div");
   emoji.className = "card-icon";
   emoji.innerHTML = iconArt(ev.category);
-  const desc = document.createElement("div");
-  desc.className = "card-desc";
   const wrap = document.createElement("div");
   wrap.className = "card-fallback-wrap";
-  wrap.appendChild(emoji); wrap.appendChild(desc);
+  wrap.appendChild(emoji);
   art.appendChild(wrap);
 
   WIKI.get(ev.wiki_slug).then(r => {
     if (!r.url){
       // niente foto: resta il pattern geometrico, e si aggiunge il contesto
       frame.classList.remove("loading");
-      desc.textContent = r.desc || ev.desc || FALLBACK_DESC[ev.category] ||
-                         "Un momento che ha lasciato il segno.";
+      if (r.desc) desc.textContent = r.desc;
       return;
     }
     const img = new Image();
@@ -2935,7 +3270,6 @@ function mediaLayer(ev){
     });
     img.addEventListener("error", () => {
       frame.classList.remove("loading");
-      desc.textContent = ev.desc || FALLBACK_DESC[ev.category] || "";
     });
     img.src = r.url;
     frame.appendChild(img);
@@ -3053,17 +3387,20 @@ function buildCard(ev){
   el.appendChild(tilt);
   el._tilt = tilt;
 
-  tilt.appendChild(mediaLayer(ev));
-  const veil = document.createElement("div"); veil.className = "card-veil"; tilt.appendChild(veil);
-  const spec = document.createElement("div"); spec.className = "card-spec"; tilt.appendChild(spec);
-
   const body = document.createElement("div"); body.className = "card-body";
   body.innerHTML =
     '<span class="pill"><span class="pill-ico">' + c.emoji + '</span>' + ev.category + '</span>' +
     '<h2 class="card-title"></h2>' +
+    '<p class="card-desc"></p>' +
     '<div class="year-wrap"><div class="year mystery">????</div><div class="date-full"></div></div>';
   body.querySelector(".card-title").textContent = ev.title;
   body.querySelector(".date-full").textContent = ev.date_full;
+  const desc = body.querySelector(".card-desc");
+  desc.textContent = ev.desc || FALLBACK_DESC[ev.category] || "";
+
+  tilt.appendChild(mediaLayer(ev, desc));
+  const veil = document.createElement("div"); veil.className = "card-veil"; tilt.appendChild(veil);
+  const spec = document.createElement("div"); spec.className = "card-spec"; tilt.appendChild(spec);
   tilt.appendChild(body);
 
   // riflesso sopra il pannello: spostarlo non tocca il backdrop sottostante
@@ -3076,6 +3413,9 @@ function buildCard(ev){
   aura.className = "card-aura";
   el.appendChild(aura);
   el._aura = aura;
+
+  // bolla dello Scudo Temporale: presente sempre, visibile solo sulla carta in cima
+  el.insertAdjacentHTML("beforeend", '<div class="shield-bubble" aria-hidden="true"></div>');
 
   el.insertAdjacentHTML("beforeend",
     '<div class="ov ov-prima">PRIMA</div>' +
@@ -3144,14 +3484,36 @@ function spinYear(cardEl, year){
   const negativo = year < 0;
   const target = String(Math.abs(year)).split("");
   const n = target.length;
-  box.classList.remove("mystery");
+  box.classList.remove("mystery", "settled");
   box.innerHTML = "";
 
-  const cells = target.map(() => {
-    const d = document.createElement("span");
-    d.className = "odo";
-    box.appendChild(d);
-    return d;
+  /* Le cifre finali, da mostrare a rullo fermo. Vivono fuori dalle
+     finestrelle, cosi' il bagliore neon non viene ritagliato. */
+  const finale = () => {
+    box.innerHTML = target.map(d => '<span class="odo">' + d + "</span>").join("") +
+      (negativo ? '<span class="odo-suffix"> a.C.</span>' : "");
+    box.classList.add("settled");
+    cardEl.querySelector(".date-full").classList.add("on");
+    SFX.pop();
+  };
+
+  if (PERF.reduced){ finale(); return; }   // niente rullata: si scrive e basta
+
+  const rulli = target.map((d, i) => {
+    const win = document.createElement("span");
+    win.className = "digit";
+    const reel = document.createElement("span");
+    reel.className = "reel";
+    /* Giri interi crescenti da sinistra a destra: le cifre di destra
+       corrono piu' a lungo, come su un contachilometri vero. */
+    const giri = 2 + i;
+    let html = "";
+    for (let g = 0; g < giri; g++) for (let k = 0; k < 10; k++) html += "<span>" + k + "</span>";
+    html += "<span>" + d + "</span>";
+    reel.innerHTML = html;
+    win.appendChild(reel);
+    box.appendChild(win);
+    return { reel, stop: giri * 10, dur: 520 + i * 170 };
   });
   if (negativo){
     const suff = document.createElement("span");
@@ -3160,34 +3522,21 @@ function spinYear(cardEl, year){
     box.appendChild(suff);
   }
 
-  const DUR = 400;                       // durata totale della rullata
-  const HOLD = DUR / n;                  // quando si blocca ciascuna cifra
-  const t0 = performance.now();
-  let lastTick = 0;
+  /* Flush sincrono: senza, la transizione partirebbe dallo stato finale
+     e i rulli non si vedrebbero scorrere. */
+  void box.offsetHeight;
 
-  if (PERF.reduced){                     // niente rullata: si scrive e basta
-    cells.forEach((c, i) => c.textContent = target[i]);
-    cardEl.querySelector(".date-full").classList.add("on");
-    SFX.pop();
-    return;
-  }
+  let ultimo = 0;
+  rulli.forEach(r => {
+    r.reel.style.transition = "transform " + r.dur + "ms cubic-bezier(.16,1,.28,1)";
+    r.reel.style.transform  = "translate3d(0,calc(var(--dh) * -" + r.stop + "),0)";
+    ultimo = Math.max(ultimo, r.dur);
+  });
 
-  const frame = now => {
-    const t = now - t0;
-    let fermate = 0;
-    for (let i = 0; i < n; i++){
-      const stop = HOLD * (i + 1);
-      if (t >= stop){ cells[i].textContent = target[i]; cells[i].classList.add("locked"); fermate++; }
-      else cells[i].textContent = String((Math.random() * 10) | 0);
-    }
-    if (now - lastTick > 45){ SFX.tick(); lastTick = now; }
-    if (fermate < n) requestAnimationFrame(frame);
-    else {
-      SFX.pop();
-      cardEl.querySelector(".date-full").classList.add("on");
-    }
-  };
-  requestAnimationFrame(frame);
+  // tick meccanico durante la corsa, poi le cifre statiche col riflesso
+  const tick = setInterval(() => SFX.tick(), 55);
+  setTimeout(() => clearInterval(tick), ultimo - 60);
+  setTimeout(finale, ultimo + 40);
 }
 
 /* ---------- drag / gesture ---------- */
@@ -3329,6 +3678,7 @@ function decide(choice){
         G.shield = false;
         el.classList.add("wrong");
         el.querySelector(".crack").classList.add("go");
+        shatterShield(el);          // la bolla si spacca in frammenti
         SFX.shatter();
         haptic(HAPTIC.shield);
         toast("Scudo Temporale infranto — streak salva!", 2600);
@@ -3605,6 +3955,7 @@ function roShift(dir){
 function roVerify(){
   if (RO.busy) return;
   RO.busy = true;
+  LENS.pulisci();
   RO.items = roOrder();
   if (RO.selected){ RO.selected.classList.remove("selected"); RO.selected = null; }
   $("#btnVerify").disabled = true;
@@ -3661,14 +4012,405 @@ function roVerify(){
 }
 
 /* ------------------------------------------------------------------ *
+ * 7 bis. BOLLA DI VETRO, LENTE QUANTISTICA, RIAVVOLGIMENTO, PASSAPORTO
+ * ------------------------------------------------------------------ */
+
+/* ---------- Scudo Temporale: la bolla e la sua rottura ---------- */
+/* La bolla e' un solo elemento per carta; CSS la mostra unicamente sulla
+   carta in cima quando il mazzo ha la classe shield-on. */
+function syncShield(){
+  if (DECK) DECK.classList.toggle("shield-on", !!G.shield && !G.over);
+}
+
+/* Frammenti di vetro: spicchi ritagliati che volano via con un alone rosa. */
+function shatterShield(cardEl){
+  const bolla = cardEl && cardEl.querySelector(".shield-bubble");
+  if (!bolla) return;
+  DECK.classList.remove("shield-on");
+  bolla.style.opacity = "1";
+  bolla.style.transform = "scale(1)";
+  bolla.classList.add("shatter-effect");
+
+  if (!PERF.reduced){
+    const N = 11;
+    for (let i = 0; i < N; i++){
+      const a0 = (i / N) * 360, a1 = ((i + 1) / N) * 360;
+      const pt = a => (50 + 78 * Math.cos(a * Math.PI / 180)) + "% " +
+                      (50 + 78 * Math.sin(a * Math.PI / 180)) + "%";
+      const sh = document.createElement("i");
+      sh.className = "shard";
+      sh.style.clipPath = "polygon(50% 50%," + pt(a0) + "," + pt((a0 + a1) / 2) + "," + pt(a1) + ")";
+      const ang = ((a0 + a1) / 2) * Math.PI / 180, d = 90 + Math.random() * 80;
+      sh.style.setProperty("--sx", (Math.cos(ang) * d).toFixed(1) + "px");
+      sh.style.setProperty("--sy", (Math.sin(ang) * d).toFixed(1) + "px");
+      sh.style.setProperty("--sr", (Math.random() * 120 - 60).toFixed(0) + "deg");
+      sh.style.animationDelay = (i * 14) + "ms";
+      cardEl.appendChild(sh);
+      setTimeout(() => sh.remove(), 900 + i * 14);
+    }
+  }
+  setTimeout(() => { bolla.classList.remove("shatter-effect"); bolla.style.opacity = ""; bolla.style.transform = ""; }, 700);
+}
+
+/* ---------- Lente Quantistica: un solo uso per partita ---------- */
+const ROMANI = ["","I","II","III","IV","V","VI","VII","VIII","IX","X",
+                "XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII"];
+/* Il secolo di un anno: il 1901 apre il XX secolo, il -44 sta nel I a.C. */
+function secolo(year){
+  const n = Math.ceil(Math.abs(year) / 100);
+  const r = ROMANI[n] || String(n);
+  return year < 0 ? r + " secolo a.C." : r + " secolo";
+}
+
+const LENS = {
+  disponibile: true,
+  reset(){ this.disponibile = true; this.sync(); },
+  sync(){
+    const attiva = this.disponibile && !G.over;
+    ["#btnLens", "#btnLens2"].forEach(sel => {
+      const b = $(sel);
+      if (b) b.disabled = !attiva;
+    });
+  },
+  usa(){
+    if (!this.disponibile || G.over) return;
+    if (G.mode === "swipe"){
+      const el = topCard();
+      if (!el || !el._ev) return;
+      if (el.querySelector(".lens-badge")) return;
+      const badge = document.createElement("div");
+      badge.className = "lens-badge";
+      badge.textContent = secolo(el._ev.year);
+      el.appendChild(badge);
+      toast("Lente Quantistica: " + secolo(el._ev.year), 2600);
+    } else {
+      /* In Chrono-Reorder la lente spegne le posizioni fuori posto e
+         conferma quelle giuste, senza rivelare l'ordine corretto. */
+      const items = roOrder();
+      const giusto = items.slice().sort((a, b) => a._ord - b._ord);
+      const cards = Array.from(roList.children);
+      let ko = 0;
+      cards.forEach((el, i) => {
+        const ok = el._ev.id === giusto[i].id;
+        el.classList.add(ok ? "lens-ok" : "lens-off");
+        if (!ok) ko++;
+      });
+      toast(ko ? "Lente Quantistica: " + ko + " carte fuori posto" : "Lente Quantistica: timeline gia' corretta!", 3000);
+    }
+    this.disponibile = false;
+    this.sync();
+    SFX.laser();
+    haptic(HAPTIC.swipe);
+  },
+  /* All'inizio di ogni round di riordino i segni della lente vanno via. */
+  pulisci(){
+    if (!roList) return;
+    Array.from(roList.children).forEach(el => el.classList.remove("lens-off", "lens-ok"));
+  }
+};
+
+/* ---------- Riavvolgimento prima del Game Over ---------- */
+function playRewind(done){
+  const layer = $("#rewind");
+  const storico = G.path.slice(-7).reverse();
+  if (!layer || PERF.reduced || !storico.length){ done(); return; }
+
+  layer.querySelectorAll(".rw-item").forEach(n => n.remove());
+  storico.forEach((p, i) => {
+    const it = document.createElement("div");
+    it.className = "rw-item";
+    it.style.setProperty("--ry", (-140 + i * 44) + "px");
+    it.style.animationDelay = (i * 95) + "ms";
+    it.textContent = (p.ok ? "\u2713 " : "\u2717 ") + p.ev.title + " \u00b7 ";
+    const anno = document.createElement("b");
+    anno.textContent = yearLabel(p.ev.year);
+    it.appendChild(anno);
+    layer.appendChild(it);
+  });
+  layer.classList.add("on");
+  SFX.rewind();
+  setTimeout(() => {
+    layer.classList.remove("on");
+    layer.querySelectorAll(".rw-item").forEach(n => n.remove());
+    done();
+  }, 1500);
+}
+
+/* Crepe nel vetro dietro il pannello di fine partita. Durano meno di un
+   secondo: per quel tempo il backdrop dell'overlay resta sospeso, perche'
+   ri-sfocare a ogni fotogramma costerebbe piu' dell'effetto. */
+function fractureGlass(){
+  const ov = $("#gameOver");
+  if (!ov || PERF.reduced) return;
+  ov.classList.remove("fractured", "fracturing");
+  void ov.offsetHeight;
+  ov.classList.add("fractured", "fracturing");
+  setTimeout(() => ov.classList.remove("fracturing"), 1100);
+}
+
+/* ---------- Passaporto Temporale olografico ---------- */
+const RANGHI = [
+  { min:0,  nome:"Recluta",            sigillo:"⏱" },
+  { min:5,  nome:"Viaggiatore",        sigillo:"\u{1F9ED}" },
+  { min:10, nome:"Crononauta",         sigillo:"\u{1F680}" },
+  { min:20, nome:"Custode del Tempo",  sigillo:"\u{1F5DD}" },
+  { min:35, nome:"Signore del Tempo",  sigillo:"\u{1F451}" }
+];
+function rangoPer(best){
+  let i = 0;
+  for (let k = 0; k < RANGHI.length; k++) if (best >= RANGHI[k].min) i = k;
+  return { indice:i, rango:RANGHI[i], prossimo: RANGHI[i + 1] || null };
+}
+function renderPassport(){
+  const box = $("#passport");
+  if (!box) return;
+  const s = STORE.stats();
+  const best = STORE.best;
+  const { rango, prossimo } = rangoPer(best);
+  $("#ppRank").textContent  = rango.nome;
+  $("#ppSeal").textContent  = rango.sigillo;
+  $("#ppBest").textContent  = best;
+  $("#ppTotal").textContent = s.totalScore;
+  if (prossimo){
+    $("#ppNextLbl").textContent = "Verso " + prossimo.nome;
+    $("#ppNextVal").textContent = best + " / " + prossimo.min;
+    const q = (best - rango.min) / Math.max(1, prossimo.min - rango.min);
+    $("#ppFill").style.width = Math.round(Math.min(1, Math.max(0, q)) * 100) + "%";
+  } else {
+    $("#ppNextLbl").textContent = "Grado massimo raggiunto";
+    $("#ppNextVal").textContent = "★";
+    $("#ppFill").style.width = "100%";
+  }
+}
+/* Inclinazione 3D: si muove solo mentre il puntatore e' sopra la scheda,
+   quindi non c'e' nessuna animazione continua dentro la sheet sfocata. */
+function wirePassport(){
+  const box = $("#passport");
+  if (!box) return;
+  const muovi = e => {
+    if (PERF.reduced) return;
+    const r = box.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width  - .5;
+    const py = (e.clientY - r.top)  / r.height - .5;
+    box.classList.add("tilting");
+    box.style.setProperty("--py", (px *  13).toFixed(2) + "deg");
+    box.style.setProperty("--px", (py * -11).toFixed(2) + "deg");
+    box.style.setProperty("--holo", (px * 60).toFixed(1) + "%");
+  };
+  const fermo = () => {
+    box.classList.remove("tilting");
+    box.style.setProperty("--px", "0deg");
+    box.style.setProperty("--py", "0deg");
+    box.style.setProperty("--holo", "0%");
+  };
+  box.addEventListener("pointermove", muovi);
+  box.addEventListener("pointerleave", fermo);
+  box.addEventListener("pointercancel", fermo);
+}
+
+/* ------------------------------------------------------------------ *
+ * 7 ter. CONDIVIDI & QR CODE
+ * ------------------------------------------------------------------ */
+const SHARE = {
+  url(){
+    /* Da file:// non c'e' nulla da condividere: si rimanda al sito. */
+    const h = location.href.split("#")[0];
+    return /^https?:/.test(h) ? h : "https://chronoglass.app";
+  },
+  breve(){
+    try { const u = new URL(this.url()); return u.host + (u.pathname === "/" ? "" : u.pathname); }
+    catch(e){ return this.url(); }
+  },
+  qrUrl(){
+    return "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" +
+           encodeURIComponent(this.url()) + "&color=00f2fe&bgcolor=0d1117";
+  },
+  testo(score){
+    return score == null
+      ? "Sfida la Linea Temporale su ChronoGlass: sai dire cosa è successo prima?"
+      : "Ho totalizzato " + score + " punti in ChronoGlass! Riuscirai a battermi?";
+  },
+  _score: null
+};
+
+function openShareModal(score = null){
+  SHARE._score = score;
+  const card = $("#qrCard"), img = $("#qrImg"), sk = $("#qrSk");
+
+  $("#shareUrl").textContent = SHARE.breve();
+  const box = $("#shareScore");
+  if (score == null){ box.hidden = true; box.textContent = ""; }
+  else {
+    box.hidden = false;
+    box.innerHTML = "Ho totalizzato <b>" + score + " punti</b> in ChronoGlass!<br>Riuscirai a battermi?";
+  }
+
+  /* Il QR si rigenera solo se l'indirizzo è cambiato. */
+  const atteso = SHARE.qrUrl();
+  if (img.dataset.src !== atteso){
+    img.dataset.src = atteso;
+    img.classList.remove("on");
+    card.classList.remove("ready");
+    sk.textContent = "Genero il codice…";
+    img.onload  = () => { card.classList.add("ready"); img.classList.add("on"); };
+    img.onerror = () => { sk.textContent = "Codice non disponibile offline — usa “Copia link”"; };
+    img.src = atteso;
+  }
+
+  openSheet("shareModal");
+  icons();
+  SFX.pop();
+}
+
+async function shareNative(){
+  const testo = SHARE.testo(SHARE._score);
+  if (navigator.share){
+    try {
+      await navigator.share({ title:"ChronoGlass", text:testo, url:SHARE.url() });
+      haptic(HAPTIC.swipe);
+      return;
+    } catch(err){
+      if (err && err.name === "AbortError") return;   // l'utente ha annullato
+    }
+  }
+  copyShareLink(testo + " " + SHARE.url());           // desktop: si copia tutto
+}
+
+async function copyShareLink(testo){
+  const t = testo || SHARE.url();
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      await navigator.clipboard.writeText(t);
+    } else {
+      const ta = document.createElement("textarea");
+      ta.value = t; ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;top:-100px;opacity:0";
+      document.body.appendChild(ta); ta.select();
+      document.execCommand("copy"); ta.remove();
+    }
+    toast("Link Copiato! ✨", 2200);
+    haptic(HAPTIC.swipe);
+  } catch(err){
+    toast("Copia non riuscita: " + SHARE.breve(), 3200);
+  }
+}
+
+/* Il QR arriva da un altro dominio: l'attributo download da solo verrebbe
+   ignorato, quindi si passa dal blob. */
+async function downloadQr(){
+  const src = SHARE.qrUrl();
+  try {
+    const resp = await fetch(src, { mode:"cors" });
+    if (!resp.ok) throw new Error(resp.status);
+    const blob = await resp.blob();
+    const u = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = u; a.download = "chronoglass-qr.png";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(u), 4000);
+    toast("QR salvato! 📎", 2200);
+  } catch(err){
+    window.open(src, "_blank", "noopener");
+    toast("Apro il QR in una nuova scheda", 2400);
+  }
+}
+
+/* ------------------------------------------------------------------ *
  * 8. GAME OVER + STATISTICHE
  * ------------------------------------------------------------------ */
 function openSheet(id){ $("#" + id).classList.add("on"); }
 function closeSheet(id){ $("#" + id).classList.remove("on"); }
 
+/* ---------- IL TUO PERCORSO — binario dei nodi a fine partita ----------
+   G.path raccoglie le carte giocate nell'ordine in cui sono state decise.
+   Il selettore in alto passa da quell'ordine alla linea temporale reale. */
+function renderPath(){
+  const box = $("#goPath");
+  if (!box) return;
+  const ok = G.path && G.path.length > 0;
+  box.classList.toggle("on", ok);
+  $("#pathPop").hidden = true;
+  if (!ok){ $("#goRail").innerHTML = ""; return; }
+  if (!box._order) box._order = "gioco";
+  $$("#pathOrder button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.order === box._order)));
+  paintPath();
+}
+
+/* Disegna i nodi. Separata da renderPath perché il selettore la richiama
+   da sola, senza rifare il resto del pannello. */
+function paintPath(){
+  const rail = $("#goRail");
+  const ordine = $("#goPath")._order || "gioco";
+  /* L'indice punta sempre a G.path: riordinare le viste non deve far
+     puntare il popover alla carta sbagliata. */
+  const vista = G.path.map((p, i) => ({ p, i }));
+  if (ordine === "reale") vista.sort((a, b) => a.p.ev.year - b.p.ev.year);
+
+  rail.innerHTML = "";
+  vista.forEach(({ p, i }) => {
+    const c = cat(p.ev.category);
+    const it = document.createElement("button");
+    it.type = "button";
+    it.className = "path-item" + (p.ok ? "" : " miss");
+    it.dataset.i = i;
+    it.style.setProperty("--pa", c.accent);
+    it.setAttribute("aria-label", p.ev.title + ", " + yearLabel(p.ev.year) +
+                    ", " + (p.ok ? "giusta" : "sbagliata"));
+    it.innerHTML = '<span class="path-dot"></span>' +
+                   '<span class="path-year"></span>' +
+                   '<span class="path-ico">' + iconArt(p.ev.category) + '</span>' +
+                   '<span class="path-label"></span>';
+    it.querySelector(".path-year").textContent  = yearLabel(p.ev.year);
+    it.querySelector(".path-label").textContent = p.ev.title;
+    rail.appendChild(it);
+  });
+  icons();
+}
+
+/* Popover del nodo: titolo, data completa, categoria ed esito. */
+function showPathPop(i){
+  const voce = G.path[i];
+  const pop  = $("#pathPop");
+  if (!voce || !pop) return;
+
+  const gia = $$("#goRail .path-item").find(el => el.classList.contains("active"));
+  const nuovo = $$("#goRail .path-item").find(el => +el.dataset.i === i);
+  $$("#goRail .path-item").forEach(el => el.classList.remove("active"));
+
+  // secondo clic sullo stesso nodo: il popover si chiude
+  if (gia === nuovo && !pop.hidden){ pop.hidden = true; SFX.pop(); return; }
+  if (nuovo) nuovo.classList.add("active");
+
+  const ev = voce.ev, c = cat(ev.category);
+  const rec = WIKI.mem.get(ev.wiki_slug);
+  pop.innerHTML =
+    '<div class="pop-thumb"></div>' +
+    '<div class="pop-meta">' +
+      '<div class="pop-title"></div>' +
+      '<div class="pop-date"></div>' +
+      '<div class="pop-cat"></div>' +
+    '</div>' +
+    '<span class="pop-verdict ' + (voce.ok ? "ok" : "ko") + '">' +
+      (voce.ok ? "Giusta" : "Sbagliata") + "</span>";
+
+  const th = pop.querySelector(".pop-thumb");
+  th.style.setProperty("--pa", c.accent);
+  if (rec && rec.url) th.style.backgroundImage = 'url("' + rec.url + '")';
+  else { th.style.background = c.mesh; th.innerHTML = iconArt(ev.category); }
+
+  pop.querySelector(".pop-title").textContent = ev.title;
+  pop.querySelector(".pop-date").textContent  = ev.date_full || yearLabel(ev.year);
+  pop.querySelector(".pop-cat").textContent   = ev.category;
+  pop.hidden = false;
+  SFX.pop();
+}
+
 function endGame(){
   if (G.over) return;
   G.over = true; G.locked = true;
+  LENS.sync();
+  syncShield();
   SFX.gameover();
 
   // Morte Intrepida: il moltiplicatore si applica una sola volta, a fine partita
@@ -3681,6 +4423,12 @@ function endGame(){
   s.dist[bi < 0 ? 0 : bi]++;
   STORE.saveStats(s);
 
+  /* Prima del verdetto: 1,5 s di nastro riavvolto sulle carte giocate. */
+  playRewind(() => showGameOver());
+}
+
+/* Riempie e apre il pannello di fine partita. */
+function showGameOver(){
   const acc = G.answers ? Math.round(G.correct / G.answers * 100) : 0;
   countUpSheet($("#gameOver .sheet"), [
     [$("#goScore"),  G.score,    1100],
@@ -3707,6 +4455,7 @@ function endGame(){
     box.innerHTML = "Riprova: ogni partita pesca eventi diversi.";
   }
   openSheet("gameOver");
+  fractureGlass();
   icons();
   updateGhost();
 }
@@ -3731,6 +4480,7 @@ function renderFilters(){
 
 function renderStats(){
   const s = STORE.stats();
+  renderPassport();
   countUpSheet($("#statsModal .sheet"), [
     [$("#stGames"), s.games, 800],
     [$("#stAcc"),   s.answers ? Math.round(s.correct / s.answers * 100) : 0, 900, "%"],
@@ -4121,6 +4871,8 @@ function newGame(){
   G.queue = []; G.reference = null; G.path = [];
   $("#swipeControls").classList.remove("busy");
   closeSheet("gameOver");
+  $("#gameOver").classList.remove("fractured", "fracturing");
+  LENS.reset();
   syncHUD();
 
   if (G.mode === "swipe"){
@@ -4143,10 +4895,24 @@ function wire(){
   $("#btnSame").addEventListener("click", () => decide("same"));
   $("#btnVerify").addEventListener("click", roVerify);
   $("#btnRestart").addEventListener("click", newGame);
-  $("#btnStory").addEventListener("click", generateStory);
+  // dal Game Over la condivisione passa dal modale, col punteggio già dentro
+  $("#btnStory").addEventListener("click", () => openShareModal(G.score));
   $("#btnGoStats").addEventListener("click", () => { renderStats(); openSheet("statsModal"); });
 
   $("#btnStats").addEventListener("click", () => { SFX.pop(); renderStats(); openSheet("statsModal"); });
+
+  /* --- condividi & QR --- */
+  $("#btnShare").addEventListener("click", () => openShareModal(null));
+  $("#btnLobbyShare").addEventListener("click", () => { LOBBY.chiudi(); openShareModal(null); });
+  $("#btnShareNative").addEventListener("click", shareNative);
+  $("#btnShareCopy").addEventListener("click", () => copyShareLink());
+  $("#btnShareQr").addEventListener("click", downloadQr);
+  $("#btnShareStory").addEventListener("click", () => { closeSheet("shareModal"); generateStory(); });
+
+  /* --- lente quantistica: stesso gesto dai due pulsanti --- */
+  $("#btnLens").addEventListener("click", () => LENS.usa());
+  $("#btnLens2").addEventListener("click", () => LENS.usa());
+  wirePassport();
   $("#btnCreator").addEventListener("click", () => { SFX.pop(); openSheet("creatorModal"); });
   $$("[data-close]").forEach(b => b.addEventListener("click", () => closeSheet(b.dataset.close)));
   $$(".overlay").forEach(o => o.addEventListener("click", e => {
