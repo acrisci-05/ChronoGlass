@@ -964,6 +964,63 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
 #goReveal b{color:#fff}
 
 /* =====================================================================
+   TUTORIAL — solo alla primissima visita, tre carte guidate
+   Il livello non intercetta i gesti: si deve poter trascinare la carta
+   mentre il riquadro spiega cosa fare.
+   ===================================================================== */
+#tutorial{position:fixed;inset:0;z-index:66;pointer-events:none;
+  opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s linear .4s}
+#tutorial.on{opacity:1;visibility:visible;transition:opacity .4s ease,visibility 0s}
+/* Alone scuro che stacca il riquadro senza nascondere la carta */
+#tutorial::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 60% at 50% 34%,transparent 30%,rgba(3,4,12,.72) 78%)}
+/* La posizione viene calcolata a runtime: ancorato in basso copriva i
+   pulsanti PRIMA/DOPO, cioè proprio quello che sta spiegando di premere. */
+.tut-box{position:absolute;left:50%;top:var(--tut-top,auto);
+  transform:translateX(-50%);width:min(420px,calc(100vw - 26px));
+  pointer-events:auto;padding:13px 15px;border-radius:20px;
+  background:linear-gradient(150deg,rgba(9,11,26,.93),rgba(6,8,20,.9) 55%,rgba(24,6,32,.92));
+  backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);
+  border:1px solid rgba(255,255,255,.26);
+  box-shadow:0 24px 60px -16px rgba(0,0,0,.92),inset 0 1px 0 rgba(255,255,255,.28),
+             0 0 52px -20px rgba(0,243,255,.7)}
+.tut-passo{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:850;
+  color:var(--dim);margin-bottom:5px}
+.tut-passo b{color:var(--cyan);font-size:11px}
+#tutTesto{margin:0;font-size:12.5px;line-height:1.5;color:#eef2ff;font-weight:650}
+#tutTesto b{color:var(--cyan);font-weight:850}
+#tutTesto i{font-style:normal;color:var(--magenta);font-weight:850}
+#tutTesto u{text-decoration:none;color:var(--gold);font-weight:850}
+.tut-act{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:11px}
+#btnTutSalta{font-size:11px;font-weight:800;color:#9aa5cc;padding:8px 10px;border-radius:10px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
+#btnTutSalta:hover{color:#fff}
+#btnTutAvanti{padding:10px 20px;border-radius:13px;font-size:11.5px;font-weight:900;
+  letter-spacing:.07em;text-transform:uppercase;color:#02131a;
+  background:linear-gradient(120deg,var(--cyan),#9df6ff);
+  box-shadow:0 6px 22px -4px rgba(0,243,255,.72),inset 0 1px 0 rgba(255,255,255,.7);
+  transition:transform .2s var(--spring),filter .2s}
+#btnTutAvanti:hover{transform:translateY(-1px);filter:brightness(1.08)}
+#btnTutAvanti:active{transform:scale(.94)}
+#btnTutAvanti[hidden]{display:none}
+/* Frecce al neon: solo transform e opacità, e lontane dai pannelli sfocati */
+.tut-arrow{position:absolute;font-size:34px;line-height:1;font-style:normal;
+  opacity:0;pointer-events:none;will-change:transform,opacity}
+.tut-arrow.left {left:6px;  top:46%;color:var(--cyan);   text-shadow:0 0 16px rgba(0,243,255,.95)}
+.tut-arrow.right{right:6px; top:46%;color:var(--magenta);text-shadow:0 0 16px rgba(255,0,160,.95)}
+.tut-arrow.up   {left:50%;  top:14%;color:var(--gold);   text-shadow:0 0 16px rgba(255,209,102,.95);
+  transform:rotate(-90deg)}
+#tutorial.mostra-lr .tut-arrow.left {opacity:1;animation:tutL 1.5s ease-in-out infinite}
+#tutorial.mostra-lr .tut-arrow.right{opacity:1;animation:tutR 1.5s ease-in-out infinite}
+#tutorial.mostra-up .tut-arrow.up   {opacity:1;animation:tutU 1.5s ease-in-out infinite}
+@keyframes tutL{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-9px,0,0)}}
+@keyframes tutR{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(9px,0,0)}}
+@keyframes tutU{0%,100%{transform:rotate(-90deg) translate3d(0,0,0)}
+                50%{transform:rotate(-90deg) translate3d(9px,0,0)}}
+html.perf .tut-arrow{animation:none!important}
+@media(max-height:720px){ .tut-box{padding:13px 15px} #tutTesto{font-size:12px} }
+
+/* =====================================================================
    INVITO A INSTALLARE — compare in basso, dalla terza visita
    ===================================================================== */
 #installBanner{position:fixed;z-index:72;left:50%;
@@ -2008,6 +2065,21 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
       <p id="lobbySummary"></p>
       <button id="btnStartRun">Avvia partita</button>
       <button class="lobby-share" id="btnLobbyShare">&#128279; Condividi ChronoGlass</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= TUTORIAL PRIMO ACCESSO ======================= -->
+<div id="tutorial" aria-live="polite">
+  <i class="tut-arrow left"  aria-hidden="true">&#10094;</i>
+  <i class="tut-arrow right" aria-hidden="true">&#10095;</i>
+  <i class="tut-arrow up"    aria-hidden="true">&#10095;</i>
+  <div class="tut-box">
+    <div class="tut-passo"><b id="tutN">1</b><span>/4</span></div>
+    <p id="tutTesto">…</p>
+    <div class="tut-act">
+      <button id="btnTutSalta">Salta</button>
+      <button id="btnTutAvanti">Avanti</button>
     </div>
   </div>
 </div>
@@ -4179,6 +4251,7 @@ function decide(choice){
 
   SFX.whoosh();
   haptic(HAPTIC.swipe);              // colpetto breve alla conferma del gesto
+  TUTORIAL.rispostaData();
   showOverlay(el, choice);
   edgeGlow(choice === "prima" ? 1 : 0, choice === "dopo" ? 1 : 0, choice === "same" ? 1 : 0);
   if (el._aura){ el._aura.className = "card-aura " + choice; el._aura.style.opacity = "1"; }
@@ -5443,6 +5516,138 @@ const PWA = {
 };
 
 /* ------------------------------------------------------------------ *
+ * TUTORIAL — tre carte guidate, solo alla primissima visita
+ * Non è un simulatore a parte: guida la partita vera con un riferimento
+ * e una coda fissati, così quello che impari è esattamente il gioco.
+ * ------------------------------------------------------------------ */
+const TUTORIAL = {
+  KEY: "cg_tutorial_fatto",
+  attivo: false,
+  passo: 0,
+  /* Tre carte lontanissime dal riferimento: si vince senza sapere nulla,
+     e l'attenzione resta sul gesto invece che sulla data. */
+  RIF: "moon-landing",
+  CARTE: ["art_001", "www-public", "ww1-start"],
+  PASSI: [
+    { n:1, testo:"In alto c'è l'evento di <b>riferimento</b>, con la sua data. " +
+                 "Al centro la carta misteriosa: l'anno è nascosto.",
+      bottone:"Avanti", frecce:"" },
+    { n:2, testo:"Trascina la carta a <b>sinistra</b> se è successa <b>PRIMA</b> del riferimento, " +
+                 "a <i>destra</i> se <i>DOPO</i>. Oppure usa i pulsanti qui sotto.",
+      bottone:null, frecce:"mostra-lr", attendi:true },
+    { n:3, testo:"L'anno si scopre solo dopo la risposta. Se pensi che i due eventi siano " +
+                 "dello <u>stesso anno</u>, trascina verso l'<u>alto</u>: vale 3 punti.",
+      bottone:null, frecce:"mostra-up", attendi:true },
+    { n:4, testo:"Ultima di prova. Ogni errore chiude la partita, ma lo " +
+                 "<b>Scudo Temporale</b> ne assorbe uno: la striscia è salva.",
+      bottone:null, frecce:"mostra-lr", attendi:true }
+  ],
+
+  daFare(){
+    try { return !localStorage.getItem(this.KEY); } catch(e){ return false; }
+  },
+  segna(){
+    try { localStorage.setItem(this.KEY, "1"); } catch(e){}
+  },
+
+  avvia(){
+    const rif = EVENTS.find(e => e.id === this.RIF);
+    const mazzo = this.CARTE.map(id => EVENTS.find(e => e.id === id)).filter(Boolean);
+    if (!rif || mazzo.length < 3){ this.segna(); LOBBY.apri(); return; }
+
+    this.attivo = true;
+    this.passo = 0;
+    G.mode = "swipe";
+    setMode("swipe");
+    newGame();
+    /* Si sostituiscono riferimento e coda DOPO newGame, che li pescherebbe
+       a caso: il resto del motore non si accorge di nulla. */
+    setReference(rif);
+    G.queue = mazzo.slice();
+    renderDeck();
+    WIKI.preload(mazzo);
+
+    $("#tutorial").classList.add("on");
+    this.mostra(0);
+    if (!this._resize){
+      this._resize = () => { if (this.attivo) this.posiziona(); };
+      window.addEventListener("resize", this._resize);
+      window.addEventListener("orientationchange", this._resize);
+    }
+  },
+
+  /* Cerca una fascia libera: sotto i pulsanti se c'è spazio, altrimenti
+     in alto sopra l'immagine della carta, dove non c'è niente da premere. */
+  posiziona(){
+    const box = $(".tut-box");
+    const ctrl = $("#swipeControls");
+    if (!box || !ctrl) return;
+    const r = ctrl.getBoundingClientRect();
+    const alto = box.offsetHeight || 118;
+    const sotto = window.innerHeight - r.bottom - 12;
+
+    if (sotto >= alto){
+      // sotto i pulsanti: copre solo il suggerimento testuale, che il
+      // tutorial sta già ripetendo a parole sue
+      box.style.setProperty("--tut-top",
+        Math.round(Math.min(r.bottom + 10, window.innerHeight - alto - 8)) + "px");
+      return;
+    }
+    /* Schermo corto: si va sopra l'immagine della carta. Non sulla barra
+       del riferimento, che è proprio ciò che il primo passo indica. */
+    const deck = $("#deckWrap");
+    const d = deck ? deck.getBoundingClientRect() : null;
+    const y = d ? d.top + 34 : 120;
+    box.style.setProperty("--tut-top",
+      Math.round(Math.max(12, Math.min(y, window.innerHeight - alto - 8))) + "px");
+  },
+
+  mostra(i){
+    const p = this.PASSI[i];
+    if (!p) return this.fine();
+    this.passo = i;
+    const box = $("#tutorial");
+    box.classList.remove("mostra-lr", "mostra-up");
+    if (p.frecce) box.classList.add(p.frecce);
+    $("#tutN").textContent = String(p.n);
+    $("#tutTesto").innerHTML = p.testo;
+    const av = $("#btnTutAvanti");
+    av.hidden = !p.bottone;
+    if (p.bottone) av.textContent = p.bottone;
+    requestAnimationFrame(() => this.posiziona());   // dopo il reflow del testo
+    SFX.pop();
+  },
+
+  /* Chiamato dal motore a ogni risposta data durante il tutorial. */
+  rispostaData(){
+    if (!this.attivo) return;
+    const p = this.PASSI[this.passo];
+    if (!p || !p.attendi) return;
+    // si aspetta che la carta voli via e che la successiva sia in posizione
+    setTimeout(() => {
+      if (!this.attivo) return;
+      if (this.passo + 1 >= this.PASSI.length) this.fine();
+      else this.mostra(this.passo + 1);
+    }, 1800);
+  },
+
+  avanti(){
+    if (this.passo + 1 >= this.PASSI.length) return this.fine();
+    this.mostra(this.passo + 1);
+  },
+
+  fine(salta){
+    if (!this.attivo && !salta) return;
+    this.attivo = false;
+    this.segna();
+    const box = $("#tutorial");
+    box.classList.remove("on", "mostra-lr", "mostra-up");
+    toast(salta ? "Tutorial saltato — buon viaggio!" : "Pronto: scegli argomenti e parti \u{1F680}", 2600);
+    setTimeout(() => { newGame(); LOBBY.apri(); }, salta ? 260 : 900);
+  }
+};
+
+/* ------------------------------------------------------------------ *
  * LOBBY PRE-PARTITA
  * Tiene uno stato provvisorio: nulla viene applicato al gioco finché
  * l'utente non preme "Avvia partita". Così può cambiare idea, o chiudere
@@ -5593,6 +5798,10 @@ function wire(){
   $("#btnShareStory").addEventListener("click", () => { closeSheet("shareModal"); generateStory(); });
 
   /* --- lente quantistica: stesso gesto dai due pulsanti --- */
+  /* --- tutorial --- */
+  $("#btnTutAvanti").addEventListener("click", () => TUTORIAL.avanti());
+  $("#btnTutSalta").addEventListener("click", () => TUTORIAL.fine(true));
+
   $("#btnLens").addEventListener("click", () => LENS.usa());
   $("#btnLens2").addEventListener("click", () => LENS.usa());
   wirePassport();
@@ -5812,12 +6021,14 @@ function boot(){
     SPLASH.step(94, "Ultimi ritocchi…");
     requestAnimationFrame(() => setTimeout(() => {
       SPLASH.done();
-      // alla prima visita si entra dalla lobby, non nel mezzo di una partita
+      /* Primissima visita: un giro guidato di tre carte invece di
+         atterrare nella lobby senza sapere cos'è il gioco. */
       let visto = null;
       try { visto = localStorage.getItem("chronoglass_visto"); } catch(e){}
       if (!visto){
         try { localStorage.setItem("chronoglass_visto", "1"); } catch(e){}
-        setTimeout(() => LOBBY.apri(), 700);
+        if (TUTORIAL.daFare()) setTimeout(() => TUTORIAL.avvia(), 600);
+        else setTimeout(() => LOBBY.apri(), 700);
       }
     }, 180));
   });
