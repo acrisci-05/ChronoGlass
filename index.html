@@ -319,19 +319,62 @@ button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer
 /* Icona neon procedurale per categoria: SVG a tratto, non un'emoji.
    Statica di proposito — sta dietro al pannello con backdrop-filter e
    un'animazione continua qui obbligherebbe a ri-sfocare a ogni fotogramma. */
-.card-icon{width:clamp(108px,33vw,150px);height:clamp(108px,33vw,150px);
+.card-icon{display:none}
+.card-icon-unused{width:clamp(108px,33vw,150px);height:clamp(108px,33vw,150px);
   color:rgb(var(--accent));
   filter:drop-shadow(0 0 18px rgb(var(--accent) / .85)) drop-shadow(0 0 46px rgb(var(--accent) / .45))}
 .card-icon svg{width:100%;height:100%;display:block;overflow:visible}
 .card-icon .g-dim{opacity:.45}
 .card-icon .g-core{stroke:#fff;opacity:.9}
-/* Crop smart: il soggetto di solito sta nel terzo superiore, ma non in cima.
-   Il bordo alto viene sfumato per non tagliare teste di netto. */
-.card-media{position:absolute;inset:0;background-size:cover;background-position:center 20%;
-  opacity:0;transform:scale(1.05);
-  transition:opacity .6s ease,transform 9s ease-out;
-  -webkit-mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.45) 5%,#000 15%,#000 100%);
-  mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.45) 5%,#000 15%,#000 100%)}
+/* =====================================================================
+   FRAME IMMAGINE — riquadro ad altezza fissa, niente layout shift
+   L'altezza è decisa dal CSS prima che l'immagine arrivi: quando la foto
+   si carica non sposta nulla (CLS = 0). L'immagine è un <img> reale con
+   object-fit, così proporzioni diverse non vengono mai stirate.
+   ===================================================================== */
+.card-frame{position:absolute;left:0;right:0;top:0;height:58%;overflow:hidden;
+  contain:paint}                       /* isola il ridisegno al riquadro */
+.card-frame img{width:100%;height:100%;display:block;
+  object-fit:cover;object-position:center 20%;   /* privilegia volti e soggetti */
+  opacity:0;transform:scale(1.04);
+  transition:opacity .55s ease,transform 9s ease-out;
+  will-change:opacity;
+  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.35) 0%,#000 9%,#000 58%,
+    rgba(0,0,0,.72) 78%,rgba(0,0,0,.28) 92%,transparent 100%);
+  mask-image:linear-gradient(180deg,rgba(0,0,0,.35) 0%,#000 9%,#000 58%,
+    rgba(0,0,0,.72) 78%,rgba(0,0,0,.28) 92%,transparent 100%)}
+.card-frame img.on{opacity:1;transform:scale(1.1)}
+/* proporzioni fuori norma: si cambia inquadratura invece di tagliare a caso */
+.card-frame img.wide{object-position:center center}
+.card-frame img.tall{object-position:center 12%}
+/* Glass mask: il bordo basso del riquadro sfuma nel colore della carta,
+   così il titolo sottostante resta leggibile senza tagli netti. */
+.card-frame::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;pointer-events:none;
+  background:linear-gradient(180deg,rgba(6,8,20,0) 0%,rgba(6,8,20,.22) 55%,rgba(6,8,20,.42) 100%)}
+/* bordo alto sfumato: evita il taglio netto sulle teste */
+.card-frame::before{content:"";position:absolute;left:0;right:0;top:0;height:12%;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,rgba(6,8,20,.55),rgba(6,8,20,0))}
+/* Skeleton shimmer mentre si aspetta Wikipedia. */
+.card-frame.loading .frame-sk{opacity:1}
+.frame-sk{position:absolute;inset:0;opacity:0;transition:opacity .35s ease;
+  background:rgba(255,255,255,.05)}
+.frame-sk::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.1) 45%,rgba(255,255,255,.16) 55%,transparent);
+  animation:shimmer 1.4s infinite}
+html.perf .frame-sk::after{animation:none}
+/* Fallback: pattern geometrico in vetro + emoji della categoria. */
+.frame-fb{position:absolute;inset:0;display:grid;place-items:center;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 60%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 60%,transparent 100%);
+  background-image:
+    linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px),
+    linear-gradient(135deg,rgba(255,255,255,.04) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.04) 75%);
+  background-size:26px 26px,26px 26px,52px 52px}
+.frame-fb{transition:opacity .45s ease}
+.frame-fb .fb-emoji{font-size:clamp(46px,13vw,64px);line-height:1;
+  filter:drop-shadow(0 0 18px rgb(var(--accent) / .8))}
+.card-media{display:none}
 .card-media.on{opacity:1;transform:scale(1.13)}
 /* velo per la leggibilità, senza bordi scuri: resta full bleed */
 .card-veil{position:absolute;inset:0;pointer-events:none;
@@ -383,6 +426,8 @@ button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer
   -webkit-background-clip:text;background-clip:text;color:transparent;
   transition:transform .18s var(--spring)}
 .odo.locked{transform:scale(1)}
+.odo-suffix{font-size:.46em;letter-spacing:.02em;margin-left:.12em;align-self:flex-end;
+  padding-bottom:.18em;color:var(--muted);font-weight:800}
 .odo:not(.locked){filter:blur(.6px);opacity:.85}
 .reel span{height:var(--dh);line-height:var(--dh);display:block;
   background:linear-gradient(118deg,#fff 8%,var(--cyan) 52%,var(--magenta) 96%);
@@ -645,8 +690,10 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
 .overlay{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
   padding:16px;background:rgba(3,4,12,.72);
   backdrop-filter:blur(18px) saturate(120%);-webkit-backdrop-filter:blur(18px) saturate(120%);
-  opacity:0;pointer-events:none;transition:opacity .35s ease}
-.overlay.on{opacity:1;pointer-events:auto}
+  opacity:0;pointer-events:none;visibility:hidden;
+  transition:opacity .35s ease,visibility 0s linear .35s}
+.overlay.on{opacity:1;pointer-events:auto;visibility:visible;
+  transition:opacity .35s ease,visibility 0s}
 .sheet{position:relative;width:min(440px,100%);max-height:88vh;overflow-y:auto;border-radius:30px;
   padding:26px;scrollbar-width:thin;
   background:linear-gradient(155deg,rgba(255,255,255,.1),rgba(255,255,255,.03) 45%,rgba(255,255,255,.055));
@@ -873,7 +920,7 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
   text-shadow:0 1px 3px rgba(0,0,0,.95),0 2px 14px rgba(0,0,0,.9),0 0 26px rgba(0,0,0,.7);
   overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .card-fallback-wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:0 18px 36%;pointer-events:none}
+  justify-content:flex-end;padding:0 18px 30%;pointer-events:none}
 
 /* banner offline */
 #netBadge{position:fixed;z-index:70;left:50%;transform:translate(-50%,-24px);
@@ -992,6 +1039,122 @@ html.perf #nav,html.perf #refBar,html.perf .sheet,html.perf #toast{
   font-variant-numeric:tabular-nums}
 html.perf .sp-glow,html.perf .sp-ring .sp-arc{animation:none}
 html.perf .sp-inner{animation:none}
+
+/* =====================================================================
+   LOBBY PRE-PARTITA — bottom sheet su mobile, pannello centrato su desktop
+   ===================================================================== */
+#preGameLobby{position:fixed;inset:0;z-index:75;display:flex;align-items:flex-end;justify-content:center;
+  background:rgba(3,4,12,.74);
+  backdrop-filter:blur(16px) saturate(120%);-webkit-backdrop-filter:blur(16px) saturate(120%);
+  opacity:0;pointer-events:none;visibility:hidden;
+  transition:opacity .34s ease,visibility 0s linear .34s}
+#preGameLobby.on{opacity:1;pointer-events:auto;visibility:visible;
+  transition:opacity .34s ease,visibility 0s}
+.lobby-sheet{position:relative;width:min(520px,100%);max-height:92vh;display:flex;flex-direction:column;
+  border-radius:30px 30px 0 0;
+  background:linear-gradient(160deg,rgba(255,255,255,.11),rgba(255,255,255,.035) 48%,rgba(255,255,255,.06));
+  backdrop-filter:blur(26px) saturate(175%);-webkit-backdrop-filter:blur(26px) saturate(175%);
+  border:1px solid rgba(255,255,255,.2);border-bottom:0;
+  box-shadow:0 -22px 70px -18px rgba(0,0,0,.92),inset 0 1px 0 rgba(255,255,255,.3),
+             0 0 70px -24px rgba(112,0,255,.7);
+  transform:translate3d(0,100%,0);transition:transform .46s var(--spring)}
+#preGameLobby.on .lobby-sheet{transform:none}
+@media(min-width:620px){
+  #preGameLobby{align-items:center}
+  .lobby-sheet{border-radius:30px;border-bottom:1px solid rgba(255,255,255,.2);max-height:88vh}
+  #preGameLobby.on .lobby-sheet{transform:none}
+  #preGameLobby .lobby-sheet{transform:translate3d(0,24px,0) scale(.97)}
+}
+.lobby-grab{width:42px;height:4px;border-radius:99px;background:rgba(255,255,255,.28);
+  margin:11px auto 0;flex-shrink:0}
+@media(min-width:620px){ .lobby-grab{display:none} }
+.lobby-head{padding:16px 22px 6px;flex-shrink:0;position:relative}
+.lobby-head h2{margin:0;font-size:22px;font-weight:900;letter-spacing:-.035em;
+  text-shadow:0 0 14px rgba(0,243,255,.35)}
+.lobby-head p{margin:5px 0 0;font-size:11.5px;color:var(--muted);line-height:1.6}
+.lobby-body{overflow-y:auto;padding:6px 22px 4px;flex:1;scrollbar-width:thin;
+  scrollbar-color:rgba(0,243,255,.3) transparent}
+.lobby-body::-webkit-scrollbar{width:6px}
+.lobby-body::-webkit-scrollbar-track{background:transparent}
+.lobby-body::-webkit-scrollbar-thumb{background:rgba(0,243,255,.3);border-radius:99px}
+.lobby-sec{margin-top:18px}
+.lobby-sec:first-child{margin-top:8px}
+.lobby-label{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:850;
+  color:var(--muted);margin-bottom:9px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+/* tab modalità e difficoltà: due opzioni grandi, descritte */
+.lobby-tabs{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.lobby-tab{position:relative;overflow:hidden;padding:13px 12px;border-radius:17px;text-align:left;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);
+  transition:transform .2s var(--spring),border-color .25s,background .25s,box-shadow .25s}
+.lobby-tab:hover{background:rgba(255,255,255,.1);transform:translateY(-1px)}
+.lobby-tab:active{transform:scale(.97)}
+.lobby-tab b{display:block;font-size:13px;font-weight:800;letter-spacing:-.01em}
+.lobby-tab span{display:block;font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.lobby-tab .tab-ico{font-size:17px;display:block;margin-bottom:6px}
+.lobby-tab[aria-pressed="true"]{border-color:rgba(0,243,255,.7);
+  background:linear-gradient(150deg,rgba(0,243,255,.2),rgba(0,243,255,.05));
+  box-shadow:0 0 26px rgba(0,243,255,.32),inset 0 1px 0 rgba(255,255,255,.28)}
+.lobby-tab[aria-pressed="true"] span{color:#cfe9f5}
+.lobby-tab.danger[aria-pressed="true"]{border-color:rgba(255,45,85,.75);
+  background:linear-gradient(150deg,rgba(255,45,85,.22),rgba(255,45,85,.05));
+  box-shadow:0 0 26px rgba(255,45,85,.32),inset 0 1px 0 rgba(255,255,255,.24)}
+.lobby-tab.danger[aria-pressed="true"] span{color:#f6d3da}
+/* griglia delle 12 categorie */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:8px}
+.cat-tile{display:flex;align-items:center;gap:9px;padding:10px 11px;border-radius:15px;text-align:left;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.12);
+  transition:transform .18s var(--spring),border-color .22s,background .22s,box-shadow .22s}
+.cat-tile:hover{background:rgba(255,255,255,.09);transform:translateY(-1px)}
+.cat-tile:active{transform:scale(.96)}
+.cat-tile .ct-emoji{font-size:19px;flex-shrink:0;line-height:1;
+  filter:drop-shadow(0 0 8px rgb(var(--ca) / .85))}
+.cat-tile .ct-meta{min-width:0;flex:1;display:flex;flex-direction:column}
+.cat-tile .ct-name{display:block;font-size:12px;font-weight:750;line-height:1.2;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cat-tile .ct-count{display:block;font-size:9.5px;color:var(--muted);font-weight:700;margin-top:3px}
+.cat-tile[aria-pressed="true"]{border-color:rgb(var(--ca) / .75);
+  background:linear-gradient(150deg,rgb(var(--ca) / .22),rgb(var(--ca) / .05));
+  box-shadow:0 0 22px rgb(var(--ca) / .3),inset 0 1px 0 rgba(255,255,255,.22)}
+.cat-tile[aria-pressed="true"] .ct-count{color:#dbe6ff}
+.lobby-quick{display:flex;gap:7px}
+.lobby-quick button{padding:5px 11px;border-radius:999px;font-size:10px;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);transition:.2s var(--out)}
+.lobby-quick button:hover{color:#fff;background:rgba(255,255,255,.13)}
+.lobby-quick button:active{transform:scale(.94)}
+#lobbyCount{font-size:11px;font-weight:750;color:var(--muted);text-align:center;margin-top:12px}
+#lobbyCount b{color:#fff}
+#lobbyCount.warn{color:var(--gold)}
+/* piede fisso con la CTA */
+.lobby-foot{flex-shrink:0;padding:14px 22px calc(18px + env(safe-area-inset-bottom));
+  background:linear-gradient(to top,rgba(10,12,28,.97) 62%,rgba(10,12,28,0));
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+#lobbySummary{font-size:10.5px;color:var(--muted);text-align:center;margin:0 0 10px;line-height:1.55}
+#btnStartRun{width:100%;padding:17px;border-radius:19px;font-weight:900;font-size:15px;
+  letter-spacing:.08em;text-transform:uppercase;color:#02131a;position:relative;overflow:hidden;
+  background:linear-gradient(120deg,var(--cyan),#a8f6ff 42%,var(--magenta));
+  box-shadow:0 14px 42px -8px rgba(0,243,255,.65),inset 0 1px 0 rgba(255,255,255,.7);
+  transition:transform .2s var(--spring),box-shadow .26s,filter .26s}
+#btnStartRun:hover{transform:translateY(-2px);box-shadow:0 18px 52px -6px rgba(255,0,160,.62);filter:brightness(1.07)}
+#btnStartRun:active{transform:scale(.97)}
+#btnStartRun:disabled{opacity:.45;pointer-events:none;filter:grayscale(.4)}
+.lobby-close{position:absolute;top:14px;right:18px;width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.16);color:var(--muted);transition:.25s var(--out)}
+.lobby-close:hover{color:var(--cyan);background:rgba(255,255,255,.16);transform:rotate(90deg)}
+.lobby-close svg{width:16px;height:16px;opacity:.75}
+.lobby-close:hover svg{opacity:1}
+/* pulsante GIOCA nella navbar */
+#btnPlay{display:flex;align-items:center;gap:6px;padding:8px 15px;border-radius:999px;
+  font-size:12px;font-weight:850;letter-spacing:.06em;text-transform:uppercase;color:#02131a;
+  background:linear-gradient(120deg,var(--cyan),#9df6ff);
+  box-shadow:0 4px 18px rgba(0,243,255,.5),inset 0 1px 0 rgba(255,255,255,.65);
+  transition:transform .2s var(--spring),box-shadow .25s}
+#btnPlay:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(0,243,255,.7)}
+#btnPlay:active{transform:scale(.93)}
+@media(max-width:560px){ #btnPlay{padding:8px 12px} #btnPlay .lbl-long{display:none} }
+html.perf #preGameLobby{backdrop-filter:blur(6px)}
+html.perf .lobby-sheet{backdrop-filter:blur(10px)}
 
 /* =====================================================================
    PARTICELLE — canvas unico sopra il gioco, sotto le modali
@@ -1122,6 +1285,7 @@ html.perf .sp-inner{animation:none}
   </div>
 
   <div class="nav-right">
+    <button id="btnPlay" title="Nuova partita">▶ <span class="lbl-long">Gioca</span></button>
     <button class="icon-btn" id="btnMute" title="Audio on/off" aria-label="Attiva o disattiva audio"><i data-lucide="volume-2"></i></button>
     <button class="icon-btn" id="btnStats" title="Statistiche" aria-label="Statistiche"><i data-lucide="bar-chart-3"></i></button>
     <button class="avatar-btn" id="btnCreator" title="Il creatore" aria-label="Info sul creatore">A</button>
@@ -1227,6 +1391,7 @@ html.perf .sp-inner{animation:none}
     <div class="go-actions">
       <div class="go-row">
         <button class="btn-glow" id="btnRestart"><i data-lucide="rotate-ccw"></i> Rigioca</button>
+        <button class="btn-ghost" id="btnChangeRun" style="flex:0 0 auto;padding:14px 16px">⚙</button>
       </div>
       <div class="go-row">
         <button class="btn-ghost" id="btnStory"><i data-lucide="share-2"></i> Condividi</button>
@@ -1254,31 +1419,17 @@ html.perf .sp-inner{animation:none}
       <div id="distChart"></div>
     </div>
     <!-- FILTRI: argomento e difficoltà -->
-    <!-- MODALITÀ DI PARTITA -->
+    <!-- Modalità, difficoltà e argomenti vivono ora nella Lobby pre-partita:
+         l'Archivio resta uno spazio di sola consultazione. -->
     <div class="sec">
-      <div class="eyebrow">Modalità di partita</div>
-      <div class="seg" id="modeSeg" role="group" aria-label="Modalità di partita">
-        <button data-run="classica" aria-pressed="true">🛡 Classica</button>
-        <button data-run="intrepida" aria-pressed="false">💀 Morte Intrepida</button>
+      <div class="eyebrow">Impostazioni di gioco</div>
+      <div class="srow">
+        <div class="srow-txt">
+          <b>Modalità, difficoltà e argomenti</b>
+          <span id="archiveSummary">Si scelgono prima di ogni partita.</span>
+        </div>
+        <button class="mini-btn" id="btnOpenLobby">Apri</button>
       </div>
-      <p style="font-size:11px;color:var(--muted);margin:9px 2px 0;line-height:1.6" id="runHint"></p>
-    </div>
-
-    <div class="sec">
-      <div class="eyebrow">Filtra per argomento</div>
-      <div class="chip-row" id="catChips"></div>
-    </div>
-
-    <div class="sec">
-      <div class="eyebrow">Difficoltà</div>
-      <div class="seg" id="diffSeg" role="group" aria-label="Difficoltà">
-        <button data-diff="adattiva"  aria-pressed="true">Adattiva</button>
-        <button data-diff="all"       aria-pressed="false">Tutte</button>
-        <button data-diff="facile"    aria-pressed="false">Facile</button>
-        <button data-diff="media"     aria-pressed="false">Media</button>
-        <button data-diff="difficile" aria-pressed="false">Difficile</button>
-      </div>
-      <p style="font-size:11px;color:var(--muted);margin:9px 2px 0;line-height:1.6" id="diffHint"></p>
     </div>
 
     <!-- PRESTAZIONI E DATI -->
@@ -1338,6 +1489,67 @@ html.perf .sp-inner{animation:none}
     <p style="font-size:10px;color:var(--dim);text-align:center;margin-top:16px;line-height:1.7">
       Immagini e dati storici da Wikipedia · Nessun backend, nessun tracciamento
     </p>
+  </div>
+</div>
+
+<!-- ======================= LOBBY PRE-PARTITA ======================= -->
+<div id="preGameLobby" role="dialog" aria-modal="true" aria-labelledby="lobbyTitle">
+  <div class="lobby-sheet">
+    <div class="lobby-grab" aria-hidden="true"></div>
+    <div class="lobby-head">
+      <button class="lobby-close" id="btnLobbyClose" aria-label="Chiudi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <h2 id="lobbyTitle">Nuova partita</h2>
+      <p>Scegli come giocare e su quali argomenti metterti alla prova.</p>
+    </div>
+
+    <div class="lobby-body">
+      <div class="lobby-sec">
+        <div class="lobby-label">Modalità</div>
+        <div class="lobby-tabs" id="lobbyMode" role="group" aria-label="Modalità di gioco">
+          <button class="lobby-tab" data-mode="swipe" aria-pressed="true">
+            <span class="tab-ico">⚡</span><b>Classica</b>
+            <span>Prima o dopo l'evento di riferimento.</span>
+          </button>
+          <button class="lobby-tab" data-mode="reorder" aria-pressed="false">
+            <span class="tab-ico">🧩</span><b>Chrono-Reorder</b>
+            <span>Ordina cinque eventi sull'asse temporale.</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="lobby-sec">
+        <div class="lobby-label">Difficoltà</div>
+        <div class="lobby-tabs" id="lobbyRun" role="group" aria-label="Difficoltà">
+          <button class="lobby-tab" data-run="classica" aria-pressed="true">
+            <span class="tab-ico">🛡</span><b>Normale</b>
+            <span>Uno Scudo Temporale assorbe il primo errore.</span>
+          </button>
+          <button class="lobby-tab danger" data-run="intrepida" aria-pressed="false">
+            <span class="tab-ico">💀</span><b>Morte Intrepida</b>
+            <span>Un solo errore e finisce. Punteggio ×1,5.</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="lobby-sec">
+        <div class="lobby-label">
+          <span>Argomenti</span>
+          <span class="lobby-quick">
+            <button type="button" id="btnCatAll">Tutti</button>
+            <button type="button" id="btnCatNone">Nessuno</button>
+          </span>
+        </div>
+        <div class="cat-grid" id="lobbyCats"></div>
+        <div id="lobbyCount"></div>
+      </div>
+    </div>
+
+    <div class="lobby-foot">
+      <p id="lobbySummary"></p>
+      <button id="btnStartRun">Avvia partita</button>
+    </div>
   </div>
 </div>
 
@@ -1578,7 +1790,402 @@ const EVENTS = [
   { id:"minecraft", title:"Minecraft esce in versione completa", year:2011, date_full:"18 Novembre 2011", wiki_slug:"Minecraft", category:"Videogiochi" },
   { id:"pokemon-go", title:"Pokémon GO conquista il mondo", year:2016, date_full:"6 Luglio 2016", wiki_slug:"Pokémon_GO", category:"Videogiochi" },
   { id:"nintendo-switch", title:"Arriva Nintendo Switch", year:2017, date_full:"3 Marzo 2017", wiki_slug:"Nintendo_Switch", category:"Videogiochi" },
-  { id:"fortnite-br", title:"Fortnite lancia Battle Royale", year:2017, date_full:"26 Settembre 2017", wiki_slug:"Fortnite", category:"Videogiochi" }
+  { id:"fortnite-br", title:"Fortnite lancia Battle Royale", year:2017, date_full:"26 Settembre 2017", wiki_slug:"Fortnite", category:"Videogiochi" },
+  { id:"art_001", title:"Grande Piramide di Cheope", year:-2560, date_full:"2560 a.C.", wiki_slug:"Piramide_di_Cheope", category:"Arte", desc:"Completata a Giza la più grande piramide egizia, unica meraviglia antica ancora in piedi.", approx:true },
+  { id:"art_002", title:"Busto di Nefertiti", year:-1345, date_full:"1345 a.C.", wiki_slug:"Busto_di_Nefertiti", category:"Arte", desc:"Lo scultore Thutmose realizza il ritratto in calcare della regina egizia.", approx:true },
+  { id:"art_003", title:"Completamento del Partenone", year:-432, date_full:"432 a.C.", wiki_slug:"Partenone", category:"Arte", desc:"Finiscono i lavori del tempio di Atena sull'Acropoli di Atene." },
+  { id:"art_004", title:"Venere di Milo", year:-100, date_full:"100 a.C.", wiki_slug:"Venere_di_Milo", category:"Arte", desc:"Scolpita nell'isola di Milo la statua ellenistica poi simbolo del Louvre.", approx:true },
+  { id:"art_005", title:"Dedicazione dell'Ara Pacis", year:-9, date_full:"30 Gennaio 9 a.C.", wiki_slug:"Ara_Pacis", category:"Arte", desc:"Augusto consacra a Roma l'altare che celebra la pace dell'impero." },
+  { id:"art_006", title:"Inaugurazione del Colosseo", year:80, date_full:"80", wiki_slug:"Colosseo", category:"Arte", desc:"Termina la costruzione dell'Anfiteatro Flavio a Roma sotto l'imperatore Tito." },
+  { id:"art_007", title:"Pantheon di Adriano", year:126, date_full:"126", wiki_slug:"Pantheon_(Roma)", category:"Arte", desc:"Ricostruito a Roma il tempio con la più grande cupola in calcestruzzo antica.", approx:true },
+  { id:"art_008", title:"Consacrazione di Santa Sofia", year:537, date_full:"27 Dicembre 537", wiki_slug:"Basilica_di_Santa_Sofia", category:"Arte", desc:"Giustiniano inaugura a Costantinopoli la basilica dalla cupola apparentemente sospesa." },
+  { id:"art_009", title:"Mosaici di San Vitale a Ravenna", year:547, date_full:"547", wiki_slug:"Basilica_di_San_Vitale", category:"Arte", desc:"Completati i mosaici bizantini con i ritratti di Giustiniano e Teodora." },
+  { id:"art_010", title:"Moschea di Córdoba", year:786, date_full:"786", wiki_slug:"Moschea_di_Cordova", category:"Arte", desc:"Abd al-Rahman I avvia la Mezquita dalla celebre selva di archi bicromi." },
+  { id:"art_011", title:"Inizio della Torre di Pisa", year:1173, date_full:"9 Agosto 1173", wiki_slug:"Torre_di_Pisa", category:"Arte", desc:"Posata la prima pietra del campanile che inizierà subito a inclinarsi." },
+  { id:"art_012", title:"Inizio di Notre-Dame de Paris", year:1163, date_full:"1163", wiki_slug:"Cattedrale_di_Notre-Dame", category:"Arte", desc:"Prende avvio il cantiere gotico sull'Île de la Cité, lungo quasi due secoli." },
+  { id:"art_013", title:"Giotto affresca gli Scrovegni", year:1305, date_full:"1305", wiki_slug:"Cappella_degli_Scrovegni", category:"Arte", desc:"A Padova Giotto completa il ciclo che rifonda la pittura occidentale." },
+  { id:"art_014", title:"Cupola del Brunelleschi", year:1436, date_full:"25 Marzo 1436", wiki_slug:"Cupola_del_Brunelleschi", category:"Arte", desc:"Consacrata Santa Maria del Fiore: la cupola più grande mai costruita senza centine." },
+  { id:"art_015", title:"David bronzeo di Donatello", year:1440, date_full:"1440", wiki_slug:"David_(Donatello)", category:"Arte", desc:"Primo nudo a tutto tondo dall'antichità, fuso per i Medici a Firenze.", approx:true },
+  { id:"art_016", title:"Nascita di Venere di Botticelli", year:1485, date_full:"1485", wiki_slug:"Nascita_di_Venere", category:"Arte", desc:"La dea emerge dal mare in uno dei dipinti simbolo del Rinascimento fiorentino.", approx:true },
+  { id:"art_017", title:"Ultima Cena di Leonardo", year:1498, date_full:"1498", wiki_slug:"Ultima_cena_(Leonardo)", category:"Arte", desc:"Terminato a Milano l'affresco murale in Santa Maria delle Grazie." },
+  { id:"art_018", title:"Pietà di Michelangelo", year:1499, date_full:"1499", wiki_slug:"Pietà_(Michelangelo)", category:"Arte", desc:"Il ventiquattrenne Michelangelo firma il gruppo marmoreo per San Pietro." },
+  { id:"art_019", title:"Leonardo inizia la Gioconda", year:1503, date_full:"1503", wiki_slug:"Leonardo_da_Vinci", category:"Arte", desc:"A Firenze prende avvio il ritratto più celebre della storia dell'arte.", approx:true },
+  { id:"art_020", title:"David di Michelangelo", year:1504, date_full:"8 Settembre 1504", wiki_slug:"David_(Michelangelo)", category:"Arte", desc:"Il gigante di marmo viene collocato davanti a Palazzo Vecchio a Firenze." },
+  { id:"art_021", title:"Scuola di Atene di Raffaello", year:1511, date_full:"1511", wiki_slug:"Scuola_di_Atene", category:"Arte", desc:"Raffaello riunisce i filosofi antichi negli appartamenti vaticani di Giulio II." },
+  { id:"art_022", title:"Volta della Cappella Sistina", year:1512, date_full:"31 Ottobre 1512", wiki_slug:"Cappella_Sistina", category:"Arte", desc:"Michelangelo svela quattro anni di lavoro sopra la cappella papale." },
+  { id:"art_023", title:"Giudizio Universale", year:1541, date_full:"1541", wiki_slug:"Giudizio_universale_(Michelangelo)", category:"Arte", desc:"Michelangelo completa la parete d'altare della Sistina, tra scandalo e stupore." },
+  { id:"art_024", title:"Vocazione di San Matteo", year:1600, date_full:"1600", wiki_slug:"Vocazione_di_san_Matteo", category:"Arte", desc:"Caravaggio porta in San Luigi dei Francesi la luce che scolpisce i corpi." },
+  { id:"art_025", title:"Ronda di notte di Rembrandt", year:1642, date_full:"1642", wiki_slug:"Ronda_di_notte", category:"Arte", desc:"Il ritratto di gruppo della milizia di Amsterdam rompe ogni convenzione." },
+  { id:"art_026", title:"Estasi di Santa Teresa", year:1652, date_full:"1652", wiki_slug:"Estasi_di_santa_Teresa_d'Avila", category:"Arte", desc:"Bernini fonde marmo, luce e teatro nella cappella Cornaro a Roma." },
+  { id:"art_027", title:"Ragazza con l'orecchino di perla", year:1665, date_full:"1665", wiki_slug:"Ragazza_con_l'orecchino_di_perla", category:"Arte", desc:"Vermeer dipinge il 'tronie' che diventerà la Monna Lisa del Nord.", approx:true },
+  { id:"art_028", title:"Colonnato di San Pietro", year:1667, date_full:"1667", wiki_slug:"Colonnato_di_San_Pietro", category:"Arte", desc:"Bernini completa l'abbraccio ellittico di 284 colonne davanti alla basilica." },
+  { id:"art_029", title:"Galleria degli Specchi a Versailles", year:1684, date_full:"1684", wiki_slug:"Reggia_di_Versailles", category:"Arte", desc:"Finita la sala dei 357 specchi che celebra la gloria di Luigi XIV." },
+  { id:"art_030", title:"Amore e Psiche di Canova", year:1793, date_full:"1793", wiki_slug:"Amore_e_Psiche_(Canova)", category:"Arte", desc:"Canova ferma nel marmo l'istante prima del bacio, manifesto del Neoclassicismo." },
+  { id:"art_031", title:"La grande onda di Hokusai", year:1831, date_full:"1831", wiki_slug:"La_grande_onda_di_Kanagawa", category:"Arte", desc:"La xilografia giapponese che influenzerà impressionisti e grafica moderna.", approx:true },
+  { id:"art_032", title:"Impressione, levar del sole", year:1872, date_full:"1872", wiki_slug:"Impressione,_levar_del_sole", category:"Arte", desc:"Il quadro di Monet da cui i critici coniano, per scherno, il nome Impressionismo." },
+  { id:"art_033", title:"Inizio della Sagrada Família", year:1882, date_full:"19 Marzo 1882", wiki_slug:"Sagrada_Família", category:"Arte", desc:"Posata la prima pietra a Barcellona del cantiere ancora oggi aperto." },
+  { id:"art_034", title:"Inaugurazione della Statua della Libertà", year:1886, date_full:"28 Ottobre 1886", wiki_slug:"Statua_della_Libertà", category:"Arte", desc:"Il dono francese agli Stati Uniti viene svelato nel porto di New York." },
+  { id:"art_035", title:"Notte stellata di Van Gogh", year:1889, date_full:"1889", wiki_slug:"Notte_stellata", category:"Arte", desc:"Dipinta dalla finestra del manicomio di Saint-Rémy, con il cielo in turbine." },
+  { id:"art_036", title:"L'urlo di Munch", year:1893, date_full:"1893", wiki_slug:"L'urlo", category:"Arte", desc:"Il grido silenzioso che diventa l'icona dell'angoscia moderna." },
+  { id:"art_037", title:"Il bacio di Klimt", year:1908, date_full:"1908", wiki_slug:"Il_bacio_(Klimt)", category:"Arte", desc:"Oro e mosaico bizantino per l'abbraccio simbolo della Secessione viennese." },
+  { id:"art_038", title:"Fontana di Duchamp", year:1917, date_full:"1917", wiki_slug:"Fontana_(Duchamp)", category:"Arte", desc:"Un orinatoio firmato R. Mutt mette in crisi l'idea stessa di opera d'arte." },
+  { id:"art_039", title:"Fondazione del Bauhaus", year:1919, date_full:"12 Aprile 1919", wiki_slug:"Bauhaus", category:"Arte", desc:"Walter Gropius apre a Weimar la scuola che ridisegna il design moderno." },
+  { id:"art_040", title:"Empire State Building", year:1931, date_full:"1 Maggio 1931", wiki_slug:"Empire_State_Building", category:"Arte", desc:"Aperto a New York l'edificio più alto del mondo per quarant'anni." },
+  { id:"art_041", title:"Persistenza della memoria", year:1931, date_full:"1931", wiki_slug:"La_persistenza_della_memoria", category:"Arte", desc:"Dalí appende gli orologi molli al paesaggio catalano del surrealismo." },
+  { id:"art_042", title:"Guernica di Picasso", year:1937, date_full:"1937", wiki_slug:"Guernica_(Picasso)", category:"Arte", desc:"Il bombardamento della città basca diventa il più celebre grido antimilitarista." },
+  { id:"art_043", title:"Casa sulla cascata", year:1939, date_full:"1939", wiki_slug:"Fallingwater", category:"Arte", desc:"Frank Lloyd Wright completa in Pennsylvania la villa sospesa sul torrente." },
+  { id:"art_044", title:"Guggenheim di New York", year:1959, date_full:"21 Ottobre 1959", wiki_slug:"Solomon_R._Guggenheim_Museum", category:"Arte", desc:"Apre la spirale bianca di Wright sulla Quinta Strada, museo che è scultura." },
+  { id:"art_045", title:"Opera House di Sydney", year:1973, date_full:"20 Ottobre 1973", wiki_slug:"Sydney_Opera_House", category:"Arte", desc:"Le vele in ceramica di Jørn Utzon vengono inaugurate dalla regina Elisabetta." },
+  { id:"art_046", title:"Centre Pompidou", year:1977, date_full:"31 Gennaio 1977", wiki_slug:"Centre_Georges_Pompidou", category:"Arte", desc:"Parigi apre il museo con le tubature a vista, rovesciato come un guanto." },
+  { id:"art_047", title:"Piramide del Louvre", year:1989, date_full:"29 Marzo 1989", wiki_slug:"Piramide_del_Louvre", category:"Arte", desc:"Ieoh Ming Pei innesta vetro e acciaio nel cortile del palazzo reale." },
+  { id:"art_048", title:"Guggenheim di Bilbao", year:1997, date_full:"18 Ottobre 1997", wiki_slug:"Museo_Guggenheim_Bilbao", category:"Arte", desc:"Le curve in titanio di Gehry rilanciano un'intera città industriale." },
+  { id:"art_049", title:"Burj Khalifa", year:2010, date_full:"4 Gennaio 2010", wiki_slug:"Burj_Khalifa", category:"Arte", desc:"Dubai inaugura l'edificio più alto del mondo, oltre 828 metri." },
+  { id:"art_050", title:"Banksy distrugge la sua opera", year:2018, date_full:"5 Ottobre 2018", wiki_slug:"Banksy", category:"Arte", desc:"Girl with Balloon si autodistrugge in asta da Sotheby's subito dopo l'aggiudicazione." },
+  { id:"lett_001", title:"Epopea di Gilgamesh", year:-2100, date_full:"2100 a.C.", wiki_slug:"Epopea_di_Gilgameš", category:"Letteratura", desc:"Messo per iscritto in Mesopotamia il più antico poema epico conosciuto.", approx:true },
+  { id:"lett_002", title:"Composizione dell'Iliade", year:-750, date_full:"750 a.C.", wiki_slug:"Iliade", category:"Letteratura", desc:"Omero fissa il canto dell'ira di Achille sotto le mura di Troia.", approx:true },
+  { id:"lett_003", title:"Composizione dell'Odissea", year:-720, date_full:"720 a.C.", wiki_slug:"Odissea", category:"Letteratura", desc:"Il ritorno di Ulisse a Itaca diventa il modello di ogni viaggio narrato.", approx:true },
+  { id:"lett_004", title:"Le liriche di Saffo", year:-600, date_full:"600 a.C.", wiki_slug:"Saffo", category:"Letteratura", desc:"Nell'isola di Lesbo Saffo dà voce alla poesia amorosa in prima persona.", approx:true },
+  { id:"lett_005", title:"Eschilo mette in scena l'Orestea", year:-458, date_full:"458 a.C.", wiki_slug:"Orestea", category:"Letteratura", desc:"L'unica trilogia tragica greca giunta intera vince le Dionisie ad Atene." },
+  { id:"lett_006", title:"Erodoto pubblica le Storie", year:-440, date_full:"440 a.C.", wiki_slug:"Storie_(Erodoto)", category:"Letteratura", desc:"Nasce la storiografia: il racconto delle guerre persiane come indagine.", approx:true },
+  { id:"lett_007", title:"Sofocle, Edipo re", year:-429, date_full:"429 a.C.", wiki_slug:"Edipo_re", category:"Letteratura", desc:"La tragedia dell'uomo che scopre di essere ciò che cercava.", approx:true },
+  { id:"lett_008", title:"Platone scrive La Repubblica", year:-375, date_full:"375 a.C.", wiki_slug:"La_Repubblica_(Platone)", category:"Letteratura", desc:"Il dialogo sulla giustizia che contiene il mito della caverna.", approx:true },
+  { id:"lett_009", title:"Virgilio lascia incompiuta l'Eneide", year:-19, date_full:"19 a.C.", wiki_slug:"Eneide", category:"Letteratura", desc:"Alla morte del poeta il poema di Enea resta senza revisione finale." },
+  { id:"lett_010", title:"Ovidio completa le Metamorfosi", year:8, date_full:"8", wiki_slug:"Metamorfosi_(Ovidio)", category:"Letteratura", desc:"Duecentocinquanta miti incatenati dal tema della trasformazione." },
+  { id:"lett_011", title:"Marco Aurelio scrive i Colloqui", year:180, date_full:"180", wiki_slug:"Colloqui_con_se_stesso", category:"Letteratura", desc:"L'imperatore filosofo annota in greco i suoi appunti stoici privati.", approx:true },
+  { id:"lett_012", title:"Le mille e una notte", year:900, date_full:"900", wiki_slug:"Le_mille_e_una_notte", category:"Letteratura", desc:"Prende forma in arabo la raccolta di racconti incorniciati da Shahrazad.", approx:true },
+  { id:"lett_013", title:"Il racconto di Genji", year:1008, date_full:"1008", wiki_slug:"Genji_monogatari", category:"Letteratura", desc:"Murasaki Shikibu scrive alla corte giapponese quello che molti considerano il primo romanzo.", approx:true },
+  { id:"lett_014", title:"Chanson de Roland", year:1100, date_full:"1100", wiki_slug:"Chanson_de_Roland", category:"Letteratura", desc:"Il più antico poema epico francese celebra la retroguardia di Carlo Magno.", approx:true },
+  { id:"lett_015", title:"Dante completa la Divina Commedia", year:1321, date_full:"1321", wiki_slug:"Divina_Commedia", category:"Letteratura", desc:"Poco prima di morire a Ravenna Dante termina il Paradiso." },
+  { id:"lett_016", title:"Boccaccio termina il Decameron", year:1353, date_full:"1353", wiki_slug:"Decameron", category:"Letteratura", desc:"Cento novelle raccontate da dieci giovani in fuga dalla peste." },
+  { id:"lett_017", title:"I racconti di Canterbury", year:1400, date_full:"1400", wiki_slug:"I_racconti_di_Canterbury", category:"Letteratura", desc:"Chaucer lascia incompiuta la raccolta che fonda la letteratura inglese." },
+  { id:"lett_018", title:"Ariosto pubblica l'Orlando Furioso", year:1516, date_full:"1516", wiki_slug:"Orlando_furioso", category:"Letteratura", desc:"Il poema cavalleresco con il viaggio sulla Luna a recuperare il senno." },
+  { id:"lett_019", title:"Thomas More immagina Utopia", year:1516, date_full:"1516", wiki_slug:"Utopia_(More)", category:"Letteratura", desc:"Nasce la parola e il genere: l'isola dove tutto è ordinato e nulla esiste." },
+  { id:"lett_020", title:"Machiavelli, Il Principe", year:1532, date_full:"1532", wiki_slug:"Il_Principe", category:"Letteratura", desc:"Pubblicato postumo il trattato che separa la politica dalla morale." },
+  { id:"lett_021", title:"Shakespeare scrive Amleto", year:1601, date_full:"1601", wiki_slug:"Amleto", category:"Letteratura", desc:"Il principe di Danimarca porta il dubbio interiore sulla scena teatrale.", approx:true },
+  { id:"lett_022", title:"Cervantes, Don Chisciotte", year:1605, date_full:"1605", wiki_slug:"Don_Chisciotte_della_Mancia", category:"Letteratura", desc:"Esce la prima parte del romanzo che ride dei libri e li ama insieme." },
+  { id:"lett_023", title:"Primo Folio di Shakespeare", year:1623, date_full:"1623", wiki_slug:"First_Folio", category:"Letteratura", desc:"Gli amici raccolgono trentasei commedie e tragedie, salvandole dall'oblio." },
+  { id:"lett_024", title:"Milton, Paradiso perduto", year:1667, date_full:"1667", wiki_slug:"Paradiso_perduto", category:"Letteratura", desc:"Cieco e caduto in disgrazia, Milton detta l'epica della ribellione di Satana." },
+  { id:"lett_025", title:"Defoe, Robinson Crusoe", year:1719, date_full:"25 Aprile 1719", wiki_slug:"Robinson_Crusoe", category:"Letteratura", desc:"Il naufrago che ricostruisce una civiltà da solo inaugura il romanzo moderno." },
+  { id:"lett_026", title:"Swift, I viaggi di Gulliver", year:1726, date_full:"1726", wiki_slug:"I_viaggi_di_Gulliver", category:"Letteratura", desc:"Satira feroce travestita da resoconto di viaggi tra giganti e cavalli parlanti." },
+  { id:"lett_027", title:"Goethe, I dolori del giovane Werther", year:1774, date_full:"1774", wiki_slug:"I_dolori_del_giovane_Werther", category:"Letteratura", desc:"Il romanzo epistolare che scatena in Europa la moda del mal di vivere." },
+  { id:"lett_028", title:"Jane Austen, Orgoglio e pregiudizio", year:1813, date_full:"28 Gennaio 1813", wiki_slug:"Orgoglio_e_pregiudizio", category:"Letteratura", desc:"Elizabeth Bennet e Darcy definiscono per sempre la commedia sentimentale." },
+  { id:"lett_029", title:"Mary Shelley, Frankenstein", year:1818, date_full:"1 Gennaio 1818", wiki_slug:"Frankenstein", category:"Letteratura", desc:"A vent'anni inventa la fantascienza con la creatura che chiede conto al creatore." },
+  { id:"lett_030", title:"Manzoni, I promessi sposi", year:1827, date_full:"1827", wiki_slug:"I_promessi_sposi", category:"Letteratura", desc:"Esce la prima edizione del romanzo che darà una lingua comune all'Italia." },
+  { id:"lett_031", title:"Poe pubblica Il corvo", year:1845, date_full:"29 Gennaio 1845", wiki_slug:"Il_corvo_(Poe)", category:"Letteratura", desc:"Il poema del rimpianto e del 'mai più' rende Poe celebre in una notte." },
+  { id:"lett_032", title:"Melville, Moby Dick", year:1851, date_full:"1851", wiki_slug:"Moby_Dick", category:"Letteratura", desc:"La caccia alla balena bianca, ignorata in vita e canonica un secolo dopo." },
+  { id:"lett_033", title:"Flaubert, Madame Bovary", year:1856, date_full:"1856", wiki_slug:"Madame_Bovary", category:"Letteratura", desc:"Il romanzo che finisce sotto processo per oltraggio alla morale pubblica." },
+  { id:"lett_034", title:"Carroll, Alice nel Paese delle Meraviglie", year:1865, date_full:"26 Novembre 1865", wiki_slug:"Le_avventure_di_Alice_nel_Paese_delle_Meraviglie", category:"Letteratura", desc:"La bambina che insegue un coniglio bianco cambia la letteratura per l'infanzia." },
+  { id:"lett_035", title:"Dostoevskij, Delitto e castigo", year:1866, date_full:"1866", wiki_slug:"Delitto_e_castigo", category:"Letteratura", desc:"Raskol'nikov uccide per dimostrare una teoria e non regge il proprio processo interiore." },
+  { id:"lett_036", title:"Tolstoj, Guerra e pace", year:1869, date_full:"1869", wiki_slug:"Guerra_e_pace", category:"Letteratura", desc:"Completato il romanzo che intreccia cinque famiglie alla campagna di Napoleone." },
+  { id:"lett_037", title:"Verne, Il giro del mondo in 80 giorni", year:1873, date_full:"1873", wiki_slug:"Il_giro_del_mondo_in_80_giorni", category:"Letteratura", desc:"Phileas Fogg scommette che il pianeta è ormai piccolo abbastanza." },
+  { id:"lett_038", title:"Collodi, Le avventure di Pinocchio", year:1883, date_full:"1883", wiki_slug:"Le_avventure_di_Pinocchio", category:"Letteratura", desc:"Il burattino che vuole diventare bambino esce in volume a Firenze." },
+  { id:"lett_039", title:"Bram Stoker, Dracula", year:1897, date_full:"26 Maggio 1897", wiki_slug:"Dracula", category:"Letteratura", desc:"Il conte dei Carpazi fissa per sempre l'immaginario del vampiro." },
+  { id:"lett_040", title:"Proust, Dalla parte di Swann", year:1913, date_full:"14 Novembre 1913", wiki_slug:"Alla_ricerca_del_tempo_perduto", category:"Letteratura", desc:"Esce a spese dell'autore il primo volume della Ricerca del tempo perduto." },
+  { id:"lett_041", title:"Joyce pubblica Ulisse", year:1922, date_full:"2 Febbraio 1922", wiki_slug:"Ulisse_(Joyce)", category:"Letteratura", desc:"Un solo giorno a Dublino diventa mille pagine e rifonda il romanzo." },
+  { id:"lett_042", title:"Kafka, Il processo", year:1925, date_full:"1925", wiki_slug:"Il_processo", category:"Letteratura", desc:"Pubblicato postumo contro le volontà dell'autore: Josef K. accusato di nulla." },
+  { id:"lett_043", title:"Orwell pubblica 1984", year:1949, date_full:"8 Giugno 1949", wiki_slug:"1984_(romanzo)", category:"Letteratura", desc:"Il Grande Fratello, la neolingua e il bispensiero entrano nel lessico comune." },
+  { id:"lett_044", title:"Salinger, Il giovane Holden", year:1951, date_full:"16 Luglio 1951", wiki_slug:"Il_giovane_Holden", category:"Letteratura", desc:"La voce di Holden Caulfield inventa l'adolescenza letteraria del Novecento." },
+  { id:"lett_045", title:"Tolkien, La Compagnia dell'Anello", year:1954, date_full:"29 Luglio 1954", wiki_slug:"Il_Signore_degli_Anelli", category:"Letteratura", desc:"Esce il primo volume del Signore degli Anelli e nasce il fantasy moderno." },
+  { id:"lett_046", title:"Harper Lee, Il buio oltre la siepe", year:1960, date_full:"11 Luglio 1960", wiki_slug:"Il_buio_oltre_la_siepe", category:"Letteratura", desc:"Il razzismo del Sud americano visto dagli occhi di una bambina." },
+  { id:"lett_047", title:"García Márquez, Cent'anni di solitudine", year:1967, date_full:"1967", wiki_slug:"Cent'anni_di_solitudine", category:"Letteratura", desc:"Macondo e i Buendía portano il realismo magico nel canone mondiale." },
+  { id:"lett_048", title:"Umberto Eco, Il nome della rosa", year:1980, date_full:"1980", wiki_slug:"Il_nome_della_rosa", category:"Letteratura", desc:"Un giallo medievale in abbazia diventa un caso editoriale planetario." },
+  { id:"lett_049", title:"Esce il primo Harry Potter", year:1997, date_full:"26 Giugno 1997", wiki_slug:"Harry_Potter_e_la_pietra_filosofale", category:"Letteratura", desc:"La pietra filosofale arriva in libreria in appena cinquecento copie." },
+  { id:"lett_050", title:"Nobel per la letteratura a Bob Dylan", year:2016, date_full:"13 Ottobre 2016", wiki_slug:"Bob_Dylan", category:"Letteratura", desc:"Per la prima volta il premio va a un autore di canzoni." },
+  { id:"geo_001", title:"Piteas naviga verso il Nord Europa", year:-325, date_full:"325 a.C.", wiki_slug:"Pitea", category:"Geografia", desc:"Il greco di Marsiglia raggiunge le isole britanniche e parla per primo di Thule.", approx:true },
+  { id:"geo_002", title:"Eratostene misura la circonferenza terrestre", year:-240, date_full:"240 a.C.", wiki_slug:"Eratostene", category:"Geografia", desc:"Con due ombre e un pozzo calcola il diametro del pianeta con errore minimo.", approx:true },
+  { id:"geo_003", title:"Apertura della Via della Seta", year:-130, date_full:"130 a.C.", wiki_slug:"Via_della_seta", category:"Geografia", desc:"Le missioni di Zhang Qian collegano stabilmente Cina e Mediterraneo.", approx:true },
+  { id:"geo_004", title:"Strabone completa la Geografia", year:-7, date_full:"7 a.C.", wiki_slug:"Strabone", category:"Geografia", desc:"Diciassette libri descrivono il mondo conosciuto dall'impero romano.", approx:true },
+  { id:"geo_005", title:"Tolomeo pubblica la Geografia", year:150, date_full:"150", wiki_slug:"Claudio_Tolomeo", category:"Geografia", desc:"Coordinate e proiezioni che guideranno i cartografi per quattordici secoli.", approx:true },
+  { id:"geo_006", title:"Leif Erikson approda in Vinland", year:1000, date_full:"1000", wiki_slug:"Leif_Erikson", category:"Geografia", desc:"I norreni toccano il Nord America cinque secoli prima di Colombo.", approx:true },
+  { id:"geo_007", title:"Marco Polo parte per la Cina", year:1271, date_full:"1271", wiki_slug:"Marco_Polo", category:"Geografia", desc:"Da Venezia inizia il viaggio che diventerà Il Milione." },
+  { id:"geo_008", title:"Ibn Battuta inizia i suoi viaggi", year:1325, date_full:"1325", wiki_slug:"Ibn_Battuta", category:"Geografia", desc:"Trent'anni di cammino per centoventimila chilometri, dal Marocco alla Cina." },
+  { id:"geo_009", title:"Prima spedizione di Zheng He", year:1405, date_full:"1405", wiki_slug:"Zheng_He", category:"Geografia", desc:"La flotta del tesoro cinese salpa con navi grandi il quadruplo di quelle europee." },
+  { id:"geo_010", title:"Bartolomeu Dias doppia il Capo", year:1488, date_full:"1488", wiki_slug:"Bartolomeu_Dias", category:"Geografia", desc:"Per la prima volta una nave europea supera la punta meridionale dell'Africa." },
+  { id:"geo_011", title:"Vasco da Gama raggiunge l'India", year:1498, date_full:"20 Maggio 1498", wiki_slug:"Vasco_da_Gama", category:"Geografia", desc:"La rotta per le spezie via mare rompe il monopolio commerciale veneziano." },
+  { id:"geo_012", title:"La mappa di Piri Reis", year:1513, date_full:"1513", wiki_slug:"Piri_Reis", category:"Geografia", desc:"Il cartografo ottomano disegna coste americane con precisione sorprendente." },
+  { id:"geo_013", title:"Balboa avvista l'Oceano Pacifico", year:1513, date_full:"25 Settembre 1513", wiki_slug:"Vasco_Núñez_de_Balboa", category:"Geografia", desc:"Attraversato l'istmo di Panama, vede per primo il mare che chiamerà del Sud." },
+  { id:"geo_014", title:"Magellano salpa per il giro del mondo", year:1519, date_full:"20 Settembre 1519", wiki_slug:"Ferdinando_Magellano", category:"Geografia", desc:"Cinque navi lasciano Siviglia: ne tornerà una sola, tre anni dopo." },
+  { id:"geo_015", title:"Elcano completa la circumnavigazione", year:1522, date_full:"6 Settembre 1522", wiki_slug:"Juan_Sebastián_Elcano", category:"Geografia", desc:"La Victoria rientra in Spagna: il pianeta è dimostrato rotondo e navigabile." },
+  { id:"geo_016", title:"Mercatore pubblica la sua proiezione", year:1569, date_full:"1569", wiki_slug:"Proiezione_di_Mercatore", category:"Geografia", desc:"La carta che deforma le aree ma permette di navigare in linea retta." },
+  { id:"geo_017", title:"Francis Drake circumnaviga il globo", year:1580, date_full:"1580", wiki_slug:"Francis_Drake", category:"Geografia", desc:"Il corsaro inglese rientra a Plymouth carico di tesori spagnoli." },
+  { id:"geo_018", title:"Abel Tasman raggiunge la Tasmania", year:1642, date_full:"24 Novembre 1642", wiki_slug:"Abel_Tasman", category:"Geografia", desc:"L'olandese tocca l'isola che porterà il suo nome e poi la Nuova Zelanda." },
+  { id:"geo_019", title:"James Cook parte per il primo viaggio", year:1768, date_full:"26 Agosto 1768", wiki_slug:"James_Cook", category:"Geografia", desc:"L'Endeavour salpa per osservare il transito di Venere e cercare il continente australe." },
+  { id:"geo_020", title:"Cook approda in Australia", year:1770, date_full:"29 Aprile 1770", wiki_slug:"James_Cook_(esploratore)", category:"Geografia", desc:"Sbarco a Botany Bay: inizia la colonizzazione britannica del continente." },
+  { id:"geo_021", title:"Humboldt esplora il Sud America", year:1799, date_full:"1799", wiki_slug:"Alexander_von_Humboldt", category:"Geografia", desc:"Cinque anni di misure che fondano la geografia fisica moderna." },
+  { id:"geo_022", title:"Spedizione di Lewis e Clark", year:1804, date_full:"14 Maggio 1804", wiki_slug:"Spedizione_di_Lewis_e_Clark", category:"Geografia", desc:"Attraversano il Nord America dal Mississippi al Pacifico e ritorno." },
+  { id:"geo_023", title:"Darwin salpa sul Beagle", year:1831, date_full:"27 Dicembre 1831", wiki_slug:"HMS_Beagle", category:"Geografia", desc:"Cinque anni di navigazione che porteranno alla teoria dell'evoluzione." },
+  { id:"geo_024", title:"Livingstone alle Cascate Vittoria", year:1855, date_full:"16 Novembre 1855", wiki_slug:"David_Livingstone", category:"Geografia", desc:"Il missionario scozzese è il primo europeo a vedere il Mosi-oa-Tunya." },
+  { id:"geo_025", title:"Speke individua le sorgenti del Nilo", year:1858, date_full:"3 Agosto 1858", wiki_slug:"John_Hanning_Speke", category:"Geografia", desc:"Il lago Vittoria viene indicato come origine del fiume più lungo d'Africa." },
+  { id:"geo_026", title:"Inaugurazione del Canale di Suez", year:1869, date_full:"17 Novembre 1869", wiki_slug:"Canale_di_Suez", category:"Geografia", desc:"Centosessanta chilometri che accorciano di settemila miglia la rotta per l'Asia." },
+  { id:"geo_027", title:"Stanley incontra Livingstone", year:1871, date_full:"10 Novembre 1871", wiki_slug:"Henry_Morton_Stanley", category:"Geografia", desc:"Il saluto più celebre dell'esplorazione africana, a Ujiji sul Tanganica." },
+  { id:"geo_028", title:"Nansen si fa imprigionare dai ghiacci", year:1893, date_full:"1893", wiki_slug:"Fridtjof_Nansen", category:"Geografia", desc:"Il Fram viene lasciato derivare volutamente nel pack artico per tre anni." },
+  { id:"geo_029", title:"Amundsen attraversa il Passaggio a Nord-Ovest", year:1906, date_full:"1906", wiki_slug:"Roald_Amundsen", category:"Geografia", desc:"Tre anni di navigazione risolvono un enigma cercato per quattro secoli." },
+  { id:"geo_030", title:"Bingham riporta alla luce Machu Picchu", year:1911, date_full:"24 Luglio 1911", wiki_slug:"Machu_Picchu", category:"Geografia", desc:"La cittadella inca sulle Ande torna all'attenzione del mondo." },
+  { id:"geo_031", title:"Amundsen raggiunge il Polo Sud", year:1911, date_full:"14 Dicembre 1911", wiki_slug:"Roald_Amundsen_(esploratore)", category:"Geografia", desc:"Batte Scott di cinque settimane piantando la bandiera norvegese." },
+  { id:"geo_032", title:"Scott muore al ritorno dal Polo", year:1912, date_full:"29 Marzo 1912", wiki_slug:"Robert_Falcon_Scott", category:"Geografia", desc:"La spedizione britannica perisce a pochi chilometri dal deposito di viveri." },
+  { id:"geo_033", title:"L'Endurance resta intrappolata", year:1915, date_full:"1915", wiki_slug:"Endurance_(nave)", category:"Geografia", desc:"Shackleton perde la nave ma riporta a casa tutti i ventisette uomini." },
+  { id:"geo_034", title:"Scoperta della tomba di Tutankhamon", year:1922, date_full:"4 Novembre 1922", wiki_slug:"Tomba_di_Tutankhamon", category:"Geografia", desc:"Howard Carter apre la sepoltura quasi intatta nella Valle dei Re." },
+  { id:"geo_035", title:"Amundsen sorvola il Polo Nord col Norge", year:1926, date_full:"12 Maggio 1926", wiki_slug:"Norge_(dirigibile)", category:"Geografia", desc:"Il dirigibile progettato da Nobile attraversa l'Artico da costa a costa." },
+  { id:"geo_036", title:"Lindbergh attraversa l'Atlantico da solo", year:1927, date_full:"20 Maggio 1927", wiki_slug:"Charles_Lindbergh", category:"Geografia", desc:"Trentatré ore senza scalo da New York a Parigi sullo Spirit of St. Louis." },
+  { id:"geo_037", title:"Piccard sale nella stratosfera", year:1931, date_full:"27 Maggio 1931", wiki_slug:"Auguste_Piccard", category:"Geografia", desc:"Primo uomo a superare i quindicimila metri in pallone pressurizzato." },
+  { id:"geo_038", title:"Cousteau mette a punto l'autorespiratore", year:1943, date_full:"1943", wiki_slug:"Jacques-Yves_Cousteau", category:"Geografia", desc:"L'Aqualung apre il mare profondo a chiunque sappia nuotare." },
+  { id:"geo_039", title:"Hillary e Tenzing sull'Everest", year:1953, date_full:"29 Maggio 1953", wiki_slug:"Edmund_Hillary", category:"Geografia", desc:"Alle 11:30 i due raggiungono per primi gli 8848 metri della vetta." },
+  { id:"geo_040", title:"Il Trieste tocca la Fossa delle Marianne", year:1960, date_full:"23 Gennaio 1960", wiki_slug:"Batiscafo_Trieste", category:"Geografia", desc:"Piccard e Walsh scendono a quasi undicimila metri, il punto più profondo." },
+  { id:"geo_041", title:"La Terra fotografata intera", year:1972, date_full:"7 Dicembre 1972", wiki_slug:"Biglia_Blu", category:"Geografia", desc:"L'equipaggio di Apollo 17 scatta la Biglia Blu, icona dell'ambientalismo." },
+  { id:"geo_042", title:"Scoperto l'Esercito di Terracotta", year:1974, date_full:"29 Marzo 1974", wiki_slug:"Esercito_di_terracotta", category:"Geografia", desc:"Dei contadini cinesi scavando un pozzo trovano ottomila statue sepolte." },
+  { id:"geo_043", title:"Junko Tabei, prima donna sull'Everest", year:1975, date_full:"16 Maggio 1975", wiki_slug:"Junko_Tabei", category:"Geografia", desc:"L'alpinista giapponese arriva in cima dodici giorni dopo essere stata travolta da una valanga." },
+  { id:"geo_044", title:"Everest senza ossigeno supplementare", year:1978, date_full:"8 Maggio 1978", wiki_slug:"Reinhold_Messner", category:"Geografia", desc:"Messner e Habeler dimostrano che si può respirare l'aria della vetta." },
+  { id:"geo_045", title:"Messner sale l'Everest in solitaria", year:1980, date_full:"20 Agosto 1980", wiki_slug:"Reinhold_Messner_(alpinista)", category:"Geografia", desc:"Da solo, senza ossigeno e in stile alpino: un limite che sembrava impossibile." },
+  { id:"geo_046", title:"Trovato il relitto del Titanic", year:1985, date_full:"1 Settembre 1985", wiki_slug:"Relitto_del_Titanic", category:"Geografia", desc:"Ballard localizza la nave a 3800 metri nell'Atlantico del Nord." },
+  { id:"geo_047", title:"Ötzi emerge dal ghiacciaio", year:1991, date_full:"19 Settembre 1991", wiki_slug:"Mummia_del_Similaun", category:"Geografia", desc:"La mummia di 5300 anni affiora sulle Alpi Venoste per il ritiro dei ghiacci." },
+  { id:"geo_048", title:"Scoperta della Grotta Chauvet", year:1994, date_full:"18 Dicembre 1994", wiki_slug:"Grotta_Chauvet", category:"Geografia", desc:"In Francia riaffiorano pitture rupestri di trentaseimila anni fa." },
+  { id:"geo_049", title:"Ousland attraversa l'Antartide da solo", year:1997, date_full:"1997", wiki_slug:"Børge_Ousland", category:"Geografia", desc:"Prima traversata in solitaria e senza assistenza del continente ghiacciato." },
+  { id:"geo_050", title:"Il GPS civile diventa preciso", year:2000, date_full:"2 Maggio 2000", wiki_slug:"Sistema_di_posizionamento_globale", category:"Geografia", desc:"Disattivata la degradazione volontaria del segnale: navigatori per tutti." },
+  { id:"spet_001", title:"Prima trasmissione TV regolare della BBC", year:1936, date_full:"2 Novembre 1936", wiki_slug:"BBC_Television_Service", category:"Spettacolo", desc:"Da Alexandra Palace parte il primo servizio televisivo al mondo." },
+  { id:"spet_002", title:"Va in onda il primo spot televisivo", year:1941, date_full:"1 Luglio 1941", wiki_slug:"Pubblicità_televisiva", category:"Spettacolo", desc:"Dieci secondi per un orologio Bulova, pagati nove dollari." },
+  { id:"spet_003", title:"Prima edizione di Miss Italia", year:1946, date_full:"1946", wiki_slug:"Miss_Italia", category:"Spettacolo", desc:"Il concorso di bellezza che lancerà Loren, Lollobrigida e Mangano." },
+  { id:"spet_004", title:"Debutta I Love Lucy", year:1951, date_full:"15 Ottobre 1951", wiki_slug:"I_Love_Lucy", category:"Spettacolo", desc:"La sitcom di Lucille Ball inventa la risata registrata e il multicamera." },
+  { id:"spet_005", title:"Primo Festival di Sanremo", year:1951, date_full:"29 Gennaio 1951", wiki_slug:"Festival_di_Sanremo", category:"Spettacolo", desc:"Tre cantanti e venti canzoni dal Casinò: nasce il rito musicale italiano." },
+  { id:"spet_006", title:"Lascia o raddoppia? in televisione", year:1955, date_full:"26 Novembre 1955", wiki_slug:"Lascia_o_raddoppia?", category:"Spettacolo", desc:"Il quiz di Mike Bongiorno svuota le strade italiane ogni giovedì sera." },
+  { id:"spet_007", title:"Prima edizione dell'Eurovision", year:1956, date_full:"24 Maggio 1956", wiki_slug:"Eurovision_Song_Contest", category:"Spettacolo", desc:"Sette paesi a Lugano per il concorso canoro più longevo d'Europa." },
+  { id:"spet_008", title:"Va in onda il primo Carosello", year:1957, date_full:"3 Febbraio 1957", wiki_slug:"Carosello", category:"Spettacolo", desc:"Dieci minuti di pubblicità travestita da spettacolo, per vent'anni." },
+  { id:"spet_009", title:"Il mattoncino Lego viene brevettato", year:1958, date_full:"28 Gennaio 1958", wiki_slug:"Lego", category:"Spettacolo", desc:"L'incastro a tubi interni rende i pezzi compatibili per sempre." },
+  { id:"spet_010", title:"Barbie arriva nei negozi", year:1959, date_full:"9 Marzo 1959", wiki_slug:"Barbie", category:"Spettacolo", desc:"Presentata alla Fiera del giocattolo di New York, vende trecentomila pezzi il primo anno." },
+  { id:"spet_011", title:"Doctor Who va in onda", year:1963, date_full:"23 Novembre 1963", wiki_slug:"Doctor_Who", category:"Spettacolo", desc:"La serie di fantascienza più longeva debutta il giorno dopo l'omicidio Kennedy." },
+  { id:"spet_012", title:"Star Trek debutta in televisione", year:1966, date_full:"8 Settembre 1966", wiki_slug:"Star_Trek", category:"Spettacolo", desc:"L'equipaggio dell'Enterprise inaugura una delle saghe più influenti di sempre." },
+  { id:"spet_013", title:"Prima puntata di Sesame Street", year:1969, date_full:"10 Novembre 1969", wiki_slug:"Sesame_Street", category:"Spettacolo", desc:"La TV educativa per bambini nasce con Big Bird e il Cookie Monster." },
+  { id:"spet_014", title:"Monty Python's Flying Circus", year:1969, date_full:"5 Ottobre 1969", wiki_slug:"Monty_Python", category:"Spettacolo", desc:"Il gruppo inglese inventa una comicità surreale che influenzerà mezzo secolo." },
+  { id:"spet_015", title:"Prima Comic-Con di San Diego", year:1970, date_full:"21 Marzo 1970", wiki_slug:"San_Diego_Comic-Con", category:"Spettacolo", desc:"Trecento appassionati in un seminterrato: oggi è la fiera pop più grande." },
+  { id:"spet_016", title:"Debutta Happy Days", year:1974, date_full:"15 Gennaio 1974", wiki_slug:"Happy_Days", category:"Spettacolo", desc:"Fonzie e il diner Arnold's trasformano gli anni Cinquanta in mito televisivo." },
+  { id:"spet_017", title:"Va in onda il Muppet Show", year:1976, date_full:"5 Settembre 1976", wiki_slug:"Il_Muppet_Show", category:"Spettacolo", desc:"I pupazzi di Jim Henson conquistano il prime time di mezzo mondo." },
+  { id:"spet_018", title:"Sony lancia il Walkman", year:1979, date_full:"1 Luglio 1979", wiki_slug:"Walkman", category:"Spettacolo", desc:"La musica esce di casa: il cassettone tascabile cambia l'ascolto." },
+  { id:"spet_019", title:"Chi ha sparato a J.R.?", year:1980, date_full:"21 Novembre 1980", wiki_slug:"Dallas_(serie_televisiva_1978)", category:"Spettacolo", desc:"Trecentocinquanta milioni di spettatori per il finale di stagione di Dallas." },
+  { id:"spet_020", title:"Il cubo di Rubik conquista il mondo", year:1980, date_full:"1980", wiki_slug:"Cubo_di_Rubik", category:"Spettacolo", desc:"Il rompicapo ungherese arriva nei negozi occidentali e diventa mania globale." },
+  { id:"spet_021", title:"Il finale di M*A*S*H", year:1983, date_full:"28 Febbraio 1983", wiki_slug:"M*A*S*H_(serie_televisiva)", category:"Spettacolo", desc:"Centoquindici milioni di americani: record di ascolti rimasto per ventisette anni." },
+  { id:"spet_022", title:"Dragon Ball debutta in animazione", year:1986, date_full:"26 Febbraio 1986", wiki_slug:"Dragon_Ball_(serie_animata)", category:"Spettacolo", desc:"L'anime tratto da Toriyama inizia la sua corsa planetaria." },
+  { id:"spet_023", title:"I Simpson diventano una serie", year:1989, date_full:"17 Dicembre 1989", wiki_slug:"I_Simpson", category:"Spettacolo", desc:"Dopo tre anni di corti, la famiglia gialla ottiene mezz'ora tutta sua." },
+  { id:"spet_024", title:"Twin Peaks cambia la serialità", year:1990, date_full:"8 Aprile 1990", wiki_slug:"I_segreti_di_Twin_Peaks", category:"Spettacolo", desc:"Chi ha ucciso Laura Palmer porta il cinema d'autore in televisione." },
+  { id:"spet_025", title:"Debutta Beverly Hills 90210", year:1990, date_full:"4 Ottobre 1990", wiki_slug:"Beverly_Hills_90210", category:"Spettacolo", desc:"Il teen drama che definisce un decennio di adolescenza televisiva." },
+  { id:"spet_026", title:"Sailor Moon in televisione", year:1992, date_full:"7 Marzo 1992", wiki_slug:"Sailor_Moon", category:"Spettacolo", desc:"Il magical girl che apre l'anime giapponese al pubblico femminile globale." },
+  { id:"spet_027", title:"X-Files apre i suoi archivi", year:1993, date_full:"10 Settembre 1993", wiki_slug:"X-Files", category:"Spettacolo", desc:"Mulder e Scully portano il paranormale nel prime time americano." },
+  { id:"spet_028", title:"Friends debutta su NBC", year:1994, date_full:"22 Settembre 1994", wiki_slug:"Friends", category:"Spettacolo", desc:"Sei amici in un appartamento di Manhattan per dieci stagioni di culto." },
+  { id:"spet_029", title:"Il Tamagotchi arriva in commercio", year:1996, date_full:"23 Novembre 1996", wiki_slug:"Tamagotchi", category:"Spettacolo", desc:"Il pulcino virtuale da accudire vende ottanta milioni di pezzi." },
+  { id:"spet_030", title:"Il Dancing Baby diventa virale", year:1996, date_full:"1996", wiki_slug:"Dancing_Baby", category:"Spettacolo", desc:"Il neonato 3D che balla è considerato il primo meme di internet.", approx:true },
+  { id:"spet_031", title:"South Park debutta", year:1997, date_full:"13 Agosto 1997", wiki_slug:"South_Park", category:"Spettacolo", desc:"La satira animata più irriverente esordisce su Comedy Central." },
+  { id:"spet_032", title:"L'anime dei Pokémon va in onda", year:1997, date_full:"1 Aprile 1997", wiki_slug:"Pokémon_(serie_animata)", category:"Spettacolo", desc:"Ash e Pikachu partono da Biancavilla e conquistano una generazione." },
+  { id:"spet_033", title:"Il finale di Seinfeld", year:1998, date_full:"14 Maggio 1998", wiki_slug:"Seinfeld", category:"Spettacolo", desc:"Settantasei milioni di spettatori per l'addio alla sitcom del nulla." },
+  { id:"spet_034", title:"Chi vuol essere milionario?", year:1998, date_full:"4 Settembre 1998", wiki_slug:"Chi_vuol_essere_milionario?", category:"Spettacolo", desc:"Il quiz britannico con l'aiuto del pubblico viene esportato in cento paesi." },
+  { id:"spet_035", title:"Prima edizione del Grande Fratello", year:1999, date_full:"16 Settembre 1999", wiki_slug:"Grande_Fratello_(programma_televisivo)", category:"Spettacolo", desc:"In Olanda nasce il reality che mette la vita quotidiana in diretta." },
+  { id:"spet_036", title:"Debuttano I Soprano", year:1999, date_full:"10 Gennaio 1999", wiki_slug:"I_Soprano", category:"Spettacolo", desc:"La HBO inaugura l'età d'oro della serialità con un boss in analisi." },
+  { id:"spet_037", title:"Kurita disegna i primi emoji", year:1999, date_full:"1999", wiki_slug:"Emoji", category:"Spettacolo", desc:"Centosettantasei pittogrammi da dodici pixel per i cellulari giapponesi." },
+  { id:"spet_038", title:"Debutta Survivor e nasce il reality a eliminazione", year:2000, date_full:"31 Maggio 2000", wiki_slug:"Survivor_(programma_televisivo)", category:"Spettacolo", desc:"Il format svedese diventa negli Stati Uniti il modello di ogni reality competitivo." },
+  { id:"spet_039", title:"Lost precipita sull'isola", year:2004, date_full:"22 Settembre 2004", wiki_slug:"Lost_(serie_televisiva)", category:"Spettacolo", desc:"Il mistery serializzato che trasforma gli spettatori in investigatori online." },
+  { id:"spet_040", title:"The Office arriva negli Stati Uniti", year:2005, date_full:"24 Marzo 2005", wiki_slug:"The_Office_(serie_televisiva_2005)", category:"Spettacolo", desc:"Il mockumentary britannico viene rifatto e diventa fenomeno generazionale." },
+  { id:"spet_041", title:"Breaking Bad comincia a cucinare", year:2008, date_full:"20 Gennaio 2008", wiki_slug:"Breaking_Bad", category:"Spettacolo", desc:"Un professore di chimica malato diventa il criminale più studiato della TV." },
+  { id:"spet_042", title:"Il Trono di Spade arriva in TV", year:2011, date_full:"17 Aprile 2011", wiki_slug:"Il_Trono_di_Spade", category:"Spettacolo", desc:"La HBO porta il fantasy nel mainstream con budget da cinema." },
+  { id:"spet_043", title:"Black Mirror mostra il lato oscuro", year:2011, date_full:"4 Dicembre 2011", wiki_slug:"Black_Mirror", category:"Spettacolo", desc:"L'antologia britannica trasforma l'ansia tecnologica in racconto." },
+  { id:"spet_044", title:"Gangnam Style supera il miliardo", year:2012, date_full:"21 Dicembre 2012", wiki_slug:"Gangnam_Style", category:"Spettacolo", desc:"Il video di Psy è il primo della storia a raggiungere il traguardo su YouTube." },
+  { id:"spet_045", title:"House of Cards inaugura Netflix originale", year:2013, date_full:"1 Febbraio 2013", wiki_slug:"House_of_Cards_-_Gli_intrighi_del_potere", category:"Spettacolo", desc:"Tredici episodi pubblicati insieme: nasce il binge watching." },
+  { id:"spet_046", title:"Il selfie degli Oscar", year:2014, date_full:"2 Marzo 2014", wiki_slug:"Premio_Oscar", category:"Spettacolo", desc:"Ellen DeGeneres raduna le star e batte ogni record di condivisioni su Twitter." },
+  { id:"spet_047", title:"L'Ice Bucket Challenge", year:2014, date_full:"2014", wiki_slug:"Ice_Bucket_Challenge", category:"Spettacolo", desc:"La sfida del secchiato raccoglie oltre duecento milioni di dollari per la SLA." },
+  { id:"spet_048", title:"Il vestito che divide internet", year:2015, date_full:"26 Febbraio 2015", wiki_slug:"The_Dress", category:"Spettacolo", desc:"Bianco e oro oppure blu e nero: una foto accende un dibattito planetario." },
+  { id:"spet_049", title:"Stranger Things apre il Sottosopra", year:2016, date_full:"15 Luglio 2016", wiki_slug:"Stranger_Things", category:"Spettacolo", desc:"La nostalgia anni Ottanta diventa il più grande successo originale Netflix." },
+  { id:"spet_050", title:"Squid Game travolge il mondo", year:2021, date_full:"17 Settembre 2021", wiki_slug:"Squid_Game", category:"Spettacolo", desc:"La serie coreana diventa il titolo più visto di sempre su Netflix." },
+  { id:"sto_101", title:"Hammurabi promulga il suo codice", year:-1754, date_full:"1754 a.C.", wiki_slug:"Codice_di_Hammurabi", category:"Storia", desc:"Duecentottantadue leggi incise su stele: il più antico codice giuridico completo.", approx:true },
+  { id:"sto_102", title:"Assassinio di Giulio Cesare", year:-44, date_full:"15 Marzo 44 a.C.", wiki_slug:"Gaio_Giulio_Cesare", category:"Storia", desc:"Alle Idi di marzo i congiurati colpiscono il dittatore in Senato." },
+  { id:"sto_103", title:"Eruzione che seppellisce Ercolano", year:79, date_full:"24 Ottobre 79", wiki_slug:"Ercolano", category:"Storia", desc:"Il Vesuvio cancella e insieme conserva le città del golfo." },
+  { id:"sto_104", title:"Editto di Milano", year:313, date_full:"313", wiki_slug:"Editto_di_Milano", category:"Storia", desc:"Costantino e Licinio concedono libertà di culto ai cristiani dell'impero." },
+  { id:"sto_105", title:"Deposizione dell'ultimo imperatore d'Occidente", year:476, date_full:"4 Settembre 476", wiki_slug:"Romolo_Augusto", category:"Storia", desc:"Odoacre depone Romolo Augustolo: convenzionale fine dell'età antica." },
+  { id:"sto_106", title:"La peste nera raggiunge l'Europa", year:1347, date_full:"1347", wiki_slug:"Peste_nera", category:"Storia", desc:"Le navi genovesi da Caffa portano a Messina l'epidemia che ucciderà un terzo del continente." },
+  { id:"sto_107", title:"Lutero affigge le 95 tesi", year:1517, date_full:"31 Ottobre 1517", wiki_slug:"Martin_Lutero", category:"Storia", desc:"A Wittenberg inizia la frattura che darà vita alla Riforma protestante." },
+  { id:"sto_108", title:"Pace di Westfalia", year:1648, date_full:"24 Ottobre 1648", wiki_slug:"Pace_di_Vestfalia", category:"Storia", desc:"Finisce la guerra dei trent'anni e nasce il moderno sistema degli stati sovrani." },
+  { id:"sto_109", title:"Abolizione della schiavitù negli Stati Uniti", year:1865, date_full:"6 Dicembre 1865", wiki_slug:"XIII_emendamento_della_Costituzione_degli_Stati_Uniti_d'America", category:"Storia", desc:"Il tredicesimo emendamento entra in vigore dopo la guerra civile." },
+  { id:"sto_110", title:"Voto alle donne in Italia", year:1946, date_full:"2 Giugno 1946", wiki_slug:"Suffragio_femminile", category:"Storia", desc:"Per la prima volta le italiane votano, al referendum istituzionale." },
+  { id:"tec_101", title:"Invenzione della ruota da vasaio", year:-3500, date_full:"3500 a.C.", wiki_slug:"Ruota", category:"Tecnologia", desc:"In Mesopotamia il tornio anticipa di secoli la ruota da trasporto.", approx:true },
+  { id:"tec_102", title:"Archimede progetta la vite idraulica", year:-250, date_full:"250 a.C.", wiki_slug:"Vite_di_Archimede", category:"Tecnologia", desc:"Il dispositivo per sollevare l'acqua è ancora in uso dopo ventidue secoli.", approx:true },
+  { id:"tec_103", title:"La Cina inventa la carta", year:105, date_full:"105", wiki_slug:"Carta", category:"Tecnologia", desc:"Cai Lun perfeziona un impasto di fibre che sostituirà papiro e pergamena.", approx:true },
+  { id:"tec_104", title:"Compare la bussola magnetica in navigazione", year:1088, date_full:"1088", wiki_slug:"Bussola", category:"Tecnologia", desc:"Shen Kuo descrive l'ago magnetizzato usato per orientarsi in mare.", approx:true },
+  { id:"tec_105", title:"Prima macchina a vapore di Watt", year:1769, date_full:"5 Gennaio 1769", wiki_slug:"Macchina_a_vapore", category:"Tecnologia", desc:"Il condensatore separato rende il vapore efficiente e avvia l'industria." },
+  { id:"tec_106", title:"Volta presenta la pila", year:1800, date_full:"20 Marzo 1800", wiki_slug:"Pila_di_Volta", category:"Tecnologia", desc:"La prima sorgente continua di corrente elettrica viene annunciata a Londra." },
+  { id:"tec_107", title:"Niépce scatta la prima fotografia", year:1826, date_full:"1826", wiki_slug:"Nicéphore_Niépce", category:"Tecnologia", desc:"Otto ore di posa dalla finestra di Le Gras fissano la prima immagine permanente.", approx:true },
+  { id:"tec_108", title:"Prima linea della metropolitana di Londra", year:1863, date_full:"10 Gennaio 1863", wiki_slug:"Metropolitana_di_Londra", category:"Tecnologia", desc:"La Metropolitan Railway inaugura il trasporto urbano sotterraneo." },
+  { id:"tec_109", title:"Benz brevetta l'automobile", year:1886, date_full:"29 Gennaio 1886", wiki_slug:"Karl_Benz", category:"Tecnologia", desc:"Il Patent-Motorwagen è il primo veicolo progettato attorno a un motore a scoppio." },
+  { id:"tec_110", title:"Primo ascensore di sicurezza di Otis", year:1853, date_full:"1853", wiki_slug:"Elisha_Otis", category:"Tecnologia", desc:"Il freno automatico rende possibili i grattacieli." },
+  { id:"tec_111", title:"Prima centrale elettrica commerciale", year:1882, date_full:"4 Settembre 1882", wiki_slug:"Centrale_elettrica_di_Pearl_Street", category:"Tecnologia", desc:"Pearl Street a New York illumina un quartiere intero con corrente continua." },
+  { id:"tec_112", title:"Entra in servizio il primo aereo di linea a reazione", year:1952, date_full:"2 Maggio 1952", wiki_slug:"De_Havilland_Comet", category:"Tecnologia", desc:"Il de Havilland Comet inaugura l'era del volo commerciale a getto." },
+  { id:"tec_113", title:"Primo container navale", year:1956, date_full:"26 Aprile 1956", wiki_slug:"Container", category:"Tecnologia", desc:"La Ideal X parte da Newark: la scatola standard rivoluziona il commercio globale." },
+  { id:"tec_114", title:"Primo laser funzionante", year:1960, date_full:"16 Maggio 1960", wiki_slug:"Laser", category:"Tecnologia", desc:"Theodore Maiman fa emettere luce coerente a un cristallo di rubino." },
+  { id:"tec_115", title:"Douglas Engelbart mostra il mouse", year:1968, date_full:"9 Dicembre 1968", wiki_slug:"Douglas_Engelbart", category:"Tecnologia", desc:"La 'madre di tutte le demo' presenta mouse, ipertesto e videoconferenza." },
+  { id:"tec_116", title:"Primo floppy disk commerciale", year:1971, date_full:"1971", wiki_slug:"Floppy_disk", category:"Tecnologia", desc:"IBM introduce il supporto da otto pollici che porterà i dati fuori dai centri di calcolo." },
+  { id:"tec_117", title:"Nasce il World Wide Web al CERN", year:1989, date_full:"12 Marzo 1989", wiki_slug:"Tim_Berners-Lee", category:"Tecnologia", desc:"Tim Berners-Lee propone un sistema di ipertesti per gestire le informazioni." },
+  { id:"tec_118", title:"Debutta Google Maps", year:2005, date_full:"8 Febbraio 2005", wiki_slug:"Google_Maps", category:"Tecnologia", desc:"Le mappe interattive nel browser cambiano il modo di muoversi in città." },
+  { id:"tec_119", title:"ChatGPT raggiunge cento milioni di utenti", year:2023, date_full:"2023", wiki_slug:"Intelligenza_artificiale_generativa", category:"Tecnologia", desc:"In due mesi diventa l'applicazione consumer cresciuta più in fretta di sempre." },
+  { id:"spa_101", title:"Galileo osserva le lune di Giove", year:1610, date_full:"7 Gennaio 1610", wiki_slug:"Satelliti_medicei", category:"Spazio", desc:"Quattro satelliti in movimento smentiscono il geocentrismo." },
+  { id:"spa_102", title:"Halley prevede il ritorno della cometa", year:1705, date_full:"1705", wiki_slug:"Cometa_di_Halley", category:"Spazio", desc:"Calcola che l'astro tornerà nel 1758: la prima previsione astronomica moderna." },
+  { id:"spa_103", title:"Herschel scopre Urano", year:1781, date_full:"13 Marzo 1781", wiki_slug:"Urano_(astronomia)", category:"Spazio", desc:"Il primo pianeta individuato con il telescopio raddoppia i confini del sistema solare." },
+  { id:"spa_104", title:"Scoperta di Nettuno con il calcolo", year:1846, date_full:"23 Settembre 1846", wiki_slug:"Nettuno_(astronomia)", category:"Spazio", desc:"Le Verrier lo indica sulla carta prima che qualcuno lo veda." },
+  { id:"spa_105", title:"Hubble dimostra che l'universo si espande", year:1929, date_full:"1929", wiki_slug:"Legge_di_Hubble", category:"Spazio", desc:"La velocità di fuga delle galassie cresce con la distanza." },
+  { id:"spa_106", title:"Primo volo del razzo V2 nello spazio", year:1944, date_full:"20 Giugno 1944", wiki_slug:"V2_(razzo)", category:"Spazio", desc:"Un missile supera per la prima volta la linea di Kármán." },
+  { id:"spa_107", title:"Explorer 1, primo satellite americano", year:1958, date_full:"1 Febbraio 1958", wiki_slug:"Explorer_1", category:"Spazio", desc:"Scopre le fasce di radiazione di Van Allen attorno alla Terra." },
+  { id:"spa_108", title:"Luna 2 colpisce la Luna", year:1959, date_full:"13 Settembre 1959", wiki_slug:"Luna_2", category:"Spazio", desc:"Primo oggetto umano a raggiungere la superficie di un altro corpo celeste." },
+  { id:"spa_109", title:"Prima foto del lato nascosto della Luna", year:1959, date_full:"7 Ottobre 1959", wiki_slug:"Luna_3", category:"Spazio", desc:"Luna 3 fotografa l'emisfero che dalla Terra non si vede mai." },
+  { id:"spa_110", title:"Mariner 2 sorvola Venere", year:1962, date_full:"14 Dicembre 1962", wiki_slug:"Mariner_2", category:"Spazio", desc:"Prima sonda a studiare da vicino un altro pianeta." },
+  { id:"spa_111", title:"Telstar trasmette la prima TV via satellite", year:1962, date_full:"23 Luglio 1962", wiki_slug:"Telstar", category:"Spazio", desc:"Immagini in diretta attraversano l'Atlantico per la prima volta." },
+  { id:"spa_112", title:"Luna 9 atterra dolcemente sulla Luna", year:1966, date_full:"3 Febbraio 1966", wiki_slug:"Luna_9", category:"Spazio", desc:"Primo allunaggio morbido con trasmissione di immagini dalla superficie." },
+  { id:"spa_113", title:"Apollo 8 orbita attorno alla Luna", year:1968, date_full:"24 Dicembre 1968", wiki_slug:"Apollo_8", category:"Spazio", desc:"Il primo equipaggio a lasciare l'orbita terrestre scatta Earthrise." },
+  { id:"spa_114", title:"Salyut 1, prima stazione spaziale", year:1971, date_full:"19 Aprile 1971", wiki_slug:"Saljut_1", category:"Spazio", desc:"L'Unione Sovietica mette in orbita il primo avamposto abitabile." },
+  { id:"spa_115", title:"Lunochod, primo rover su un altro mondo", year:1970, date_full:"17 Novembre 1970", wiki_slug:"Lunochod_1", category:"Spazio", desc:"Il veicolo sovietico percorre dieci chilometri sulla superficie lunare." },
+  { id:"spa_116", title:"Pioneer 10 attraversa la fascia degli asteroidi", year:1972, date_full:"3 Marzo 1972", wiki_slug:"Pioneer_10", category:"Spazio", desc:"Prima sonda diretta verso Giove e poi fuori dal sistema solare." },
+  { id:"spa_117", title:"Apollo-Sojuz, stretta di mano in orbita", year:1975, date_full:"17 Luglio 1975", wiki_slug:"Apollo-Sojuz", category:"Spazio", desc:"Americani e sovietici agganciano le capsule in piena guerra fredda." },
+  { id:"spa_118", title:"Voyager 2 sorvola Nettuno", year:1989, date_full:"25 Agosto 1989", wiki_slug:"Voyager_2", category:"Spazio", desc:"Unica sonda ad aver visitato tutti e quattro i giganti gassosi." },
+  { id:"spa_119", title:"Galileo entra in orbita attorno a Giove", year:1995, date_full:"7 Dicembre 1995", wiki_slug:"Galileo_(sonda_spaziale)", category:"Spazio", desc:"Otto anni di studio del pianeta e delle sue lune ghiacciate." },
+  { id:"spa_120", title:"Pathfinder e Sojourner su Marte", year:1997, date_full:"4 Luglio 1997", wiki_slug:"Mars_Pathfinder", category:"Spazio", desc:"Il primo rover marziano percorre cento metri attorno al lander." },
+  { id:"spa_121", title:"Spirit e Opportunity atterrano su Marte", year:2004, date_full:"4 Gennaio 2004", wiki_slug:"Opportunity_(rover)", category:"Spazio", desc:"Progettati per novanta giorni, Opportunity ne resisterà quasi cinquemila." },
+  { id:"spa_122", title:"Kepler inizia la caccia agli esopianeti", year:2009, date_full:"7 Marzo 2009", wiki_slug:"Kepler_(telescopio_spaziale)", category:"Spazio", desc:"Il telescopio individuerà oltre duemila pianeti attorno ad altre stelle." },
+  { id:"spa_123", title:"Voyager 1 entra nello spazio interstellare", year:2012, date_full:"25 Agosto 2012", wiki_slug:"Eliopausa", category:"Spazio", desc:"Primo oggetto umano a uscire dalla bolla magnetica del Sole." },
+  { id:"spa_124", title:"Primo atterraggio di un razzo orbitale", year:2015, date_full:"22 Dicembre 2015", wiki_slug:"Falcon_9", category:"Spazio", desc:"Il primo stadio del Falcon 9 torna a terra intero e riutilizzabile." },
+  { id:"spa_125", title:"Primo volo con equipaggio della Crew Dragon", year:2020, date_full:"30 Maggio 2020", wiki_slug:"Crew_Dragon", category:"Spazio", desc:"Dopo nove anni gli Stati Uniti tornano a lanciare astronauti da casa." },
+  { id:"spa_126", title:"Il telescopio Hubble viene riparato in orbita", year:1993, date_full:"2 Dicembre 1993", wiki_slug:"Missione_STS-61", category:"Spazio", desc:"Una missione Shuttle corregge il difetto dello specchio primario." },
+  { id:"mus_101", title:"Guido d'Arezzo inventa la notazione", year:1025, date_full:"1025", wiki_slug:"Guido_d'Arezzo", category:"Musica", desc:"Il tetragramma e i nomi delle note rendono la musica trasmissibile per iscritto.", approx:true },
+  { id:"mus_102", title:"Monteverdi rappresenta l'Orfeo", year:1607, date_full:"24 Febbraio 1607", wiki_slug:"L'Orfeo", category:"Musica", desc:"Considerata la prima vera opera lirica della storia." },
+  { id:"mus_103", title:"Vivaldi pubblica Le quattro stagioni", year:1725, date_full:"1725", wiki_slug:"Le_quattro_stagioni", category:"Musica", desc:"Quattro concerti con sonetti descrittivi: la musica a programma ante litteram." },
+  { id:"mus_104", title:"Bach completa il Clavicembalo ben temperato", year:1722, date_full:"1722", wiki_slug:"Il_clavicembalo_ben_temperato", category:"Musica", desc:"Ventiquattro preludi e fughe in tutte le tonalità possibili." },
+  { id:"mus_105", title:"Mozart compone il Requiem incompiuto", year:1791, date_full:"1791", wiki_slug:"Requiem_(Mozart)", category:"Musica", desc:"La morte lo coglie durante il Lacrimosa, alimentando la leggenda." },
+  { id:"mus_106", title:"Prima della Quinta di Beethoven", year:1808, date_full:"22 Dicembre 1808", wiki_slug:"Sinfonia_n._5_(Beethoven)", category:"Musica", desc:"Le quattro note d'apertura diventeranno il motivo più riconoscibile al mondo." },
+  { id:"mus_107", title:"Prima del Nabucco alla Scala", year:1842, date_full:"9 Marzo 1842", wiki_slug:"Nabucco", category:"Musica", desc:"Il Va' pensiero diventa inno informale del Risorgimento italiano." },
+  { id:"mus_108", title:"Wagner inaugura Bayreuth con l'Anello", year:1876, date_full:"13 Agosto 1876", wiki_slug:"L'anello_del_Nibelungo", category:"Musica", desc:"Quattro serate e un teatro costruito apposta per la sua tetralogia." },
+  { id:"mus_109", title:"Edison registra la voce umana", year:1877, date_full:"1877", wiki_slug:"Fonografo", category:"Musica", desc:"Il fonografo riproduce Mary Had a Little Lamb: nasce la musica registrata." },
+  { id:"mus_110", title:"Prima della Turandot senza finale", year:1926, date_full:"25 Aprile 1926", wiki_slug:"Turandot", category:"Musica", desc:"Toscanini interrompe l'opera nel punto in cui Puccini morì." },
+  { id:"mus_111", title:"Prima di Rhapsody in Blue", year:1924, date_full:"12 Febbraio 1924", wiki_slug:"Rhapsody_in_Blue", category:"Musica", desc:"Gershwin unisce jazz e orchestra sinfonica in una sola partitura." },
+  { id:"mus_112", title:"Sacre du Printemps scatena una rivolta", year:1913, date_full:"29 Maggio 1913", wiki_slug:"La_sagra_della_primavera", category:"Musica", desc:"La prima parigina di Stravinskij finisce tra fischi e scontri in sala." },
+  { id:"mus_113", title:"Robert Johnson incide i suoi blues", year:1936, date_full:"23 Novembre 1936", wiki_slug:"Robert_Johnson", category:"Musica", desc:"Ventinove brani che diventeranno il fondamento del rock." },
+  { id:"mus_114", title:"Billie Holiday incide Strange Fruit", year:1939, date_full:"20 Aprile 1939", wiki_slug:"Strange_Fruit", category:"Musica", desc:"La canzone contro i linciaggi che nessuna major voleva pubblicare." },
+  { id:"mus_115", title:"Nasce il long playing a 33 giri", year:1948, date_full:"21 Giugno 1948", wiki_slug:"Long_playing", category:"Musica", desc:"La Columbia presenta il disco che permette venti minuti per facciata." },
+  { id:"mus_116", title:"Chuck Berry incide Maybellene", year:1955, date_full:"21 Maggio 1955", wiki_slug:"Chuck_Berry", category:"Musica", desc:"Il chitarrismo che definisce il rock and roll entra in classifica." },
+  { id:"mus_117", title:"Miles Davis registra Kind of Blue", year:1959, date_full:"2 Marzo 1959", wiki_slug:"Kind_of_Blue", category:"Musica", desc:"Il disco jazz più venduto di sempre nasce da poche indicazioni modali." },
+  { id:"mus_118", title:"Bob Dylan passa alla chitarra elettrica", year:1965, date_full:"25 Luglio 1965", wiki_slug:"Newport_Folk_Festival", category:"Musica", desc:"A Newport il pubblico folk fischia la svolta rock." },
+  { id:"mus_119", title:"Esce Pet Sounds dei Beach Boys", year:1966, date_full:"16 Maggio 1966", wiki_slug:"Pet_Sounds", category:"Musica", desc:"Lo studio diventa strumento: influenzerà direttamente Sgt. Pepper's." },
+  { id:"mus_120", title:"Jimi Hendrix incendia la chitarra a Monterey", year:1967, date_full:"18 Giugno 1967", wiki_slug:"Monterey_Pop_Festival", category:"Musica", desc:"Diciotto minuti che riscrivono il rapporto fra strumento e performance." },
+  { id:"mus_121", title:"Kraftwerk pubblica Autobahn", year:1974, date_full:"1974", wiki_slug:"Autobahn_(album)", category:"Musica", desc:"L'elettronica tedesca getta le basi di techno, synth pop e hip hop." },
+  { id:"mus_122", title:"Prima festa hip hop del Bronx", year:1973, date_full:"11 Agosto 1973", wiki_slug:"Hip_hop", category:"Musica", desc:"DJ Kool Herc isola i break e inventa il fondamento del rap." },
+  { id:"mus_123", title:"Esce Never Mind the Bollocks dei Sex Pistols", year:1977, date_full:"28 Ottobre 1977", wiki_slug:"Never_Mind_the_Bollocks", category:"Musica", desc:"Il punk britannico trova il suo manifesto discografico." },
+  { id:"mus_124", title:"Nasce il formato MP3", year:1995, date_full:"14 Luglio 1995", wiki_slug:"MP3", category:"Musica", desc:"Il Fraunhofer sceglie l'estensione che renderà la musica trasferibile in rete." },
+  { id:"mus_125", title:"Daft Punk pubblica Discovery", year:2001, date_full:"12 Marzo 2001", wiki_slug:"Discovery_(Daft_Punk)", category:"Musica", desc:"French touch e robot: il pop elettronico entra nel mainstream globale." },
+  { id:"mus_126", title:"Beyoncé pubblica un album a sorpresa", year:2013, date_full:"13 Dicembre 2013", wiki_slug:"Beyoncé_(album)", category:"Musica", desc:"Nessun annuncio, solo l'uscita improvvisa: cambia il marketing musicale." },
+  { id:"sci_101", title:"Ippocrate separa medicina e superstizione", year:-400, date_full:"400 a.C.", wiki_slug:"Ippocrate", category:"Scienza", desc:"Le malattie hanno cause naturali: nasce il metodo clinico.", approx:true },
+  { id:"sci_102", title:"Euclide scrive gli Elementi", year:-300, date_full:"300 a.C.", wiki_slug:"Elementi_(Euclide)", category:"Scienza", desc:"Tredici libri che saranno il manuale di geometria per duemila anni.", approx:true },
+  { id:"sci_103", title:"Archimede enuncia il principio idrostatico", year:-250, date_full:"250 a.C.", wiki_slug:"Principio_di_Archimede", category:"Scienza", desc:"Un corpo immerso riceve una spinta pari al peso del liquido spostato.", approx:true },
+  { id:"sci_104", title:"Al-Khwarizmi fonda l'algebra", year:820, date_full:"820", wiki_slug:"Al-Khwarizmi", category:"Scienza", desc:"Dal suo nome deriva la parola algoritmo, dal suo trattato quella algebra.", approx:true },
+  { id:"sci_105", title:"Copernico pubblica il De revolutionibus", year:1543, date_full:"1543", wiki_slug:"De_revolutionibus_orbium_coelestium", category:"Scienza", desc:"Il Sole al centro: il libro esce nell'anno della sua morte." },
+  { id:"sci_106", title:"Vesalio pubblica il De humani corporis fabrica", year:1543, date_full:"1543", wiki_slug:"De_humani_corporis_fabrica", category:"Scienza", desc:"La dissezione diretta corregge mille anni di errori anatomici." },
+  { id:"sci_107", title:"Harvey descrive la circolazione del sangue", year:1628, date_full:"1628", wiki_slug:"William_Harvey", category:"Scienza", desc:"Il cuore è una pompa e il sangue compie un circuito chiuso." },
+  { id:"sci_108", title:"Keplero formula le leggi dei pianeti", year:1609, date_full:"1609", wiki_slug:"Leggi_di_Keplero", category:"Scienza", desc:"Le orbite sono ellissi, non cerchi: cade un dogma di venti secoli." },
+  { id:"sci_109", title:"Hooke osserva le cellule al microscopio", year:1665, date_full:"1665", wiki_slug:"Micrographia", category:"Scienza", desc:"Nella Micrographia compare per la prima volta la parola cellula." },
+  { id:"sci_110", title:"Lavoisier enuncia la conservazione della massa", year:1789, date_full:"1789", wiki_slug:"Antoine_Lavoisier", category:"Scienza", desc:"Nulla si crea, nulla si distrugge: nasce la chimica moderna." },
+  { id:"sci_111", title:"Jenner prova il vaccino contro il vaiolo", year:1796, date_full:"14 Maggio 1796", wiki_slug:"Edward_Jenner", category:"Scienza", desc:"Inocula il vaiolo bovino a un bambino e apre l'era delle vaccinazioni." },
+  { id:"sci_112", title:"Faraday scopre l'induzione elettromagnetica", year:1831, date_full:"29 Agosto 1831", wiki_slug:"Michael_Faraday", category:"Scienza", desc:"Un magnete in movimento genera corrente: il principio di ogni generatore." },
+  { id:"sci_113", title:"Mendel enuncia le leggi dell'ereditarietà", year:1866, date_full:"1866", wiki_slug:"Gregor_Mendel", category:"Scienza", desc:"Gli esperimenti sui piselli restano ignorati per trentacinque anni." },
+  { id:"sci_114", title:"Maxwell unifica elettricità e magnetismo", year:1865, date_full:"1865", wiki_slug:"Equazioni_di_Maxwell", category:"Scienza", desc:"Quattro equazioni predicono le onde elettromagnetiche e la natura della luce." },
+  { id:"sci_115", title:"Thomson scopre l'elettrone", year:1897, date_full:"30 Aprile 1897", wiki_slug:"Elettrone", category:"Scienza", desc:"La prima particella subatomica manda in pezzi l'atomo indivisibile." },
+  { id:"sci_116", title:"Planck introduce il quanto d'azione", year:1900, date_full:"14 Dicembre 1900", wiki_slug:"Costante_di_Planck", category:"Scienza", desc:"L'energia viene emessa a pacchetti: nasce la fisica quantistica." },
+  { id:"sci_117", title:"Einstein pubblica la relatività ristretta", year:1905, date_full:"30 Giugno 1905", wiki_slug:"Relatività_ristretta", category:"Scienza", desc:"Nell'anno mirabile esce anche la relazione fra massa ed energia." },
+  { id:"sci_118", title:"Rutherford scopre il nucleo atomico", year:1911, date_full:"1911", wiki_slug:"Esperimento_di_Rutherford", category:"Scienza", desc:"Le particelle alfa rimbalzano: l'atomo è quasi tutto vuoto." },
+  { id:"sci_119", title:"Wegener propone la deriva dei continenti", year:1912, date_full:"6 Gennaio 1912", wiki_slug:"Deriva_dei_continenti", category:"Scienza", desc:"L'idea viene derisa per cinquant'anni prima di essere confermata." },
+  { id:"sci_120", title:"Heisenberg formula il principio di indeterminazione", year:1927, date_full:"1927", wiki_slug:"Principio_di_indeterminazione_di_Heisenberg", category:"Scienza", desc:"Posizione e velocità non possono essere note insieme con precisione." },
+  { id:"sci_121", title:"Prima reazione nucleare a catena controllata", year:1942, date_full:"2 Dicembre 1942", wiki_slug:"Chicago_Pile-1", category:"Scienza", desc:"Fermi accende la pila atomica sotto le tribune di Chicago." },
+  { id:"sci_122", title:"Scoperta della radiazione cosmica di fondo", year:1964, date_full:"1964", wiki_slug:"Radiazione_cosmica_di_fondo", category:"Scienza", desc:"Un rumore inspiegabile nell'antenna si rivela l'eco del Big Bang." },
+  { id:"sci_123", title:"Prima risonanza magnetica su un essere umano", year:1977, date_full:"3 Luglio 1977", wiki_slug:"Risonanza_magnetica", category:"Scienza", desc:"L'imaging medico può guardare i tessuti molli senza radiazioni." },
+  { id:"sci_124", title:"Messa a punto della PCR", year:1983, date_full:"1983", wiki_slug:"Reazione_a_catena_della_polimerasi", category:"Scienza", desc:"Amplificare il DNA diventa routine: diagnostica e forensica cambiano per sempre." },
+  { id:"sci_125", title:"Scoperto il primo pianeta attorno a una stella simile al Sole", year:1995, date_full:"6 Ottobre 1995", wiki_slug:"51_Pegasi_b", category:"Scienza", desc:"Mayor e Queloz individuano 51 Pegasi b e aprono la caccia agli esopianeti." },
+  { id:"sci_126", title:"Approvato il protocollo di Kyoto", year:1997, date_full:"11 Dicembre 1997", wiki_slug:"Protocollo_di_Kyoto", category:"Scienza", desc:"Primo accordo internazionale vincolante sulla riduzione dei gas serra." },
+  { id:"sci_127", title:"AlphaFold risolve il ripiegamento delle proteine", year:2021, date_full:"2021", wiki_slug:"AlphaFold", category:"Scienza", desc:"La struttura di quasi tutte le proteine note viene predetta e resa pubblica." },
+  { id:"cin_101", title:"Il treno dei Lumière spaventa il pubblico", year:1896, date_full:"1896", wiki_slug:"L'arrivo_di_un_treno_alla_stazione_di_La_Ciotat", category:"Cinema", desc:"La leggenda degli spettatori in fuga accompagna una delle prime proiezioni." },
+  { id:"cin_102", title:"Viaggio nella Luna di Méliès", year:1902, date_full:"1902", wiki_slug:"Viaggio_nella_Luna", category:"Cinema", desc:"Il proiettile nell'occhio della Luna inventa gli effetti speciali." },
+  { id:"cin_103", title:"Cabiria porta il kolossal in Italia", year:1914, date_full:"18 Aprile 1914", wiki_slug:"Cabiria", category:"Cinema", desc:"Il film di Pastrone introduce carrellate e didascalie di D'Annunzio." },
+  { id:"cin_104", title:"Il gabinetto del dottor Caligari", year:1920, date_full:"26 Febbraio 1920", wiki_slug:"Il_gabinetto_del_dottor_Caligari", category:"Cinema", desc:"Scenografie storte e ombre dipinte: nasce l'espressionismo al cinema." },
+  { id:"cin_105", title:"La corazzata Potëmkin e il montaggio", year:1925, date_full:"21 Dicembre 1925", wiki_slug:"La_corazzata_Potëmkin", category:"Cinema", desc:"La scena della scalinata di Odessa entra in ogni manuale di regia." },
+  { id:"cin_106", title:"Metropolis immagina la città futura", year:1927, date_full:"10 Gennaio 1927", wiki_slug:"Metropolis_(film_1927)", category:"Cinema", desc:"Fritz Lang gira il film muto più costoso mai realizzato in Germania." },
+  { id:"cin_107", title:"Nasce Topolino in Steamboat Willie", year:1928, date_full:"18 Novembre 1928", wiki_slug:"Steamboat_Willie", category:"Cinema", desc:"Il primo cartone sonoro sincronizzato lancia lo studio Disney." },
+  { id:"cin_108", title:"King Kong sale sull'Empire State", year:1933, date_full:"2 Marzo 1933", wiki_slug:"King_Kong_(film_1933)", category:"Cinema", desc:"La stop motion di Willis O'Brien rende credibile l'impossibile." },
+  { id:"cin_109", title:"Il mago di Oz passa al Technicolor", year:1939, date_full:"25 Agosto 1939", wiki_slug:"Il_mago_di_Oz_(film_1939)", category:"Cinema", desc:"Il salto dal seppia al colore resta uno dei momenti più citati del cinema." },
+  { id:"cin_110", title:"Casablanca arriva nelle sale", year:1942, date_full:"26 Novembre 1942", wiki_slug:"Casablanca_(film)", category:"Cinema", desc:"Nato come film qualunque, diventa il melodramma più citato di sempre." },
+  { id:"cin_111", title:"Roma città aperta apre il Neorealismo", year:1945, date_full:"27 Settembre 1945", wiki_slug:"Roma_città_aperta", category:"Cinema", desc:"Rossellini gira fra le macerie con pellicola di recupero." },
+  { id:"cin_112", title:"I sette samurai", year:1954, date_full:"26 Aprile 1954", wiki_slug:"I_sette_samurai", category:"Cinema", desc:"Kurosawa inventa la struttura del gruppo reclutato per una missione." },
+  { id:"cin_113", title:"Il settimo sigillo", year:1957, date_full:"16 Febbraio 1957", wiki_slug:"Il_settimo_sigillo", category:"Cinema", desc:"La partita a scacchi con la Morte diventa immagine universale." },
+  { id:"cin_114", title:"Fino all'ultimo respiro e la Nouvelle Vague", year:1960, date_full:"16 Marzo 1960", wiki_slug:"Fino_all'ultimo_respiro", category:"Cinema", desc:"Godard rompe le regole del montaggio con i jump cut." },
+  { id:"cin_115", title:"Lawrence d'Arabia", year:1962, date_full:"10 Dicembre 1962", wiki_slug:"Lawrence_d'Arabia_(film)", category:"Cinema", desc:"Il deserto in settanta millimetri ridefinisce il concetto di epica." },
+  { id:"cin_116", title:"Per un pugno di dollari inventa lo spaghetti western", year:1964, date_full:"12 Settembre 1964", wiki_slug:"Per_un_pugno_di_dollari", category:"Cinema", desc:"Leone e Morricone rileggono il western americano dall'Italia." },
+  { id:"cin_117", title:"Il laureato e la nuova Hollywood", year:1967, date_full:"21 Dicembre 1967", wiki_slug:"Il_laureato", category:"Cinema", desc:"Un film piccolo incassa enormemente e cambia i gusti degli studios." },
+  { id:"cin_118", title:"L'esorcista sconvolge le sale", year:1973, date_full:"26 Dicembre 1973", wiki_slug:"L'esorcista", category:"Cinema", desc:"File chilometriche e svenimenti: l'horror diventa fenomeno di massa." },
+  { id:"cin_119", title:"Taxi Driver vince a Cannes", year:1976, date_full:"8 Febbraio 1976", wiki_slug:"Taxi_Driver", category:"Cinema", desc:"Scorsese e De Niro firmano il ritratto più cupo della New York anni Settanta." },
+  { id:"cin_120", title:"Alien porta l'horror nello spazio", year:1979, date_full:"25 Maggio 1979", wiki_slug:"Alien_(film)", category:"Cinema", desc:"Il design di Giger crea la creatura più influente della fantascienza." },
+  { id:"cin_121", title:"Blade Runner immagina il 2019", year:1982, date_full:"25 Giugno 1982", wiki_slug:"Blade_Runner", category:"Cinema", desc:"Flop iniziale, poi modello estetico per ogni città del futuro." },
+  { id:"cin_122", title:"Terminator 2 e la grafica liquida", year:1991, date_full:"3 Luglio 1991", wiki_slug:"Terminator_2_-_Il_giorno_del_giudizio", category:"Cinema", desc:"Il T-1000 mostra cosa può fare la computer grafica in un film." },
+  { id:"cin_123", title:"Schindler's List", year:1993, date_full:"15 Dicembre 1993", wiki_slug:"Schindler's_List_-_La_lista_di_Schindler", category:"Cinema", desc:"Spielberg gira in bianco e nero il film che gli vale il primo Oscar da regista." },
+  { id:"cin_124", title:"La vita è bella vince l'Oscar", year:1998, date_full:"20 Dicembre 1998", wiki_slug:"La_vita_è_bella", category:"Cinema", desc:"Benigni sale sulle poltrone: terzo film italiano premiato come miglior straniero." },
+  { id:"cin_125", title:"La tigre e il dragone", year:2000, date_full:"8 Luglio 2000", wiki_slug:"La_tigre_e_il_dragone", category:"Cinema", desc:"Il wuxia cinese conquista l'Occidente e vince quattro Oscar." },
+  { id:"cin_126", title:"Esce il primo Harry Potter al cinema", year:2001, date_full:"16 Novembre 2001", wiki_slug:"Harry_Potter_e_la_pietra_filosofale_(film)", category:"Cinema", desc:"La saga letteraria diventa il franchise che definisce un decennio." },
+  { id:"cin_127", title:"Iron Man apre il Marvel Cinematic Universe", year:2008, date_full:"2 Maggio 2008", wiki_slug:"Iron_Man_(film_2008)", category:"Cinema", desc:"La scena dopo i titoli annuncia un progetto da oltre venti film." },
+  { id:"cin_128", title:"Avengers: Endgame chiude la saga", year:2019, date_full:"26 Aprile 2019", wiki_slug:"Avengers:_Endgame", category:"Cinema", desc:"Il film incassa quasi tre miliardi e diventa il più visto di sempre." },
+  { id:"vid_101", title:"Tennis for Two su oscilloscopio", year:1958, date_full:"18 Ottobre 1958", wiki_slug:"Tennis_for_Two", category:"Videogiochi", desc:"Willy Higinbotham crea uno dei primi videogiochi per una giornata di porte aperte." },
+  { id:"vid_102", title:"Spacewar! al MIT", year:1962, date_full:"1962", wiki_slug:"Spacewar!", category:"Videogiochi", desc:"Il duello spaziale su PDP-1 si diffonde in tutte le università americane." },
+  { id:"vid_103", title:"Magnavox Odyssey, prima console casalinga", year:1972, date_full:"1 Settembre 1972", wiki_slug:"Magnavox_Odyssey", category:"Videogiochi", desc:"Ralph Baer porta il videogioco nel salotto, con sovrapposizioni di plastica." },
+  { id:"vid_104", title:"Atari pubblica Breakout", year:1976, date_full:"1976", wiki_slug:"Breakout_(videogioco)", category:"Videogiochi", desc:"Progettato da Jobs e Wozniak, ispirerà una generazione di cloni." },
+  { id:"vid_105", title:"Atari 2600 standardizza le cartucce", year:1977, date_full:"11 Settembre 1977", wiki_slug:"Atari_2600", category:"Videogiochi", desc:"La console con giochi intercambiabili crea il mercato del software." },
+  { id:"vid_106", title:"Esce Asteroids", year:1979, date_full:"1979", wiki_slug:"Asteroids_(videogioco)", category:"Videogiochi", desc:"La grafica vettoriale e il punteggio con iniziali rendono la sala giochi competitiva." },
+  { id:"vid_107", title:"Nasce Ms. Pac-Man", year:1982, date_full:"3 Febbraio 1982", wiki_slug:"Ms._Pac-Man", category:"Videogiochi", desc:"Il seguito non autorizzato supera l'originale in popolarità americana." },
+  { id:"vid_108", title:"Il crollo dei videogiochi del 1983", year:1983, date_full:"1983", wiki_slug:"Crisi_dei_videogiochi_del_1983", category:"Videogiochi", desc:"Troppi titoli scadenti fanno collassare il mercato nordamericano." },
+  { id:"vid_109", title:"Nintendo lancia il NES in America", year:1985, date_full:"18 Ottobre 1985", wiki_slug:"Nintendo_Entertainment_System", category:"Videogiochi", desc:"Il controllo qualità del sigillo Nintendo risolleva l'intero settore." },
+  { id:"vid_110", title:"The Legend of Zelda introduce il salvataggio", year:1986, date_full:"21 Febbraio 1986", wiki_slug:"The_Legend_of_Zelda_(videogioco)", category:"Videogiochi", desc:"L'avventura open world su cartuccia con batteria tampone." },
+  { id:"vid_111", title:"Metroid e la protagonista nascosta", year:1986, date_full:"6 Agosto 1986", wiki_slug:"Metroid_(videogioco)", category:"Videogiochi", desc:"Alla fine si scopre che Samus Aran è una donna: colpo di scena storico." },
+  { id:"vid_112", title:"Final Fantasy salva Square", year:1987, date_full:"18 Dicembre 1987", wiki_slug:"Final_Fantasy_(videogioco)", category:"Videogiochi", desc:"Il gioco pensato come ultimo tentativo diventa una delle saghe più longeve." },
+  { id:"vid_113", title:"SimCity inventa il gestionale", year:1989, date_full:"1989", wiki_slug:"SimCity_(videogioco_1989)", category:"Videogiochi", desc:"Un gioco senza vittoria né sconfitta apre un genere completamente nuovo." },
+  { id:"vid_114", title:"Civilization di Sid Meier", year:1991, date_full:"1991", wiki_slug:"Civilization_(videogioco)", category:"Videogiochi", desc:"Il turno successivo che toglie il sonno: nasce il 4X moderno." },
+  { id:"vid_115", title:"Mortal Kombat accende la polemica", year:1992, date_full:"8 Ottobre 1992", wiki_slug:"Mortal_Kombat_(videogioco_1992)", category:"Videogiochi", desc:"La violenza digitalizzata porta alla nascita del sistema di classificazione ESRB." },
+  { id:"vid_116", title:"Myst mostra cosa può fare il CD-ROM", year:1993, date_full:"24 Settembre 1993", wiki_slug:"Myst", category:"Videogiochi", desc:"Per anni il gioco per PC più venduto al mondo." },
+  { id:"vid_117", title:"Tomb Raider presenta Lara Croft", year:1996, date_full:"25 Ottobre 1996", wiki_slug:"Tomb_Raider_(videogioco_1996)", category:"Videogiochi", desc:"La prima eroina tridimensionale diventa icona pop oltre il videogioco." },
+  { id:"vid_118", title:"Final Fantasy VII porta il cinema nei giochi", year:1997, date_full:"31 Gennaio 1997", wiki_slug:"Final_Fantasy_VII", category:"Videogiochi", desc:"Tre CD di filmati e una morte che segna una generazione di giocatori." },
+  { id:"vid_119", title:"Ocarina of Time ridefinisce il 3D", year:1998, date_full:"21 Novembre 1998", wiki_slug:"The_Legend_of_Zelda:_Ocarina_of_Time", category:"Videogiochi", desc:"Il blocco del bersaglio diventa lo standard dell'azione tridimensionale." },
+  { id:"vid_120", title:"Counter-Strike nasce come mod", year:1999, date_full:"19 Giugno 1999", wiki_slug:"Counter-Strike", category:"Videogiochi", desc:"Due studenti trasformano Half-Life nello sparatutto competitivo per eccellenza." },
+  { id:"vid_121", title:"PlayStation 2 diventa la console più venduta", year:2000, date_full:"4 Marzo 2000", wiki_slug:"PlayStation_2", category:"Videogiochi", desc:"Centocinquanta milioni di pezzi e un lettore DVD nel prezzo." },
+  { id:"vid_122", title:"Halo lancia lo sparatutto su console", year:2001, date_full:"15 Novembre 2001", wiki_slug:"Halo:_Combat_Evolved", category:"Videogiochi", desc:"Due armi alla volta e scudo ricaricabile: il pad diventa competitivo." },
+  { id:"vid_123", title:"Nintendo DS e il doppio schermo", year:2004, date_full:"21 Novembre 2004", wiki_slug:"Nintendo_DS", category:"Videogiochi", desc:"Il touch screen apre il videogioco a un pubblico che non aveva mai giocato." },
+  { id:"vid_124", title:"Wii Sports nella confezione", year:2006, date_full:"19 Novembre 2006", wiki_slug:"Wii_Sports", category:"Videogiochi", desc:"Il gioco incluso nella console diventa il più venduto della generazione." },
+  { id:"vid_125", title:"Angry Birds e il gioco da telefono", year:2009, date_full:"11 Dicembre 2009", wiki_slug:"Angry_Birds", category:"Videogiochi", desc:"Il mobile gaming diventa un mercato di massa da un'app da un dollaro." },
+  { id:"vid_126", title:"Dark Souls impone la sua difficoltà", year:2011, date_full:"22 Settembre 2011", wiki_slug:"Dark_Souls", category:"Videogiochi", desc:"Morire come meccanica di apprendimento genera un sottogenere." },
+  { id:"vid_127", title:"GTA V incassa un miliardo in tre giorni", year:2013, date_full:"17 Settembre 2013", wiki_slug:"Grand_Theft_Auto_V", category:"Videogiochi", desc:"Il lancio di intrattenimento più redditizio della storia." },
+  { id:"vid_128", title:"Among Us esplode durante la pandemia", year:2020, date_full:"2020", wiki_slug:"Among_Us", category:"Videogiochi", desc:"Uscito nel 2018, diventa fenomeno mondiale due anni dopo grazie allo streaming." },
+  { id:"vid_129", title:"Baldur's Gate 3 vince il Game of the Year", year:2023, date_full:"3 Agosto 2023", wiki_slug:"Baldur's_Gate_III", category:"Videogiochi", desc:"Il gioco di ruolo alza l'asticella delle conseguenze narrative." },
+  { id:"spo_101", title:"Prima Olimpiade antica a Olimpia", year:-776, date_full:"776 a.C.", wiki_slug:"Giochi_olimpici_antichi", category:"Sport", desc:"La corsa dello stadio apre il conteggio del tempo per i greci.", approx:true },
+  { id:"spo_102", title:"Fondazione della Football Association", year:1863, date_full:"26 Ottobre 1863", wiki_slug:"Football_Association", category:"Sport", desc:"A Londra si scrivono le regole che separano il calcio dal rugby." },
+  { id:"spo_103", title:"Prima finale di FA Cup", year:1872, date_full:"16 Marzo 1872", wiki_slug:"FA_Cup", category:"Sport", desc:"La competizione calcistica più antica del mondo assegna il primo titolo." },
+  { id:"spo_104", title:"Primo torneo di Wimbledon", year:1877, date_full:"9 Luglio 1877", wiki_slug:"Torneo_di_Wimbledon", category:"Sport", desc:"Ventidue giocatori e duecento spettatori per il più antico torneo di tennis." },
+  { id:"spo_105", title:"Naismith inventa la pallacanestro", year:1891, date_full:"21 Dicembre 1891", wiki_slug:"Pallacanestro", category:"Sport", desc:"Due cesti di pesche e tredici regole per tenere gli studenti attivi d'inverno." },
+  { id:"spo_106", title:"Nasce il Giro d'Italia", year:1909, date_full:"13 Maggio 1909", wiki_slug:"Giro_d'Italia", category:"Sport", desc:"Otto tappe e 2448 chilometri partendo da Milano." },
+  { id:"spo_107", title:"Fondazione della FIFA", year:1904, date_full:"21 Maggio 1904", wiki_slug:"FIFA", category:"Sport", desc:"Sette federazioni europee creano l'organismo che governerà il calcio mondiale." },
+  { id:"spo_108", title:"Prima 24 Ore di Le Mans", year:1923, date_full:"26 Maggio 1923", wiki_slug:"24_Ore_di_Le_Mans", category:"Sport", desc:"La gara di durata che misura l'affidabilità più della velocità." },
+  { id:"spo_109", title:"Prime Olimpiadi invernali a Chamonix", year:1924, date_full:"25 Gennaio 1924", wiki_slug:"I_Giochi_olimpici_invernali", category:"Sport", desc:"Sedici nazioni inaugurano i giochi sulla neve e sul ghiaccio." },
+  { id:"spo_110", title:"Babe Ruth e i sessanta fuoricampo", year:1927, date_full:"30 Settembre 1927", wiki_slug:"Babe_Ruth", category:"Sport", desc:"Un record che resisterà trentaquattro anni e definisce il baseball moderno." },
+  { id:"spo_111", title:"Bartali vince il Tour e l'Italia si ferma", year:1948, date_full:"25 Luglio 1948", wiki_slug:"Gino_Bartali", category:"Sport", desc:"La vittoria arriva nei giorni dell'attentato a Togliatti." },
+  { id:"spo_112", title:"Nasce il Campionato mondiale di Formula 1", year:1950, date_full:"13 Maggio 1950", wiki_slug:"Campionato_mondiale_di_Formula_1", category:"Sport", desc:"La prima gara si corre a Silverstone davanti alla famiglia reale." },
+  { id:"spo_113", title:"La tragedia di Superga", year:1949, date_full:"4 Maggio 1949", wiki_slug:"Tragedia_di_Superga", category:"Sport", desc:"L'aereo del Grande Torino si schianta sulla collina: muore una squadra intera." },
+  { id:"spo_114", title:"Il Brasile perde il Maracanazo", year:1950, date_full:"16 Luglio 1950", wiki_slug:"Maracanazo", category:"Sport", desc:"Duecentomila persone ammutolite: l'Uruguay vince il Mondiale in casa loro." },
+  { id:"spo_115", title:"La Ungheria d'oro travolge l'Inghilterra", year:1953, date_full:"25 Novembre 1953", wiki_slug:"Nazionale_di_calcio_dell'Ungheria", category:"Sport", desc:"Sei a tre a Wembley: cade l'imbattibilità inglese in casa." },
+  { id:"spo_116", title:"Prima Coppa dei Campioni", year:1956, date_full:"13 Giugno 1956", wiki_slug:"Coppa_dei_Campioni_1955-1956", category:"Sport", desc:"Il Real Madrid inaugura un dominio di cinque titoli consecutivi." },
+  { id:"spo_117", title:"Abebe Bikila vince la maratona scalzo", year:1960, date_full:"10 Settembre 1960", wiki_slug:"Abebe_Bikila", category:"Sport", desc:"L'etiope corre a piedi nudi sui sampietrini di Roma e stabilisce il record." },
+  { id:"spo_118", title:"Il salto di Fosbury", year:1968, date_full:"20 Ottobre 1968", wiki_slug:"Dick_Fosbury", category:"Sport", desc:"Scavalcare l'asticella di schiena sembra assurdo, poi lo fanno tutti." },
+  { id:"spo_119", title:"Il pugno guantato di Smith e Carlos", year:1968, date_full:"16 Ottobre 1968", wiki_slug:"Protesta_del_Black_Power_alle_Olimpiadi_del_1968", category:"Sport", desc:"Il gesto sul podio di Città del Messico entra nella storia civile." },
+  { id:"spo_120", title:"Rumble in the Jungle", year:1974, date_full:"30 Ottobre 1974", wiki_slug:"The_Rumble_in_the_Jungle", category:"Sport", desc:"Ali batte Foreman a Kinshasa con la tattica del rope-a-dope." },
+  { id:"spo_121", title:"Borg e McEnroe, finale di Wimbledon", year:1980, date_full:"5 Luglio 1980", wiki_slug:"Roland_Björn_Borg", category:"Sport", desc:"Il tie-break da diciotto a sedici resta il più famoso del tennis." },
+  { id:"spo_122", title:"Mennea corre i 200 in 19.72", year:1979, date_full:"12 Settembre 1979", wiki_slug:"Pietro_Mennea", category:"Sport", desc:"Il record del mondo resisterà per diciassette anni." },
+  { id:"spo_123", title:"Il Miracolo sul ghiaccio", year:1980, date_full:"22 Febbraio 1980", wiki_slug:"Miracolo_sul_ghiaccio", category:"Sport", desc:"Gli studenti americani battono la corazzata sovietica di hockey." },
+  { id:"spo_124", title:"Carl Lewis vince quattro ori a Los Angeles", year:1984, date_full:"11 Agosto 1984", wiki_slug:"Carl_Lewis", category:"Sport", desc:"Ripete l'impresa di Jesse Owens a quarantotto anni di distanza." },
+  { id:"spo_125", title:"Il Dream Team a Barcellona", year:1992, date_full:"8 Agosto 1992", wiki_slug:"Dream_Team_(pallacanestro)", category:"Sport", desc:"I professionisti NBA entrano alle Olimpiadi e vincono di quarantaquattro punti medi." },
+  { id:"spo_126", title:"Mandela consegna la Coppa del Mondo di rugby", year:1995, date_full:"24 Giugno 1995", wiki_slug:"Coppa_del_Mondo_di_rugby_1995", category:"Sport", desc:"La maglia Springbok diventa simbolo di riconciliazione sudafricana." },
+  { id:"spo_127", title:"Il Grande Slam d'oro di Steffi Graf", year:1988, date_full:"1988", wiki_slug:"Steffi_Graf", category:"Sport", desc:"Quattro tornei più l'oro olimpico nello stesso anno: mai riuscito ad altri." },
+  { id:"spo_128", title:"Phelps vince otto ori a Pechino", year:2008, date_full:"17 Agosto 2008", wiki_slug:"Michael_Phelps", category:"Sport", desc:"Record assoluto di medaglie d'oro in una singola edizione olimpica." },
+  { id:"spo_129", title:"Il Milan rimonta e perde a Istanbul", year:2005, date_full:"25 Maggio 2005", wiki_slug:"Finale_della_UEFA_Champions_League_2005", category:"Sport", desc:"Tre gol di svantaggio recuperati dal Liverpool in sei minuti." },
+  { id:"spo_130", title:"Kipchoge scende sotto le due ore", year:2019, date_full:"12 Ottobre 2019", wiki_slug:"Eliud_Kipchoge", category:"Sport", desc:"A Vienna corre la maratona in 1:59:40, fuori dalle regole ufficiali." }
 ];
 
 /* Ogni categoria porta: emoji 3D, mesh gradient cyberpunk per il fondo full-bleed,
@@ -1607,7 +2214,19 @@ const CATEGORIES = {
     grad:"linear-gradient(145deg,#3f6212,#84e23c)" },
   "Videogiochi": { emoji:"🎮", accent:"130 120 255",
     mesh:"radial-gradient(circle at 20% 20%,#8278ff 0%,transparent 54%),radial-gradient(circle at 84% 22%,#ff00a0 0%,transparent 52%),radial-gradient(circle at 56% 90%,#00f3ff 0%,transparent 55%),linear-gradient(158deg,#130a3a,#25073a)",
-    grad:"linear-gradient(145deg,#4338ca,#8278ff)" }
+    grad:"linear-gradient(145deg,#4338ca,#8278ff)" },
+  "Arte": { emoji:"🎨", accent:"255 138 76",
+    mesh:"radial-gradient(circle at 20% 20%,#ff8a4c 0%,transparent 52%),radial-gradient(circle at 84% 22%,#ffd166 0%,transparent 50%),radial-gradient(circle at 56% 90%,#ff00a0 0%,transparent 58%),linear-gradient(158deg,#2a1206,#3a0f28)",
+    grad:"linear-gradient(145deg,#c2410c,#ff8a4c)" },
+  "Letteratura": { emoji:"📚", accent:"196 154 108",
+    mesh:"radial-gradient(circle at 22% 20%,#c49a6c 0%,transparent 52%),radial-gradient(circle at 82% 24%,#8b5e34 0%,transparent 52%),radial-gradient(circle at 54% 90%,#7000ff 0%,transparent 58%),linear-gradient(158deg,#221607,#1a1030)",
+    grad:"linear-gradient(145deg,#78350f,#c49a6c)" },
+  "Geografia": { emoji:"🌍", accent:"56 200 160",
+    mesh:"radial-gradient(circle at 20% 22%,#38c8a0 0%,transparent 52%),radial-gradient(circle at 84% 20%,#00c8ff 0%,transparent 52%),radial-gradient(circle at 58% 90%,#7000ff 0%,transparent 58%),linear-gradient(158deg,#052420,#04173a)",
+    grad:"linear-gradient(145deg,#0f766e,#38c8a0)" },
+  "Spettacolo": { emoji:"📺", accent:"255 110 199",
+    mesh:"radial-gradient(circle at 20% 20%,#ff6ec7 0%,transparent 52%),radial-gradient(circle at 84% 24%,#8278ff 0%,transparent 52%),radial-gradient(circle at 56% 90%,#ffd166 0%,transparent 55%),linear-gradient(158deg,#2b0a25,#160a38)",
+    grad:"linear-gradient(145deg,#9d174d,#ff6ec7)" }
 };
 const cat = c => CATEGORIES[c] || { emoji:"⏳", accent:"150 160 198",
   mesh:"radial-gradient(circle at 30% 25%,#3b4a6b 0%,transparent 55%),linear-gradient(158deg,#10121f,#1b1e33)",
@@ -1634,6 +2253,9 @@ function ordinal(ev){
   return ev.year * 10000 + month * 100 + day;
 }
 EVENTS.forEach(e => { e._ord = ordinal(e); });
+
+/** Etichetta leggibile di un anno: i negativi diventano "44 a.C.". */
+function yearLabel(y){ return y < 0 ? Math.abs(y) + " a.C." : String(y); }
 
 /** Prima frase di un testo, troncata con garbo. */
 function firstSentence(text, max){
@@ -2269,6 +2891,15 @@ function mediaLayer(ev){
   art.className = "card-art";
   art.style.background = c.mesh;
 
+  /* Riquadro a dimensione fissa: esiste prima dell'immagine, quindi il
+     caricamento non provoca alcuno spostamento di layout. */
+  const frame = document.createElement("div");
+  frame.className = "card-frame loading";
+  frame.innerHTML =
+    '<div class="frame-fb"><span class="fb-emoji">' + c.emoji + '</span></div>' +
+    '<div class="frame-sk" aria-hidden="true"></div>';
+  art.appendChild(frame);   // niente sfondo proprio: sotto c'è già il mesh della card
+
   const emoji = document.createElement("div");
   emoji.className = "card-icon";
   emoji.innerHTML = iconArt(ev.category);
@@ -2277,19 +2908,37 @@ function mediaLayer(ev){
   const wrap = document.createElement("div");
   wrap.className = "card-fallback-wrap";
   wrap.appendChild(emoji); wrap.appendChild(desc);
-
-  const media = document.createElement("div");
-  media.className = "card-media";
-  art.appendChild(wrap); art.appendChild(media);
+  art.appendChild(wrap);
 
   WIKI.get(ev.wiki_slug).then(r => {
-    if (r.url){
-      media.style.backgroundImage = 'url("' + r.url + '")';
-      requestAnimationFrame(() => media.classList.add("on"));
+    if (!r.url){
+      // niente foto: resta il pattern geometrico, e si aggiunge il contesto
+      frame.classList.remove("loading");
+      desc.textContent = r.desc || ev.desc || FALLBACK_DESC[ev.category] ||
+                         "Un momento che ha lasciato il segno.";
       return;
     }
-    // Niente immagine: al posto del vuoto mettiamo il contesto che abbiamo.
-    desc.textContent = r.desc || FALLBACK_DESC[ev.category] || "Un momento che ha lasciato il segno.";
+    const img = new Image();
+    img.decoding = "async";
+    img.alt = ev.title;
+    img.addEventListener("load", () => {
+      /* L'inquadratura si adatta alle proporzioni reali: le panoramiche
+         molto larghe si centrano, i ritratti molto alti salgono. */
+      const ar = img.naturalWidth / Math.max(1, img.naturalHeight);
+      if (ar > 1.9) img.classList.add("wide");
+      else if (ar < 0.75) img.classList.add("tall");
+      frame.classList.remove("loading");
+      requestAnimationFrame(() => img.classList.add("on"));
+      // con la foto il riquadro geometrico non serve più
+      const fb = frame.querySelector(".frame-fb");
+      if (fb) fb.style.opacity = "0";
+    });
+    img.addEventListener("error", () => {
+      frame.classList.remove("loading");
+      desc.textContent = ev.desc || FALLBACK_DESC[ev.category] || "";
+    });
+    img.src = r.url;
+    frame.appendChild(img);
   });
   return art;
 }
@@ -2340,7 +2989,24 @@ const ICON_ART = {
     '<rect x="6" y="20" width="52" height="26" rx="12" class="g-core"/>' +
     '<path d="M18 27v10M13 32h10"/>' +
     '<circle cx="44" cy="29" r="3" fill="currentColor" stroke="none"/>' +
-    '<circle cx="50" cy="36" r="3" fill="currentColor" stroke="none" class="g-dim"/>'
+    '<circle cx="50" cy="36" r="3" fill="currentColor" stroke="none" class="g-dim"/>',
+  "Arte":
+    '<path d="M32 8a24 24 0 1 0 0 48c4 0 6-3 6-6s-3-5-3-8 3-5 6-5h5a14 14 0 0 0 10-24A24 24 0 0 0 32 8z" class="g-core"/>' +
+    '<circle cx="21" cy="26" r="3.2" fill="currentColor" stroke="none"/>' +
+    '<circle cx="32" cy="19" r="3.2" fill="currentColor" stroke="none" class="g-dim"/>' +
+    '<circle cx="44" cy="25" r="3.2" fill="currentColor" stroke="none"/>',
+  "Letteratura":
+    '<path d="M32 18C26 12 16 11 8 13v36c8-2 18-1 24 5 6-6 16-7 24-5V13c-8-2-18-1-24 5z" class="g-core"/>' +
+    '<path d="M32 18v36"/><path d="M15 23h9M15 31h9M40 23h9M40 31h9" class="g-dim"/>',
+  "Geografia":
+    '<circle cx="32" cy="32" r="24" class="g-core"/>' +
+    '<ellipse cx="32" cy="32" rx="10" ry="24"/>' +
+    '<path d="M8 32h48M13 18h38M13 46h38" class="g-dim"/>',
+  "Spettacolo":
+    '<rect x="6" y="14" width="52" height="34" rx="6" class="g-core"/>' +
+    '<path d="M24 54h16M32 48v6"/>' +
+    '<path d="M18 14L30 4M40 14L52 4" class="g-dim"/>' +
+    '<circle cx="46" cy="40" r="2.6" fill="currentColor" stroke="none"/>'
 };
 /** SVG completo dell'icona di categoria, pronto da inserire. */
 function iconArt(category, cls){
@@ -2365,7 +3031,11 @@ const FALLBACK_DESC = {
   "Cinema":      "Entrato nell'immaginario collettivo.",
   "Musica":      "Un suono che ha definito un'epoca.",
   "Sport":       "Un'impresa rimasta nella memoria.",
-  "Videogiochi": "Un titolo che ha creato un genere."
+  "Videogiochi": "Un titolo che ha creato un genere.",
+  "Arte":        "Un'opera che ha cambiato lo sguardo di tutti.",
+  "Letteratura": "Pagine che hanno spostato i confini del racconto.",
+  "Geografia":   "Un limite del mondo conosciuto spostato più in là.",
+  "Spettacolo":  "Un momento che è entrato nell'immaginario collettivo."
 };
 
 function buildCard(ev){
@@ -2460,7 +3130,7 @@ function setReference(ev){
     }
   });
   $("#refTitle").textContent = ev.title;
-  $("#refYear").textContent  = ev.year;
+  $("#refYear").textContent  = yearLabel(ev.year);
 }
 
 /* ---------- reel slot-machine ---------- */
@@ -2469,7 +3139,10 @@ function setReference(ev){
    in sequenza, con un tick meccanico a ogni scatto. */
 function spinYear(cardEl, year){
   const box = cardEl.querySelector(".year");
-  const target = String(year).split("");
+  /* Gli anni a.C. sono negativi: il segno e il suffisso restano fissi,
+     girano solo le cifre. */
+  const negativo = year < 0;
+  const target = String(Math.abs(year)).split("");
   const n = target.length;
   box.classList.remove("mystery");
   box.innerHTML = "";
@@ -2480,6 +3153,12 @@ function spinYear(cardEl, year){
     box.appendChild(d);
     return d;
   });
+  if (negativo){
+    const suff = document.createElement("span");
+    suff.className = "odo-suffix";
+    suff.textContent = " a.C.";
+    box.appendChild(suff);
+  }
 
   const DUR = 400;                       // durata totale della rullata
   const HOLD = DUR / n;                  // quando si blocca ciascuna cifra
@@ -2806,7 +3485,7 @@ function roRender(){
     el.querySelector(".ro-title").textContent = ev.title;
     el.querySelector(".ro-back-title").textContent = ev.title;   // sul retro resta chiaro di cosa si parla
     el.querySelector(".ro-cat").textContent = ev.category;
-    el.querySelector(".ro-year").textContent = ev.year;
+    el.querySelector(".ro-year").textContent = yearLabel(ev.year);
     WIKI.get(ev.wiki_slug).then(r => {
       if (!r.url) return;
       th.textContent = "";
@@ -3033,108 +3712,21 @@ function endGame(){
 }
 
 /* Chip delle categorie: mostrano quanti eventi restano selezionabili. */
+/* L'Archivio non contiene più i selettori: resta il riepilogo e l'audio. */
 function renderFilters(){
-  const box = $("#catChips");
-  box.innerHTML = "";
-  Object.keys(CATEGORIES).forEach(name => {
-    const n = EVENTS.filter(e => e.category === name).length;
-    const on = FILTERS.cats.includes(name);
-    const b = document.createElement("button");
-    b.className = "fchip";
-    b.type = "button";
-    b.setAttribute("aria-pressed", String(on));
-    b.innerHTML = cat(name).emoji + " " + name + " <span style='opacity:.6'>" + n + "</span>";
-    b.addEventListener("click", () => {
-      const i = FILTERS.cats.indexOf(name);
-      if (i >= 0) FILTERS.cats.splice(i, 1); else FILTERS.cats.push(name);
-      FILTERS.save();
-      renderFilters();
-      SFX.pop();
-      const pool = activePool();
-      if (FILTERS.cats.length && pool === EVENTS)
-        toast("Troppi pochi eventi con questo filtro: uso tutte le categorie", 2600);
-      else
-        toast(FILTERS.cats.length ? pool.length + " eventi in gioco" : "Tutte le categorie attive", 1600);
-    });
-    box.appendChild(b);
-  });
-  $$("#diffSeg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.diff === FILTERS.diff)));
-  $("#diffHint").textContent = DIFF_HINT[FILTERS.diff];
-  $$("#modeSeg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.run === FILTERS.run)));
-  $("#runHint").textContent = RUNS[FILTERS.run].hint;
+  const tutte = FILTERS.cats.length === 0;
+  const riep = $("#archiveSummary");
+  if (riep){
+    riep.textContent = (G.mode === "swipe" ? "Classica" : "Chrono-Reorder") + " · " +
+      (FILTERS.run === "intrepida" ? "Morte Intrepida" : "Normale") + " · " +
+      (tutte ? "tutti gli argomenti" : FILTERS.cats.length + " argomenti") +
+      " · " + activePool().length + " carte";
+  }
+  const ci = $("#cacheInfo");
+  if (ci) ci.textContent = WIKI.size() === 1 ? "1 scheda salvata in locale"
+                                             : WIKI.size() + " schede salvate in locale";
   const ta = $("#tglAudio");
   if (ta) ta.setAttribute("aria-pressed", String(!SFX.muted));
-  $("#cacheInfo").textContent = WIKI.size() === 1
-    ? "1 scheda salvata in locale"
-    : WIKI.size() + " schede salvate in locale";
-}
-
-/* Storico del percorso: le carte azzeccate, unite da una linea luminosa,
-   e in fondo quella su cui la catena si è spezzata. */
-function renderPath(){
-  const box = $("#goPath"), rail = $("#goRail");
-  const path = (G.path || []).slice(-14);
-  if (path.length < 2){ box.classList.remove("on"); return; }
-  box._path = path;
-  paintPath();
-  box.classList.add("on");
-}
-
-/** Disegna i nodi secondo l'ordine scelto (di gioco oppure cronologico). */
-function paintPath(){
-  const box = $("#goPath"), rail = $("#goRail");
-  const path = box._path || [];
-  const ordine = box._order || "gioco";
-  const items = ordine === "reale"
-    ? path.slice().sort((a, b) => a.ev._ord - b.ev._ord)
-    : path;
-
-  rail.innerHTML = items.map((p, i) => {
-    const c = cat(p.ev.category);
-    return '<button type="button" class="path-item' + (p.ok ? "" : " miss") +
-             '" data-i="' + i + '" style="--pa:' + c.accent + '" aria-label="' + p.ev.title + '">' +
-             '<span class="path-dot"></span>' +
-             '<span class="path-year">' + p.ev.year + '</span>' +
-             '<span class="path-ico">' + iconMini(p.ev.category) + '</span>' +
-             '<span class="path-label">' + p.ev.title + '</span>' +
-           '</button>';
-  }).join("");
-  rail._items = items;
-  $("#pathPop").hidden = true;
-
-  // in ordine di gioco si parte dalla fine: è lì che la partita si è chiusa
-  requestAnimationFrame(() => {
-    const sc = box.querySelector(".path-scroll");
-    if (sc) sc.scrollLeft = ordine === "reale" ? 0 : sc.scrollWidth;
-  });
-}
-
-/** Popover del nodo: titolo completo, data esatta, immagine e categoria. */
-function showPathPop(i){
-  const rail = $("#goRail"), pop = $("#pathPop");
-  const item = (rail._items || [])[i];
-  if (!item) return;
-  const ev = item.ev, c = cat(ev.category);
-  rail.querySelectorAll(".path-item").forEach((n, k) => n.classList.toggle("active", k === i));
-  pop.style.setProperty("--pa", c.accent);
-  pop.innerHTML =
-    '<div class="pop-thumb" style="background:' + c.grad + '">' + iconArt(ev.category) + '</div>' +
-    '<div class="pop-meta">' +
-      '<div class="pop-title"></div>' +
-      '<div class="pop-date"></div>' +
-      '<div class="pop-cat">' + ev.category + '</div>' +
-    '</div>' +
-    '<span class="pop-verdict ' + (item.ok ? "ok" : "ko") + '">' + (item.ok ? "Giusto" : "Errore") + '</span>';
-  pop.querySelector(".pop-title").textContent = ev.title;
-  pop.querySelector(".pop-date").textContent = ev.date_full;
-  pop.hidden = false;
-  // l'immagine di Wikipedia, se già in cache, entra senza attesa
-  WIKI.get(ev.wiki_slug).then(r => {
-    if (!r.url || pop.hidden) return;
-    const th = pop.querySelector(".pop-thumb");
-    if (th){ th.innerHTML = ""; th.style.backgroundImage = 'url("' + r.url + '")'; }
-  });
-  SFX.pop();
 }
 
 function renderStats(){
@@ -3418,6 +4010,100 @@ function installPWA(){
   } catch(e){ /* alcuni browser bloccano i worker da blob: l'app resta comunque giocabile */ }
 }
 
+/* ------------------------------------------------------------------ *
+ * LOBBY PRE-PARTITA
+ * Tiene uno stato provvisorio: nulla viene applicato al gioco finché
+ * l'utente non preme "Avvia partita". Così può cambiare idea, o chiudere
+ * senza aver toccato la partita in corso.
+ * ------------------------------------------------------------------ */
+const LOBBY = {
+  aperta: false,
+  bozza: null,          // { mode, run, cats }
+  apri(){
+    this.bozza = { mode: G.mode, run: FILTERS.run, cats: FILTERS.cats.slice() };
+    this.render();
+    $("#preGameLobby").classList.add("on");
+    this.aperta = true;
+    SFX.boot(); SFX.pop();
+    // il focus va al primo elemento interattivo, per la tastiera
+    setTimeout(() => { const b = $("#lobbyMode .lobby-tab"); if (b) b.focus({ preventScroll:true }); }, 380);
+  },
+  chiudi(){
+    $("#preGameLobby").classList.remove("on");
+    this.aperta = false;
+  },
+  /** Quante carte sono disponibili con gli argomenti selezionati in bozza. */
+  disponibili(){
+    const c = this.bozza.cats;
+    return c.length ? EVENTS.filter(e => c.includes(e.category)).length : EVENTS.length;
+  },
+  render(){
+    const b = this.bozza;
+    $$("#lobbyMode .lobby-tab").forEach(t =>
+      t.setAttribute("aria-pressed", String(t.dataset.mode === b.mode)));
+    $$("#lobbyRun .lobby-tab").forEach(t =>
+      t.setAttribute("aria-pressed", String(t.dataset.run === b.run)));
+
+    const griglia = $("#lobbyCats");
+    if (!griglia._costruita){
+      griglia.innerHTML = Object.keys(CATEGORIES).map(nome => {
+        const c = cat(nome), n = EVENTS.filter(e => e.category === nome).length;
+        return '<button type="button" class="cat-tile" data-cat="' + nome + '" style="--ca:' + c.accent + '">' +
+                 '<span class="ct-emoji">' + c.emoji + '</span>' +
+                 '<span class="ct-meta"><span class="ct-name">' + nome + '</span>' +
+                 '<span class="ct-count">' + n + ' carte</span></span>' +
+               '</button>';
+      }).join("");
+      griglia._costruita = true;
+      griglia.addEventListener("click", e => {
+        const t = e.target.closest(".cat-tile");
+        if (!t) return;
+        const i = this.bozza.cats.indexOf(t.dataset.cat);
+        if (i >= 0) this.bozza.cats.splice(i, 1); else this.bozza.cats.push(t.dataset.cat);
+        this.render();
+        SFX.tick();
+      });
+    }
+    const tutte = b.cats.length === 0;
+    $$("#lobbyCats .cat-tile").forEach(t =>
+      t.setAttribute("aria-pressed", String(tutte || b.cats.includes(t.dataset.cat))));
+
+    const n = tutte ? Object.keys(CATEGORIES).length : b.cats.length;
+    const carte = this.disponibili();
+    const conta = $("#lobbyCount");
+    conta.innerHTML = "Selezionate <b>" + n + "</b> di " + Object.keys(CATEGORIES).length +
+                      " categorie · <b>" + carte + "</b> carte";
+    // sotto le 12 carte una partita finisce subito: meglio avvisare
+    const pochi = !tutte && carte < 12;
+    conta.classList.toggle("warn", pochi);
+    if (pochi) conta.innerHTML += " — troppo poche, aggiungine altre";
+
+    $("#btnStartRun").disabled = pochi;
+    $("#lobbySummary").textContent =
+      (b.mode === "swipe" ? "⚡ Classica" : "🧩 Chrono-Reorder") + " · " +
+      (b.run === "intrepida" ? "💀 Morte Intrepida ×1,5" : "🛡 Normale") + " · " +
+      (tutte ? "tutti gli argomenti" : n + (n === 1 ? " argomento" : " argomenti"));
+  },
+  /** Applica la bozza e fa partire la partita. */
+  avvia(){
+    const b = this.bozza;
+    FILTERS.run = b.run;
+    FILTERS.cats = b.cats.slice();
+    FILTERS.save();
+    const cambioModo = G.mode !== b.mode;
+    G.mode = b.mode;
+    $$(".mode-btn").forEach(x => x.classList.toggle("active", x.dataset.mode === b.mode));
+    $("#swipeView").hidden   = b.mode !== "swipe";
+    $("#reorderView").hidden = b.mode !== "reorder";
+    this.chiudi();
+    closeSheet("gameOver");
+    newGame();
+    SFX.arpeggio();
+    haptic(HAPTIC.correct);
+    toast("Si parte! " + $("#lobbySummary").textContent, 2600);
+  }
+};
+
 /* ---------- gestione modalità ---------- */
 function setMode(mode){
   if (G.mode === mode) return;
@@ -3481,16 +4167,25 @@ function wire(){
     toast("Difficoltà: " + b.textContent, 1700);
   }));
 
-  /* --- modalità di partita: Classica / Morte Intrepida --- */
-  $$("#modeSeg button").forEach(b => b.addEventListener("click", () => {
-    if (FILTERS.run === b.dataset.run) return;
-    FILTERS.run = b.dataset.run;
-    FILTERS.save();
-    renderFilters();
-    SFX.pop();
-    toast(RUNS[FILTERS.run].nome + ": " + RUNS[FILTERS.run].hint, 3200);
-    newGame();                      // la modalità cambia le regole: si riparte
+  /* --- lobby pre-partita --- */
+  $("#btnPlay").addEventListener("click", () => LOBBY.apri());
+  $("#btnLobbyClose").addEventListener("click", () => { LOBBY.chiudi(); SFX.pop(); });
+  $("#preGameLobby").addEventListener("click", e => { if (e.target.id === "preGameLobby") LOBBY.chiudi(); });
+  $("#btnOpenLobby").addEventListener("click", () => { closeSheet("statsModal"); LOBBY.apri(); });
+  $("#btnChangeRun").addEventListener("click", () => LOBBY.apri());
+  $$("#lobbyMode .lobby-tab").forEach(t => t.addEventListener("click", () => {
+    LOBBY.bozza.mode = t.dataset.mode; LOBBY.render(); SFX.pop();
   }));
+  $$("#lobbyRun .lobby-tab").forEach(t => t.addEventListener("click", () => {
+    LOBBY.bozza.run = t.dataset.run; LOBBY.render(); SFX.pop();
+  }));
+  $("#btnCatAll").addEventListener("click", () => { LOBBY.bozza.cats = []; LOBBY.render(); SFX.swap(); });
+  $("#btnCatNone").addEventListener("click", () => {
+    // "nessuno" lascia una sola categoria: una partita senza carte non esiste
+    LOBBY.bozza.cats = [Object.keys(CATEGORIES)[0]];
+    LOBBY.render(); SFX.swap();
+  });
+  $("#btnStartRun").addEventListener("click", () => LOBBY.avvia());
 
   /* --- interruttore audio nelle impostazioni, in sincrono con la navbar --- */
   $("#tglAudio").addEventListener("click", () => {
@@ -3558,7 +4253,14 @@ function wire(){
   window.addEventListener("keydown", e => {
     if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
 
-    if (e.code === "Escape"){ ["statsModal","creatorModal"].forEach(closeSheet); return; }
+    if (e.code === "Escape"){
+      if (LOBBY.aperta){ LOBBY.chiudi(); return; }
+      ["statsModal","creatorModal"].forEach(closeSheet); return;
+    }
+    if (LOBBY.aperta){
+      if (e.code === "Enter" && !$("#btnStartRun").disabled){ e.preventDefault(); LOBBY.avvia(); }
+      return;                       // con la lobby aperta il gioco non riceve tasti
+    }
 
     if (G.over){
       if (e.code === "Space" || e.code === "Enter"){ e.preventDefault(); newGame(); }
@@ -3657,7 +4359,16 @@ function boot(){
 
   Promise.race([ready, cap]).then(() => {
     SPLASH.step(94, "Ultimi ritocchi…");
-    requestAnimationFrame(() => setTimeout(() => SPLASH.done(), 180));
+    requestAnimationFrame(() => setTimeout(() => {
+      SPLASH.done();
+      // alla prima visita si entra dalla lobby, non nel mezzo di una partita
+      let visto = null;
+      try { visto = localStorage.getItem("chronoglass_visto"); } catch(e){}
+      if (!visto){
+        try { localStorage.setItem("chronoglass_visto", "1"); } catch(e){}
+        setTimeout(() => LOBBY.apri(), 700);
+      }
+    }, 180));
   });
 
   /* Rete di sicurezza: qualunque cosa accada, lo splash non resta appeso. */

@@ -1,0 +1,1119 @@
+[
+  {
+    "id": "sci_101",
+    "title": "Ippocrate separa medicina e superstizione",
+    "year": -400,
+    "category": "scienza",
+    "emoji": "🩺",
+    "description": "Le malattie hanno cause naturali: nasce il metodo clinico.",
+    "wiki": "Ippocrate",
+    "approx": true
+  },
+  {
+    "id": "sci_102",
+    "title": "Euclide scrive gli Elementi",
+    "year": -300,
+    "category": "scienza",
+    "emoji": "📐",
+    "description": "Tredici libri che saranno il manuale di geometria per duemila anni.",
+    "wiki": "Elementi_(Euclide)",
+    "approx": true
+  },
+  {
+    "id": "sci_103",
+    "title": "Archimede enuncia il principio idrostatico",
+    "year": -250,
+    "category": "scienza",
+    "emoji": "🛁",
+    "description": "Un corpo immerso riceve una spinta pari al peso del liquido spostato.",
+    "wiki": "Principio_di_Archimede",
+    "approx": true
+  },
+  {
+    "id": "sci_104",
+    "title": "Al-Khwarizmi fonda l'algebra",
+    "year": 820,
+    "category": "scienza",
+    "emoji": "➗",
+    "description": "Dal suo nome deriva la parola algoritmo, dal suo trattato quella algebra.",
+    "wiki": "Al-Khwarizmi",
+    "approx": true
+  },
+  {
+    "id": "sci_105",
+    "title": "Copernico pubblica il De revolutionibus",
+    "year": 1543,
+    "category": "scienza",
+    "emoji": "☀️",
+    "description": "Il Sole al centro: il libro esce nell'anno della sua morte.",
+    "wiki": "De_revolutionibus_orbium_coelestium"
+  },
+  {
+    "id": "sci_106",
+    "title": "Vesalio pubblica il De humani corporis fabrica",
+    "year": 1543,
+    "category": "scienza",
+    "emoji": "🦴",
+    "description": "La dissezione diretta corregge mille anni di errori anatomici.",
+    "wiki": "De_humani_corporis_fabrica"
+  },
+  {
+    "id": "sci_107",
+    "title": "Harvey descrive la circolazione del sangue",
+    "year": 1628,
+    "category": "scienza",
+    "emoji": "❤️",
+    "description": "Il cuore è una pompa e il sangue compie un circuito chiuso.",
+    "wiki": "William_Harvey"
+  },
+  {
+    "id": "sci_108",
+    "title": "Keplero formula le leggi dei pianeti",
+    "year": 1609,
+    "category": "scienza",
+    "emoji": "🥚",
+    "description": "Le orbite sono ellissi, non cerchi: cade un dogma di venti secoli.",
+    "wiki": "Leggi_di_Keplero"
+  },
+  {
+    "id": "sci_109",
+    "title": "Hooke osserva le cellule al microscopio",
+    "year": 1665,
+    "category": "scienza",
+    "emoji": "🔬",
+    "description": "Nella Micrographia compare per la prima volta la parola cellula.",
+    "wiki": "Micrographia"
+  },
+  {
+    "id": "sci_110",
+    "title": "Lavoisier enuncia la conservazione della massa",
+    "year": 1789,
+    "category": "scienza",
+    "emoji": "⚗️",
+    "description": "Nulla si crea, nulla si distrugge: nasce la chimica moderna.",
+    "wiki": "Antoine_Lavoisier"
+  },
+  {
+    "id": "sci_111",
+    "title": "Jenner prova il vaccino contro il vaiolo",
+    "year": 1796,
+    "category": "scienza",
+    "emoji": "💉",
+    "description": "Inocula il vaiolo bovino a un bambino e apre l'era delle vaccinazioni.",
+    "wiki": "Edward_Jenner",
+    "dateStr": "14 Maggio 1796"
+  },
+  {
+    "id": "sci_112",
+    "title": "Faraday scopre l'induzione elettromagnetica",
+    "year": 1831,
+    "category": "scienza",
+    "emoji": "🧲",
+    "description": "Un magnete in movimento genera corrente: il principio di ogni generatore.",
+    "wiki": "Michael_Faraday",
+    "dateStr": "29 Agosto 1831"
+  },
+  {
+    "id": "sci_113",
+    "title": "Mendel enuncia le leggi dell'ereditarietà",
+    "year": 1866,
+    "category": "scienza",
+    "emoji": "🌱",
+    "description": "Gli esperimenti sui piselli restano ignorati per trentacinque anni.",
+    "wiki": "Gregor_Mendel"
+  },
+  {
+    "id": "sci_114",
+    "title": "Maxwell unifica elettricità e magnetismo",
+    "year": 1865,
+    "category": "scienza",
+    "emoji": "⚡",
+    "description": "Quattro equazioni predicono le onde elettromagnetiche e la natura della luce.",
+    "wiki": "Equazioni_di_Maxwell"
+  },
+  {
+    "id": "sci_115",
+    "title": "Thomson scopre l'elettrone",
+    "year": 1897,
+    "category": "scienza",
+    "emoji": "🔵",
+    "description": "La prima particella subatomica manda in pezzi l'atomo indivisibile.",
+    "wiki": "Elettrone",
+    "dateStr": "30 Aprile 1897"
+  },
+  {
+    "id": "sci_116",
+    "title": "Planck introduce il quanto d'azione",
+    "year": 1900,
+    "category": "scienza",
+    "emoji": "📦",
+    "description": "L'energia viene emessa a pacchetti: nasce la fisica quantistica.",
+    "wiki": "Costante_di_Planck",
+    "dateStr": "14 Dicembre 1900"
+  },
+  {
+    "id": "sci_117",
+    "title": "Einstein pubblica la relatività ristretta",
+    "year": 1905,
+    "category": "scienza",
+    "emoji": "⏱️",
+    "description": "Nell'anno mirabile esce anche la relazione fra massa ed energia.",
+    "wiki": "Relatività_ristretta",
+    "dateStr": "30 Giugno 1905"
+  },
+  {
+    "id": "sci_118",
+    "title": "Rutherford scopre il nucleo atomico",
+    "year": 1911,
+    "category": "scienza",
+    "emoji": "🎯",
+    "description": "Le particelle alfa rimbalzano: l'atomo è quasi tutto vuoto.",
+    "wiki": "Esperimento_di_Rutherford"
+  },
+  {
+    "id": "sci_119",
+    "title": "Wegener propone la deriva dei continenti",
+    "year": 1912,
+    "category": "scienza",
+    "emoji": "🧩",
+    "description": "L'idea viene derisa per cinquant'anni prima di essere confermata.",
+    "wiki": "Deriva_dei_continenti",
+    "dateStr": "6 Gennaio 1912"
+  },
+  {
+    "id": "sci_120",
+    "title": "Heisenberg formula il principio di indeterminazione",
+    "year": 1927,
+    "category": "scienza",
+    "emoji": "🌫️",
+    "description": "Posizione e velocità non possono essere note insieme con precisione.",
+    "wiki": "Principio_di_indeterminazione_di_Heisenberg"
+  },
+  {
+    "id": "sci_121",
+    "title": "Prima reazione nucleare a catena controllata",
+    "year": 1942,
+    "category": "scienza",
+    "emoji": "☢️",
+    "description": "Fermi accende la pila atomica sotto le tribune di Chicago.",
+    "wiki": "Chicago_Pile-1",
+    "dateStr": "2 Dicembre 1942"
+  },
+  {
+    "id": "sci_122",
+    "title": "Scoperta della radiazione cosmica di fondo",
+    "year": 1964,
+    "category": "scienza",
+    "emoji": "📻",
+    "description": "Un rumore inspiegabile nell'antenna si rivela l'eco del Big Bang.",
+    "wiki": "Radiazione_cosmica_di_fondo"
+  },
+  {
+    "id": "sci_123",
+    "title": "Prima risonanza magnetica su un essere umano",
+    "year": 1977,
+    "category": "scienza",
+    "emoji": "🧲",
+    "description": "L'imaging medico può guardare i tessuti molli senza radiazioni.",
+    "wiki": "Risonanza_magnetica",
+    "dateStr": "3 Luglio 1977"
+  },
+  {
+    "id": "sci_124",
+    "title": "Messa a punto della PCR",
+    "year": 1983,
+    "category": "scienza",
+    "emoji": "🧬",
+    "description": "Amplificare il DNA diventa routine: diagnostica e forensica cambiano per sempre.",
+    "wiki": "Reazione_a_catena_della_polimerasi"
+  },
+  {
+    "id": "sci_125",
+    "title": "Scoperto il primo pianeta attorno a una stella simile al Sole",
+    "year": 1995,
+    "category": "scienza",
+    "emoji": "🪐",
+    "description": "Mayor e Queloz individuano 51 Pegasi b e aprono la caccia agli esopianeti.",
+    "wiki": "51_Pegasi_b",
+    "dateStr": "6 Ottobre 1995"
+  },
+  {
+    "id": "sci_126",
+    "title": "Approvato il protocollo di Kyoto",
+    "year": 1997,
+    "category": "scienza",
+    "emoji": "🌡️",
+    "description": "Primo accordo internazionale vincolante sulla riduzione dei gas serra.",
+    "wiki": "Protocollo_di_Kyoto",
+    "dateStr": "11 Dicembre 1997"
+  },
+  {
+    "id": "sci_127",
+    "title": "AlphaFold risolve il ripiegamento delle proteine",
+    "year": 2021,
+    "category": "scienza",
+    "emoji": "🧫",
+    "description": "La struttura di quasi tutte le proteine note viene predetta e resa pubblica.",
+    "wiki": "AlphaFold"
+  },
+  {
+    "id": "cin_101",
+    "title": "Il treno dei Lumière spaventa il pubblico",
+    "year": 1896,
+    "category": "cinema",
+    "emoji": "🚂",
+    "description": "La leggenda degli spettatori in fuga accompagna una delle prime proiezioni.",
+    "wiki": "L'arrivo_di_un_treno_alla_stazione_di_La_Ciotat"
+  },
+  {
+    "id": "cin_102",
+    "title": "Viaggio nella Luna di Méliès",
+    "year": 1902,
+    "category": "cinema",
+    "emoji": "🌝",
+    "description": "Il proiettile nell'occhio della Luna inventa gli effetti speciali.",
+    "wiki": "Viaggio_nella_Luna"
+  },
+  {
+    "id": "cin_103",
+    "title": "Cabiria porta il kolossal in Italia",
+    "year": 1914,
+    "category": "cinema",
+    "emoji": "🔥",
+    "description": "Il film di Pastrone introduce carrellate e didascalie di D'Annunzio.",
+    "wiki": "Cabiria",
+    "dateStr": "18 Aprile 1914"
+  },
+  {
+    "id": "cin_104",
+    "title": "Il gabinetto del dottor Caligari",
+    "year": 1920,
+    "category": "cinema",
+    "emoji": "🌀",
+    "description": "Scenografie storte e ombre dipinte: nasce l'espressionismo al cinema.",
+    "wiki": "Il_gabinetto_del_dottor_Caligari",
+    "dateStr": "26 Febbraio 1920"
+  },
+  {
+    "id": "cin_105",
+    "title": "La corazzata Potëmkin e il montaggio",
+    "year": 1925,
+    "category": "cinema",
+    "emoji": "🍼",
+    "description": "La scena della scalinata di Odessa entra in ogni manuale di regia.",
+    "wiki": "La_corazzata_Potëmkin",
+    "dateStr": "21 Dicembre 1925"
+  },
+  {
+    "id": "cin_106",
+    "title": "Metropolis immagina la città futura",
+    "year": 1927,
+    "category": "cinema",
+    "emoji": "🏙️",
+    "description": "Fritz Lang gira il film muto più costoso mai realizzato in Germania.",
+    "wiki": "Metropolis_(film_1927)",
+    "dateStr": "10 Gennaio 1927"
+  },
+  {
+    "id": "cin_107",
+    "title": "Nasce Topolino in Steamboat Willie",
+    "year": 1928,
+    "category": "cinema",
+    "emoji": "🐭",
+    "description": "Il primo cartone sonoro sincronizzato lancia lo studio Disney.",
+    "wiki": "Steamboat_Willie",
+    "dateStr": "18 Novembre 1928"
+  },
+  {
+    "id": "cin_108",
+    "title": "King Kong sale sull'Empire State",
+    "year": 1933,
+    "category": "cinema",
+    "emoji": "🦍",
+    "description": "La stop motion di Willis O'Brien rende credibile l'impossibile.",
+    "wiki": "King_Kong_(film_1933)",
+    "dateStr": "2 Marzo 1933"
+  },
+  {
+    "id": "cin_109",
+    "title": "Il mago di Oz passa al Technicolor",
+    "year": 1939,
+    "category": "cinema",
+    "emoji": "🌈",
+    "description": "Il salto dal seppia al colore resta uno dei momenti più citati del cinema.",
+    "wiki": "Il_mago_di_Oz_(film_1939)",
+    "dateStr": "25 Agosto 1939"
+  },
+  {
+    "id": "cin_110",
+    "title": "Casablanca arriva nelle sale",
+    "year": 1942,
+    "category": "cinema",
+    "emoji": "🥂",
+    "description": "Nato come film qualunque, diventa il melodramma più citato di sempre.",
+    "wiki": "Casablanca_(film)",
+    "dateStr": "26 Novembre 1942"
+  },
+  {
+    "id": "cin_111",
+    "title": "Roma città aperta apre il Neorealismo",
+    "year": 1945,
+    "category": "cinema",
+    "emoji": "🎞️",
+    "description": "Rossellini gira fra le macerie con pellicola di recupero.",
+    "wiki": "Roma_città_aperta",
+    "dateStr": "27 Settembre 1945"
+  },
+  {
+    "id": "cin_112",
+    "title": "I sette samurai",
+    "year": 1954,
+    "category": "cinema",
+    "emoji": "⚔️",
+    "description": "Kurosawa inventa la struttura del gruppo reclutato per una missione.",
+    "wiki": "I_sette_samurai",
+    "dateStr": "26 Aprile 1954"
+  },
+  {
+    "id": "cin_113",
+    "title": "Il settimo sigillo",
+    "year": 1957,
+    "category": "cinema",
+    "emoji": "♟️",
+    "description": "La partita a scacchi con la Morte diventa immagine universale.",
+    "wiki": "Il_settimo_sigillo",
+    "dateStr": "16 Febbraio 1957"
+  },
+  {
+    "id": "cin_114",
+    "title": "Fino all'ultimo respiro e la Nouvelle Vague",
+    "year": 1960,
+    "category": "cinema",
+    "emoji": "🚬",
+    "description": "Godard rompe le regole del montaggio con i jump cut.",
+    "wiki": "Fino_all'ultimo_respiro",
+    "dateStr": "16 Marzo 1960"
+  },
+  {
+    "id": "cin_115",
+    "title": "Lawrence d'Arabia",
+    "year": 1962,
+    "category": "cinema",
+    "emoji": "🐪",
+    "description": "Il deserto in settanta millimetri ridefinisce il concetto di epica.",
+    "wiki": "Lawrence_d'Arabia_(film)",
+    "dateStr": "10 Dicembre 1962"
+  },
+  {
+    "id": "cin_116",
+    "title": "Per un pugno di dollari inventa lo spaghetti western",
+    "year": 1964,
+    "category": "cinema",
+    "emoji": "🤠",
+    "description": "Leone e Morricone rileggono il western americano dall'Italia.",
+    "wiki": "Per_un_pugno_di_dollari",
+    "dateStr": "12 Settembre 1964"
+  },
+  {
+    "id": "cin_117",
+    "title": "Il laureato e la nuova Hollywood",
+    "year": 1967,
+    "category": "cinema",
+    "emoji": "🎓",
+    "description": "Un film piccolo incassa enormemente e cambia i gusti degli studios.",
+    "wiki": "Il_laureato",
+    "dateStr": "21 Dicembre 1967"
+  },
+  {
+    "id": "cin_118",
+    "title": "L'esorcista sconvolge le sale",
+    "year": 1973,
+    "category": "cinema",
+    "emoji": "😈",
+    "description": "File chilometriche e svenimenti: l'horror diventa fenomeno di massa.",
+    "wiki": "L'esorcista",
+    "dateStr": "26 Dicembre 1973"
+  },
+  {
+    "id": "cin_119",
+    "title": "Taxi Driver vince a Cannes",
+    "year": 1976,
+    "category": "cinema",
+    "emoji": "🚕",
+    "description": "Scorsese e De Niro firmano il ritratto più cupo della New York anni Settanta.",
+    "wiki": "Taxi_Driver",
+    "dateStr": "8 Febbraio 1976"
+  },
+  {
+    "id": "cin_120",
+    "title": "Alien porta l'horror nello spazio",
+    "year": 1979,
+    "category": "cinema",
+    "emoji": "🥚",
+    "description": "Il design di Giger crea la creatura più influente della fantascienza.",
+    "wiki": "Alien_(film)",
+    "dateStr": "25 Maggio 1979"
+  },
+  {
+    "id": "cin_121",
+    "title": "Blade Runner immagina il 2019",
+    "year": 1982,
+    "category": "cinema",
+    "emoji": "🌧️",
+    "description": "Flop iniziale, poi modello estetico per ogni città del futuro.",
+    "wiki": "Blade_Runner",
+    "dateStr": "25 Giugno 1982"
+  },
+  {
+    "id": "cin_122",
+    "title": "Terminator 2 e la grafica liquida",
+    "year": 1991,
+    "category": "cinema",
+    "emoji": "🤖",
+    "description": "Il T-1000 mostra cosa può fare la computer grafica in un film.",
+    "wiki": "Terminator_2_-_Il_giorno_del_giudizio",
+    "dateStr": "3 Luglio 1991"
+  },
+  {
+    "id": "cin_123",
+    "title": "Schindler's List",
+    "year": 1993,
+    "category": "cinema",
+    "emoji": "🕯️",
+    "description": "Spielberg gira in bianco e nero il film che gli vale il primo Oscar da regista.",
+    "wiki": "Schindler's_List_-_La_lista_di_Schindler",
+    "dateStr": "15 Dicembre 1993"
+  },
+  {
+    "id": "cin_124",
+    "title": "La vita è bella vince l'Oscar",
+    "year": 1998,
+    "category": "cinema",
+    "emoji": "🎈",
+    "description": "Benigni sale sulle poltrone: terzo film italiano premiato come miglior straniero.",
+    "wiki": "La_vita_è_bella",
+    "dateStr": "20 Dicembre 1998"
+  },
+  {
+    "id": "cin_125",
+    "title": "La tigre e il dragone",
+    "year": 2000,
+    "category": "cinema",
+    "emoji": "🗡️",
+    "description": "Il wuxia cinese conquista l'Occidente e vince quattro Oscar.",
+    "wiki": "La_tigre_e_il_dragone",
+    "dateStr": "8 Luglio 2000"
+  },
+  {
+    "id": "cin_126",
+    "title": "Esce il primo Harry Potter al cinema",
+    "year": 2001,
+    "category": "cinema",
+    "emoji": "🧙",
+    "description": "La saga letteraria diventa il franchise che definisce un decennio.",
+    "wiki": "Harry_Potter_e_la_pietra_filosofale_(film)",
+    "dateStr": "16 Novembre 2001"
+  },
+  {
+    "id": "cin_127",
+    "title": "Iron Man apre il Marvel Cinematic Universe",
+    "year": 2008,
+    "category": "cinema",
+    "emoji": "🦾",
+    "description": "La scena dopo i titoli annuncia un progetto da oltre venti film.",
+    "wiki": "Iron_Man_(film_2008)",
+    "dateStr": "2 Maggio 2008"
+  },
+  {
+    "id": "cin_128",
+    "title": "Avengers: Endgame chiude la saga",
+    "year": 2019,
+    "category": "cinema",
+    "emoji": "💎",
+    "description": "Il film incassa quasi tre miliardi e diventa il più visto di sempre.",
+    "wiki": "Avengers:_Endgame",
+    "dateStr": "26 Aprile 2019"
+  },
+  {
+    "id": "vid_101",
+    "title": "Tennis for Two su oscilloscopio",
+    "year": 1958,
+    "category": "videogiochi",
+    "emoji": "🎾",
+    "description": "Willy Higinbotham crea uno dei primi videogiochi per una giornata di porte aperte.",
+    "wiki": "Tennis_for_Two",
+    "dateStr": "18 Ottobre 1958"
+  },
+  {
+    "id": "vid_102",
+    "title": "Spacewar! al MIT",
+    "year": 1962,
+    "category": "videogiochi",
+    "emoji": "🚀",
+    "description": "Il duello spaziale su PDP-1 si diffonde in tutte le università americane.",
+    "wiki": "Spacewar!"
+  },
+  {
+    "id": "vid_103",
+    "title": "Magnavox Odyssey, prima console casalinga",
+    "year": 1972,
+    "category": "videogiochi",
+    "emoji": "📺",
+    "description": "Ralph Baer porta il videogioco nel salotto, con sovrapposizioni di plastica.",
+    "wiki": "Magnavox_Odyssey",
+    "dateStr": "1 Settembre 1972"
+  },
+  {
+    "id": "vid_104",
+    "title": "Atari pubblica Breakout",
+    "year": 1976,
+    "category": "videogiochi",
+    "emoji": "🧱",
+    "description": "Progettato da Jobs e Wozniak, ispirerà una generazione di cloni.",
+    "wiki": "Breakout_(videogioco)"
+  },
+  {
+    "id": "vid_105",
+    "title": "Atari 2600 standardizza le cartucce",
+    "year": 1977,
+    "category": "videogiochi",
+    "emoji": "🕹️",
+    "description": "La console con giochi intercambiabili crea il mercato del software.",
+    "wiki": "Atari_2600",
+    "dateStr": "11 Settembre 1977"
+  },
+  {
+    "id": "vid_106",
+    "title": "Esce Asteroids",
+    "year": 1979,
+    "category": "videogiochi",
+    "emoji": "☄️",
+    "description": "La grafica vettoriale e il punteggio con iniziali rendono la sala giochi competitiva.",
+    "wiki": "Asteroids_(videogioco)"
+  },
+  {
+    "id": "vid_107",
+    "title": "Nasce Ms. Pac-Man",
+    "year": 1982,
+    "category": "videogiochi",
+    "emoji": "🎀",
+    "description": "Il seguito non autorizzato supera l'originale in popolarità americana.",
+    "wiki": "Ms._Pac-Man",
+    "dateStr": "3 Febbraio 1982"
+  },
+  {
+    "id": "vid_108",
+    "title": "Il crollo dei videogiochi del 1983",
+    "year": 1983,
+    "category": "videogiochi",
+    "emoji": "📉",
+    "description": "Troppi titoli scadenti fanno collassare il mercato nordamericano.",
+    "wiki": "Crisi_dei_videogiochi_del_1983"
+  },
+  {
+    "id": "vid_109",
+    "title": "Nintendo lancia il NES in America",
+    "year": 1985,
+    "category": "videogiochi",
+    "emoji": "🎮",
+    "description": "Il controllo qualità del sigillo Nintendo risolleva l'intero settore.",
+    "wiki": "Nintendo_Entertainment_System",
+    "dateStr": "18 Ottobre 1985"
+  },
+  {
+    "id": "vid_110",
+    "title": "The Legend of Zelda introduce il salvataggio",
+    "year": 1986,
+    "category": "videogiochi",
+    "emoji": "🗡️",
+    "description": "L'avventura open world su cartuccia con batteria tampone.",
+    "wiki": "The_Legend_of_Zelda_(videogioco)",
+    "dateStr": "21 Febbraio 1986"
+  },
+  {
+    "id": "vid_111",
+    "title": "Metroid e la protagonista nascosta",
+    "year": 1986,
+    "category": "videogiochi",
+    "emoji": "🔫",
+    "description": "Alla fine si scopre che Samus Aran è una donna: colpo di scena storico.",
+    "wiki": "Metroid_(videogioco)",
+    "dateStr": "6 Agosto 1986"
+  },
+  {
+    "id": "vid_112",
+    "title": "Final Fantasy salva Square",
+    "year": 1987,
+    "category": "videogiochi",
+    "emoji": "💎",
+    "description": "Il gioco pensato come ultimo tentativo diventa una delle saghe più longeve.",
+    "wiki": "Final_Fantasy_(videogioco)",
+    "dateStr": "18 Dicembre 1987"
+  },
+  {
+    "id": "vid_113",
+    "title": "SimCity inventa il gestionale",
+    "year": 1989,
+    "category": "videogiochi",
+    "emoji": "🏙️",
+    "description": "Un gioco senza vittoria né sconfitta apre un genere completamente nuovo.",
+    "wiki": "SimCity_(videogioco_1989)"
+  },
+  {
+    "id": "vid_114",
+    "title": "Civilization di Sid Meier",
+    "year": 1991,
+    "category": "videogiochi",
+    "emoji": "🏛️",
+    "description": "Il turno successivo che toglie il sonno: nasce il 4X moderno.",
+    "wiki": "Civilization_(videogioco)"
+  },
+  {
+    "id": "vid_115",
+    "title": "Mortal Kombat accende la polemica",
+    "year": 1992,
+    "category": "videogiochi",
+    "emoji": "🩸",
+    "description": "La violenza digitalizzata porta alla nascita del sistema di classificazione ESRB.",
+    "wiki": "Mortal_Kombat_(videogioco_1992)",
+    "dateStr": "8 Ottobre 1992"
+  },
+  {
+    "id": "vid_116",
+    "title": "Myst mostra cosa può fare il CD-ROM",
+    "year": 1993,
+    "category": "videogiochi",
+    "emoji": "🏝️",
+    "description": "Per anni il gioco per PC più venduto al mondo.",
+    "wiki": "Myst",
+    "dateStr": "24 Settembre 1993"
+  },
+  {
+    "id": "vid_117",
+    "title": "Tomb Raider presenta Lara Croft",
+    "year": 1996,
+    "category": "videogiochi",
+    "emoji": "🏺",
+    "description": "La prima eroina tridimensionale diventa icona pop oltre il videogioco.",
+    "wiki": "Tomb_Raider_(videogioco_1996)",
+    "dateStr": "25 Ottobre 1996"
+  },
+  {
+    "id": "vid_118",
+    "title": "Final Fantasy VII porta il cinema nei giochi",
+    "year": 1997,
+    "category": "videogiochi",
+    "emoji": "⚔️",
+    "description": "Tre CD di filmati e una morte che segna una generazione di giocatori.",
+    "wiki": "Final_Fantasy_VII",
+    "dateStr": "31 Gennaio 1997"
+  },
+  {
+    "id": "vid_119",
+    "title": "Ocarina of Time ridefinisce il 3D",
+    "year": 1998,
+    "category": "videogiochi",
+    "emoji": "🎶",
+    "description": "Il blocco del bersaglio diventa lo standard dell'azione tridimensionale.",
+    "wiki": "The_Legend_of_Zelda:_Ocarina_of_Time",
+    "dateStr": "21 Novembre 1998"
+  },
+  {
+    "id": "vid_120",
+    "title": "Counter-Strike nasce come mod",
+    "year": 1999,
+    "category": "videogiochi",
+    "emoji": "🔫",
+    "description": "Due studenti trasformano Half-Life nello sparatutto competitivo per eccellenza.",
+    "wiki": "Counter-Strike",
+    "dateStr": "19 Giugno 1999"
+  },
+  {
+    "id": "vid_121",
+    "title": "PlayStation 2 diventa la console più venduta",
+    "year": 2000,
+    "category": "videogiochi",
+    "emoji": "⚫",
+    "description": "Centocinquanta milioni di pezzi e un lettore DVD nel prezzo.",
+    "wiki": "PlayStation_2",
+    "dateStr": "4 Marzo 2000"
+  },
+  {
+    "id": "vid_122",
+    "title": "Halo lancia lo sparatutto su console",
+    "year": 2001,
+    "category": "videogiochi",
+    "emoji": "🪖",
+    "description": "Due armi alla volta e scudo ricaricabile: il pad diventa competitivo.",
+    "wiki": "Halo:_Combat_Evolved",
+    "dateStr": "15 Novembre 2001"
+  },
+  {
+    "id": "vid_123",
+    "title": "Nintendo DS e il doppio schermo",
+    "year": 2004,
+    "category": "videogiochi",
+    "emoji": "✌️",
+    "description": "Il touch screen apre il videogioco a un pubblico che non aveva mai giocato.",
+    "wiki": "Nintendo_DS",
+    "dateStr": "21 Novembre 2004"
+  },
+  {
+    "id": "vid_124",
+    "title": "Wii Sports nella confezione",
+    "year": 2006,
+    "category": "videogiochi",
+    "emoji": "🎾",
+    "description": "Il gioco incluso nella console diventa il più venduto della generazione.",
+    "wiki": "Wii_Sports",
+    "dateStr": "19 Novembre 2006"
+  },
+  {
+    "id": "vid_125",
+    "title": "Angry Birds e il gioco da telefono",
+    "year": 2009,
+    "category": "videogiochi",
+    "emoji": "🐦",
+    "description": "Il mobile gaming diventa un mercato di massa da un'app da un dollaro.",
+    "wiki": "Angry_Birds",
+    "dateStr": "11 Dicembre 2009"
+  },
+  {
+    "id": "vid_126",
+    "title": "Dark Souls impone la sua difficoltà",
+    "year": 2011,
+    "category": "videogiochi",
+    "emoji": "🔥",
+    "description": "Morire come meccanica di apprendimento genera un sottogenere.",
+    "wiki": "Dark_Souls",
+    "dateStr": "22 Settembre 2011"
+  },
+  {
+    "id": "vid_127",
+    "title": "GTA V incassa un miliardo in tre giorni",
+    "year": 2013,
+    "category": "videogiochi",
+    "emoji": "💵",
+    "description": "Il lancio di intrattenimento più redditizio della storia.",
+    "wiki": "Grand_Theft_Auto_V",
+    "dateStr": "17 Settembre 2013"
+  },
+  {
+    "id": "vid_128",
+    "title": "Among Us esplode durante la pandemia",
+    "year": 2020,
+    "category": "videogiochi",
+    "emoji": "👨‍🚀",
+    "description": "Uscito nel 2018, diventa fenomeno mondiale due anni dopo grazie allo streaming.",
+    "wiki": "Among_Us"
+  },
+  {
+    "id": "vid_129",
+    "title": "Baldur's Gate 3 vince il Game of the Year",
+    "year": 2023,
+    "category": "videogiochi",
+    "emoji": "🎲",
+    "description": "Il gioco di ruolo alza l'asticella delle conseguenze narrative.",
+    "wiki": "Baldur's_Gate_III",
+    "dateStr": "3 Agosto 2023"
+  },
+  {
+    "id": "spo_101",
+    "title": "Prima Olimpiade antica a Olimpia",
+    "year": -776,
+    "category": "sport",
+    "emoji": "🔥",
+    "description": "La corsa dello stadio apre il conteggio del tempo per i greci.",
+    "wiki": "Giochi_olimpici_antichi",
+    "approx": true
+  },
+  {
+    "id": "spo_102",
+    "title": "Fondazione della Football Association",
+    "year": 1863,
+    "category": "sport",
+    "emoji": "⚽",
+    "description": "A Londra si scrivono le regole che separano il calcio dal rugby.",
+    "wiki": "Football_Association",
+    "dateStr": "26 Ottobre 1863"
+  },
+  {
+    "id": "spo_103",
+    "title": "Prima finale di FA Cup",
+    "year": 1872,
+    "category": "sport",
+    "emoji": "🏆",
+    "description": "La competizione calcistica più antica del mondo assegna il primo titolo.",
+    "wiki": "FA_Cup",
+    "dateStr": "16 Marzo 1872"
+  },
+  {
+    "id": "spo_104",
+    "title": "Primo torneo di Wimbledon",
+    "year": 1877,
+    "category": "sport",
+    "emoji": "🎾",
+    "description": "Ventidue giocatori e duecento spettatori per il più antico torneo di tennis.",
+    "wiki": "Torneo_di_Wimbledon",
+    "dateStr": "9 Luglio 1877"
+  },
+  {
+    "id": "spo_105",
+    "title": "Naismith inventa la pallacanestro",
+    "year": 1891,
+    "category": "sport",
+    "emoji": "🏀",
+    "description": "Due cesti di pesche e tredici regole per tenere gli studenti attivi d'inverno.",
+    "wiki": "Pallacanestro",
+    "dateStr": "21 Dicembre 1891"
+  },
+  {
+    "id": "spo_106",
+    "title": "Nasce il Giro d'Italia",
+    "year": 1909,
+    "category": "sport",
+    "emoji": "🚴",
+    "description": "Otto tappe e 2448 chilometri partendo da Milano.",
+    "wiki": "Giro_d'Italia",
+    "dateStr": "13 Maggio 1909"
+  },
+  {
+    "id": "spo_107",
+    "title": "Fondazione della FIFA",
+    "year": 1904,
+    "category": "sport",
+    "emoji": "🌍",
+    "description": "Sette federazioni europee creano l'organismo che governerà il calcio mondiale.",
+    "wiki": "FIFA",
+    "dateStr": "21 Maggio 1904"
+  },
+  {
+    "id": "spo_108",
+    "title": "Prima 24 Ore di Le Mans",
+    "year": 1923,
+    "category": "sport",
+    "emoji": "🏁",
+    "description": "La gara di durata che misura l'affidabilità più della velocità.",
+    "wiki": "24_Ore_di_Le_Mans",
+    "dateStr": "26 Maggio 1923"
+  },
+  {
+    "id": "spo_109",
+    "title": "Prime Olimpiadi invernali a Chamonix",
+    "year": 1924,
+    "category": "sport",
+    "emoji": "⛷️",
+    "description": "Sedici nazioni inaugurano i giochi sulla neve e sul ghiaccio.",
+    "wiki": "I_Giochi_olimpici_invernali",
+    "dateStr": "25 Gennaio 1924"
+  },
+  {
+    "id": "spo_110",
+    "title": "Babe Ruth e i sessanta fuoricampo",
+    "year": 1927,
+    "category": "sport",
+    "emoji": "⚾",
+    "description": "Un record che resisterà trentaquattro anni e definisce il baseball moderno.",
+    "wiki": "Babe_Ruth",
+    "dateStr": "30 Settembre 1927"
+  },
+  {
+    "id": "spo_111",
+    "title": "Bartali vince il Tour e l'Italia si ferma",
+    "year": 1948,
+    "category": "sport",
+    "emoji": "🚲",
+    "description": "La vittoria arriva nei giorni dell'attentato a Togliatti.",
+    "wiki": "Gino_Bartali",
+    "dateStr": "25 Luglio 1948"
+  },
+  {
+    "id": "spo_112",
+    "title": "Nasce il Campionato mondiale di Formula 1",
+    "year": 1950,
+    "category": "sport",
+    "emoji": "🏎️",
+    "description": "La prima gara si corre a Silverstone davanti alla famiglia reale.",
+    "wiki": "Campionato_mondiale_di_Formula_1",
+    "dateStr": "13 Maggio 1950"
+  },
+  {
+    "id": "spo_113",
+    "title": "La tragedia di Superga",
+    "year": 1949,
+    "category": "sport",
+    "emoji": "✈️",
+    "description": "L'aereo del Grande Torino si schianta sulla collina: muore una squadra intera.",
+    "wiki": "Tragedia_di_Superga",
+    "dateStr": "4 Maggio 1949"
+  },
+  {
+    "id": "spo_114",
+    "title": "Il Brasile perde il Maracanazo",
+    "year": 1950,
+    "category": "sport",
+    "emoji": "😶",
+    "description": "Duecentomila persone ammutolite: l'Uruguay vince il Mondiale in casa loro.",
+    "wiki": "Maracanazo",
+    "dateStr": "16 Luglio 1950"
+  },
+  {
+    "id": "spo_115",
+    "title": "La Ungheria d'oro travolge l'Inghilterra",
+    "year": 1953,
+    "category": "sport",
+    "emoji": "🇭🇺",
+    "description": "Sei a tre a Wembley: cade l'imbattibilità inglese in casa.",
+    "wiki": "Nazionale_di_calcio_dell'Ungheria",
+    "dateStr": "25 Novembre 1953"
+  },
+  {
+    "id": "spo_116",
+    "title": "Prima Coppa dei Campioni",
+    "year": 1956,
+    "category": "sport",
+    "emoji": "🏆",
+    "description": "Il Real Madrid inaugura un dominio di cinque titoli consecutivi.",
+    "wiki": "Coppa_dei_Campioni_1955-1956",
+    "dateStr": "13 Giugno 1956"
+  },
+  {
+    "id": "spo_117",
+    "title": "Abebe Bikila vince la maratona scalzo",
+    "year": 1960,
+    "category": "sport",
+    "emoji": "🦶",
+    "description": "L'etiope corre a piedi nudi sui sampietrini di Roma e stabilisce il record.",
+    "wiki": "Abebe_Bikila",
+    "dateStr": "10 Settembre 1960"
+  },
+  {
+    "id": "spo_118",
+    "title": "Il salto di Fosbury",
+    "year": 1968,
+    "category": "sport",
+    "emoji": "🤸",
+    "description": "Scavalcare l'asticella di schiena sembra assurdo, poi lo fanno tutti.",
+    "wiki": "Dick_Fosbury",
+    "dateStr": "20 Ottobre 1968"
+  },
+  {
+    "id": "spo_119",
+    "title": "Il pugno guantato di Smith e Carlos",
+    "year": 1968,
+    "category": "sport",
+    "emoji": "✊",
+    "description": "Il gesto sul podio di Città del Messico entra nella storia civile.",
+    "wiki": "Protesta_del_Black_Power_alle_Olimpiadi_del_1968",
+    "dateStr": "16 Ottobre 1968"
+  },
+  {
+    "id": "spo_120",
+    "title": "Rumble in the Jungle",
+    "year": 1974,
+    "category": "sport",
+    "emoji": "🥊",
+    "description": "Ali batte Foreman a Kinshasa con la tattica del rope-a-dope.",
+    "wiki": "The_Rumble_in_the_Jungle",
+    "dateStr": "30 Ottobre 1974"
+  },
+  {
+    "id": "spo_121",
+    "title": "Borg e McEnroe, finale di Wimbledon",
+    "year": 1980,
+    "category": "sport",
+    "emoji": "🎾",
+    "description": "Il tie-break da diciotto a sedici resta il più famoso del tennis.",
+    "wiki": "Roland_Björn_Borg",
+    "dateStr": "5 Luglio 1980"
+  },
+  {
+    "id": "spo_122",
+    "title": "Mennea corre i 200 in 19.72",
+    "year": 1979,
+    "category": "sport",
+    "emoji": "⚡",
+    "description": "Il record del mondo resisterà per diciassette anni.",
+    "wiki": "Pietro_Mennea",
+    "dateStr": "12 Settembre 1979"
+  },
+  {
+    "id": "spo_123",
+    "title": "Il Miracolo sul ghiaccio",
+    "year": 1980,
+    "category": "sport",
+    "emoji": "🏒",
+    "description": "Gli studenti americani battono la corazzata sovietica di hockey.",
+    "wiki": "Miracolo_sul_ghiaccio",
+    "dateStr": "22 Febbraio 1980"
+  },
+  {
+    "id": "spo_124",
+    "title": "Carl Lewis vince quattro ori a Los Angeles",
+    "year": 1984,
+    "category": "sport",
+    "emoji": "🥇",
+    "description": "Ripete l'impresa di Jesse Owens a quarantotto anni di distanza.",
+    "wiki": "Carl_Lewis",
+    "dateStr": "11 Agosto 1984"
+  },
+  {
+    "id": "spo_125",
+    "title": "Il Dream Team a Barcellona",
+    "year": 1992,
+    "category": "sport",
+    "emoji": "🏀",
+    "description": "I professionisti NBA entrano alle Olimpiadi e vincono di quarantaquattro punti medi.",
+    "wiki": "Dream_Team_(pallacanestro)",
+    "dateStr": "8 Agosto 1992"
+  },
+  {
+    "id": "spo_126",
+    "title": "Mandela consegna la Coppa del Mondo di rugby",
+    "year": 1995,
+    "category": "sport",
+    "emoji": "🏉",
+    "description": "La maglia Springbok diventa simbolo di riconciliazione sudafricana.",
+    "wiki": "Coppa_del_Mondo_di_rugby_1995",
+    "dateStr": "24 Giugno 1995"
+  },
+  {
+    "id": "spo_127",
+    "title": "Il Grande Slam d'oro di Steffi Graf",
+    "year": 1988,
+    "category": "sport",
+    "emoji": "🎾",
+    "description": "Quattro tornei più l'oro olimpico nello stesso anno: mai riuscito ad altri.",
+    "wiki": "Steffi_Graf"
+  },
+  {
+    "id": "spo_128",
+    "title": "Phelps vince otto ori a Pechino",
+    "year": 2008,
+    "category": "sport",
+    "emoji": "🏊",
+    "description": "Record assoluto di medaglie d'oro in una singola edizione olimpica.",
+    "wiki": "Michael_Phelps",
+    "dateStr": "17 Agosto 2008"
+  },
+  {
+    "id": "spo_129",
+    "title": "Il Milan rimonta e perde a Istanbul",
+    "year": 2005,
+    "category": "sport",
+    "emoji": "⚽",
+    "description": "Tre gol di svantaggio recuperati dal Liverpool in sei minuti.",
+    "wiki": "Finale_della_UEFA_Champions_League_2005",
+    "dateStr": "25 Maggio 2005"
+  },
+  {
+    "id": "spo_130",
+    "title": "Kipchoge scende sotto le due ore",
+    "year": 2019,
+    "category": "sport",
+    "emoji": "⏱️",
+    "description": "A Vienna corre la maratona in 1:59:40, fuori dalle regole ufficiali.",
+    "wiki": "Eliud_Kipchoge",
+    "dateStr": "12 Ottobre 2019"
+  }
+]
