@@ -1,0 +1,489 @@
+[
+  {
+    "id": "geo_001",
+    "title": "Piteas naviga verso il Nord Europa",
+    "year": -325,
+    "category": "geografia",
+    "emoji": "⛵",
+    "description": "Il greco di Marsiglia raggiunge le isole britanniche e parla per primo di Thule.",
+    "wiki": "Pitea",
+    "approx": true
+  },
+  {
+    "id": "geo_002",
+    "title": "Eratostene misura la circonferenza terrestre",
+    "year": -240,
+    "category": "geografia",
+    "emoji": "📐",
+    "description": "Con due ombre e un pozzo calcola il diametro del pianeta con errore minimo.",
+    "wiki": "Eratostene",
+    "approx": true
+  },
+  {
+    "id": "geo_003",
+    "title": "Apertura della Via della Seta",
+    "year": -130,
+    "category": "geografia",
+    "emoji": "🐪",
+    "description": "Le missioni di Zhang Qian collegano stabilmente Cina e Mediterraneo.",
+    "wiki": "Via_della_seta",
+    "approx": true
+  },
+  {
+    "id": "geo_004",
+    "title": "Strabone completa la Geografia",
+    "year": -7,
+    "category": "geografia",
+    "emoji": "🗺️",
+    "description": "Diciassette libri descrivono il mondo conosciuto dall'impero romano.",
+    "wiki": "Strabone",
+    "approx": true
+  },
+  {
+    "id": "geo_005",
+    "title": "Tolomeo pubblica la Geografia",
+    "year": 150,
+    "category": "geografia",
+    "emoji": "🌐",
+    "description": "Coordinate e proiezioni che guideranno i cartografi per quattordici secoli.",
+    "wiki": "Claudio_Tolomeo",
+    "approx": true
+  },
+  {
+    "id": "geo_006",
+    "title": "Leif Erikson approda in Vinland",
+    "year": 1000,
+    "category": "geografia",
+    "emoji": "🪓",
+    "description": "I norreni toccano il Nord America cinque secoli prima di Colombo.",
+    "wiki": "Leif_Erikson",
+    "approx": true
+  },
+  {
+    "id": "geo_007",
+    "title": "Marco Polo parte per la Cina",
+    "year": 1271,
+    "category": "geografia",
+    "emoji": "🧭",
+    "description": "Da Venezia inizia il viaggio che diventerà Il Milione.",
+    "wiki": "Marco_Polo"
+  },
+  {
+    "id": "geo_008",
+    "title": "Ibn Battuta inizia i suoi viaggi",
+    "year": 1325,
+    "category": "geografia",
+    "emoji": "🕌",
+    "description": "Trent'anni di cammino per centoventimila chilometri, dal Marocco alla Cina.",
+    "wiki": "Ibn_Battuta"
+  },
+  {
+    "id": "geo_009",
+    "title": "Prima spedizione di Zheng He",
+    "year": 1405,
+    "category": "geografia",
+    "emoji": "🚢",
+    "description": "La flotta del tesoro cinese salpa con navi grandi il quadruplo di quelle europee.",
+    "wiki": "Zheng_He"
+  },
+  {
+    "id": "geo_010",
+    "title": "Bartolomeu Dias doppia il Capo",
+    "year": 1488,
+    "category": "geografia",
+    "emoji": "🌊",
+    "description": "Per la prima volta una nave europea supera la punta meridionale dell'Africa.",
+    "wiki": "Bartolomeu_Dias"
+  },
+  {
+    "id": "geo_011",
+    "title": "Vasco da Gama raggiunge l'India",
+    "year": 1498,
+    "category": "geografia",
+    "emoji": "⚓",
+    "description": "La rotta per le spezie via mare rompe il monopolio commerciale veneziano.",
+    "wiki": "Vasco_da_Gama",
+    "dateStr": "20 Maggio 1498"
+  },
+  {
+    "id": "geo_012",
+    "title": "La mappa di Piri Reis",
+    "year": 1513,
+    "category": "geografia",
+    "emoji": "🗺️",
+    "description": "Il cartografo ottomano disegna coste americane con precisione sorprendente.",
+    "wiki": "Piri_Reis"
+  },
+  {
+    "id": "geo_013",
+    "title": "Balboa avvista l'Oceano Pacifico",
+    "year": 1513,
+    "category": "geografia",
+    "emoji": "👀",
+    "description": "Attraversato l'istmo di Panama, vede per primo il mare che chiamerà del Sud.",
+    "wiki": "Vasco_Núñez_de_Balboa",
+    "dateStr": "25 Settembre 1513"
+  },
+  {
+    "id": "geo_014",
+    "title": "Magellano salpa per il giro del mondo",
+    "year": 1519,
+    "category": "geografia",
+    "emoji": "🧭",
+    "description": "Cinque navi lasciano Siviglia: ne tornerà una sola, tre anni dopo.",
+    "wiki": "Ferdinando_Magellano",
+    "dateStr": "20 Settembre 1519"
+  },
+  {
+    "id": "geo_015",
+    "title": "Elcano completa la circumnavigazione",
+    "year": 1522,
+    "category": "geografia",
+    "emoji": "🌍",
+    "description": "La Victoria rientra in Spagna: il pianeta è dimostrato rotondo e navigabile.",
+    "wiki": "Juan_Sebastián_Elcano",
+    "dateStr": "6 Settembre 1522"
+  },
+  {
+    "id": "geo_016",
+    "title": "Mercatore pubblica la sua proiezione",
+    "year": 1569,
+    "category": "geografia",
+    "emoji": "📏",
+    "description": "La carta che deforma le aree ma permette di navigare in linea retta.",
+    "wiki": "Proiezione_di_Mercatore"
+  },
+  {
+    "id": "geo_017",
+    "title": "Francis Drake circumnaviga il globo",
+    "year": 1580,
+    "category": "geografia",
+    "emoji": "🏴",
+    "description": "Il corsaro inglese rientra a Plymouth carico di tesori spagnoli.",
+    "wiki": "Francis_Drake"
+  },
+  {
+    "id": "geo_018",
+    "title": "Abel Tasman raggiunge la Tasmania",
+    "year": 1642,
+    "category": "geografia",
+    "emoji": "🦘",
+    "description": "L'olandese tocca l'isola che porterà il suo nome e poi la Nuova Zelanda.",
+    "wiki": "Abel_Tasman",
+    "dateStr": "24 Novembre 1642"
+  },
+  {
+    "id": "geo_019",
+    "title": "James Cook parte per il primo viaggio",
+    "year": 1768,
+    "category": "geografia",
+    "emoji": "🔭",
+    "description": "L'Endeavour salpa per osservare il transito di Venere e cercare il continente australe.",
+    "wiki": "James_Cook",
+    "dateStr": "26 Agosto 1768"
+  },
+  {
+    "id": "geo_020",
+    "title": "Cook approda in Australia",
+    "year": 1770,
+    "category": "geografia",
+    "emoji": "🇦🇺",
+    "description": "Sbarco a Botany Bay: inizia la colonizzazione britannica del continente.",
+    "wiki": "James_Cook_(esploratore)",
+    "dateStr": "29 Aprile 1770"
+  },
+  {
+    "id": "geo_021",
+    "title": "Humboldt esplora il Sud America",
+    "year": 1799,
+    "category": "geografia",
+    "emoji": "🌿",
+    "description": "Cinque anni di misure che fondano la geografia fisica moderna.",
+    "wiki": "Alexander_von_Humboldt"
+  },
+  {
+    "id": "geo_022",
+    "title": "Spedizione di Lewis e Clark",
+    "year": 1804,
+    "category": "geografia",
+    "emoji": "🛶",
+    "description": "Attraversano il Nord America dal Mississippi al Pacifico e ritorno.",
+    "wiki": "Spedizione_di_Lewis_e_Clark",
+    "dateStr": "14 Maggio 1804"
+  },
+  {
+    "id": "geo_023",
+    "title": "Darwin salpa sul Beagle",
+    "year": 1831,
+    "category": "geografia",
+    "emoji": "🐢",
+    "description": "Cinque anni di navigazione che porteranno alla teoria dell'evoluzione.",
+    "wiki": "HMS_Beagle",
+    "dateStr": "27 Dicembre 1831"
+  },
+  {
+    "id": "geo_024",
+    "title": "Livingstone alle Cascate Vittoria",
+    "year": 1855,
+    "category": "geografia",
+    "emoji": "💦",
+    "description": "Il missionario scozzese è il primo europeo a vedere il Mosi-oa-Tunya.",
+    "wiki": "David_Livingstone",
+    "dateStr": "16 Novembre 1855"
+  },
+  {
+    "id": "geo_025",
+    "title": "Speke individua le sorgenti del Nilo",
+    "year": 1858,
+    "category": "geografia",
+    "emoji": "🏞️",
+    "description": "Il lago Vittoria viene indicato come origine del fiume più lungo d'Africa.",
+    "wiki": "John_Hanning_Speke",
+    "dateStr": "3 Agosto 1858"
+  },
+  {
+    "id": "geo_026",
+    "title": "Inaugurazione del Canale di Suez",
+    "year": 1869,
+    "category": "geografia",
+    "emoji": "🚢",
+    "description": "Centosessanta chilometri che accorciano di settemila miglia la rotta per l'Asia.",
+    "wiki": "Canale_di_Suez",
+    "dateStr": "17 Novembre 1869"
+  },
+  {
+    "id": "geo_027",
+    "title": "Stanley incontra Livingstone",
+    "year": 1871,
+    "category": "geografia",
+    "emoji": "🤝",
+    "description": "Il saluto più celebre dell'esplorazione africana, a Ujiji sul Tanganica.",
+    "wiki": "Henry_Morton_Stanley",
+    "dateStr": "10 Novembre 1871"
+  },
+  {
+    "id": "geo_028",
+    "title": "Nansen si fa imprigionare dai ghiacci",
+    "year": 1893,
+    "category": "geografia",
+    "emoji": "🧊",
+    "description": "Il Fram viene lasciato derivare volutamente nel pack artico per tre anni.",
+    "wiki": "Fridtjof_Nansen"
+  },
+  {
+    "id": "geo_029",
+    "title": "Amundsen attraversa il Passaggio a Nord-Ovest",
+    "year": 1906,
+    "category": "geografia",
+    "emoji": "❄️",
+    "description": "Tre anni di navigazione risolvono un enigma cercato per quattro secoli.",
+    "wiki": "Roald_Amundsen"
+  },
+  {
+    "id": "geo_030",
+    "title": "Bingham riporta alla luce Machu Picchu",
+    "year": 1911,
+    "category": "geografia",
+    "emoji": "🏔️",
+    "description": "La cittadella inca sulle Ande torna all'attenzione del mondo.",
+    "wiki": "Machu_Picchu",
+    "dateStr": "24 Luglio 1911"
+  },
+  {
+    "id": "geo_031",
+    "title": "Amundsen raggiunge il Polo Sud",
+    "year": 1911,
+    "category": "geografia",
+    "emoji": "🐧",
+    "description": "Batte Scott di cinque settimane piantando la bandiera norvegese.",
+    "wiki": "Roald_Amundsen_(esploratore)",
+    "dateStr": "14 Dicembre 1911"
+  },
+  {
+    "id": "geo_032",
+    "title": "Scott muore al ritorno dal Polo",
+    "year": 1912,
+    "category": "geografia",
+    "emoji": "🕯️",
+    "description": "La spedizione britannica perisce a pochi chilometri dal deposito di viveri.",
+    "wiki": "Robert_Falcon_Scott",
+    "dateStr": "29 Marzo 1912"
+  },
+  {
+    "id": "geo_033",
+    "title": "L'Endurance resta intrappolata",
+    "year": 1915,
+    "category": "geografia",
+    "emoji": "🧭",
+    "description": "Shackleton perde la nave ma riporta a casa tutti i ventisette uomini.",
+    "wiki": "Endurance_(nave)"
+  },
+  {
+    "id": "geo_034",
+    "title": "Scoperta della tomba di Tutankhamon",
+    "year": 1922,
+    "category": "geografia",
+    "emoji": "⚱️",
+    "description": "Howard Carter apre la sepoltura quasi intatta nella Valle dei Re.",
+    "wiki": "Tomba_di_Tutankhamon",
+    "dateStr": "4 Novembre 1922"
+  },
+  {
+    "id": "geo_035",
+    "title": "Amundsen sorvola il Polo Nord col Norge",
+    "year": 1926,
+    "category": "geografia",
+    "emoji": "🎈",
+    "description": "Il dirigibile progettato da Nobile attraversa l'Artico da costa a costa.",
+    "wiki": "Norge_(dirigibile)",
+    "dateStr": "12 Maggio 1926"
+  },
+  {
+    "id": "geo_036",
+    "title": "Lindbergh attraversa l'Atlantico da solo",
+    "year": 1927,
+    "category": "geografia",
+    "emoji": "✈️",
+    "description": "Trentatré ore senza scalo da New York a Parigi sullo Spirit of St. Louis.",
+    "wiki": "Charles_Lindbergh",
+    "dateStr": "20 Maggio 1927"
+  },
+  {
+    "id": "geo_037",
+    "title": "Piccard sale nella stratosfera",
+    "year": 1931,
+    "category": "geografia",
+    "emoji": "🎈",
+    "description": "Primo uomo a superare i quindicimila metri in pallone pressurizzato.",
+    "wiki": "Auguste_Piccard",
+    "dateStr": "27 Maggio 1931"
+  },
+  {
+    "id": "geo_038",
+    "title": "Cousteau mette a punto l'autorespiratore",
+    "year": 1943,
+    "category": "geografia",
+    "emoji": "🤿",
+    "description": "L'Aqualung apre il mare profondo a chiunque sappia nuotare.",
+    "wiki": "Jacques-Yves_Cousteau"
+  },
+  {
+    "id": "geo_039",
+    "title": "Hillary e Tenzing sull'Everest",
+    "year": 1953,
+    "category": "geografia",
+    "emoji": "🏔️",
+    "description": "Alle 11:30 i due raggiungono per primi gli 8848 metri della vetta.",
+    "wiki": "Edmund_Hillary",
+    "dateStr": "29 Maggio 1953"
+  },
+  {
+    "id": "geo_040",
+    "title": "Il Trieste tocca la Fossa delle Marianne",
+    "year": 1960,
+    "category": "geografia",
+    "emoji": "🌊",
+    "description": "Piccard e Walsh scendono a quasi undicimila metri, il punto più profondo.",
+    "wiki": "Batiscafo_Trieste",
+    "dateStr": "23 Gennaio 1960"
+  },
+  {
+    "id": "geo_041",
+    "title": "La Terra fotografata intera",
+    "year": 1972,
+    "category": "geografia",
+    "emoji": "🌍",
+    "description": "L'equipaggio di Apollo 17 scatta la Biglia Blu, icona dell'ambientalismo.",
+    "wiki": "Biglia_Blu",
+    "dateStr": "7 Dicembre 1972"
+  },
+  {
+    "id": "geo_042",
+    "title": "Scoperto l'Esercito di Terracotta",
+    "year": 1974,
+    "category": "geografia",
+    "emoji": "🏺",
+    "description": "Dei contadini cinesi scavando un pozzo trovano ottomila statue sepolte.",
+    "wiki": "Esercito_di_terracotta",
+    "dateStr": "29 Marzo 1974"
+  },
+  {
+    "id": "geo_043",
+    "title": "Junko Tabei, prima donna sull'Everest",
+    "year": 1975,
+    "category": "geografia",
+    "emoji": "🚩",
+    "description": "L'alpinista giapponese arriva in cima dodici giorni dopo essere stata travolta da una valanga.",
+    "wiki": "Junko_Tabei",
+    "dateStr": "16 Maggio 1975"
+  },
+  {
+    "id": "geo_044",
+    "title": "Everest senza ossigeno supplementare",
+    "year": 1978,
+    "category": "geografia",
+    "emoji": "🫁",
+    "description": "Messner e Habeler dimostrano che si può respirare l'aria della vetta.",
+    "wiki": "Reinhold_Messner",
+    "dateStr": "8 Maggio 1978"
+  },
+  {
+    "id": "geo_045",
+    "title": "Messner sale l'Everest in solitaria",
+    "year": 1980,
+    "category": "geografia",
+    "emoji": "🧗",
+    "description": "Da solo, senza ossigeno e in stile alpino: un limite che sembrava impossibile.",
+    "wiki": "Reinhold_Messner_(alpinista)",
+    "dateStr": "20 Agosto 1980"
+  },
+  {
+    "id": "geo_046",
+    "title": "Trovato il relitto del Titanic",
+    "year": 1985,
+    "category": "geografia",
+    "emoji": "🔦",
+    "description": "Ballard localizza la nave a 3800 metri nell'Atlantico del Nord.",
+    "wiki": "Relitto_del_Titanic",
+    "dateStr": "1 Settembre 1985"
+  },
+  {
+    "id": "geo_047",
+    "title": "Ötzi emerge dal ghiacciaio",
+    "year": 1991,
+    "category": "geografia",
+    "emoji": "🏔️",
+    "description": "La mummia di 5300 anni affiora sulle Alpi Venoste per il ritiro dei ghiacci.",
+    "wiki": "Mummia_del_Similaun",
+    "dateStr": "19 Settembre 1991"
+  },
+  {
+    "id": "geo_048",
+    "title": "Scoperta della Grotta Chauvet",
+    "year": 1994,
+    "category": "geografia",
+    "emoji": "🦬",
+    "description": "In Francia riaffiorano pitture rupestri di trentaseimila anni fa.",
+    "wiki": "Grotta_Chauvet",
+    "dateStr": "18 Dicembre 1994"
+  },
+  {
+    "id": "geo_049",
+    "title": "Ousland attraversa l'Antartide da solo",
+    "year": 1997,
+    "category": "geografia",
+    "emoji": "🎿",
+    "description": "Prima traversata in solitaria e senza assistenza del continente ghiacciato.",
+    "wiki": "Børge_Ousland"
+  },
+  {
+    "id": "geo_050",
+    "title": "Il GPS civile diventa preciso",
+    "year": 2000,
+    "category": "geografia",
+    "emoji": "📡",
+    "description": "Disattivata la degradazione volontaria del segnale: navigatori per tutti.",
+    "wiki": "Sistema_di_posizionamento_globale",
+    "dateStr": "2 Maggio 2000"
+  }
+]

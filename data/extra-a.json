@@ -1,0 +1,800 @@
+[
+  {
+    "id": "sto_101",
+    "title": "Hammurabi promulga il suo codice",
+    "year": -1754,
+    "category": "storia",
+    "emoji": "⚖️",
+    "description": "Duecentottantadue leggi incise su stele: il più antico codice giuridico completo.",
+    "wiki": "Codice_di_Hammurabi",
+    "approx": true
+  },
+  {
+    "id": "sto_102",
+    "title": "Assassinio di Giulio Cesare",
+    "year": -44,
+    "category": "storia",
+    "emoji": "🗡️",
+    "description": "Alle Idi di marzo i congiurati colpiscono il dittatore in Senato.",
+    "wiki": "Gaio_Giulio_Cesare",
+    "dateStr": "15 Marzo -44"
+  },
+  {
+    "id": "sto_103",
+    "title": "Eruzione che seppellisce Ercolano",
+    "year": 79,
+    "category": "storia",
+    "emoji": "🌋",
+    "description": "Il Vesuvio cancella e insieme conserva le città del golfo.",
+    "wiki": "Ercolano",
+    "dateStr": "24 Ottobre 79"
+  },
+  {
+    "id": "sto_104",
+    "title": "Editto di Milano",
+    "year": 313,
+    "category": "storia",
+    "emoji": "✝️",
+    "description": "Costantino e Licinio concedono libertà di culto ai cristiani dell'impero.",
+    "wiki": "Editto_di_Milano"
+  },
+  {
+    "id": "sto_105",
+    "title": "Deposizione dell'ultimo imperatore d'Occidente",
+    "year": 476,
+    "category": "storia",
+    "emoji": "🏛️",
+    "description": "Odoacre depone Romolo Augustolo: convenzionale fine dell'età antica.",
+    "wiki": "Romolo_Augusto",
+    "dateStr": "4 Settembre 476"
+  },
+  {
+    "id": "sto_106",
+    "title": "La peste nera raggiunge l'Europa",
+    "year": 1347,
+    "category": "storia",
+    "emoji": "☠️",
+    "description": "Le navi genovesi da Caffa portano a Messina l'epidemia che ucciderà un terzo del continente.",
+    "wiki": "Peste_nera"
+  },
+  {
+    "id": "sto_107",
+    "title": "Lutero affigge le 95 tesi",
+    "year": 1517,
+    "category": "storia",
+    "emoji": "📜",
+    "description": "A Wittenberg inizia la frattura che darà vita alla Riforma protestante.",
+    "wiki": "Martin_Lutero",
+    "dateStr": "31 Ottobre 1517"
+  },
+  {
+    "id": "sto_108",
+    "title": "Pace di Westfalia",
+    "year": 1648,
+    "category": "storia",
+    "emoji": "🕊️",
+    "description": "Finisce la guerra dei trent'anni e nasce il moderno sistema degli stati sovrani.",
+    "wiki": "Pace_di_Vestfalia",
+    "dateStr": "24 Ottobre 1648"
+  },
+  {
+    "id": "sto_109",
+    "title": "Abolizione della schiavitù negli Stati Uniti",
+    "year": 1865,
+    "category": "storia",
+    "emoji": "⛓️",
+    "description": "Il tredicesimo emendamento entra in vigore dopo la guerra civile.",
+    "wiki": "XIII_emendamento_della_Costituzione_degli_Stati_Uniti_d'America",
+    "dateStr": "6 Dicembre 1865"
+  },
+  {
+    "id": "sto_110",
+    "title": "Voto alle donne in Italia",
+    "year": 1946,
+    "category": "storia",
+    "emoji": "🗳️",
+    "description": "Per la prima volta le italiane votano, al referendum istituzionale.",
+    "wiki": "Suffragio_femminile",
+    "dateStr": "2 Giugno 1946"
+  },
+  {
+    "id": "tec_101",
+    "title": "Invenzione della ruota da vasaio",
+    "year": -3500,
+    "category": "tecnologia",
+    "emoji": "⚱️",
+    "description": "In Mesopotamia il tornio anticipa di secoli la ruota da trasporto.",
+    "wiki": "Ruota",
+    "approx": true
+  },
+  {
+    "id": "tec_102",
+    "title": "Archimede progetta la vite idraulica",
+    "year": -250,
+    "category": "tecnologia",
+    "emoji": "🔩",
+    "description": "Il dispositivo per sollevare l'acqua è ancora in uso dopo ventidue secoli.",
+    "wiki": "Vite_di_Archimede",
+    "approx": true
+  },
+  {
+    "id": "tec_103",
+    "title": "La Cina inventa la carta",
+    "year": 105,
+    "category": "tecnologia",
+    "emoji": "📄",
+    "description": "Cai Lun perfeziona un impasto di fibre che sostituirà papiro e pergamena.",
+    "wiki": "Carta",
+    "approx": true
+  },
+  {
+    "id": "tec_104",
+    "title": "Compare la bussola magnetica in navigazione",
+    "year": 1088,
+    "category": "tecnologia",
+    "emoji": "🧭",
+    "description": "Shen Kuo descrive l'ago magnetizzato usato per orientarsi in mare.",
+    "wiki": "Bussola",
+    "approx": true
+  },
+  {
+    "id": "tec_105",
+    "title": "Prima macchina a vapore di Watt",
+    "year": 1769,
+    "category": "tecnologia",
+    "emoji": "♨️",
+    "description": "Il condensatore separato rende il vapore efficiente e avvia l'industria.",
+    "wiki": "Macchina_a_vapore",
+    "dateStr": "5 Gennaio 1769"
+  },
+  {
+    "id": "tec_106",
+    "title": "Volta presenta la pila",
+    "year": 1800,
+    "category": "tecnologia",
+    "emoji": "🔋",
+    "description": "La prima sorgente continua di corrente elettrica viene annunciata a Londra.",
+    "wiki": "Pila_di_Volta",
+    "dateStr": "20 Marzo 1800"
+  },
+  {
+    "id": "tec_107",
+    "title": "Niépce scatta la prima fotografia",
+    "year": 1826,
+    "category": "tecnologia",
+    "emoji": "📷",
+    "description": "Otto ore di posa dalla finestra di Le Gras fissano la prima immagine permanente.",
+    "wiki": "Nicéphore_Niépce",
+    "approx": true
+  },
+  {
+    "id": "tec_108",
+    "title": "Prima linea della metropolitana di Londra",
+    "year": 1863,
+    "category": "tecnologia",
+    "emoji": "🚇",
+    "description": "La Metropolitan Railway inaugura il trasporto urbano sotterraneo.",
+    "wiki": "Metropolitana_di_Londra",
+    "dateStr": "10 Gennaio 1863"
+  },
+  {
+    "id": "tec_109",
+    "title": "Benz brevetta l'automobile",
+    "year": 1886,
+    "category": "tecnologia",
+    "emoji": "🚗",
+    "description": "Il Patent-Motorwagen è il primo veicolo progettato attorno a un motore a scoppio.",
+    "wiki": "Karl_Benz",
+    "dateStr": "29 Gennaio 1886"
+  },
+  {
+    "id": "tec_110",
+    "title": "Primo ascensore di sicurezza di Otis",
+    "year": 1853,
+    "category": "tecnologia",
+    "emoji": "🛗",
+    "description": "Il freno automatico rende possibili i grattacieli.",
+    "wiki": "Elisha_Otis"
+  },
+  {
+    "id": "tec_111",
+    "title": "Prima centrale elettrica commerciale",
+    "year": 1882,
+    "category": "tecnologia",
+    "emoji": "💡",
+    "description": "Pearl Street a New York illumina un quartiere intero con corrente continua.",
+    "wiki": "Centrale_elettrica_di_Pearl_Street",
+    "dateStr": "4 Settembre 1882"
+  },
+  {
+    "id": "tec_112",
+    "title": "Entra in servizio il primo aereo di linea a reazione",
+    "year": 1952,
+    "category": "tecnologia",
+    "emoji": "🛫",
+    "description": "Il de Havilland Comet inaugura l'era del volo commerciale a getto.",
+    "wiki": "De_Havilland_Comet",
+    "dateStr": "2 Maggio 1952"
+  },
+  {
+    "id": "tec_113",
+    "title": "Primo container navale",
+    "year": 1956,
+    "category": "tecnologia",
+    "emoji": "📦",
+    "description": "La Ideal X parte da Newark: la scatola standard rivoluziona il commercio globale.",
+    "wiki": "Container",
+    "dateStr": "26 Aprile 1956"
+  },
+  {
+    "id": "tec_114",
+    "title": "Primo laser funzionante",
+    "year": 1960,
+    "category": "tecnologia",
+    "emoji": "🔴",
+    "description": "Theodore Maiman fa emettere luce coerente a un cristallo di rubino.",
+    "wiki": "Laser",
+    "dateStr": "16 Maggio 1960"
+  },
+  {
+    "id": "tec_115",
+    "title": "Douglas Engelbart mostra il mouse",
+    "year": 1968,
+    "category": "tecnologia",
+    "emoji": "🖱️",
+    "description": "La 'madre di tutte le demo' presenta mouse, ipertesto e videoconferenza.",
+    "wiki": "Douglas_Engelbart",
+    "dateStr": "9 Dicembre 1968"
+  },
+  {
+    "id": "tec_116",
+    "title": "Primo floppy disk commerciale",
+    "year": 1971,
+    "category": "tecnologia",
+    "emoji": "💾",
+    "description": "IBM introduce il supporto da otto pollici che porterà i dati fuori dai centri di calcolo.",
+    "wiki": "Floppy_disk"
+  },
+  {
+    "id": "tec_117",
+    "title": "Nasce il World Wide Web al CERN",
+    "year": 1989,
+    "category": "tecnologia",
+    "emoji": "🕸️",
+    "description": "Tim Berners-Lee propone un sistema di ipertesti per gestire le informazioni.",
+    "wiki": "Tim_Berners-Lee",
+    "dateStr": "12 Marzo 1989"
+  },
+  {
+    "id": "tec_118",
+    "title": "Debutta Google Maps",
+    "year": 2005,
+    "category": "tecnologia",
+    "emoji": "🗺️",
+    "description": "Le mappe interattive nel browser cambiano il modo di muoversi in città.",
+    "wiki": "Google_Maps",
+    "dateStr": "8 Febbraio 2005"
+  },
+  {
+    "id": "tec_119",
+    "title": "ChatGPT raggiunge cento milioni di utenti",
+    "year": 2023,
+    "category": "tecnologia",
+    "emoji": "🤖",
+    "description": "In due mesi diventa l'applicazione consumer cresciuta più in fretta di sempre.",
+    "wiki": "Intelligenza_artificiale_generativa"
+  },
+  {
+    "id": "spa_101",
+    "title": "Galileo osserva le lune di Giove",
+    "year": 1610,
+    "category": "spazio",
+    "emoji": "🔭",
+    "description": "Quattro satelliti in movimento smentiscono il geocentrismo.",
+    "wiki": "Satelliti_medicei",
+    "dateStr": "7 Gennaio 1610"
+  },
+  {
+    "id": "spa_102",
+    "title": "Halley prevede il ritorno della cometa",
+    "year": 1705,
+    "category": "spazio",
+    "emoji": "☄️",
+    "description": "Calcola che l'astro tornerà nel 1758: la prima previsione astronomica moderna.",
+    "wiki": "Cometa_di_Halley"
+  },
+  {
+    "id": "spa_103",
+    "title": "Herschel scopre Urano",
+    "year": 1781,
+    "category": "spazio",
+    "emoji": "🔵",
+    "description": "Il primo pianeta individuato con il telescopio raddoppia i confini del sistema solare.",
+    "wiki": "Urano_(astronomia)",
+    "dateStr": "13 Marzo 1781"
+  },
+  {
+    "id": "spa_104",
+    "title": "Scoperta di Nettuno con il calcolo",
+    "year": 1846,
+    "category": "spazio",
+    "emoji": "🔷",
+    "description": "Le Verrier lo indica sulla carta prima che qualcuno lo veda.",
+    "wiki": "Nettuno_(astronomia)",
+    "dateStr": "23 Settembre 1846"
+  },
+  {
+    "id": "spa_105",
+    "title": "Hubble dimostra che l'universo si espande",
+    "year": 1929,
+    "category": "spazio",
+    "emoji": "📈",
+    "description": "La velocità di fuga delle galassie cresce con la distanza.",
+    "wiki": "Legge_di_Hubble"
+  },
+  {
+    "id": "spa_106",
+    "title": "Primo volo del razzo V2 nello spazio",
+    "year": 1944,
+    "category": "spazio",
+    "emoji": "🚀",
+    "description": "Un missile supera per la prima volta la linea di Kármán.",
+    "wiki": "V2_(razzo)",
+    "dateStr": "20 Giugno 1944"
+  },
+  {
+    "id": "spa_107",
+    "title": "Explorer 1, primo satellite americano",
+    "year": 1958,
+    "category": "spazio",
+    "emoji": "🛰️",
+    "description": "Scopre le fasce di radiazione di Van Allen attorno alla Terra.",
+    "wiki": "Explorer_1",
+    "dateStr": "1 Febbraio 1958"
+  },
+  {
+    "id": "spa_108",
+    "title": "Luna 2 colpisce la Luna",
+    "year": 1959,
+    "category": "spazio",
+    "emoji": "🌑",
+    "description": "Primo oggetto umano a raggiungere la superficie di un altro corpo celeste.",
+    "wiki": "Luna_2",
+    "dateStr": "13 Settembre 1959"
+  },
+  {
+    "id": "spa_109",
+    "title": "Prima foto del lato nascosto della Luna",
+    "year": 1959,
+    "category": "spazio",
+    "emoji": "🌘",
+    "description": "Luna 3 fotografa l'emisfero che dalla Terra non si vede mai.",
+    "wiki": "Luna_3",
+    "dateStr": "7 Ottobre 1959"
+  },
+  {
+    "id": "spa_110",
+    "title": "Mariner 2 sorvola Venere",
+    "year": 1962,
+    "category": "spazio",
+    "emoji": "🟡",
+    "description": "Prima sonda a studiare da vicino un altro pianeta.",
+    "wiki": "Mariner_2",
+    "dateStr": "14 Dicembre 1962"
+  },
+  {
+    "id": "spa_111",
+    "title": "Telstar trasmette la prima TV via satellite",
+    "year": 1962,
+    "category": "spazio",
+    "emoji": "📡",
+    "description": "Immagini in diretta attraversano l'Atlantico per la prima volta.",
+    "wiki": "Telstar",
+    "dateStr": "23 Luglio 1962"
+  },
+  {
+    "id": "spa_112",
+    "title": "Luna 9 atterra dolcemente sulla Luna",
+    "year": 1966,
+    "category": "spazio",
+    "emoji": "🛬",
+    "description": "Primo allunaggio morbido con trasmissione di immagini dalla superficie.",
+    "wiki": "Luna_9",
+    "dateStr": "3 Febbraio 1966"
+  },
+  {
+    "id": "spa_113",
+    "title": "Apollo 8 orbita attorno alla Luna",
+    "year": 1968,
+    "category": "spazio",
+    "emoji": "🌏",
+    "description": "Il primo equipaggio a lasciare l'orbita terrestre scatta Earthrise.",
+    "wiki": "Apollo_8",
+    "dateStr": "24 Dicembre 1968"
+  },
+  {
+    "id": "spa_114",
+    "title": "Salyut 1, prima stazione spaziale",
+    "year": 1971,
+    "category": "spazio",
+    "emoji": "🏗️",
+    "description": "L'Unione Sovietica mette in orbita il primo avamposto abitabile.",
+    "wiki": "Saljut_1",
+    "dateStr": "19 Aprile 1971"
+  },
+  {
+    "id": "spa_115",
+    "title": "Lunochod, primo rover su un altro mondo",
+    "year": 1970,
+    "category": "spazio",
+    "emoji": "🚙",
+    "description": "Il veicolo sovietico percorre dieci chilometri sulla superficie lunare.",
+    "wiki": "Lunochod_1",
+    "dateStr": "17 Novembre 1970"
+  },
+  {
+    "id": "spa_116",
+    "title": "Pioneer 10 attraversa la fascia degli asteroidi",
+    "year": 1972,
+    "category": "spazio",
+    "emoji": "🪐",
+    "description": "Prima sonda diretta verso Giove e poi fuori dal sistema solare.",
+    "wiki": "Pioneer_10",
+    "dateStr": "3 Marzo 1972"
+  },
+  {
+    "id": "spa_117",
+    "title": "Apollo-Sojuz, stretta di mano in orbita",
+    "year": 1975,
+    "category": "spazio",
+    "emoji": "🤝",
+    "description": "Americani e sovietici agganciano le capsule in piena guerra fredda.",
+    "wiki": "Apollo-Sojuz",
+    "dateStr": "17 Luglio 1975"
+  },
+  {
+    "id": "spa_118",
+    "title": "Voyager 2 sorvola Nettuno",
+    "year": 1989,
+    "category": "spazio",
+    "emoji": "🌀",
+    "description": "Unica sonda ad aver visitato tutti e quattro i giganti gassosi.",
+    "wiki": "Voyager_2",
+    "dateStr": "25 Agosto 1989"
+  },
+  {
+    "id": "spa_119",
+    "title": "Galileo entra in orbita attorno a Giove",
+    "year": 1995,
+    "category": "spazio",
+    "emoji": "🧲",
+    "description": "Otto anni di studio del pianeta e delle sue lune ghiacciate.",
+    "wiki": "Galileo_(sonda_spaziale)",
+    "dateStr": "7 Dicembre 1995"
+  },
+  {
+    "id": "spa_120",
+    "title": "Pathfinder e Sojourner su Marte",
+    "year": 1997,
+    "category": "spazio",
+    "emoji": "🤖",
+    "description": "Il primo rover marziano percorre cento metri attorno al lander.",
+    "wiki": "Mars_Pathfinder",
+    "dateStr": "4 Luglio 1997"
+  },
+  {
+    "id": "spa_121",
+    "title": "Spirit e Opportunity atterrano su Marte",
+    "year": 2004,
+    "category": "spazio",
+    "emoji": "⛏️",
+    "description": "Progettati per novanta giorni, Opportunity ne resisterà quasi cinquemila.",
+    "wiki": "Opportunity_(rover)",
+    "dateStr": "4 Gennaio 2004"
+  },
+  {
+    "id": "spa_122",
+    "title": "Kepler inizia la caccia agli esopianeti",
+    "year": 2009,
+    "category": "spazio",
+    "emoji": "🔎",
+    "description": "Il telescopio individuerà oltre duemila pianeti attorno ad altre stelle.",
+    "wiki": "Kepler_(telescopio_spaziale)",
+    "dateStr": "7 Marzo 2009"
+  },
+  {
+    "id": "spa_123",
+    "title": "Voyager 1 entra nello spazio interstellare",
+    "year": 2012,
+    "category": "spazio",
+    "emoji": "🌌",
+    "description": "Primo oggetto umano a uscire dalla bolla magnetica del Sole.",
+    "wiki": "Eliopausa",
+    "dateStr": "25 Agosto 2012"
+  },
+  {
+    "id": "spa_124",
+    "title": "Primo atterraggio di un razzo orbitale",
+    "year": 2015,
+    "category": "spazio",
+    "emoji": "🔥",
+    "description": "Il primo stadio del Falcon 9 torna a terra intero e riutilizzabile.",
+    "wiki": "Falcon_9",
+    "dateStr": "22 Dicembre 2015"
+  },
+  {
+    "id": "spa_125",
+    "title": "Primo volo con equipaggio della Crew Dragon",
+    "year": 2020,
+    "category": "spazio",
+    "emoji": "👨‍🚀",
+    "description": "Dopo nove anni gli Stati Uniti tornano a lanciare astronauti da casa.",
+    "wiki": "Crew_Dragon",
+    "dateStr": "30 Maggio 2020"
+  },
+  {
+    "id": "spa_126",
+    "title": "Il telescopio Hubble viene riparato in orbita",
+    "year": 1993,
+    "category": "spazio",
+    "emoji": "🔧",
+    "description": "Una missione Shuttle corregge il difetto dello specchio primario.",
+    "wiki": "Missione_STS-61",
+    "dateStr": "2 Dicembre 1993"
+  },
+  {
+    "id": "mus_101",
+    "title": "Guido d'Arezzo inventa la notazione",
+    "year": 1025,
+    "category": "musica",
+    "emoji": "🎼",
+    "description": "Il tetragramma e i nomi delle note rendono la musica trasmissibile per iscritto.",
+    "wiki": "Guido_d'Arezzo",
+    "approx": true
+  },
+  {
+    "id": "mus_102",
+    "title": "Monteverdi rappresenta l'Orfeo",
+    "year": 1607,
+    "category": "musica",
+    "emoji": "🎻",
+    "description": "Considerata la prima vera opera lirica della storia.",
+    "wiki": "L'Orfeo",
+    "dateStr": "24 Febbraio 1607"
+  },
+  {
+    "id": "mus_103",
+    "title": "Vivaldi pubblica Le quattro stagioni",
+    "year": 1725,
+    "category": "musica",
+    "emoji": "🎻",
+    "description": "Quattro concerti con sonetti descrittivi: la musica a programma ante litteram.",
+    "wiki": "Le_quattro_stagioni"
+  },
+  {
+    "id": "mus_104",
+    "title": "Bach completa il Clavicembalo ben temperato",
+    "year": 1722,
+    "category": "musica",
+    "emoji": "⌨️",
+    "description": "Ventiquattro preludi e fughe in tutte le tonalità possibili.",
+    "wiki": "Il_clavicembalo_ben_temperato"
+  },
+  {
+    "id": "mus_105",
+    "title": "Mozart compone il Requiem incompiuto",
+    "year": 1791,
+    "category": "musica",
+    "emoji": "🕯️",
+    "description": "La morte lo coglie durante il Lacrimosa, alimentando la leggenda.",
+    "wiki": "Requiem_(Mozart)"
+  },
+  {
+    "id": "mus_106",
+    "title": "Prima della Quinta di Beethoven",
+    "year": 1808,
+    "category": "musica",
+    "emoji": "🎵",
+    "description": "Le quattro note d'apertura diventeranno il motivo più riconoscibile al mondo.",
+    "wiki": "Sinfonia_n._5_(Beethoven)",
+    "dateStr": "22 Dicembre 1808"
+  },
+  {
+    "id": "mus_107",
+    "title": "Prima del Nabucco alla Scala",
+    "year": 1842,
+    "category": "musica",
+    "emoji": "🎭",
+    "description": "Il Va' pensiero diventa inno informale del Risorgimento italiano.",
+    "wiki": "Nabucco",
+    "dateStr": "9 Marzo 1842"
+  },
+  {
+    "id": "mus_108",
+    "title": "Wagner inaugura Bayreuth con l'Anello",
+    "year": 1876,
+    "category": "musica",
+    "emoji": "🗡️",
+    "description": "Quattro serate e un teatro costruito apposta per la sua tetralogia.",
+    "wiki": "L'anello_del_Nibelungo",
+    "dateStr": "13 Agosto 1876"
+  },
+  {
+    "id": "mus_109",
+    "title": "Edison registra la voce umana",
+    "year": 1877,
+    "category": "musica",
+    "emoji": "📯",
+    "description": "Il fonografo riproduce Mary Had a Little Lamb: nasce la musica registrata.",
+    "wiki": "Fonografo"
+  },
+  {
+    "id": "mus_110",
+    "title": "Prima della Turandot senza finale",
+    "year": 1926,
+    "category": "musica",
+    "emoji": "🐉",
+    "description": "Toscanini interrompe l'opera nel punto in cui Puccini morì.",
+    "wiki": "Turandot",
+    "dateStr": "25 Aprile 1926"
+  },
+  {
+    "id": "mus_111",
+    "title": "Prima di Rhapsody in Blue",
+    "year": 1924,
+    "category": "musica",
+    "emoji": "🎹",
+    "description": "Gershwin unisce jazz e orchestra sinfonica in una sola partitura.",
+    "wiki": "Rhapsody_in_Blue",
+    "dateStr": "12 Febbraio 1924"
+  },
+  {
+    "id": "mus_112",
+    "title": "Sacre du Printemps scatena una rivolta",
+    "year": 1913,
+    "category": "musica",
+    "emoji": "💥",
+    "description": "La prima parigina di Stravinskij finisce tra fischi e scontri in sala.",
+    "wiki": "La_sagra_della_primavera",
+    "dateStr": "29 Maggio 1913"
+  },
+  {
+    "id": "mus_113",
+    "title": "Robert Johnson incide i suoi blues",
+    "year": 1936,
+    "category": "musica",
+    "emoji": "🎸",
+    "description": "Ventinove brani che diventeranno il fondamento del rock.",
+    "wiki": "Robert_Johnson",
+    "dateStr": "23 Novembre 1936"
+  },
+  {
+    "id": "mus_114",
+    "title": "Billie Holiday incide Strange Fruit",
+    "year": 1939,
+    "category": "musica",
+    "emoji": "🖤",
+    "description": "La canzone contro i linciaggi che nessuna major voleva pubblicare.",
+    "wiki": "Strange_Fruit",
+    "dateStr": "20 Aprile 1939"
+  },
+  {
+    "id": "mus_115",
+    "title": "Nasce il long playing a 33 giri",
+    "year": 1948,
+    "category": "musica",
+    "emoji": "💿",
+    "description": "La Columbia presenta il disco che permette venti minuti per facciata.",
+    "wiki": "Long_playing",
+    "dateStr": "21 Giugno 1948"
+  },
+  {
+    "id": "mus_116",
+    "title": "Chuck Berry incide Maybellene",
+    "year": 1955,
+    "category": "musica",
+    "emoji": "🎸",
+    "description": "Il chitarrismo che definisce il rock and roll entra in classifica.",
+    "wiki": "Chuck_Berry",
+    "dateStr": "21 Maggio 1955"
+  },
+  {
+    "id": "mus_117",
+    "title": "Miles Davis registra Kind of Blue",
+    "year": 1959,
+    "category": "musica",
+    "emoji": "🎺",
+    "description": "Il disco jazz più venduto di sempre nasce da poche indicazioni modali.",
+    "wiki": "Kind_of_Blue",
+    "dateStr": "2 Marzo 1959"
+  },
+  {
+    "id": "mus_118",
+    "title": "Bob Dylan passa alla chitarra elettrica",
+    "year": 1965,
+    "category": "musica",
+    "emoji": "⚡",
+    "description": "A Newport il pubblico folk fischia la svolta rock.",
+    "wiki": "Newport_Folk_Festival",
+    "dateStr": "25 Luglio 1965"
+  },
+  {
+    "id": "mus_119",
+    "title": "Esce Pet Sounds dei Beach Boys",
+    "year": 1966,
+    "category": "musica",
+    "emoji": "🏖️",
+    "description": "Lo studio diventa strumento: influenzerà direttamente Sgt. Pepper's.",
+    "wiki": "Pet_Sounds",
+    "dateStr": "16 Maggio 1966"
+  },
+  {
+    "id": "mus_120",
+    "title": "Jimi Hendrix incendia la chitarra a Monterey",
+    "year": 1967,
+    "category": "musica",
+    "emoji": "🔥",
+    "description": "Diciotto minuti che riscrivono il rapporto fra strumento e performance.",
+    "wiki": "Monterey_Pop_Festival",
+    "dateStr": "18 Giugno 1967"
+  },
+  {
+    "id": "mus_121",
+    "title": "Kraftwerk pubblica Autobahn",
+    "year": 1974,
+    "category": "musica",
+    "emoji": "🤖",
+    "description": "L'elettronica tedesca getta le basi di techno, synth pop e hip hop.",
+    "wiki": "Autobahn_(album)"
+  },
+  {
+    "id": "mus_122",
+    "title": "Prima festa hip hop del Bronx",
+    "year": 1973,
+    "category": "musica",
+    "emoji": "🎧",
+    "description": "DJ Kool Herc isola i break e inventa il fondamento del rap.",
+    "wiki": "Hip_hop",
+    "dateStr": "11 Agosto 1973"
+  },
+  {
+    "id": "mus_123",
+    "title": "Esce Never Mind the Bollocks dei Sex Pistols",
+    "year": 1977,
+    "category": "musica",
+    "emoji": "🧷",
+    "description": "Il punk britannico trova il suo manifesto discografico.",
+    "wiki": "Never_Mind_the_Bollocks",
+    "dateStr": "28 Ottobre 1977"
+  },
+  {
+    "id": "mus_124",
+    "title": "Nasce il formato MP3",
+    "year": 1995,
+    "category": "musica",
+    "emoji": "📉",
+    "description": "Il Fraunhofer sceglie l'estensione che renderà la musica trasferibile in rete.",
+    "wiki": "MP3",
+    "dateStr": "14 Luglio 1995"
+  },
+  {
+    "id": "mus_125",
+    "title": "Daft Punk pubblica Discovery",
+    "year": 2001,
+    "category": "musica",
+    "emoji": "🪩",
+    "description": "French touch e robot: il pop elettronico entra nel mainstream globale.",
+    "wiki": "Discovery_(Daft_Punk)",
+    "dateStr": "12 Marzo 2001"
+  },
+  {
+    "id": "mus_126",
+    "title": "Beyoncé pubblica un album a sorpresa",
+    "year": 2013,
+    "category": "musica",
+    "emoji": "👑",
+    "description": "Nessun annuncio, solo l'uscita improvvisa: cambia il marketing musicale.",
+    "wiki": "Beyoncé_(album)",
+    "dateStr": "13 Dicembre 2013"
+  }
+]

@@ -37,21 +37,45 @@ Timeline perfetta = `+5` punti, `+3` di bonus e streak incrementata.
 
 Da Game Over, `Spazio` ricomincia subito.
 
+## Lobby pre-partita
+
+Il pulsante **Gioca** apre un bottom sheet (pannello centrato su desktop) dove si sceglie
+tutto prima di iniziare: modalità, difficoltà e argomenti. Lo stato è una *bozza*: nulla
+viene applicato finché non si preme Avvia partita, così chiudere la lobby non tocca la
+partita in corso. Alla prima visita si apre da sola dopo lo splash.
+
+L'Archivio (icona statistiche) è tornato uno spazio di sola consultazione: mostra il
+riepilogo delle impostazioni correnti con una scorciatoia alla lobby, più audio, cache e
+prestazioni.
+
 ## Dataset
 
-205 eventi in gioco: i 55 originali più i 150 di [`data/events-150.json`](data/events-150.json),
-bilanciati per categoria (19/19/19/19/19/19/18/18) e distribuiti dall'anno 800 al 2023.
+**600 carte, 50 esatte per ciascuna delle 12 categorie**, dal 3500 a.C. al 2023.
+Gli anni avanti Cristo sono numeri negativi e vengono mostrati come «44 a.C.»; la funzione
+di ordinamento del gioco li gestisce correttamente, anche fra mesi dello stesso anno negativo.
+
+I file sorgente stanno in `data/`: `events-150.json`, `cat-arte.json`, `cat-letteratura.json`,
+`cat-geografia.json`, `cat-spettacolo.json`, `extra-a.json`, `extra-b.json`.
+Il campo `approx` marca gli elementi la cui data è una convenzione degli studiosi e non un
+fatto documentato.
 
 > **Gli slug Wikipedia non sono stati verificati contro il sito.** Sono scelti in base alla
 > conoscenza dei titoli delle voci italiane, ma vanno controllati prima di considerarli
-> definitivi. Il controllo è automatico:
+> definitivi. Uno slug sbagliato non rompe nulla: la carta ricade su mesh e icona.
+>
+> Due strumenti, uno offline e uno online:
 >
 > ```bash
-> node data/verify-slugs.mjs            # elenca voci mancanti, redirect e pagine senza immagine
+> node data/lint-slugs.mjs              # offline: errori strutturali + casi a rischio
+> node data/lint-slugs.mjs --dettaglio  # elenco completo dei casi da controllare
+>
+> node data/verify-slugs.mjs            # online: voci mancanti, redirect, pagine senza immagine
 > node data/verify-slugs.mjs --fix-report   # scrive data/slug-report.json
 > ```
 >
-> Uno slug sbagliato non rompe nulla: la carta ricade su mesh e icona di categoria.
+> `verify-slugs.mjs` legge da solo ogni `.json` della cartella `data/`, così non dimentica
+> i file aggiunti in seguito. Se tutte le richieste falliscono lo dice esplicitamente,
+> invece di far sembrare che il dataset sia a posto.
 
 ## Modalità di partita
 

@@ -1,0 +1,498 @@
+[
+  {
+    "id": "spet_001",
+    "title": "Prima trasmissione TV regolare della BBC",
+    "year": 1936,
+    "category": "spettacolo",
+    "emoji": "📡",
+    "description": "Da Alexandra Palace parte il primo servizio televisivo al mondo.",
+    "wiki": "BBC_Television_Service",
+    "dateStr": "2 Novembre 1936"
+  },
+  {
+    "id": "spet_002",
+    "title": "Va in onda il primo spot televisivo",
+    "year": 1941,
+    "category": "spettacolo",
+    "emoji": "📺",
+    "description": "Dieci secondi per un orologio Bulova, pagati nove dollari.",
+    "wiki": "Pubblicità_televisiva",
+    "dateStr": "1 Luglio 1941"
+  },
+  {
+    "id": "spet_003",
+    "title": "Prima edizione di Miss Italia",
+    "year": 1946,
+    "category": "spettacolo",
+    "emoji": "👑",
+    "description": "Il concorso di bellezza che lancerà Loren, Lollobrigida e Mangano.",
+    "wiki": "Miss_Italia"
+  },
+  {
+    "id": "spet_004",
+    "title": "Debutta I Love Lucy",
+    "year": 1951,
+    "category": "spettacolo",
+    "emoji": "🤍",
+    "description": "La sitcom di Lucille Ball inventa la risata registrata e il multicamera.",
+    "wiki": "I_Love_Lucy",
+    "dateStr": "15 Ottobre 1951"
+  },
+  {
+    "id": "spet_005",
+    "title": "Primo Festival di Sanremo",
+    "year": 1951,
+    "category": "spettacolo",
+    "emoji": "🎤",
+    "description": "Tre cantanti e venti canzoni dal Casinò: nasce il rito musicale italiano.",
+    "wiki": "Festival_di_Sanremo",
+    "dateStr": "29 Gennaio 1951"
+  },
+  {
+    "id": "spet_006",
+    "title": "Lascia o raddoppia? in televisione",
+    "year": 1955,
+    "category": "spettacolo",
+    "emoji": "💰",
+    "description": "Il quiz di Mike Bongiorno svuota le strade italiane ogni giovedì sera.",
+    "wiki": "Lascia_o_raddoppia?",
+    "dateStr": "26 Novembre 1955"
+  },
+  {
+    "id": "spet_007",
+    "title": "Prima edizione dell'Eurovision",
+    "year": 1956,
+    "category": "spettacolo",
+    "emoji": "🎶",
+    "description": "Sette paesi a Lugano per il concorso canoro più longevo d'Europa.",
+    "wiki": "Eurovision_Song_Contest",
+    "dateStr": "24 Maggio 1956"
+  },
+  {
+    "id": "spet_008",
+    "title": "Va in onda il primo Carosello",
+    "year": 1957,
+    "category": "spettacolo",
+    "emoji": "🎠",
+    "description": "Dieci minuti di pubblicità travestita da spettacolo, per vent'anni.",
+    "wiki": "Carosello",
+    "dateStr": "3 Febbraio 1957"
+  },
+  {
+    "id": "spet_009",
+    "title": "Il mattoncino Lego viene brevettato",
+    "year": 1958,
+    "category": "spettacolo",
+    "emoji": "🧱",
+    "description": "L'incastro a tubi interni rende i pezzi compatibili per sempre.",
+    "wiki": "Lego",
+    "dateStr": "28 Gennaio 1958"
+  },
+  {
+    "id": "spet_010",
+    "title": "Barbie arriva nei negozi",
+    "year": 1959,
+    "category": "spettacolo",
+    "emoji": "👱‍♀️",
+    "description": "Presentata alla Fiera del giocattolo di New York, vende trecentomila pezzi il primo anno.",
+    "wiki": "Barbie",
+    "dateStr": "9 Marzo 1959"
+  },
+  {
+    "id": "spet_011",
+    "title": "Doctor Who va in onda",
+    "year": 1963,
+    "category": "spettacolo",
+    "emoji": "🕰️",
+    "description": "La serie di fantascienza più longeva debutta il giorno dopo l'omicidio Kennedy.",
+    "wiki": "Doctor_Who",
+    "dateStr": "23 Novembre 1963"
+  },
+  {
+    "id": "spet_012",
+    "title": "Star Trek debutta in televisione",
+    "year": 1966,
+    "category": "spettacolo",
+    "emoji": "🖖",
+    "description": "L'equipaggio dell'Enterprise inaugura una delle saghe più influenti di sempre.",
+    "wiki": "Star_Trek",
+    "dateStr": "8 Settembre 1966"
+  },
+  {
+    "id": "spet_013",
+    "title": "Prima puntata di Sesame Street",
+    "year": 1969,
+    "category": "spettacolo",
+    "emoji": "🐸",
+    "description": "La TV educativa per bambini nasce con Big Bird e il Cookie Monster.",
+    "wiki": "Sesame_Street",
+    "dateStr": "10 Novembre 1969"
+  },
+  {
+    "id": "spet_014",
+    "title": "Monty Python's Flying Circus",
+    "year": 1969,
+    "category": "spettacolo",
+    "emoji": "🦶",
+    "description": "Il gruppo inglese inventa una comicità surreale che influenzerà mezzo secolo.",
+    "wiki": "Monty_Python",
+    "dateStr": "5 Ottobre 1969"
+  },
+  {
+    "id": "spet_015",
+    "title": "Prima Comic-Con di San Diego",
+    "year": 1970,
+    "category": "spettacolo",
+    "emoji": "🦸",
+    "description": "Trecento appassionati in un seminterrato: oggi è la fiera pop più grande.",
+    "wiki": "San_Diego_Comic-Con",
+    "dateStr": "21 Marzo 1970"
+  },
+  {
+    "id": "spet_016",
+    "title": "Debutta Happy Days",
+    "year": 1974,
+    "category": "spettacolo",
+    "emoji": "🕶️",
+    "description": "Fonzie e il diner Arnold's trasformano gli anni Cinquanta in mito televisivo.",
+    "wiki": "Happy_Days",
+    "dateStr": "15 Gennaio 1974"
+  },
+  {
+    "id": "spet_017",
+    "title": "Va in onda il Muppet Show",
+    "year": 1976,
+    "category": "spettacolo",
+    "emoji": "🐷",
+    "description": "I pupazzi di Jim Henson conquistano il prime time di mezzo mondo.",
+    "wiki": "Il_Muppet_Show",
+    "dateStr": "5 Settembre 1976"
+  },
+  {
+    "id": "spet_018",
+    "title": "Sony lancia il Walkman",
+    "year": 1979,
+    "category": "spettacolo",
+    "emoji": "🎧",
+    "description": "La musica esce di casa: il cassettone tascabile cambia l'ascolto.",
+    "wiki": "Walkman",
+    "dateStr": "1 Luglio 1979"
+  },
+  {
+    "id": "spet_019",
+    "title": "Chi ha sparato a J.R.?",
+    "year": 1980,
+    "category": "spettacolo",
+    "emoji": "🔫",
+    "description": "Trecentocinquanta milioni di spettatori per il finale di stagione di Dallas.",
+    "wiki": "Dallas_(serie_televisiva_1978)",
+    "dateStr": "21 Novembre 1980"
+  },
+  {
+    "id": "spet_020",
+    "title": "Il cubo di Rubik conquista il mondo",
+    "year": 1980,
+    "category": "spettacolo",
+    "emoji": "🧩",
+    "description": "Il rompicapo ungherese arriva nei negozi occidentali e diventa mania globale.",
+    "wiki": "Cubo_di_Rubik"
+  },
+  {
+    "id": "spet_021",
+    "title": "Il finale di M*A*S*H",
+    "year": 1983,
+    "category": "spettacolo",
+    "emoji": "🚁",
+    "description": "Centoquindici milioni di americani: record di ascolti rimasto per ventisette anni.",
+    "wiki": "M*A*S*H_(serie_televisiva)",
+    "dateStr": "28 Febbraio 1983"
+  },
+  {
+    "id": "spet_022",
+    "title": "Dragon Ball debutta in animazione",
+    "year": 1986,
+    "category": "spettacolo",
+    "emoji": "🐉",
+    "description": "L'anime tratto da Toriyama inizia la sua corsa planetaria.",
+    "wiki": "Dragon_Ball_(serie_animata)",
+    "dateStr": "26 Febbraio 1986"
+  },
+  {
+    "id": "spet_023",
+    "title": "I Simpson diventano una serie",
+    "year": 1989,
+    "category": "spettacolo",
+    "emoji": "🍩",
+    "description": "Dopo tre anni di corti, la famiglia gialla ottiene mezz'ora tutta sua.",
+    "wiki": "I_Simpson",
+    "dateStr": "17 Dicembre 1989"
+  },
+  {
+    "id": "spet_024",
+    "title": "Twin Peaks cambia la serialità",
+    "year": 1990,
+    "category": "spettacolo",
+    "emoji": "☕",
+    "description": "Chi ha ucciso Laura Palmer porta il cinema d'autore in televisione.",
+    "wiki": "I_segreti_di_Twin_Peaks",
+    "dateStr": "8 Aprile 1990"
+  },
+  {
+    "id": "spet_025",
+    "title": "Debutta Beverly Hills 90210",
+    "year": 1990,
+    "category": "spettacolo",
+    "emoji": "🌴",
+    "description": "Il teen drama che definisce un decennio di adolescenza televisiva.",
+    "wiki": "Beverly_Hills_90210",
+    "dateStr": "4 Ottobre 1990"
+  },
+  {
+    "id": "spet_026",
+    "title": "Sailor Moon in televisione",
+    "year": 1992,
+    "category": "spettacolo",
+    "emoji": "🌙",
+    "description": "Il magical girl che apre l'anime giapponese al pubblico femminile globale.",
+    "wiki": "Sailor_Moon",
+    "dateStr": "7 Marzo 1992"
+  },
+  {
+    "id": "spet_027",
+    "title": "X-Files apre i suoi archivi",
+    "year": 1993,
+    "category": "spettacolo",
+    "emoji": "👽",
+    "description": "Mulder e Scully portano il paranormale nel prime time americano.",
+    "wiki": "X-Files",
+    "dateStr": "10 Settembre 1993"
+  },
+  {
+    "id": "spet_028",
+    "title": "Friends debutta su NBC",
+    "year": 1994,
+    "category": "spettacolo",
+    "emoji": "☕",
+    "description": "Sei amici in un appartamento di Manhattan per dieci stagioni di culto.",
+    "wiki": "Friends",
+    "dateStr": "22 Settembre 1994"
+  },
+  {
+    "id": "spet_029",
+    "title": "Il Tamagotchi arriva in commercio",
+    "year": 1996,
+    "category": "spettacolo",
+    "emoji": "🥚",
+    "description": "Il pulcino virtuale da accudire vende ottanta milioni di pezzi.",
+    "wiki": "Tamagotchi",
+    "dateStr": "23 Novembre 1996"
+  },
+  {
+    "id": "spet_030",
+    "title": "Il Dancing Baby diventa virale",
+    "year": 1996,
+    "category": "spettacolo",
+    "emoji": "👶",
+    "description": "Il neonato 3D che balla è considerato il primo meme di internet.",
+    "wiki": "Dancing_Baby",
+    "approx": true
+  },
+  {
+    "id": "spet_031",
+    "title": "South Park debutta",
+    "year": 1997,
+    "category": "spettacolo",
+    "emoji": "🏔️",
+    "description": "La satira animata più irriverente esordisce su Comedy Central.",
+    "wiki": "South_Park",
+    "dateStr": "13 Agosto 1997"
+  },
+  {
+    "id": "spet_032",
+    "title": "L'anime dei Pokémon va in onda",
+    "year": 1997,
+    "category": "spettacolo",
+    "emoji": "⚡",
+    "description": "Ash e Pikachu partono da Biancavilla e conquistano una generazione.",
+    "wiki": "Pokémon_(serie_animata)",
+    "dateStr": "1 Aprile 1997"
+  },
+  {
+    "id": "spet_033",
+    "title": "Il finale di Seinfeld",
+    "year": 1998,
+    "category": "spettacolo",
+    "emoji": "🥨",
+    "description": "Settantasei milioni di spettatori per l'addio alla sitcom del nulla.",
+    "wiki": "Seinfeld",
+    "dateStr": "14 Maggio 1998"
+  },
+  {
+    "id": "spet_034",
+    "title": "Chi vuol essere milionario?",
+    "year": 1998,
+    "category": "spettacolo",
+    "emoji": "💎",
+    "description": "Il quiz britannico con l'aiuto del pubblico viene esportato in cento paesi.",
+    "wiki": "Chi_vuol_essere_milionario?",
+    "dateStr": "4 Settembre 1998"
+  },
+  {
+    "id": "spet_035",
+    "title": "Prima edizione del Grande Fratello",
+    "year": 1999,
+    "category": "spettacolo",
+    "emoji": "👁️",
+    "description": "In Olanda nasce il reality che mette la vita quotidiana in diretta.",
+    "wiki": "Grande_Fratello_(programma_televisivo)",
+    "dateStr": "16 Settembre 1999"
+  },
+  {
+    "id": "spet_036",
+    "title": "Debuttano I Soprano",
+    "year": 1999,
+    "category": "spettacolo",
+    "emoji": "🦆",
+    "description": "La HBO inaugura l'età d'oro della serialità con un boss in analisi.",
+    "wiki": "I_Soprano",
+    "dateStr": "10 Gennaio 1999"
+  },
+  {
+    "id": "spet_037",
+    "title": "Kurita disegna i primi emoji",
+    "year": 1999,
+    "category": "spettacolo",
+    "emoji": "🙂",
+    "description": "Centosettantasei pittogrammi da dodici pixel per i cellulari giapponesi.",
+    "wiki": "Emoji"
+  },
+  {
+    "id": "spet_038",
+    "title": "Debutta Survivor e nasce il reality a eliminazione",
+    "year": 2000,
+    "category": "spettacolo",
+    "emoji": "🏝️",
+    "description": "Il format svedese diventa negli Stati Uniti il modello di ogni reality competitivo.",
+    "wiki": "Survivor_(programma_televisivo)",
+    "dateStr": "31 Maggio 2000"
+  },
+  {
+    "id": "spet_039",
+    "title": "Lost precipita sull'isola",
+    "year": 2004,
+    "category": "spettacolo",
+    "emoji": "🏝️",
+    "description": "Il mistery serializzato che trasforma gli spettatori in investigatori online.",
+    "wiki": "Lost_(serie_televisiva)",
+    "dateStr": "22 Settembre 2004"
+  },
+  {
+    "id": "spet_040",
+    "title": "The Office arriva negli Stati Uniti",
+    "year": 2005,
+    "category": "spettacolo",
+    "emoji": "📎",
+    "description": "Il mockumentary britannico viene rifatto e diventa fenomeno generazionale.",
+    "wiki": "The_Office_(serie_televisiva_2005)",
+    "dateStr": "24 Marzo 2005"
+  },
+  {
+    "id": "spet_041",
+    "title": "Breaking Bad comincia a cucinare",
+    "year": 2008,
+    "category": "spettacolo",
+    "emoji": "⚗️",
+    "description": "Un professore di chimica malato diventa il criminale più studiato della TV.",
+    "wiki": "Breaking_Bad",
+    "dateStr": "20 Gennaio 2008"
+  },
+  {
+    "id": "spet_042",
+    "title": "Il Trono di Spade arriva in TV",
+    "year": 2011,
+    "category": "spettacolo",
+    "emoji": "🐉",
+    "description": "La HBO porta il fantasy nel mainstream con budget da cinema.",
+    "wiki": "Il_Trono_di_Spade",
+    "dateStr": "17 Aprile 2011"
+  },
+  {
+    "id": "spet_043",
+    "title": "Black Mirror mostra il lato oscuro",
+    "year": 2011,
+    "category": "spettacolo",
+    "emoji": "🪞",
+    "description": "L'antologia britannica trasforma l'ansia tecnologica in racconto.",
+    "wiki": "Black_Mirror",
+    "dateStr": "4 Dicembre 2011"
+  },
+  {
+    "id": "spet_044",
+    "title": "Gangnam Style supera il miliardo",
+    "year": 2012,
+    "category": "spettacolo",
+    "emoji": "🕺",
+    "description": "Il video di Psy è il primo della storia a raggiungere il traguardo su YouTube.",
+    "wiki": "Gangnam_Style",
+    "dateStr": "21 Dicembre 2012"
+  },
+  {
+    "id": "spet_045",
+    "title": "House of Cards inaugura Netflix originale",
+    "year": 2013,
+    "category": "spettacolo",
+    "emoji": "🃏",
+    "description": "Tredici episodi pubblicati insieme: nasce il binge watching.",
+    "wiki": "House_of_Cards_-_Gli_intrighi_del_potere",
+    "dateStr": "1 Febbraio 2013"
+  },
+  {
+    "id": "spet_046",
+    "title": "Il selfie degli Oscar",
+    "year": 2014,
+    "category": "spettacolo",
+    "emoji": "🤳",
+    "description": "Ellen DeGeneres raduna le star e batte ogni record di condivisioni su Twitter.",
+    "wiki": "Premio_Oscar",
+    "dateStr": "2 Marzo 2014"
+  },
+  {
+    "id": "spet_047",
+    "title": "L'Ice Bucket Challenge",
+    "year": 2014,
+    "category": "spettacolo",
+    "emoji": "🪣",
+    "description": "La sfida del secchiato raccoglie oltre duecento milioni di dollari per la SLA.",
+    "wiki": "Ice_Bucket_Challenge"
+  },
+  {
+    "id": "spet_048",
+    "title": "Il vestito che divide internet",
+    "year": 2015,
+    "category": "spettacolo",
+    "emoji": "👗",
+    "description": "Bianco e oro oppure blu e nero: una foto accende un dibattito planetario.",
+    "wiki": "The_Dress",
+    "dateStr": "26 Febbraio 2015"
+  },
+  {
+    "id": "spet_049",
+    "title": "Stranger Things apre il Sottosopra",
+    "year": 2016,
+    "category": "spettacolo",
+    "emoji": "🚲",
+    "description": "La nostalgia anni Ottanta diventa il più grande successo originale Netflix.",
+    "wiki": "Stranger_Things",
+    "dateStr": "15 Luglio 2016"
+  },
+  {
+    "id": "spet_050",
+    "title": "Squid Game travolge il mondo",
+    "year": 2021,
+    "category": "spettacolo",
+    "emoji": "🦑",
+    "description": "La serie coreana diventa il titolo più visto di sempre su Netflix.",
+    "wiki": "Squid_Game",
+    "dateStr": "17 Settembre 2021"
+  }
+]

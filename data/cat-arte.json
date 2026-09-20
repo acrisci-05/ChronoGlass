@@ -1,0 +1,478 @@
+[
+  {
+    "id": "art_001",
+    "title": "Grande Piramide di Cheope",
+    "year": -2560,
+    "category": "arte",
+    "emoji": "🔺",
+    "description": "Completata a Giza la più grande piramide egizia, unica meraviglia antica ancora in piedi.",
+    "wiki": "Piramide_di_Cheope",
+    "approx": true
+  },
+  {
+    "id": "art_002",
+    "title": "Busto di Nefertiti",
+    "year": -1345,
+    "category": "arte",
+    "emoji": "👑",
+    "description": "Lo scultore Thutmose realizza il ritratto in calcare della regina egizia.",
+    "wiki": "Busto_di_Nefertiti",
+    "approx": true
+  },
+  {
+    "id": "art_003",
+    "title": "Completamento del Partenone",
+    "year": -432,
+    "category": "arte",
+    "emoji": "🏛️",
+    "description": "Finiscono i lavori del tempio di Atena sull'Acropoli di Atene.",
+    "wiki": "Partenone"
+  },
+  {
+    "id": "art_004",
+    "title": "Venere di Milo",
+    "year": -100,
+    "category": "arte",
+    "emoji": "🗿",
+    "description": "Scolpita nell'isola di Milo la statua ellenistica poi simbolo del Louvre.",
+    "wiki": "Venere_di_Milo",
+    "approx": true
+  },
+  {
+    "id": "art_005",
+    "title": "Dedicazione dell'Ara Pacis",
+    "year": -9,
+    "category": "arte",
+    "emoji": "🕊️",
+    "description": "Augusto consacra a Roma l'altare che celebra la pace dell'impero.",
+    "wiki": "Ara_Pacis",
+    "dateStr": "30 Gennaio -9"
+  },
+  {
+    "id": "art_006",
+    "title": "Inaugurazione del Colosseo",
+    "year": 80,
+    "category": "arte",
+    "emoji": "🏟️",
+    "description": "Termina la costruzione dell'Anfiteatro Flavio a Roma sotto l'imperatore Tito.",
+    "wiki": "Colosseo"
+  },
+  {
+    "id": "art_007",
+    "title": "Pantheon di Adriano",
+    "year": 126,
+    "category": "arte",
+    "emoji": "🛕",
+    "description": "Ricostruito a Roma il tempio con la più grande cupola in calcestruzzo antica.",
+    "wiki": "Pantheon_(Roma)",
+    "approx": true
+  },
+  {
+    "id": "art_008",
+    "title": "Consacrazione di Santa Sofia",
+    "year": 537,
+    "category": "arte",
+    "emoji": "⛪",
+    "description": "Giustiniano inaugura a Costantinopoli la basilica dalla cupola apparentemente sospesa.",
+    "wiki": "Basilica_di_Santa_Sofia",
+    "dateStr": "27 Dicembre 537"
+  },
+  {
+    "id": "art_009",
+    "title": "Mosaici di San Vitale a Ravenna",
+    "year": 547,
+    "category": "arte",
+    "emoji": "✨",
+    "description": "Completati i mosaici bizantini con i ritratti di Giustiniano e Teodora.",
+    "wiki": "Basilica_di_San_Vitale"
+  },
+  {
+    "id": "art_010",
+    "title": "Moschea di Córdoba",
+    "year": 786,
+    "category": "arte",
+    "emoji": "🕌",
+    "description": "Abd al-Rahman I avvia la Mezquita dalla celebre selva di archi bicromi.",
+    "wiki": "Moschea_di_Cordova"
+  },
+  {
+    "id": "art_011",
+    "title": "Inizio della Torre di Pisa",
+    "year": 1173,
+    "category": "arte",
+    "emoji": "🗼",
+    "description": "Posata la prima pietra del campanile che inizierà subito a inclinarsi.",
+    "wiki": "Torre_di_Pisa",
+    "dateStr": "9 Agosto 1173"
+  },
+  {
+    "id": "art_012",
+    "title": "Inizio di Notre-Dame de Paris",
+    "year": 1163,
+    "category": "arte",
+    "emoji": "⛪",
+    "description": "Prende avvio il cantiere gotico sull'Île de la Cité, lungo quasi due secoli.",
+    "wiki": "Cattedrale_di_Notre-Dame"
+  },
+  {
+    "id": "art_013",
+    "title": "Giotto affresca gli Scrovegni",
+    "year": 1305,
+    "category": "arte",
+    "emoji": "🎨",
+    "description": "A Padova Giotto completa il ciclo che rifonda la pittura occidentale.",
+    "wiki": "Cappella_degli_Scrovegni"
+  },
+  {
+    "id": "art_014",
+    "title": "Cupola del Brunelleschi",
+    "year": 1436,
+    "category": "arte",
+    "emoji": "🏛️",
+    "description": "Consacrata Santa Maria del Fiore: la cupola più grande mai costruita senza centine.",
+    "wiki": "Cupola_del_Brunelleschi",
+    "dateStr": "25 Marzo 1436"
+  },
+  {
+    "id": "art_015",
+    "title": "David bronzeo di Donatello",
+    "year": 1440,
+    "category": "arte",
+    "emoji": "🗿",
+    "description": "Primo nudo a tutto tondo dall'antichità, fuso per i Medici a Firenze.",
+    "wiki": "David_(Donatello)",
+    "approx": true
+  },
+  {
+    "id": "art_016",
+    "title": "Nascita di Venere di Botticelli",
+    "year": 1485,
+    "category": "arte",
+    "emoji": "🐚",
+    "description": "La dea emerge dal mare in uno dei dipinti simbolo del Rinascimento fiorentino.",
+    "wiki": "Nascita_di_Venere",
+    "approx": true
+  },
+  {
+    "id": "art_017",
+    "title": "Ultima Cena di Leonardo",
+    "year": 1498,
+    "category": "arte",
+    "emoji": "🍞",
+    "description": "Terminato a Milano l'affresco murale in Santa Maria delle Grazie.",
+    "wiki": "Ultima_cena_(Leonardo)"
+  },
+  {
+    "id": "art_018",
+    "title": "Pietà di Michelangelo",
+    "year": 1499,
+    "category": "arte",
+    "emoji": "⛪",
+    "description": "Il ventiquattrenne Michelangelo firma il gruppo marmoreo per San Pietro.",
+    "wiki": "Pietà_(Michelangelo)"
+  },
+  {
+    "id": "art_019",
+    "title": "Leonardo inizia la Gioconda",
+    "year": 1503,
+    "category": "arte",
+    "emoji": "🖼️",
+    "description": "A Firenze prende avvio il ritratto più celebre della storia dell'arte.",
+    "wiki": "Leonardo_da_Vinci",
+    "approx": true
+  },
+  {
+    "id": "art_020",
+    "title": "David di Michelangelo",
+    "year": 1504,
+    "category": "arte",
+    "emoji": "🗿",
+    "description": "Il gigante di marmo viene collocato davanti a Palazzo Vecchio a Firenze.",
+    "wiki": "David_(Michelangelo)",
+    "dateStr": "8 Settembre 1504"
+  },
+  {
+    "id": "art_021",
+    "title": "Scuola di Atene di Raffaello",
+    "year": 1511,
+    "category": "arte",
+    "emoji": "📐",
+    "description": "Raffaello riunisce i filosofi antichi negli appartamenti vaticani di Giulio II.",
+    "wiki": "Scuola_di_Atene"
+  },
+  {
+    "id": "art_022",
+    "title": "Volta della Cappella Sistina",
+    "year": 1512,
+    "category": "arte",
+    "emoji": "🎨",
+    "description": "Michelangelo svela quattro anni di lavoro sopra la cappella papale.",
+    "wiki": "Cappella_Sistina",
+    "dateStr": "31 Ottobre 1512"
+  },
+  {
+    "id": "art_023",
+    "title": "Giudizio Universale",
+    "year": 1541,
+    "category": "arte",
+    "emoji": "⚡",
+    "description": "Michelangelo completa la parete d'altare della Sistina, tra scandalo e stupore.",
+    "wiki": "Giudizio_universale_(Michelangelo)"
+  },
+  {
+    "id": "art_024",
+    "title": "Vocazione di San Matteo",
+    "year": 1600,
+    "category": "arte",
+    "emoji": "💡",
+    "description": "Caravaggio porta in San Luigi dei Francesi la luce che scolpisce i corpi.",
+    "wiki": "Vocazione_di_san_Matteo"
+  },
+  {
+    "id": "art_025",
+    "title": "Ronda di notte di Rembrandt",
+    "year": 1642,
+    "category": "arte",
+    "emoji": "🌃",
+    "description": "Il ritratto di gruppo della milizia di Amsterdam rompe ogni convenzione.",
+    "wiki": "Ronda_di_notte"
+  },
+  {
+    "id": "art_026",
+    "title": "Estasi di Santa Teresa",
+    "year": 1652,
+    "category": "arte",
+    "emoji": "🔥",
+    "description": "Bernini fonde marmo, luce e teatro nella cappella Cornaro a Roma.",
+    "wiki": "Estasi_di_santa_Teresa_d'Avila"
+  },
+  {
+    "id": "art_027",
+    "title": "Ragazza con l'orecchino di perla",
+    "year": 1665,
+    "category": "arte",
+    "emoji": "💎",
+    "description": "Vermeer dipinge il 'tronie' che diventerà la Monna Lisa del Nord.",
+    "wiki": "Ragazza_con_l'orecchino_di_perla",
+    "approx": true
+  },
+  {
+    "id": "art_028",
+    "title": "Colonnato di San Pietro",
+    "year": 1667,
+    "category": "arte",
+    "emoji": "🏛️",
+    "description": "Bernini completa l'abbraccio ellittico di 284 colonne davanti alla basilica.",
+    "wiki": "Colonnato_di_San_Pietro"
+  },
+  {
+    "id": "art_029",
+    "title": "Galleria degli Specchi a Versailles",
+    "year": 1684,
+    "category": "arte",
+    "emoji": "🪞",
+    "description": "Finita la sala dei 357 specchi che celebra la gloria di Luigi XIV.",
+    "wiki": "Reggia_di_Versailles"
+  },
+  {
+    "id": "art_030",
+    "title": "Amore e Psiche di Canova",
+    "year": 1793,
+    "category": "arte",
+    "emoji": "💘",
+    "description": "Canova ferma nel marmo l'istante prima del bacio, manifesto del Neoclassicismo.",
+    "wiki": "Amore_e_Psiche_(Canova)"
+  },
+  {
+    "id": "art_031",
+    "title": "La grande onda di Hokusai",
+    "year": 1831,
+    "category": "arte",
+    "emoji": "🌊",
+    "description": "La xilografia giapponese che influenzerà impressionisti e grafica moderna.",
+    "wiki": "La_grande_onda_di_Kanagawa",
+    "approx": true
+  },
+  {
+    "id": "art_032",
+    "title": "Impressione, levar del sole",
+    "year": 1872,
+    "category": "arte",
+    "emoji": "🌅",
+    "description": "Il quadro di Monet da cui i critici coniano, per scherno, il nome Impressionismo.",
+    "wiki": "Impressione,_levar_del_sole"
+  },
+  {
+    "id": "art_033",
+    "title": "Inizio della Sagrada Família",
+    "year": 1882,
+    "category": "arte",
+    "emoji": "⛪",
+    "description": "Posata la prima pietra a Barcellona del cantiere ancora oggi aperto.",
+    "wiki": "Sagrada_Família",
+    "dateStr": "19 Marzo 1882"
+  },
+  {
+    "id": "art_034",
+    "title": "Inaugurazione della Statua della Libertà",
+    "year": 1886,
+    "category": "arte",
+    "emoji": "🗽",
+    "description": "Il dono francese agli Stati Uniti viene svelato nel porto di New York.",
+    "wiki": "Statua_della_Libertà",
+    "dateStr": "28 Ottobre 1886"
+  },
+  {
+    "id": "art_035",
+    "title": "Notte stellata di Van Gogh",
+    "year": 1889,
+    "category": "arte",
+    "emoji": "🌌",
+    "description": "Dipinta dalla finestra del manicomio di Saint-Rémy, con il cielo in turbine.",
+    "wiki": "Notte_stellata"
+  },
+  {
+    "id": "art_036",
+    "title": "L'urlo di Munch",
+    "year": 1893,
+    "category": "arte",
+    "emoji": "😱",
+    "description": "Il grido silenzioso che diventa l'icona dell'angoscia moderna.",
+    "wiki": "L'urlo"
+  },
+  {
+    "id": "art_037",
+    "title": "Il bacio di Klimt",
+    "year": 1908,
+    "category": "arte",
+    "emoji": "💛",
+    "description": "Oro e mosaico bizantino per l'abbraccio simbolo della Secessione viennese.",
+    "wiki": "Il_bacio_(Klimt)"
+  },
+  {
+    "id": "art_038",
+    "title": "Fontana di Duchamp",
+    "year": 1917,
+    "category": "arte",
+    "emoji": "🚽",
+    "description": "Un orinatoio firmato R. Mutt mette in crisi l'idea stessa di opera d'arte.",
+    "wiki": "Fontana_(Duchamp)"
+  },
+  {
+    "id": "art_039",
+    "title": "Fondazione del Bauhaus",
+    "year": 1919,
+    "category": "arte",
+    "emoji": "📐",
+    "description": "Walter Gropius apre a Weimar la scuola che ridisegna il design moderno.",
+    "wiki": "Bauhaus",
+    "dateStr": "12 Aprile 1919"
+  },
+  {
+    "id": "art_040",
+    "title": "Empire State Building",
+    "year": 1931,
+    "category": "arte",
+    "emoji": "🏙️",
+    "description": "Aperto a New York l'edificio più alto del mondo per quarant'anni.",
+    "wiki": "Empire_State_Building",
+    "dateStr": "1 Maggio 1931"
+  },
+  {
+    "id": "art_041",
+    "title": "Persistenza della memoria",
+    "year": 1931,
+    "category": "arte",
+    "emoji": "⏰",
+    "description": "Dalí appende gli orologi molli al paesaggio catalano del surrealismo.",
+    "wiki": "La_persistenza_della_memoria"
+  },
+  {
+    "id": "art_042",
+    "title": "Guernica di Picasso",
+    "year": 1937,
+    "category": "arte",
+    "emoji": "🕊️",
+    "description": "Il bombardamento della città basca diventa il più celebre grido antimilitarista.",
+    "wiki": "Guernica_(Picasso)"
+  },
+  {
+    "id": "art_043",
+    "title": "Casa sulla cascata",
+    "year": 1939,
+    "category": "arte",
+    "emoji": "🏞️",
+    "description": "Frank Lloyd Wright completa in Pennsylvania la villa sospesa sul torrente.",
+    "wiki": "Fallingwater"
+  },
+  {
+    "id": "art_044",
+    "title": "Guggenheim di New York",
+    "year": 1959,
+    "category": "arte",
+    "emoji": "🌀",
+    "description": "Apre la spirale bianca di Wright sulla Quinta Strada, museo che è scultura.",
+    "wiki": "Solomon_R._Guggenheim_Museum",
+    "dateStr": "21 Ottobre 1959"
+  },
+  {
+    "id": "art_045",
+    "title": "Opera House di Sydney",
+    "year": 1973,
+    "category": "arte",
+    "emoji": "⛵",
+    "description": "Le vele in ceramica di Jørn Utzon vengono inaugurate dalla regina Elisabetta.",
+    "wiki": "Sydney_Opera_House",
+    "dateStr": "20 Ottobre 1973"
+  },
+  {
+    "id": "art_046",
+    "title": "Centre Pompidou",
+    "year": 1977,
+    "category": "arte",
+    "emoji": "🔧",
+    "description": "Parigi apre il museo con le tubature a vista, rovesciato come un guanto.",
+    "wiki": "Centre_Georges_Pompidou",
+    "dateStr": "31 Gennaio 1977"
+  },
+  {
+    "id": "art_047",
+    "title": "Piramide del Louvre",
+    "year": 1989,
+    "category": "arte",
+    "emoji": "🔷",
+    "description": "Ieoh Ming Pei innesta vetro e acciaio nel cortile del palazzo reale.",
+    "wiki": "Piramide_del_Louvre",
+    "dateStr": "29 Marzo 1989"
+  },
+  {
+    "id": "art_048",
+    "title": "Guggenheim di Bilbao",
+    "year": 1997,
+    "category": "arte",
+    "emoji": "🐟",
+    "description": "Le curve in titanio di Gehry rilanciano un'intera città industriale.",
+    "wiki": "Museo_Guggenheim_Bilbao",
+    "dateStr": "18 Ottobre 1997"
+  },
+  {
+    "id": "art_049",
+    "title": "Burj Khalifa",
+    "year": 2010,
+    "category": "arte",
+    "emoji": "🏗️",
+    "description": "Dubai inaugura l'edificio più alto del mondo, oltre 828 metri.",
+    "wiki": "Burj_Khalifa",
+    "dateStr": "4 Gennaio 2010"
+  },
+  {
+    "id": "art_050",
+    "title": "Banksy distrugge la sua opera",
+    "year": 2018,
+    "category": "arte",
+    "emoji": "🎈",
+    "description": "Girl with Balloon si autodistrugge in asta da Sotheby's subito dopo l'aggiudicazione.",
+    "wiki": "Banksy",
+    "dateStr": "5 Ottobre 2018"
+  }
+]
