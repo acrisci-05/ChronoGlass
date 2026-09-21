@@ -71,10 +71,19 @@ Tre modi di giocare:
 
 Nel modo **Stesso dispositivo** non esiste nessuna stanza: niente codice, niente
 "Copia" o "Condividi". Fra un turno e l'altro compare una schermata dedicata —
-🕹️ *Passa il telefono*, di chi è il turno in grande, il tabellone
-`Giocatore 1 [punti] vs Giocatore 2 [punti]` e un solo pulsante. **Il countdown
-parte quando quel pulsante viene premuto**, non mentre il telefono passa di
-mano. Lo stesso vale per il primo turno e per lo spareggio.
+🕹️ *Passa il telefono*, di chi è il turno in grande, il tabellone e un solo
+pulsante. **Il countdown parte quando quel pulsante viene premuto**, non mentre
+il telefono passa di mano. Lo stesso vale per il primo turno e per lo spareggio.
+
+I due **nickname** si scrivono direttamente sul tabellone della schermata
+iniziale: i campi sembrano etichette finché non li tocchi. Restano salvati fra
+una partita e l'altra, compaiono nel riquadro "Tocca a", nella fascia
+dell'avversario e nel tabellone finale, e si bloccano appena la partita comincia.
+
+Qui il mazzo **non è lo stesso per tutti e due**: si pescano dieci carte
+distinte dagli argomenti scelti in lobby, le prime cinque al primo giocatore e
+le altre cinque al secondo. Con un mazzo unico chi gioca per secondo avrebbe già
+visto le risposte durante il primo turno.
 
 **Punteggio** = corrette × 1000 + anno esatto 500 + millisecondi rimasti −
 errori × 300. La precisione pesa più della velocità: un errore costa più del
@@ -103,13 +112,26 @@ leggermente rimpicciolito.
 
 ## Tutorial al primo accesso
 
-Solo la primissima volta in assoluto parte un giro guidato di tre carte in
-quattro passi: cos'è il riferimento, come si trascina, come si rivela l'anno e
-cosa vale lo "stesso anno", infine lo Scudo Temporale. Non è un simulatore a
-parte: fissa riferimento e coda della partita vera, così quello che impari è
-esattamente il gioco. Il riquadro si posiziona a runtime cercando lo spazio
-libero, per non coprire mai i pulsanti che sta spiegando né la barra del
-riferimento.
+Una **sandbox con spotlight** da una decina di secondi, solo la primissima volta.
+Niente partita vera e niente carte casuali: il palco è simulato e le due carte
+sono fisse — *Sbarco sulla Luna* come riferimento e *Inaugurazione del Colosseo*
+da collocare.
+
+Lo spotlight è un rettangolo con `box-shadow: 0 0 0 100vmax rgba(0,0,0,.75)`: il
+buco resta limpido e tutto il resto sprofonda nel nero. Si sposta e si
+ridimensiona sul bersaglio di ogni passo, calcolato dal rettangolo che racchiude
+gli elementi indicati.
+
+1. **Riferimento** — luce sul box in alto, tasto "Capito".
+2. **Azione** — luce su carta e pulsanti, un dito al neon indica ← PRIMA e gli
+   altri due tasti sono inerti. Si va avanti solo toccando quello giusto.
+3. **Scudo** — l'anno si rivela, la carta diventa verde, la luce passa sulla
+   barra dello Scudo Temporale. Tasto "Inizia la sfida".
+
+"Salta" è sempre in alto a destra. In entrambi i casi si scrive
+`chronoglass_tutorial_done` in `localStorage`. Il riquadro del testo si colloca
+sotto la zona illuminata, o sopra se sotto non c'è spazio: non copre mai ciò che
+sta indicando.
 
 ## Lobby pre-partita
 

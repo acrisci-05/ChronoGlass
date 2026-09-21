@@ -1024,6 +1024,24 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
   transition:border-color .3s,box-shadow .3s}
 .pb-lato span{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;
   font-weight:850;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Campo nome: sembra un'etichetta, diventa un campo quando lo tocchi. */
+.pb-nome{display:block;width:100%;padding:4px 6px;border-radius:9px;
+  font-family:inherit;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:850;color:#cfd8f5;text-align:center;text-overflow:ellipsis;
+  background:transparent;border:1px solid transparent;
+  transition:background .2s,border-color .2s,color .2s,box-shadow .2s}
+.pb-nome:hover:not(:read-only){background:rgba(255,255,255,.07);
+  border-color:rgba(255,255,255,.18);color:#fff}
+.pb-nome:focus{outline:none;color:#fff;background:rgba(0,0,0,.34);
+  border-color:rgba(0,243,255,.65);
+  box-shadow:0 0 0 3px rgba(0,243,255,.2),inset 0 1px 4px rgba(0,0,0,.5);
+  letter-spacing:.04em}
+.pb-nome:read-only{cursor:default;color:var(--dim)}
+.pb-nome::placeholder{color:rgba(255,255,255,.25)}
+/* La matita compare solo finché i nomi si possono cambiare */
+#duelPass:not(.nomi-bloccati) .pb-lato::after{content:"\270E";position:absolute;
+  top:5px;right:7px;font-size:9px;opacity:.4;pointer-events:none}
+.pb-lato{position:relative}
 .pb-lato b{display:block;margin-top:4px;font-size:22px;font-weight:900;
   font-variant-numeric:tabular-nums;color:#fff}
 /* il giocatore di turno si illumina */
@@ -1185,61 +1203,144 @@ html.duello-pulito #duelPower{display:none}
 }
 
 /* =====================================================================
-   TUTORIAL — solo alla primissima visita, tre carte guidate
-   Il livello non intercetta i gesti: si deve poter trascinare la carta
-   mentre il riquadro spiega cosa fare.
+   TUTORIAL — sandbox con spotlight, solo alla primissima visita
+   Tutto quello che si vede qui è finto: due carte fisse dentro un
+   ambiente isolato, così il tutorial non tocca mai la partita vera.
    ===================================================================== */
-#tutorial{position:fixed;inset:0;z-index:66;pointer-events:none;
-  opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s linear .4s}
-#tutorial.on{opacity:1;visibility:visible;transition:opacity .4s ease,visibility 0s}
-/* Alone scuro che stacca il riquadro senza nascondere la carta */
-#tutorial::before{content:"";position:absolute;inset:0;
-  background:radial-gradient(120% 60% at 50% 34%,transparent 30%,rgba(3,4,12,.72) 78%)}
-/* La posizione viene calcolata a runtime: ancorato in basso copriva i
-   pulsanti PRIMA/DOPO, cioè proprio quello che sta spiegando di premere. */
-.tut-box{position:absolute;left:50%;top:var(--tut-top,auto);
-  transform:translateX(-50%);width:min(420px,calc(100vw - 26px));
-  pointer-events:auto;padding:13px 15px;border-radius:20px;
-  background:linear-gradient(150deg,rgba(9,11,26,.93),rgba(6,8,20,.9) 55%,rgba(24,6,32,.92));
-  backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);
+#tutorial{position:fixed;inset:0;z-index:92;display:none;
+  background:radial-gradient(120% 80% at 50% 12%,#0e1230 0%,#06070f 60%,#04050c 100%)}
+#tutorial.on{display:block}
+
+/* --- il palco simulato --- */
+.tut-stage{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:14px;padding:76px 18px 18px;z-index:1}
+.tut-rif{width:min(360px,100%);padding:11px 15px;border-radius:16px;text-align:center;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16)}
+.tr-lab{display:block;font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;
+  font-weight:850;color:var(--cyan)}
+.tr-tit{display:block;margin-top:3px;font-size:14px;font-weight:850}
+.tr-data{display:block;margin-top:2px;font-size:15px;font-weight:900;font-style:normal;
+  color:var(--gold);font-variant-numeric:tabular-nums}
+
+.tut-card{position:relative;width:min(300px,82vw);border-radius:24px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.2);
+  background:radial-gradient(circle at 22% 18%,#ff8a4c 0%,transparent 54%),
+             radial-gradient(circle at 82% 26%,#b5179e 0%,transparent 52%),
+             linear-gradient(158deg,#2a1206,#1b0733);
+  box-shadow:0 26px 60px -18px rgba(0,0,0,.9),0 0 40px -14px rgba(255,138,76,.6);
+  transition:border-color .4s,box-shadow .4s,transform .4s var(--spring)}
+.tc-art{height:150px;display:grid;place-items:center;font-size:58px;
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,.6))}
+.tc-body{padding:0 16px 16px}
+.tc-tag{display:inline-flex;font-size:9px;font-weight:850;letter-spacing:.14em;
+  text-transform:uppercase;padding:5px 11px;border-radius:999px;color:rgb(255,138,76);
+  background:linear-gradient(140deg,rgba(3,4,14,.9),rgba(3,4,14,.78)),rgba(255,138,76,.25);
+  border:1px solid rgba(255,138,76,.8)}
+.tut-card h3{margin:9px 0 0;font-size:18px;font-weight:850;line-height:1.16;
+  letter-spacing:-.02em;text-shadow:0 2px 14px rgba(0,0,0,.85)}
+.tc-anno{margin-top:6px;font-size:38px;font-weight:900;letter-spacing:-.04em;line-height:1;
+  font-variant-numeric:tabular-nums;
+  background:linear-gradient(118deg,#fff 8%,var(--cyan) 52%,var(--magenta) 96%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.tc-esito{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;
+  display:grid;place-items:center;font-size:21px;font-weight:900;color:#02131a;
+  background:linear-gradient(140deg,#00ffa3,#7cffcd);
+  box-shadow:0 0 28px rgba(0,255,163,.9);
+  opacity:0;transform:scale(.5);transition:opacity .35s ease,transform .45s var(--spring)}
+.tut-card.giusta{border-color:rgba(0,255,163,.85);
+  box-shadow:0 0 0 1px var(--emerald),0 0 56px -8px rgba(0,255,163,.75)}
+.tut-card.giusta .tc-esito{opacity:1;transform:scale(1)}
+
+.tut-acts{display:flex;gap:9px;width:min(360px,100%)}
+.tut-act{flex:1;padding:14px 6px;border-radius:19px;font-size:11.5px;font-weight:850;
+  letter-spacing:.06em;text-transform:uppercase;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);
+  transition:transform .2s var(--spring),opacity .25s,box-shadow .25s}
+.tut-act.prima{color:var(--cyan);border-color:rgba(0,243,255,.4)}
+.tut-act.dopo{color:var(--magenta);border-color:rgba(255,0,160,.4)}
+.tut-act.same{color:var(--gold);border-color:rgba(255,191,0,.42)}
+.tut-act[disabled]{opacity:.26;pointer-events:none}
+.tut-act.invito{box-shadow:0 0 26px -4px rgba(0,243,255,.9);border-color:rgba(0,243,255,.85)}
+.tut-act:active{transform:scale(.94)}
+
+.tut-shield{display:flex;align-items:center;gap:9px;width:min(360px,100%);
+  padding:11px 14px;border-radius:15px;
+  background:linear-gradient(140deg,rgba(0,243,255,.16),rgba(0,243,255,.04));
+  border:1px solid rgba(0,243,255,.42);
+  box-shadow:0 0 22px -8px rgba(0,243,255,.7)}
+.ts-ico{font-size:17px}
+.ts-txt{flex:1;font-size:11.5px;font-weight:850;letter-spacing:.04em;color:#bdf0ff}
+.ts-bar{width:64px;height:7px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.ts-bar i{display:block;height:100%;width:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--cyan),#9df6ff);
+  box-shadow:0 0 12px rgba(0,243,255,.9)}
+
+/* --- lo spotlight: un rettangolo con un'ombra enorme tutt'intorno,
+       così il buco resta limpido e il resto sprofonda nel nero --- */
+.tut-spot{position:absolute;left:0;top:0;width:0;height:0;border-radius:22px;z-index:3;
+  pointer-events:none;opacity:0;
+  box-shadow:0 0 0 100vmax rgba(0,0,0,.75),0 0 0 2px rgba(0,243,255,.75),
+             0 0 34px 4px rgba(0,243,255,.45);
+  transition:transform .45s cubic-bezier(.22,1,.3,1),width .45s cubic-bezier(.22,1,.3,1),
+             height .45s cubic-bezier(.22,1,.3,1),opacity .3s ease}
+.tut-spot.on{opacity:1}
+
+/* --- dito che tocca --- */
+.tut-hand{position:absolute;z-index:4;pointer-events:none;opacity:0;
+  transition:opacity .3s ease,transform .45s cubic-bezier(.22,1,.3,1)}
+.tut-hand.on{opacity:1}
+.tut-hand span{display:block;font-size:34px;
+  filter:drop-shadow(0 0 12px rgba(0,243,255,.95));
+  animation:tutTap 1.35s ease-in-out infinite}
+.tut-hand::before{content:"";position:absolute;left:50%;top:2px;width:44px;height:44px;
+  margin-left:-22px;border-radius:50%;border:2px solid rgba(0,243,255,.85);
+  animation:tutPing 1.35s ease-out infinite}
+@keyframes tutTap{0%,100%{transform:translate3d(0,0,0) scale(1)}
+                  45%{transform:translate3d(0,-11px,0) scale(1.08)}}
+@keyframes tutPing{0%{transform:scale(.5);opacity:.9}70%,100%{transform:scale(1.45);opacity:0}}
+html.perf .tut-hand span,html.perf .tut-hand::before{animation:none}
+
+/* --- riquadro del testo --- */
+.tut-box{position:absolute;left:50%;z-index:5;transform:translateX(-50%);
+  top:var(--tut-top,auto);width:min(410px,calc(100vw - 26px));
+  padding:15px 17px;border-radius:21px;
+  background:linear-gradient(150deg,rgba(9,11,26,.96),rgba(6,8,20,.94) 55%,rgba(24,6,32,.95));
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
   border:1px solid rgba(255,255,255,.26);
-  box-shadow:0 24px 60px -16px rgba(0,0,0,.92),inset 0 1px 0 rgba(255,255,255,.28),
-             0 0 52px -20px rgba(0,243,255,.7)}
+  box-shadow:0 24px 62px -16px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.28),
+             0 0 52px -20px rgba(0,243,255,.75)}
 .tut-passo{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:850;
-  color:var(--dim);margin-bottom:5px}
+  color:var(--dim);margin-bottom:6px}
 .tut-passo b{color:var(--cyan);font-size:11px}
-#tutTesto{margin:0;font-size:12.5px;line-height:1.5;color:#eef2ff;font-weight:650}
+#tutTesto{margin:0;font-size:13px;line-height:1.5;color:#eef2ff;font-weight:650}
 #tutTesto b{color:var(--cyan);font-weight:850}
-#tutTesto i{font-style:normal;color:var(--magenta);font-weight:850}
-#tutTesto u{text-decoration:none;color:var(--gold);font-weight:850}
-.tut-act{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:11px}
-#btnTutSalta{font-size:11px;font-weight:800;color:#9aa5cc;padding:8px 10px;border-radius:10px;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
-#btnTutSalta:hover{color:#fff}
-#btnTutAvanti{padding:10px 20px;border-radius:13px;font-size:11.5px;font-weight:900;
-  letter-spacing:.07em;text-transform:uppercase;color:#02131a;
-  background:linear-gradient(120deg,var(--cyan),#9df6ff);
-  box-shadow:0 6px 22px -4px rgba(0,243,255,.72),inset 0 1px 0 rgba(255,255,255,.7);
+#tutTesto i{font-style:normal;color:var(--gold);font-weight:850}
+#btnTutAvanti{margin-top:13px;width:100%;padding:12px;border-radius:14px;
+  font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#02131a;
+  background:linear-gradient(120deg,var(--cyan),#9df6ff 45%,var(--magenta));
+  box-shadow:0 8px 26px -6px rgba(0,243,255,.75),inset 0 1px 0 rgba(255,255,255,.7);
   transition:transform .2s var(--spring),filter .2s}
 #btnTutAvanti:hover{transform:translateY(-1px);filter:brightness(1.08)}
-#btnTutAvanti:active{transform:scale(.94)}
+#btnTutAvanti:active{transform:scale(.96)}
 #btnTutAvanti[hidden]{display:none}
-/* Frecce al neon: solo transform e opacità, e lontane dai pannelli sfocati */
-.tut-arrow{position:absolute;font-size:34px;line-height:1;font-style:normal;
-  opacity:0;pointer-events:none;will-change:transform,opacity}
-.tut-arrow.left {left:6px;  top:46%;color:var(--cyan);   text-shadow:0 0 16px rgba(0,243,255,.95)}
-.tut-arrow.right{right:6px; top:46%;color:var(--magenta);text-shadow:0 0 16px rgba(255,0,160,.95)}
-.tut-arrow.up   {left:50%;  top:14%;color:var(--gold);   text-shadow:0 0 16px rgba(255,209,102,.95);
-  transform:rotate(-90deg)}
-#tutorial.mostra-lr .tut-arrow.left {opacity:1;animation:tutL 1.5s ease-in-out infinite}
-#tutorial.mostra-lr .tut-arrow.right{opacity:1;animation:tutR 1.5s ease-in-out infinite}
-#tutorial.mostra-up .tut-arrow.up   {opacity:1;animation:tutU 1.5s ease-in-out infinite}
-@keyframes tutL{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-9px,0,0)}}
-@keyframes tutR{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(9px,0,0)}}
-@keyframes tutU{0%,100%{transform:rotate(-90deg) translate3d(0,0,0)}
-                50%{transform:rotate(-90deg) translate3d(9px,0,0)}}
-html.perf .tut-arrow{animation:none!important}
-@media(max-height:720px){ .tut-box{padding:13px 15px} #tutTesto{font-size:12px} }
+
+/* --- salta, sempre in alto a destra --- */
+#btnTutSalta{position:absolute;z-index:6;
+  top:calc(14px + env(safe-area-inset-top));right:14px;
+  padding:9px 15px;border-radius:999px;font-size:11px;font-weight:850;
+  letter-spacing:.08em;text-transform:uppercase;color:#aab4d6;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:.22s var(--out)}
+#btnTutSalta:hover{color:#fff;background:rgba(255,255,255,.16)}
+#btnTutSalta:active{transform:scale(.94)}
+
+@media(max-height:700px){
+  .tut-stage{gap:10px;padding-top:66px}
+  .tc-art{height:112px;font-size:46px}
+  .tut-card h3{font-size:16px}
+  .tc-anno{font-size:32px}
+  #tutTesto{font-size:12px}
+}
 
 /* =====================================================================
    INVITO A INSTALLARE — compare in basso, dalla terza visita
@@ -2394,11 +2495,15 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
     </div>
     <div class="pass-board">
       <div class="pb-lato" id="pbG1">
-        <span>Giocatore 1</span><b id="pbP1">0</b>
+        <input class="pb-nome" id="pbN1" type="text" maxlength="14" autocomplete="off"
+               spellcheck="false" aria-label="Nome del primo giocatore" value="Giocatore 1">
+        <b id="pbP1">0</b>
       </div>
       <div class="pb-vs">vs</div>
       <div class="pb-lato" id="pbG2">
-        <span>Giocatore 2</span><b id="pbP2">0</b>
+        <input class="pb-nome" id="pbN2" type="text" maxlength="14" autocomplete="off"
+               spellcheck="false" aria-label="Nome del secondo giocatore" value="Giocatore 2">
+        <b id="pbP2">0</b>
       </div>
     </div>
     <p class="pass-nota" id="passNota">Il tempo parte solo quando premi qui sotto.</p>
@@ -2491,19 +2596,53 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
   </div>
 </div>
 
-<!-- ======================= TUTORIAL PRIMO ACCESSO ======================= -->
-<div id="tutorial" aria-live="polite">
-  <i class="tut-arrow left"  aria-hidden="true">&#10094;</i>
-  <i class="tut-arrow right" aria-hidden="true">&#10095;</i>
-  <i class="tut-arrow up"    aria-hidden="true">&#10095;</i>
-  <div class="tut-box">
-    <div class="tut-passo"><b id="tutN">1</b><span>/4</span></div>
-    <p id="tutTesto">…</p>
-    <div class="tut-act">
-      <button id="btnTutSalta">Salta</button>
-      <button id="btnTutAvanti">Avanti</button>
+<!-- ============ TUTORIAL: SANDBOX CON SPOTLIGHT (primo accesso) ============
+     Ambiente simulato: due carte fisse, nessun collegamento con la partita
+     vera. Dieci secondi per capire il gesto e lo Scudo. -->
+<div id="tutorial" role="dialog" aria-modal="true" aria-labelledby="tutTesto">
+
+  <div class="tut-stage" aria-hidden="true">
+    <div class="tut-rif" id="tutRif">
+      <span class="tr-lab">Riferimento</span>
+      <b class="tr-tit">Sbarco sulla Luna</b>
+      <i class="tr-data">20 Luglio 1969</i>
+    </div>
+
+    <div class="tut-card" id="tutCard">
+      <div class="tc-art"><span>&#127963;</span></div>
+      <div class="tc-body">
+        <span class="tc-tag">Arte &amp; Architettura</span>
+        <h3>Inaugurazione del Colosseo</h3>
+        <div class="tc-anno" id="tutAnno">????</div>
+      </div>
+      <div class="tc-esito" id="tutEsito">&#10003;</div>
+    </div>
+
+    <div class="tut-acts" id="tutActs">
+      <button class="tut-act prima" id="tutPrima" type="button">&#8592; Prima</button>
+      <button class="tut-act same"  id="tutSame"  type="button" disabled>Stesso anno</button>
+      <button class="tut-act dopo"  id="tutDopo"  type="button" disabled>Dopo &#8594;</button>
+    </div>
+
+    <div class="tut-shield" id="tutShield">
+      <span class="ts-ico">&#128737;</span>
+      <span class="ts-txt">Scudo Temporale</span>
+      <span class="ts-bar"><i></i></span>
     </div>
   </div>
+
+  <!-- il buco di luce: si sposta e si ridimensiona sul bersaglio del passo -->
+  <div class="tut-spot" id="tutSpot" aria-hidden="true"></div>
+  <!-- dito al neon che indica il gesto -->
+  <div class="tut-hand" id="tutHand" aria-hidden="true"><span>&#128070;</span></div>
+
+  <div class="tut-box" id="tutBox">
+    <div class="tut-passo"><b id="tutN">1</b><span>/3</span></div>
+    <p id="tutTesto">&hellip;</p>
+    <button id="btnTutAvanti" type="button">Capito</button>
+  </div>
+
+  <button id="btnTutSalta" type="button">Salta</button>
 </div>
 
 <!-- ======================= INVITO A INSTALLARE ======================= -->
@@ -2580,7 +2719,7 @@ const EVENTS = [
   { id:"muro-costruzione",  title:"Costruzione del Muro di Berlino",          year:1961, date_full:"13 Agosto 1961",     wiki_slug:"Muro_di_Berlino",                                     category:"Storia" },
   { id:"jfk",               title:"Assassinio di John F. Kennedy",            year:1963, date_full:"22 Novembre 1963",   wiki_slug:"John_Fitzgerald_Kennedy",                             category:"Storia" },
   { id:"concorde",          title:"Primo volo del Concorde",                  year:1969, date_full:"2 Marzo 1969",       wiki_slug:"Aérospatiale-BAC_Concorde",                           category:"Tecnologia" },
-  { id:"moon-landing",      title:"Sbarco sulla Luna",                        year:1969, date_full:"16 Luglio 1969",     wiki_slug:"Apollo_11",                                           category:"Spazio" },
+  { id:"moon-landing",      title:"Sbarco sulla Luna",                        year:1969, date_full:"20 Luglio 1969",     wiki_slug:"Apollo_11",                                           category:"Spazio" },
   { id:"woodstock",         title:"Festival di Woodstock",                    year:1969, date_full:"15 Agosto 1969",     wiki_slug:"Festival_di_Woodstock",                               category:"Musica" },
   { id:"abbey-road",        title:"Uscita di Abbey Road dei Beatles",         year:1969, date_full:"26 Settembre 1969",  wiki_slug:"Abbey_Road",                                          category:"Musica" },
   { id:"star-wars",         title:"Prima di Guerre Stellari al cinema",       year:1977, date_full:"25 Maggio 1977",     wiki_slug:"Guerre_stellari",                                     category:"Cinema" },
@@ -4676,7 +4815,6 @@ function decide(choice){
 
   SFX.whoosh();
   haptic(HAPTIC.swipe);              // colpetto breve alla conferma del gesto
-  TUTORIAL.rispostaData();
   showOverlay(el, choice);
   edgeGlow(choice === "prima" ? 1 : 0, choice === "dopo" ? 1 : 0, choice === "same" ? 1 : 0);
   if (el._aura){ el._aura.className = "card-aura " + choice; el._aura.style.opacity = "1"; }
@@ -6001,21 +6139,32 @@ function mescolaConSeme(arr, rnd){
 /* Le carte del duello: solo dal dataset locale, scelte dal seme.
    Si usa EVENTS intero e non activePool(): i filtri sono personali, e due
    giocatori con argomenti diversi otterrebbero mazzi diversi. */
-function carteDuello(codice){
+/* quante = carte da pescare oltre a riferimento e spareggio.
+   In rete sono 5 e il bacino è l'intero dataset: i filtri sono personali e
+   due dispositivi con argomenti diversi otterrebbero mazzi diversi.
+   Sullo stesso telefono sono 10 — cinque a testa, tutte distinte — e il
+   bacino può essere quello scelto nella lobby, perché è lo stesso per
+   entrambi i giocatori. */
+function carteDuello(codice, quante, bacino){
+  const n = quante || 5;
   const rnd = prng(semeDaCodice(codice));
-  const pool = mescolaConSeme(EVENTS.filter(e => e.wiki_slug), rnd);
+  let sorgente = (bacino || EVENTS).filter(e => e.wiki_slug);
+  // servono n carte + riferimento + spareggio: se il bacino non basta si allarga
+  if (sorgente.length < n + 2) sorgente = EVENTS.filter(e => e.wiki_slug);
+
+  const pool = mescolaConSeme(sorgente, rnd);
   const rif = pool[0];
   const mazzo = [];
-  for (let i = 1; i < pool.length && mazzo.length < 6; i++){
+  for (let i = 1; i < pool.length && mazzo.length < n + 1; i++){
     const e = pool[i];
     if (e.id === rif.id) continue;
     if (Math.abs(e.year - rif.year) < 1) continue;     // troppo ambiguo per una gara a tempo
     mazzo.push(e);
   }
-  // la sesta è lo spareggio: la più vicina al riferimento, senza immagine
+  // lo spareggio è la più vicina al riferimento, e si gioca senza immagine
   mazzo.sort((a, b) => Math.abs(a.year - rif.year) - Math.abs(b.year - rif.year));
   const spareggio = mazzo.shift();
-  return { rif, mazzo: mescolaConSeme(mazzo, rnd).slice(0, 5), spareggio };
+  return { rif, mazzo: mescolaConSeme(mazzo, rnd).slice(0, n), spareggio };
 }
 
 /* ---------- trasporto: stessa scheda, stesso browser, o due dispositivi ---------- */
@@ -6127,6 +6276,31 @@ const DUEL = {
      condividere, niente avversario collegato. L'interfaccia di rete non
      deve comparire da nessuna parte. */
   get isLocalHotSeat(){ return !!this.tras && this.tras.tipo === "hotseat"; },
+  /* Nickname del gioco a turni. Restano salvati: chi gioca spesso in due
+     non deve ridigitarli ogni volta. */
+  p1Name: "Giocatore 1",
+  p2Name: "Giocatore 2",
+  NOMI_KEY: "cg_duel_nomi",
+  caricaNomi(){
+    try {
+      const v = JSON.parse(localStorage.getItem(this.NOMI_KEY) || "null");
+      if (v && v.p1) this.p1Name = String(v.p1).slice(0, 14);
+      if (v && v.p2) this.p2Name = String(v.p2).slice(0, 14);
+    } catch(e){}
+  },
+  salvaNomi(){
+    try { localStorage.setItem(this.NOMI_KEY,
+      JSON.stringify({ p1:this.p1Name, p2:this.p2Name })); } catch(e){}
+  },
+  /* Un nome vuoto torna al predefinito invece di lasciare un buco. */
+  impostaNome(quale, testo){
+    const pulito = String(testo || "").trim().slice(0, 14);
+    const nome = pulito || (quale === 1 ? "Giocatore 1" : "Giocatore 2");
+    if (quale === 1){ this.p1Name = nome; if (this.g1) this.g1.nome = nome; }
+    else            { this.p2Name = nome; if (this.g2) this.g2.nome = nome; }
+    this.salvaNomi();
+    return nome;
+  },
   live: false,             // true se c'è davvero un avversario collegato
   disturbi: false,         // scelta dell'host: disturbi oppure linea temporale pulita
   tras: null,
@@ -6154,6 +6328,7 @@ const DUEL = {
     this.subiti = { glitch:0, serratura:0, nebbia:0 };
     this.scudoFinoA = 0; this.ultimoGlitchDa = 0;
     this.spareggioOk = false;
+    this.mazzoP1 = this.mazzoP2 = null;
   },
 
   apriLobby(){
@@ -6200,11 +6375,23 @@ const DUEL = {
       return;
     }
     this.live = this.tras.live;
+    if (this.tras.tipo === "hotseat"){
+      /* Dieci carte distinte: le prime cinque al Giocatore 1, le altre al
+         Giocatore 2. Con lo stesso mazzo per tutti e due, chi gioca per
+         secondo avrebbe già visto le risposte durante il primo turno. */
+      const c = carteDuello(this.codice, 10, activePool());
+      this.rif = c.rif; this.spareggio = c.spareggio;
+      this.mazzoP1 = c.mazzo.slice(0, 5);
+      this.mazzoP2 = c.mazzo.slice(5, 10);
+      this.mazzo = this.mazzoP1;
+      WIKI.preload([this.rif].concat(this.mazzoP1));
+      this.avviaHotseat();
+      return;
+    }
     const c = carteDuello(this.codice);
     this.rif = c.rif; this.mazzo = c.mazzo; this.spareggio = c.spareggio;
+    this.mazzoP1 = this.mazzoP2 = null;
     WIKI.preload([this.rif].concat(this.mazzo));
-
-    if (this.tras.tipo === "hotseat"){ this.avviaHotseat(); return; }
 
     this.tras.invia({ t:"ROOM_JOIN", codice:this.codice, host:this.host, disturbi:this.disturbi });
     this.fase = "attesa";
@@ -6218,7 +6405,9 @@ const DUEL = {
     this.turnoHotseat = 1;
     this.indice = 0;
     this.fase = "gioco";
-    this.io.nome = "Giocatore 1"; this.avv.nome = "Giocatore 2";
+    this.caricaNomi();
+    this.io.nome = this.p1Name; this.avv.nome = this.p2Name;
+    if (this.mazzoP1) this.mazzo = this.mazzoP1;
     /* io e avv si scambiano a metà partita: per il tabellone servono due
        riferimenti che non si muovono. */
     this.g1 = this.io; this.g2 = this.avv;
@@ -6311,6 +6500,10 @@ const DUEL = {
         this.turnoHotseat = 2;
         const t = this.io; this.io = this.avv; this.avv = t;   // si scambiano i ruoli
         this.indice = 0;
+        if (this.mazzoP2){                 // cinque carte mai viste dal primo
+          this.mazzo = this.mazzoP2;
+          WIKI.preload(this.mazzoP2);
+        }
         duelPassaggio();
         return;
       }
@@ -6605,13 +6798,22 @@ function duelPassaggio(){
   $("#passEyebrow").textContent = primo ? "Si comincia" : "Cambio turno";
   $("#passTitolo").textContent  = primo ? "Pronti al duello" : "Passa il telefono";
   $("#passChi").textContent     = DUEL.io.nome;
+  $("#dtNome").textContent      = DUEL.avv.nome;
   $("#passNota").textContent    = primo
-    ? "Cinque carte a testa, stesso mazzo. Il tempo parte quando premi qui sotto."
+    ? "Cinque carte a testa, tutte diverse. Il tempo parte quando premi qui sotto."
     : "Il punteggio dell'altro è qui sopra. Il tempo parte solo quando premi qui sotto.";
 
   const g1 = DUEL.g1 || DUEL.io, g2 = DUEL.g2 || DUEL.avv;
-  $("#pbG1 span").textContent = g1.nome;
-  $("#pbG2 span").textContent = g2.nome;
+  /* I nomi si cambiano solo prima che la partita cominci: a metà duello
+     rinominare i giocatori confonderebbe il tabellone. */
+  const modificabili = primo && DUEL.fase !== "spareggio";
+  $("#duelPass").classList.toggle("nomi-bloccati", !modificabili);
+  [["#pbN1", DUEL.p1Name], ["#pbN2", DUEL.p2Name]].forEach(([sel, nome]) => {
+    const i = $(sel);
+    i.value = nome;
+    i.readOnly = !modificabili;
+    i.tabIndex = modificabili ? 0 : -1;
+  });
   $("#pbP1").textContent = g1.punti;
   $("#pbP2").textContent = g2.punti;
   $("#pbG1").classList.toggle("attivo", DUEL.io === g1);
@@ -6644,6 +6846,7 @@ function duelEsito(){
   $("#doPuntiIo").textContent  = io.punti;
   $("#doPuntiAvv").textContent = avv.punti;
   $("#doNomeAvv").textContent  = avv.nome;
+  $("#doMio span").textContent = DUEL.isLocalHotSeat ? io.nome : "Tu";
   $("#doDettIo").textContent   = io.ok + " giuste · " + io.err + " errori" +
                                  (io.esatti ? " · " + io.esatti + " anno esatto" : "");
   $("#doDettAvv").textContent  = DUEL.live || DUEL.tras && DUEL.tras.tipo === "hotseat"
@@ -6681,6 +6884,21 @@ function wireDuello(){
   });
 
   $("#btnDuelPronto").addEventListener("click", () => DUEL.pronto());
+  [["#pbN1", 1], ["#pbN2", 2]].forEach(([sel, quale]) => {
+    const inp = $(sel);
+    const applica = () => {
+      inp.value = DUEL.impostaNome(quale, inp.value);
+      // il riquadro "Tocca a" segue subito il nome di chi sta per giocare
+      $("#passChi").textContent = DUEL.io.nome;
+    };
+    inp.addEventListener("change", applica);
+    inp.addEventListener("blur", applica);
+    inp.addEventListener("keydown", e => {
+      if (e.key === "Enter"){ e.preventDefault(); inp.blur(); }
+    });
+    inp.addEventListener("focus", () => inp.select());
+  });
+
   $("#btnPassInizia").addEventListener("click", () => DUEL.iniziaTurnoLocale());
   $("#btnPassEsci").addEventListener("click", () => { $("#duelPass").classList.remove("on"); DUEL.esci(); });
   $("#btnDuelAnnulla").addEventListener("click", () => { $("#duelWait").classList.remove("on"); DUEL.esci(); });
@@ -6722,119 +6940,136 @@ function wireDuello(){
 }
 
 /* ------------------------------------------------------------------ *
- * TUTORIAL — tre carte guidate, solo alla primissima visita
- * Non è un simulatore a parte: guida la partita vera con un riferimento
- * e una coda fissati, così quello che impari è esattamente il gioco.
+ * TUTORIAL — sandbox con spotlight, solo alla primissima visita
+ *
+ * Nessun aggancio alla partita vera: il palco è finto, le due carte sono
+ * fisse e i pulsanti sono repliche. Tre passi, una decina di secondi.
+ * Lo spotlight è un rettangolo con un'ombra da 100vmax: il buco resta
+ * limpido e tutto il resto sprofonda sotto rgba(0,0,0,.75).
  * ------------------------------------------------------------------ */
 const TUTORIAL = {
-  KEY: "cg_tutorial_fatto",
+  KEY: "chronoglass_tutorial_done",
+  KEY_VECCHIA: "cg_tutorial_fatto",     // chi l'aveva già fatto non lo rivede
   attivo: false,
   passo: 0,
-  /* Tre carte lontanissime dal riferimento: si vince senza sapere nulla,
-     e l'attenzione resta sul gesto invece che sulla data. */
-  RIF: "moon-landing",
-  CARTE: ["art_001", "www-public", "ww1-start"],
+
   PASSI: [
-    { n:1, testo:"In alto c'è l'evento di <b>riferimento</b>, con la sua data. " +
-                 "Al centro la carta misteriosa: l'anno è nascosto.",
-      bottone:"Avanti", frecce:"" },
-    { n:2, testo:"Trascina la carta a <b>sinistra</b> se è successa <b>PRIMA</b> del riferimento, " +
-                 "a <i>destra</i> se <i>DOPO</i>. Oppure usa i pulsanti qui sotto.",
-      bottone:null, frecce:"mostra-lr", attendi:true },
-    { n:3, testo:"L'anno si scopre solo dopo la risposta. Se pensi che i due eventi siano " +
-                 "dello <u>stesso anno</u>, trascina verso l'<u>alto</u>: vale 3 punti.",
-      bottone:null, frecce:"mostra-up", attendi:true },
-    { n:4, testo:"Ultima di prova. Ogni errore chiude la partita, ma lo " +
-                 "<b>Scudo Temporale</b> ne assorbe uno: la striscia è salva.",
-      bottone:null, frecce:"mostra-lr", attendi:true }
+    { n:1,
+      bersagli: ["#tutRif"],
+      testo: "In alto c'è l'evento di <b>riferimento</b>, con la sua data in chiaro. " +
+             "È il metro di paragone di ogni carta.",
+      bottone: "Capito" },
+    { n:2,
+      bersagli: ["#tutCard", "#tutActs"],
+      testo: "Il Colosseo è venuto <b>prima</b> o <b>dopo</b>? Tocca " +
+             "<b>&#8592; PRIMA</b>: su telefono basta trascinare la carta a sinistra.",
+      bottone: null, mano: "#tutPrima", attendi: true },
+    { n:3,
+      bersagli: ["#tutShield"],
+      testo: "Esatto. L'anno si scopre solo dopo la risposta. E se sbagli, lo " +
+             "<i>Scudo Temporale</i> assorbe il tuo primo errore.",
+      bottone: "Inizia la sfida" }
   ],
 
   daFare(){
-    try { return !localStorage.getItem(this.KEY); } catch(e){ return false; }
+    try {
+      return !localStorage.getItem(this.KEY) && !localStorage.getItem(this.KEY_VECCHIA);
+    } catch(e){ return false; }
   },
   segna(){
-    try { localStorage.setItem(this.KEY, "1"); } catch(e){}
+    try { localStorage.setItem(this.KEY, "true"); } catch(e){}
   },
 
   avvia(){
-    const rif = EVENTS.find(e => e.id === this.RIF);
-    const mazzo = this.CARTE.map(id => EVENTS.find(e => e.id === id)).filter(Boolean);
-    if (!rif || mazzo.length < 3){ this.segna(); LOBBY.apri(); return; }
-
     this.attivo = true;
     this.passo = 0;
-    G.mode = "swipe";
-    setMode("swipe");
-    newGame();
-    /* Si sostituiscono riferimento e coda DOPO newGame, che li pescherebbe
-       a caso: il resto del motore non si accorge di nulla. */
-    setReference(rif);
-    G.queue = mazzo.slice();
-    renderDeck();
-    WIKI.preload(mazzo);
-
+    // il palco riparte sempre pulito, anche a una seconda apertura manuale
+    $("#tutAnno").textContent = "????";
+    $("#tutCard").classList.remove("giusta");
+    $("#tutPrima").classList.remove("invito");
     $("#tutorial").classList.add("on");
-    this.mostra(0);
-    if (!this._resize){
-      this._resize = () => { if (this.attivo) this.posiziona(); };
-      window.addEventListener("resize", this._resize);
-      window.addEventListener("orientationchange", this._resize);
-    }
+    requestAnimationFrame(() => this.mostra(0));
   },
 
-  /* Cerca una fascia libera: sotto i pulsanti se c'è spazio, altrimenti
-     in alto sopra l'immagine della carta, dove non c'è niente da premere. */
-  posiziona(){
-    const box = $(".tut-box");
-    const ctrl = $("#swipeControls");
-    if (!box || !ctrl) return;
-    const r = ctrl.getBoundingClientRect();
-    const alto = box.offsetHeight || 118;
-    const sotto = window.innerHeight - r.bottom - 12;
+  /* Sposta il buco di luce sul rettangolo che racchiude i bersagli. */
+  illumina(sel){
+    const spot = $("#tutSpot");
+    const box = sel.map(x => $(x)).filter(Boolean).map(e => e.getBoundingClientRect());
+    if (!box.length){ spot.classList.remove("on"); return null; }
+    const pad = 12;
+    const l = Math.min.apply(null, box.map(r => r.left))   - pad;
+    const t = Math.min.apply(null, box.map(r => r.top))    - pad;
+    const r = Math.max.apply(null, box.map(x => x.right))  + pad;
+    const b = Math.max.apply(null, box.map(x => x.bottom)) + pad;
+    spot.style.width  = Math.round(r - l) + "px";
+    spot.style.height = Math.round(b - t) + "px";
+    spot.style.transform = "translate3d(" + Math.round(l) + "px," + Math.round(t) + "px,0)";
+    spot.classList.add("on");
+    return { l, t, r, b };
+  },
 
-    if (sotto >= alto){
-      // sotto i pulsanti: copre solo il suggerimento testuale, che il
-      // tutorial sta già ripetendo a parole sue
-      box.style.setProperty("--tut-top",
-        Math.round(Math.min(r.bottom + 10, window.innerHeight - alto - 8)) + "px");
-      return;
-    }
-    /* Schermo corto: si va sopra l'immagine della carta. Non sulla barra
-       del riferimento, che è proprio ciò che il primo passo indica. */
-    const deck = $("#deckWrap");
-    const d = deck ? deck.getBoundingClientRect() : null;
-    const y = d ? d.top + 34 : 120;
-    box.style.setProperty("--tut-top",
-      Math.round(Math.max(12, Math.min(y, window.innerHeight - alto - 8))) + "px");
+  /* Il riquadro del testo va sotto la zona illuminata, o sopra se sotto
+     non c'è spazio: non deve mai coprire ciò che sta indicando. */
+  posizionaBox(zona){
+    const box = $(".tut-box");
+    const h = box.offsetHeight || 130;
+    let y;
+    if (!zona) y = window.innerHeight - h - 16;
+    else if (window.innerHeight - zona.b - 14 >= h) y = zona.b + 14;
+    else if (zona.t - 14 >= h) y = zona.t - h - 14;
+    else y = window.innerHeight - h - 16;
+    box.style.setProperty("--tut-top", Math.round(Math.max(12, y)) + "px");
+  },
+
+  /* Dito al neon sopra il pulsante da premere. */
+  mano(sel){
+    const m = $("#tutHand");
+    if (!sel){ m.classList.remove("on"); return; }
+    const r = $(sel).getBoundingClientRect();
+    /* Il dito punta verso l'alto: va messo SOTTO il pulsante, altrimenti
+       indica il vuoto sopra di esso. */
+    m.style.transform = "translate3d(" + Math.round(r.left + r.width / 2 - 20) + "px," +
+                                         Math.round(r.bottom + 6) + "px,0)";
+    m.classList.add("on");
   },
 
   mostra(i){
     const p = this.PASSI[i];
     if (!p) return this.fine();
     this.passo = i;
-    const box = $("#tutorial");
-    box.classList.remove("mostra-lr", "mostra-up");
-    if (p.frecce) box.classList.add(p.frecce);
     $("#tutN").textContent = String(p.n);
     $("#tutTesto").innerHTML = p.testo;
     const av = $("#btnTutAvanti");
     av.hidden = !p.bottone;
     if (p.bottone) av.textContent = p.bottone;
-    requestAnimationFrame(() => this.posiziona());   // dopo il reflow del testo
+
+    // nel passo dell'azione è attivo solo PRIMA
+    const azione = i === 1;
+    $("#tutPrima").disabled = !azione;
+    $("#tutPrima").classList.toggle("invito", azione);
+    $("#tutSame").disabled = true;
+    $("#tutDopo").disabled = true;
+
+    requestAnimationFrame(() => {
+      const zona = this.illumina(p.bersagli);
+      this.posizionaBox(zona);
+      this.mano(p.mano);
+    });
     SFX.pop();
   },
 
-  /* Chiamato dal motore a ogni risposta data durante il tutorial. */
-  rispostaData(){
-    if (!this.attivo) return;
-    const p = this.PASSI[this.passo];
-    if (!p || !p.attendi) return;
-    // si aspetta che la carta voli via e che la successiva sia in posizione
-    setTimeout(() => {
-      if (!this.attivo) return;
-      if (this.passo + 1 >= this.PASSI.length) this.fine();
-      else this.mostra(this.passo + 1);
-    }, 1800);
+  /* Unica interazione del giro: il tocco su PRIMA. */
+  rispondi(){
+    if (!this.attivo || this.passo !== 1) return;
+    $("#tutHand").classList.remove("on");
+    $("#tutPrima").disabled = true;
+    $("#tutPrima").classList.remove("invito");
+    $("#tutAnno").textContent = "80";
+    $("#tutCard").classList.add("giusta");
+    SFX.playSuccess();
+    haptic(HAPTIC.correct);
+    FX.burst($("#tutCard"), FX_OK, 26, 6);
+    setTimeout(() => { if (this.attivo) this.mostra(2); }, 850);
   },
 
   avanti(){
@@ -6843,13 +7078,14 @@ const TUTORIAL = {
   },
 
   fine(salta){
-    if (!this.attivo && !salta) return;
+    if (!this.attivo) return;
     this.attivo = false;
     this.segna();
-    const box = $("#tutorial");
-    box.classList.remove("on", "mostra-lr", "mostra-up");
+    $("#tutorial").classList.remove("on");
+    $("#tutSpot").classList.remove("on");
+    $("#tutHand").classList.remove("on");
     toast(salta ? "Tutorial saltato — buon viaggio!" : "Pronto: scegli argomenti e parti \u{1F680}", 2600);
-    setTimeout(() => { newGame(); LOBBY.apri(); }, salta ? 260 : 900);
+    setTimeout(() => LOBBY.apri(), salta ? 220 : 520);
   }
 };
 
@@ -7007,6 +7243,14 @@ function wire(){
   /* --- tutorial --- */
   $("#btnTutAvanti").addEventListener("click", () => TUTORIAL.avanti());
   $("#btnTutSalta").addEventListener("click", () => TUTORIAL.fine(true));
+  $("#tutPrima").addEventListener("click", () => TUTORIAL.rispondi());
+  window.addEventListener("resize", () => {
+    if (!TUTORIAL.attivo) return;
+    const p = TUTORIAL.PASSI[TUTORIAL.passo];
+    if (!p) return;
+    TUTORIAL.posizionaBox(TUTORIAL.illumina(p.bersagli));
+    TUTORIAL.mano(p.mano);
+  });
 
   $("#btnLens").addEventListener("click", () => LENS.usa());
   $("#btnLens2").addEventListener("click", () => LENS.usa());
