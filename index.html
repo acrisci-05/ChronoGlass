@@ -1003,8 +1003,40 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
 .dv-lato.suo.pronto{border-color:rgba(255,0,160,.5);box-shadow:0 0 22px -8px rgba(255,0,160,.8)}
 .dv-sep{font-size:11px;font-weight:900;letter-spacing:.1em;color:var(--dim)}
 
+/* ---------- passaggio del telefono (solo hot-seat) ---------- */
+#duelPass .sheet{text-align:center;width:min(390px,100%)}
+.dp-ico{font-size:44px;line-height:1;margin-bottom:10px;
+  filter:drop-shadow(0 0 18px rgba(0,243,255,.8))}
+#duelPass h2{font-size:26px}
+.pass-turno{margin-top:20px;padding:16px 14px;border-radius:20px;
+  background:linear-gradient(150deg,rgba(0,243,255,.18),rgba(112,0,255,.1));
+  border:1px solid rgba(0,243,255,.5);
+  box-shadow:0 0 38px -12px rgba(0,243,255,.9),inset 0 1px 0 rgba(255,255,255,.26)}
+.pass-turno span{display:block;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;
+  font-weight:850;color:var(--dim)}
+.pass-turno b{display:block;margin-top:5px;font-size:clamp(24px,7vw,32px);font-weight:900;
+  letter-spacing:-.02em;
+  background:linear-gradient(100deg,#fff 6%,var(--cyan) 52%,var(--magenta));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.pass-board{display:flex;align-items:center;gap:10px;margin-top:16px}
+.pb-lato{flex:1;min-width:0;padding:12px 8px;border-radius:15px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);
+  transition:border-color .3s,box-shadow .3s}
+.pb-lato span{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:850;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pb-lato b{display:block;margin-top:4px;font-size:22px;font-weight:900;
+  font-variant-numeric:tabular-nums;color:#fff}
+/* il giocatore di turno si illumina */
+.pb-lato.attivo{border-color:rgba(0,243,255,.65);
+  background:linear-gradient(150deg,rgba(0,243,255,.14),rgba(0,243,255,.03));
+  box-shadow:0 0 24px -8px rgba(0,243,255,.95)}
+.pb-lato.attivo b{color:var(--cyan)}
+.pb-vs{font-size:11px;font-weight:900;letter-spacing:.1em;color:var(--dim);flex-shrink:0}
+.pass-nota{margin:14px 0 0;font-size:10.5px;line-height:1.5;color:var(--muted)}
+#btnPassInizia{flex:1}
+
 /* ---------- schermata di gioco ---------- */
-#duelLobbyModal,#duelWait,#duelOver{z-index:71}
+#duelLobbyModal,#duelWait,#duelOver,#duelPass{z-index:71}
 /* Il toast vive a 24px dal fondo: durante il duello finirebbe addosso
    alla barra dei disturbi. Lo si alza sopra la barra. */
 html.in-duello #toast{bottom:calc(84px + env(safe-area-inset-bottom))}
@@ -2348,6 +2380,37 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
   </div>
 </div>
 
+<!-- ============ CHRONO-DUEL: PASSAGGIO DEL TELEFONO (solo locale) ============
+     Nessun codice stanza, nessun link: due giocatori sullo stesso telefono
+     non hanno niente da condividere. -->
+<div class="overlay" id="duelPass">
+  <div class="sheet">
+    <div class="dp-ico" aria-hidden="true">&#127918;</div>
+    <div class="eyebrow" id="passEyebrow">Cambio turno</div>
+    <h2 id="passTitolo">Passa il telefono</h2>
+    <div class="pass-turno">
+      <span>Tocca a</span>
+      <b id="passChi">Giocatore 2</b>
+    </div>
+    <div class="pass-board">
+      <div class="pb-lato" id="pbG1">
+        <span>Giocatore 1</span><b id="pbP1">0</b>
+      </div>
+      <div class="pb-vs">vs</div>
+      <div class="pb-lato" id="pbG2">
+        <span>Giocatore 2</span><b id="pbP2">0</b>
+      </div>
+    </div>
+    <p class="pass-nota" id="passNota">Il tempo parte solo quando premi qui sotto.</p>
+    <div class="go-actions">
+      <div class="go-row">
+        <button class="btn-glow" id="btnPassInizia">Inizia il turno</button>
+        <button class="btn-ghost" id="btnPassEsci" style="flex:0 0 auto;padding:14px 16px" aria-label="Abbandona">&#10005;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ======================= CHRONO-DUEL: PARTITA ======================= -->
 <div id="duelScreen">
   <!-- fascia avversario -->
@@ -2369,7 +2432,7 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
       <div class="dr-anno" id="drAnno">—</div>
     </div>
 
-    <div id="duelTimer"><i id="duelTimerFill"></i><b id="duelTimerTxt">12.0</b></div>
+    <div id="duelTimer"><i id="duelTimerFill"></i><b id="duelTimerTxt">17.0</b></div>
 
     <div id="duelDeck"></div>
 
@@ -6050,13 +6113,20 @@ const DISTURBI = {
                desc:"Nasconde il titolo: resta solo l'immagine" }
 };
 const DUEL_CARICHE_MAX = 2;
-const DUEL_TEMPO = 12000;        // millisecondi a disposizione per carta
+/* Tempo per carta. Tutto il resto è parametrato su questo: il testo del
+   countdown, la larghezza della barra e i millisecondi rimasti che entrano
+   nel punteggio. Cambiare qui basta. */
+const DUEL_TEMPO = 17000;
 const DUEL_SCUDO = 1200;         // finestra per riflettere un Glitch
 
 const DUEL = {
   attivo: false,
   codice: null,
   host: false,
+  /* Due giocatori sullo stesso telefono: niente stanza, niente codice da
+     condividere, niente avversario collegato. L'interfaccia di rete non
+     deve comparire da nessuna parte. */
+  get isLocalHotSeat(){ return !!this.tras && this.tras.tipo === "hotseat"; },
   live: false,             // true se c'è davvero un avversario collegato
   disturbi: false,         // scelta dell'host: disturbi oppure linea temporale pulita
   tras: null,
@@ -6149,8 +6219,18 @@ const DUEL = {
     this.indice = 0;
     this.fase = "gioco";
     this.io.nome = "Giocatore 1"; this.avv.nome = "Giocatore 2";
+    /* io e avv si scambiano a metà partita: per il tabellone servono due
+       riferimenti che non si muovono. */
+    this.g1 = this.io; this.g2 = this.avv;
     this.chiudiLobby();
     $("#duelWait").classList.remove("on");
+    duelPassaggio();          // anche il primo turno parte da qui: il tempo
+  },                          // non deve scorrere mentre ci si passa il telefono
+
+  /* Il giocatore di turno ha preso in mano il telefono: via al countdown. */
+  iniziaTurnoLocale(){
+    $("#duelPass").classList.remove("on");
+    this.fase = this.fase === "spareggio" ? "spareggio" : "gioco";
     duelVai();
   },
 
@@ -6231,7 +6311,7 @@ const DUEL = {
         this.turnoHotseat = 2;
         const t = this.io; this.io = this.avv; this.avv = t;   // si scambiano i ruoli
         this.indice = 0;
-        duelCambioTurno();
+        duelPassaggio();
         return;
       }
       return this.chiudiPartita();
@@ -6379,6 +6459,8 @@ const DUEL = {
     this.tras = null; this.attivo = false; this.fase = "chiuso";
     $("#duelScreen").classList.remove("on");
     $("#duelLobbyModal").classList.remove("on");
+    $("#duelPass").classList.remove("on");
+    $("#duelWait").classList.remove("on");
     document.documentElement.classList.remove("in-duello");
     newGame();
   }
@@ -6409,7 +6491,9 @@ function duelPaintLobby(){
   if (hot) $("#duelDisturbi").setAttribute("aria-pressed", "false");
 }
 function duelPaintAttesa(daRemoto){
+  if (DUEL.isLocalHotSeat) return;     // in locale non esiste nessuna stanza
   $("#duelLobbyModal").classList.remove("on");
+  $("#duelPass").classList.remove("on");
   $("#duelWait").classList.add("on");
   $("#duelCodeBig").textContent = DUEL.codice || "-----";
   $("#dvIoStato").textContent  = DUEL.io.pronto  ? "Pronto!" : "In attesa";
@@ -6467,6 +6551,7 @@ function duelVai(){
   document.documentElement.classList.add("in-duello");
   document.documentElement.classList.toggle("duello-pulito", !DUEL.disturbi);
   $("#duelWait").classList.remove("on");
+  $("#duelPass").classList.remove("on");
   $("#duelOver").classList.remove("on");
   if (LOBBY.aperta) LOBBY.chiudi();     // la lobby sta sopra: coprirebbe il duello
   $("#duelScreen").classList.add("on");
@@ -6506,28 +6591,45 @@ function duelRivela(ev, ok, scelta){
   if (!scelta) toast("Tempo scaduto!", 1400);
 }
 
-function duelCambioTurno(){
+/* Intermezzo del gioco a turni sullo stesso telefono. Prima riusava il
+   pannello della stanza online, con codice, "Copia codice" e "Condividi":
+   roba che due persone sedute vicine non sanno cosa farsene. */
+function duelPassaggio(){
   clearInterval(DUEL.timer);
-  $("#duelScreen").classList.remove("on");   // altrimenti copre il pannello
+  $("#duelScreen").classList.remove("on");     // altrimenti copre il pannello
+  $("#duelWait").classList.remove("on");       // mai la UI di rete, qui
   $("#duelDeck").innerHTML = "";
-  $("#duelTimerTxt").textContent = "--";
-  duelStato("");
-  toast("Passa il telefono: tocca a " + DUEL.io.nome, 3000);
-  $("#duelWait").classList.add("on");
-  $("#duelCodeBig").textContent = DUEL.codice;
-  $("#dvIo").textContent = DUEL.io.nome;
-  $("#dvAvv").textContent = DUEL.avv.nome;
-  $("#dvIoStato").textContent = "Tocca a te";
-  $("#dvAvvStato").textContent = DUEL.avv.punti + " punti";
-  $("#btnDuelPronto").disabled = false;
-  $("#btnDuelPronto").textContent = "Inizia il turno";
-  DUEL.io.pronto = false;
+  $("#duelTimerTxt").textContent = (DUEL_TEMPO / 1000).toFixed(1);
+
+  const primo = DUEL.turnoHotseat === 1;
+  $("#passEyebrow").textContent = primo ? "Si comincia" : "Cambio turno";
+  $("#passTitolo").textContent  = primo ? "Pronti al duello" : "Passa il telefono";
+  $("#passChi").textContent     = DUEL.io.nome;
+  $("#passNota").textContent    = primo
+    ? "Cinque carte a testa, stesso mazzo. Il tempo parte quando premi qui sotto."
+    : "Il punteggio dell'altro è qui sopra. Il tempo parte solo quando premi qui sotto.";
+
+  const g1 = DUEL.g1 || DUEL.io, g2 = DUEL.g2 || DUEL.avv;
+  $("#pbG1 span").textContent = g1.nome;
+  $("#pbG2 span").textContent = g2.nome;
+  $("#pbP1").textContent = g1.punti;
+  $("#pbP2").textContent = g2.punti;
+  $("#pbG1").classList.toggle("attivo", DUEL.io === g1);
+  $("#pbG2").classList.toggle("attivo", DUEL.io === g2);
+
+  $("#duelPass").classList.add("on");
+  if (!primo) toast("Tocca a " + DUEL.io.nome, 2400);
+  SFX.pop();
 }
 
 function duelSuddenDeath(){
   toast("⚡ Pareggio! Sesta carta, senza foto: chi sbaglia perde.", 3400);
   SFX.gameover();
-  setTimeout(() => { DUEL.fase = "spareggio"; duelVai(); }, 900);
+  setTimeout(() => {
+    DUEL.fase = "spareggio";
+    if (DUEL.isLocalHotSeat) duelPassaggio();   // si passa di nuovo il telefono
+    else duelVai();
+  }, 900);
 }
 
 function duelEsito(){
@@ -6579,6 +6681,8 @@ function wireDuello(){
   });
 
   $("#btnDuelPronto").addEventListener("click", () => DUEL.pronto());
+  $("#btnPassInizia").addEventListener("click", () => DUEL.iniziaTurnoLocale());
+  $("#btnPassEsci").addEventListener("click", () => { $("#duelPass").classList.remove("on"); DUEL.esci(); });
   $("#btnDuelAnnulla").addEventListener("click", () => { $("#duelWait").classList.remove("on"); DUEL.esci(); });
   $("#btnDuelCopia").addEventListener("click", () => copyShareLink(DUEL.codice));
   $("#btnDuelCondividi").addEventListener("click", async () => {
@@ -6603,7 +6707,7 @@ function wireDuello(){
     DUEL.codice = codiceStanza();               // mazzo nuovo, stessa modalità
     const c = carteDuello(DUEL.codice);
     DUEL.rif = c.rif; DUEL.mazzo = c.mazzo; DUEL.spareggio = c.spareggio;
-    if (DUEL.tras && DUEL.tras.tipo === "hotseat"){ DUEL.avviaHotseat(); return; }
+    if (DUEL.isLocalHotSeat){ DUEL.avviaHotseat(); return; }
     DUEL.fase = "attesa"; duelPaintAttesa(true);
   });
 

@@ -69,9 +69,18 @@ Tre modi di giocare:
 | **Due schede** | Stesso browser, due finestre, in diretta via `BroadcastChannel` | nessuna |
 | **Due dispositivi** | In diretta via WebRTC, con PeerJS come intermediario | serve connessione |
 
+Nel modo **Stesso dispositivo** non esiste nessuna stanza: niente codice, niente
+"Copia" o "Condividi". Fra un turno e l'altro compare una schermata dedicata —
+🕹️ *Passa il telefono*, di chi è il turno in grande, il tabellone
+`Giocatore 1 [punti] vs Giocatore 2 [punti]` e un solo pulsante. **Il countdown
+parte quando quel pulsante viene premuto**, non mentre il telefono passa di
+mano. Lo stesso vale per il primo turno e per lo spareggio.
+
 **Punteggio** = corrette × 1000 + anno esatto 500 + millisecondi rimasti −
 errori × 300. La precisione pesa più della velocità: un errore costa più del
-tempo che si guadagna tirando a indovinare.
+tempo che si guadagna tirando a indovinare. Ogni carta dura **17 secondi**: il
+valore sta in `DUEL_TEMPO`, e testo del countdown, larghezza della barra e
+millisecondi che entrano nel punteggio sono tutti parametrati su quello.
 
 **Disturbi temporali** (l'host li attiva o li lascia spenti, in alternativa alla
 linea temporale pulita). Ogni risposta giusta carica una tacca, massimo due:
