@@ -48,6 +48,60 @@ Timeline perfetta = `+5` punti, `+3` di bonus e streak incrementata.
 
 Da Game Over, `Spazio` ricomincia subito.
 
+## &#9876; Chrono-Duel — 1 contro 1
+
+Cinque carte, stesso mazzo per tutti e due, vince chi fa più punti.
+
+**Il codice è il seme.** Una stanza ha un codice di cinque caratteri
+(alfabeto senza `0/O` e `1/I/L`, così non si sbaglia a dettarlo a voce). Quel
+codice viene ridotto a un intero a 32 bit con un hash FNV-1a, l'intero alimenta
+un generatore pseudo-casuale `mulberry32` e da lì escono riferimento, cinque
+carte e la carta di spareggio. Due dispositivi che digitano lo stesso codice
+pescano le stesse identiche carte **senza scambiarsi un byte di dataset**: sul
+canale viaggiano solo `ROOM_JOIN`, `PLAYER_READY`, `CARD_PLACED`, `USE_POWERUP`
+e `GAME_OVER`, poche decine di byte l'uno.
+
+Tre modi di giocare:
+
+| Modo | Come funziona | Rete |
+|---|---|---|
+| **Stesso dispositivo** | A turno sullo stesso telefono: prima uno, poi l'altro sulle stesse carte | nessuna |
+| **Due schede** | Stesso browser, due finestre, in diretta via `BroadcastChannel` | nessuna |
+| **Due dispositivi** | In diretta via WebRTC, con PeerJS come intermediario | serve connessione |
+
+**Punteggio** = corrette × 1000 + anno esatto 500 + millisecondi rimasti −
+errori × 300. La precisione pesa più della velocità: un errore costa più del
+tempo che si guadagna tirando a indovinare.
+
+**Disturbi temporali** (l'host li attiva o li lascia spenti, in alternativa alla
+linea temporale pulita). Ogni risposta giusta carica una tacca, massimo due:
+
+- 🌀 **Glitch Cromatico** (1 carica) — `filter: invert(1) hue-rotate(180deg) blur(4px)` sull'interfaccia avversaria per 3 secondi
+- 🔒 **Serratura Temporale** (2 cariche) — blocca la carta dell'avversario per 2 secondi
+- 🕶️ **Nebbia del Passato** (2 cariche) — sfoca il titolo, lascia l'immagine, per 4 secondi
+- 🛡️ **Scudo** — premuto in tempo, rispedisce il Glitch al mittente
+
+Nel gioco a turni sullo stesso dispositivo i disturbi restano spenti: non c'è
+nessuno da disturbare mentre tocca a te.
+
+**Spareggio.** In caso di parità esce una sesta carta, la più vicina al
+riferimento di tutto il mazzo, e senza foto.
+
+**Layout.** Su telefono: fascia avversario in alto, palco al centro, barra dei
+disturbi in fondo. Su desktop in orizzontale diventano due colonne affiancate,
+il giocatore illuminato di ciano a sinistra e l'avversario di magenta a destra,
+leggermente rimpicciolito.
+
+## Tutorial al primo accesso
+
+Solo la primissima volta in assoluto parte un giro guidato di tre carte in
+quattro passi: cos'è il riferimento, come si trascina, come si rivela l'anno e
+cosa vale lo "stesso anno", infine lo Scudo Temporale. Non è un simulatore a
+parte: fissa riferimento e coda della partita vera, così quello che impari è
+esattamente il gioco. Il riquadro si posiziona a runtime cercando lo spazio
+libero, per non coprire mai i pulsanti che sta spiegando né la barra del
+riferimento.
+
 ## Lobby pre-partita
 
 Il pulsante **Gioca** apre un bottom sheet (pannello centrato su desktop) dove si sceglie
@@ -215,6 +269,30 @@ dal Game Over — il punteggio appena fatto.
 - Se il QR non arriva (offline, o rete che blocca il servizio) la scheda resta leggibile con i
   mirini disegnati a CSS e rimanda a "Copia link".
 
+## Offline e installazione
+
+`sw.js` è un file vero. Prima il service worker veniva generato al volo da un
+Blob: tutti i browser rifiutano quel protocollo per i worker, e la
+registrazione falliva in silenzio — l'app non è mai stata davvero disponibile
+offline. Ora tre strategie:
+
+- **guscio** (`index.html`, manifest, icona, script e CSS anche da CDN) →
+  cache-first, aggiornato in sottofondo
+- **schede Wikipedia** → stale-while-revalidate: si gioca subito, si aggiorna dopo
+- **immagini** → cache-first con tetto di 400 voci
+
+La navigazione ripiega sul guscio quando la rete manca: con il Wi-Fi staccato
+il ricaricamento serve l'app completa, 800 carte comprese.
+
+Le **miniature** stanno in IndexedDB, non in localStorage: 800 carte di immagini
+in base64 saturerebbero la quota da 5 MB alla decima foto. I metadati restano in
+localStorage perché servono in lettura sincrona. Con la rete spenta, una carta
+già vista si illustra dal blob locale.
+
+Il **banner di installazione** compare dalla terza visita, contata una volta per
+sessione: ricaricare dieci volte non vale dieci visite. "Non ora" lo archivia
+per sempre.
+
 ## Filtri, offline e prestazioni
 
 Dalla modale **Statistiche** (icona grafico nella navbar):
@@ -245,6 +323,11 @@ giocabile: lo skeleton non aspetta mai la rete per sparire.
   `playSuccess` (chime ascendente), `playError` (tono basso oscillante), `playCardSwipe`
   (rumore bianco filtrato), `playShatter` (impatto e rottura), `playRecord` (fanfara).
   La celebrazione del record ripiega sulle particelle interne se `canvas-confetti` non c'è.
+- Il duello fra **due dispositivi** carica PeerJS solo quando serve, non
+  all'avvio: l'offline resta intatto. Usa il broker pubblico di PeerJS per lo
+  scambio degli indirizzi; se non risponde, l'interfaccia lo dice e propone
+  "Stesso dispositivo". Questa è l'unica modalità che non ho potuto provare
+  dall'ambiente di sviluppo, che non ha accesso alla rete.
 - CDN usate: Tailwind CSS, Lucide Icons, canvas-confetti. Il layout non dipende dalle classi
   Tailwind: tutto lo stile critico è nel `<style>` inline, così l'app resta identica anche
   senza rete. Se il CDN delle icone non risponde, i segnaposto ricadono su glifi testuali.

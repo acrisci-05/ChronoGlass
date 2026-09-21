@@ -964,6 +964,195 @@ kbd{display:inline-block;padding:2px 7px;border-radius:7px;background:rgba(255,2
 #goReveal b{color:#fff}
 
 /* =====================================================================
+   CHRONO-DUEL — lobby, split-screen e disturbi
+   ===================================================================== */
+.duel-sub{margin:8px 0 0;font-size:11.5px;line-height:1.55;color:rgba(255,255,255,.8)}
+.duel-sec{margin-top:22px}
+.duel-sec .lobby-tabs{display:grid;grid-template-columns:1fr;gap:8px;margin-top:11px}
+@media(min-width:560px){ .duel-sec .lobby-tabs{grid-template-columns:repeat(3,1fr)} }
+.duel-nota{margin:9px 0 0;font-size:10px;line-height:1.5;color:var(--dim)}
+.duel-row{display:flex;gap:10px;margin-top:12px}
+.duel-row>.btn-glow,.duel-row>.btn-ghost{flex:1;min-width:0}
+.duel-oppure{display:flex;align-items:center;gap:10px;margin-top:14px;
+  font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:850;color:var(--dim)}
+.duel-oppure::before,.duel-oppure::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.14)}
+#duelCodice{flex:1;min-width:0;padding:14px 16px;border-radius:15px;
+  font-size:19px;font-weight:900;letter-spacing:.34em;text-align:center;text-transform:uppercase;
+  color:#fff;font-family:inherit;
+  background:rgba(0,0,0,.36);border:1px solid rgba(255,255,255,.2);
+  box-shadow:inset 0 2px 8px rgba(0,0,0,.45);transition:border-color .2s,box-shadow .2s}
+#duelCodice::placeholder{color:rgba(255,255,255,.22);letter-spacing:.22em}
+#duelCodice:focus{outline:none;border-color:rgba(0,243,255,.7);
+  box-shadow:0 0 0 3px rgba(0,243,255,.24),inset 0 2px 8px rgba(0,0,0,.45)}
+.duel-stato{margin:11px 0 0;font-size:11px;line-height:1.5;color:var(--muted);min-height:16px}
+.duel-stato.err{color:#ff8fa3}
+/* codice grande e leggibile a distanza, da mostrare all'avversario */
+.duel-code{margin:18px auto 0;padding:16px 10px;border-radius:20px;max-width:320px;
+  font-size:clamp(32px,10vw,44px);font-weight:900;letter-spacing:.18em;text-align:center;
+  font-variant-numeric:tabular-nums;
+  background:linear-gradient(150deg,rgba(0,243,255,.16),rgba(255,0,160,.1));
+  border:1px solid rgba(0,243,255,.5);
+  box-shadow:0 0 40px -10px rgba(0,243,255,.8),inset 0 1px 0 rgba(255,255,255,.28);
+  -webkit-background-clip:border-box;color:#fff;text-shadow:0 0 22px rgba(0,243,255,.8)}
+.duel-vs{display:flex;align-items:center;gap:12px;margin-top:20px}
+.dv-lato{flex:1;min-width:0;padding:13px;border-radius:16px;text-align:center;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13)}
+.dv-lato b{display:block;font-size:13px;font-weight:850}
+.dv-lato span{display:block;margin-top:3px;font-size:10px;color:var(--dim)}
+.dv-lato.mio{border-color:rgba(0,243,255,.5);box-shadow:0 0 22px -8px rgba(0,243,255,.8)}
+.dv-lato.suo.pronto{border-color:rgba(255,0,160,.5);box-shadow:0 0 22px -8px rgba(255,0,160,.8)}
+.dv-sep{font-size:11px;font-weight:900;letter-spacing:.1em;color:var(--dim)}
+
+/* ---------- schermata di gioco ---------- */
+#duelLobbyModal,#duelWait,#duelOver{z-index:71}
+/* Il toast vive a 24px dal fondo: durante il duello finirebbe addosso
+   alla barra dei disturbi. Lo si alza sopra la barra. */
+html.in-duello #toast{bottom:calc(84px + env(safe-area-inset-bottom))}
+#duelScreen{position:fixed;inset:0;z-index:68;display:none;flex-direction:column;
+  background:radial-gradient(120% 80% at 50% 0%,#12163a 0%,#07080f 58%,#05060c 100%)}
+#duelScreen.on{display:flex}
+html.in-duello #nav,html.in-duello #app,html.in-duello #bg{display:none}
+
+/* fascia avversario: 20% su telefono */
+#duelTop{flex:0 0 auto;position:relative;display:flex;align-items:center;gap:11px;
+  padding:calc(11px + env(safe-area-inset-top)) 15px 13px;
+  background:linear-gradient(180deg,rgba(255,0,160,.14),rgba(10,6,20,.6));
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,0,160,.34);
+  box-shadow:0 10px 30px -14px rgba(255,0,160,.7)}
+.dt-av{width:40px;height:40px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;
+  font-size:20px;background:rgba(255,0,160,.16);border:1px solid rgba(255,0,160,.45)}
+.dt-meta{flex:1;min-width:0}
+.dt-meta b{display:block;font-size:13px;font-weight:850}
+.dt-meta span{display:block;margin-top:2px;font-size:10.5px;color:rgba(255,255,255,.66)}
+.dt-punti{text-align:right;flex-shrink:0}
+.dt-punti b{display:block;font-size:19px;font-weight:900;color:var(--magenta);
+  font-variant-numeric:tabular-nums;text-shadow:0 0 16px rgba(255,0,160,.8)}
+.dt-punti span{font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.dt-barra{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.08)}
+.dt-barra i{display:block;height:100%;width:0;border-radius:0 3px 3px 0;
+  background:linear-gradient(90deg,var(--magenta),#ff9ad4);
+  box-shadow:0 0 12px rgba(255,0,160,.9);transition:width .45s var(--out)}
+
+/* palco centrale: 65% */
+#duelStage{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;
+  gap:10px;padding:12px 14px 0;position:relative}
+#duelRif{width:min(420px,100%);padding:9px 14px;border-radius:15px;text-align:center;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
+.dr-lab{font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:850;color:var(--cyan)}
+.dr-tit{margin-top:3px;font-size:13px;font-weight:800;line-height:1.25;
+  overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.dr-anno{margin-top:2px;font-size:15px;font-weight:900;color:var(--gold);
+  font-variant-numeric:tabular-nums}
+/* timer: si anima la sola larghezza di una barra, non il testo */
+#duelTimer{position:relative;width:min(420px,100%);height:26px;border-radius:99px;overflow:hidden;
+  background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.12)}
+#duelTimerFill{position:absolute;inset:0;transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--cyan),#9df6ff 60%,var(--gold));
+  box-shadow:0 0 18px rgba(0,243,255,.6)}
+#duelTimer.caldo #duelTimerFill{background:linear-gradient(90deg,var(--ruby),#ff8fa3)}
+#duelTimerTxt{position:relative;z-index:2;display:block;text-align:center;line-height:26px;
+  font-size:12px;font-weight:900;color:#02131a;font-variant-numeric:tabular-nums;
+  text-shadow:0 1px 2px rgba(255,255,255,.45)}
+#duelDeck{position:relative;flex:1;min-height:0;width:min(420px,100%);perspective:1400px}
+#duelDeck .card{border-radius:26px}
+#duelDeck .card-tilt{border-radius:26px}
+#duelActions{display:flex;gap:9px;width:min(420px,100%);flex-shrink:0}
+#duelActions .act{flex:1;padding:13px 6px;font-size:11px}
+#duelMio{display:flex;align-items:center;gap:12px;width:min(420px,100%);
+  padding:9px 13px;margin-bottom:8px;border-radius:15px;flex-shrink:0;
+  background:linear-gradient(180deg,rgba(0,243,255,.12),rgba(6,10,26,.5));
+  border:1px solid rgba(0,243,255,.34)}
+.dm-punti b{font-size:19px;font-weight:900;color:var(--cyan);font-variant-numeric:tabular-nums;
+  text-shadow:0 0 16px rgba(0,243,255,.8)}
+.dm-punti span{margin-left:5px;font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.dm-prog{flex:1;text-align:center;font-size:10.5px;font-weight:750;color:rgba(255,255,255,.7)}
+.dm-esci{width:28px;height:28px;border-radius:50%;flex-shrink:0;font-size:12px;
+  color:var(--dim);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
+.dm-esci:hover{color:#fff;background:rgba(255,45,85,.24)}
+
+/* barra dei disturbi: 15% */
+#duelPower{flex:0 0 auto;display:flex;align-items:center;gap:12px;
+  padding:10px 15px calc(10px + env(safe-area-inset-bottom));
+  background:linear-gradient(0deg,rgba(10,6,20,.7),transparent);
+  border-top:1px solid rgba(255,255,255,.1)}
+html.duello-pulito #duelPower{display:none}
+.dp-cariche{display:flex;flex-direction:column;gap:4px;flex-shrink:0}
+.dp-c{width:26px;height:9px;border-radius:99px;background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.16);transition:background .3s,box-shadow .3s}
+.dp-c.on{background:linear-gradient(90deg,var(--cyan),#9df6ff);
+  box-shadow:0 0 14px rgba(0,243,255,.9);border-color:transparent}
+.dp-btns{flex:1;display:flex;gap:8px}
+.dp-btn{flex:1;position:relative;height:46px;border-radius:15px;font-size:20px;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+  transition:transform .2s var(--spring),opacity .25s,box-shadow .25s,border-color .25s}
+.dp-btn small{position:absolute;right:6px;bottom:4px;font-size:8.5px;font-weight:900;
+  color:var(--cyan);letter-spacing:0}
+.dp-btn:active{transform:scale(.92)}
+.dp-btn[disabled]{opacity:.3;pointer-events:none}
+.dp-btn.pronto{border-color:rgba(0,243,255,.6);box-shadow:0 0 18px -4px rgba(0,243,255,.85)}
+.dp-btn.scudo{flex:0 0 58px;font-size:19px;
+  border-color:rgba(255,209,102,.44);color:var(--gold)}
+.dp-btn.scudo small{color:var(--gold)}
+.dp-btn.scudo.attivo{background:rgba(255,209,102,.24);
+  box-shadow:0 0 24px -2px rgba(255,209,102,.95);border-color:rgba(255,209,102,.9)}
+
+/* ---------- disturbi subiti ---------- */
+/* Un solo filtro sull'intera schermata: è la resa richiesta e costa un
+   passaggio di compositing, non un ridisegno per elemento. */
+#duelScreen.glitch-active{filter:invert(1) hue-rotate(180deg) blur(4px)}
+#duelNebbia{position:absolute;inset:0;z-index:9;pointer-events:none;display:none}
+#duelScreen.nebbia-active #duelNebbia{display:block}
+/* La nebbia copre SOLO il titolo: l'immagine deve restare visibile */
+#duelScreen.nebbia-active #duelDeck .card-title,
+#duelScreen.nebbia-active #duelDeck .card-desc{
+  filter:blur(9px);opacity:.45;user-select:none}
+#duelSerratura{position:absolute;inset:0;z-index:10;display:none;place-items:center;
+  background:rgba(3,4,12,.42);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+#duelScreen.serratura-active #duelSerratura{display:grid}
+#duelSerratura span{font-size:54px;filter:drop-shadow(0 0 22px rgba(255,209,102,.95))}
+#duelScreen.serratura-active #duelActions{pointer-events:none;opacity:.35}
+
+/* ---------- esito ---------- */
+.do-tab{display:flex;gap:11px;margin-top:20px}
+.do-lato{flex:1;padding:16px 12px;border-radius:18px;text-align:center;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13)}
+.do-lato span{display:block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  font-weight:850;color:var(--dim)}
+.do-lato b{display:block;margin-top:6px;font-size:26px;font-weight:900;
+  font-variant-numeric:tabular-nums}
+.do-lato i{display:block;margin-top:5px;font-style:normal;font-size:10px;color:var(--muted)}
+.do-lato.vincitore{border-color:rgba(0,255,163,.6);
+  background:linear-gradient(150deg,rgba(0,255,163,.16),rgba(0,255,163,.04));
+  box-shadow:0 0 30px -10px rgba(0,255,163,.9)}
+.do-lato.vincitore b{color:var(--emerald)}
+.do-lato.perdente{opacity:.72}
+
+/* ---------- desktop: due colonne affiancate ---------- */
+@media(min-width:900px) and (orientation:landscape){
+  #duelScreen.on{display:grid;grid-template-columns:1fr 340px;grid-template-rows:1fr auto;
+    gap:0;align-items:stretch}
+  #duelStage{grid-column:1;grid-row:1;justify-content:center;
+    border-right:1px solid rgba(0,243,255,.2);
+    box-shadow:inset -40px 0 80px -60px rgba(0,243,255,.9)}
+  #duelTop{grid-column:2;grid-row:1;flex-direction:column;justify-content:center;
+    align-items:stretch;gap:16px;padding:26px 22px;border-bottom:0;
+    background:linear-gradient(200deg,rgba(255,0,160,.16),rgba(10,6,20,.55));
+    /* Il lato avversario è leggermente più piccolo e arretrato */
+    transform:scale(.96);transform-origin:center}
+  #duelTop .dt-av{width:56px;height:56px;font-size:26px;margin:0 auto}
+  /* Senza questo la meta si espande e spinge il punteggio a fondo colonna,
+     lasciando un buco in mezzo. */
+  #duelTop .dt-meta{flex:0 0 auto;text-align:center}
+  #duelTop .dt-punti{flex:0 0 auto;text-align:center}
+  #duelTop .dt-punti b{font-size:34px}
+  #duelPower{grid-column:1 / -1;grid-row:2;justify-content:center}
+  #duelPower .dp-btns{flex:0 1 520px}
+  #duelDeck{max-height:520px}
+}
+
+/* =====================================================================
    TUTORIAL — solo alla primissima visita, tre carte guidate
    Il livello non intercetta i gesti: si deve poter trascinare la carta
    mentre il riquadro spiega cosa fare.
@@ -1383,6 +1572,16 @@ html.perf .sp-inner{animation:none}
   .streak-chip{padding:6px 9px;font-size:12px}
   .mode-btn{padding:6px 10px}
 }
+.lobby-extra{display:flex;gap:8px;margin-top:10px}
+.lobby-extra>button{flex:1;min-width:0;margin-top:0}
+.lobby-duel{padding:9px;border-radius:13px;font-size:11px;font-weight:850;
+  letter-spacing:.06em;text-transform:uppercase;color:#ffd9ef;white-space:nowrap;
+  background:linear-gradient(140deg,rgba(255,0,160,.22),rgba(112,0,255,.14));
+  border:1px solid rgba(255,0,160,.5);
+  box-shadow:0 0 20px -6px rgba(255,0,160,.8);transition:.22s var(--out)}
+.lobby-duel:hover{color:#fff;background:linear-gradient(140deg,rgba(255,0,160,.34),rgba(112,0,255,.2));
+  box-shadow:0 0 26px -4px rgba(255,0,160,.95)}
+.lobby-duel:active{transform:scale(.95)}
 .lobby-share{display:block;width:100%;margin-top:10px;padding:9px;border-radius:13px;
   font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
   background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);transition:.22s var(--out)}
@@ -2064,7 +2263,167 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
     <div class="lobby-foot">
       <p id="lobbySummary"></p>
       <button id="btnStartRun">Avvia partita</button>
-      <button class="lobby-share" id="btnLobbyShare">&#128279; Condividi ChronoGlass</button>
+      <div class="lobby-extra">
+        <button class="lobby-duel" id="btnDuello">&#9876; Chrono-Duel 1v1</button>
+        <button class="lobby-share" id="btnLobbyShare">&#128279; Condividi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= CHRONO-DUEL: LOBBY ======================= -->
+<div class="overlay" id="duelLobbyModal">
+  <div class="sheet">
+    <button class="sheet-close" data-close="duelLobbyModal" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="eyebrow">Sfida 1 contro 1</div>
+    <h2>Chrono-Duel &#9876;</h2>
+    <p class="duel-sub">Cinque carte, stesso mazzo per tutti e due. Vince chi fa più punti.</p>
+
+    <div class="duel-sec">
+      <div class="lobby-label">Come giocate</div>
+      <div class="lobby-tabs" id="duelModo" role="group" aria-label="Modo di collegamento">
+        <button class="lobby-tab" data-modo="hotseat" aria-pressed="true">
+          <span class="tab-ico">&#128241;</span><b>Stesso dispositivo</b>
+          <span>A turno sullo stesso telefono. Niente rete.</span>
+        </button>
+        <button class="lobby-tab" data-modo="locale" aria-pressed="false">
+          <span class="tab-ico">&#128187;</span><b>Due schede</b>
+          <span>Stesso browser, due finestre. In diretta, offline.</span>
+        </button>
+        <button class="lobby-tab" data-modo="remoto" aria-pressed="false">
+          <span class="tab-ico">&#127760;</span><b>Due dispositivi</b>
+          <span>In diretta via internet. Serve connessione.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="duel-sec" id="duelSecRegole">
+      <div class="lobby-label">Regole della sfida</div>
+      <div class="srow">
+        <div class="srow-txt">
+          <b>Disturbi temporali</b>
+          <span>Glitch, Serratura e Nebbia contro l'avversario. Spento: solo linea temporale pulita.</span>
+        </div>
+        <button class="tgl" id="duelDisturbi" role="switch" aria-pressed="false" aria-label="Disturbi temporali"></button>
+      </div>
+      <p class="duel-nota" id="duelNotaDisturbi">Nel gioco a turni sullo stesso dispositivo i disturbi restano spenti: non c'è nessuno da disturbare mentre tocca a te.</p>
+    </div>
+
+    <div class="duel-sec">
+      <div class="duel-row">
+        <button class="btn-glow" id="btnDuelCrea">Crea stanza</button>
+      </div>
+      <div class="duel-oppure"><span>oppure</span></div>
+      <div class="duel-row">
+        <input id="duelCodice" maxlength="5" inputmode="latin" autocomplete="off"
+               spellcheck="false" placeholder="CODICE" aria-label="Codice stanza">
+        <button class="btn-ghost" id="btnDuelEntra">Entra</button>
+      </div>
+      <p class="duel-stato" id="duelStato" role="status"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= CHRONO-DUEL: ATTESA ======================= -->
+<div class="overlay" id="duelWait">
+  <div class="sheet">
+    <div class="eyebrow">Stanza aperta</div>
+    <h2>Invita l'avversario</h2>
+    <div class="duel-code" id="duelCodeBig">-----</div>
+    <p class="duel-sub">Cinque caratteri: chi li digita pesca le tue stesse carte.</p>
+    <div class="duel-row">
+      <button class="btn-ghost" id="btnDuelCopia">&#128279; Copia codice</button>
+      <button class="btn-ghost" id="btnDuelCondividi">&#10548; Condividi</button>
+    </div>
+    <div class="duel-vs">
+      <div class="dv-lato mio"><b id="dvIo">Tu</b><span id="dvIoStato">In attesa</span></div>
+      <div class="dv-sep">VS</div>
+      <div class="dv-lato suo"><b id="dvAvv">Avversario</b><span id="dvAvvStato">Non collegato</span></div>
+    </div>
+    <p class="duel-stato" id="duelStato2" role="status"></p>
+    <div class="duel-row">
+      <button class="btn-glow" id="btnDuelPronto">Sono pronto</button>
+      <button class="btn-ghost" id="btnDuelAnnulla" style="flex:0 0 auto;padding:14px 16px">&#10005;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= CHRONO-DUEL: PARTITA ======================= -->
+<div id="duelScreen">
+  <!-- fascia avversario -->
+  <header id="duelTop">
+    <div class="dt-av" id="dtAvatar">&#129302;</div>
+    <div class="dt-meta">
+      <b id="dtNome">Avversario</b>
+      <span id="dtProgresso">Carta 1/5</span>
+    </div>
+    <div class="dt-punti"><b id="dtPunti">0</b><span>punti</span></div>
+    <div class="dt-barra"><i id="dtBarra"></i></div>
+  </header>
+
+  <!-- area di gioco -->
+  <main id="duelStage">
+    <div id="duelRif">
+      <div class="dr-lab">Riferimento</div>
+      <div class="dr-tit" id="drTitolo">—</div>
+      <div class="dr-anno" id="drAnno">—</div>
+    </div>
+
+    <div id="duelTimer"><i id="duelTimerFill"></i><b id="duelTimerTxt">12.0</b></div>
+
+    <div id="duelDeck"></div>
+
+    <div id="duelActions">
+      <button class="act act-prima" id="dBtnPrima"><span class="lbl">&#8592; Prima</span></button>
+      <button class="act act-same"  id="dBtnSame"><span class="lbl">Stesso anno<span class="bonus">+500</span></span></button>
+      <button class="act act-dopo"  id="dBtnDopo"><span class="lbl">Dopo &#8594;</span></button>
+    </div>
+
+    <div id="duelMio">
+      <div class="dm-punti"><b id="dmPunti">0</b><span>punti</span></div>
+      <div class="dm-prog" id="dmProgresso">Carta 1/5</div>
+      <button class="dm-esci" id="btnDuelEsci" aria-label="Abbandona">&#10005;</button>
+    </div>
+  </main>
+
+  <!-- barra disturbi -->
+  <footer id="duelPower">
+    <div class="dp-cariche" aria-label="Cariche disponibili">
+      <i class="dp-c" data-c="1"></i><i class="dp-c" data-c="2"></i>
+    </div>
+    <div class="dp-btns">
+      <button class="dp-btn" data-pw="glitch"    title="Glitch Cromatico — 1 carica">&#127744;<small>1</small></button>
+      <button class="dp-btn" data-pw="serratura" title="Serratura Temporale — 2 cariche">&#128274;<small>2</small></button>
+      <button class="dp-btn" data-pw="nebbia"    title="Nebbia del Passato — 2 cariche">&#128374;<small>2</small></button>
+      <button class="dp-btn scudo" id="dpScudo"  title="Scudo: riflette un Glitch">&#128737;</button>
+    </div>
+  </footer>
+
+  <!-- strati dei disturbi subiti -->
+  <div id="duelNebbia" aria-hidden="true"></div>
+  <div id="duelSerratura" aria-hidden="true"><span>&#128274;</span></div>
+</div>
+
+<!-- ======================= CHRONO-DUEL: ESITO ======================= -->
+<div class="overlay" id="duelOver">
+  <div class="sheet">
+    <div class="eyebrow" id="doEyebrow">Duello concluso</div>
+    <h2 id="doTitolo">Hai vinto!</h2>
+    <div class="do-tab">
+      <div class="do-lato vincitore" id="doMio">
+        <span>Tu</span><b id="doPuntiIo">0</b>
+        <i id="doDettIo">0 giuste · 0 errori</i>
+      </div>
+      <div class="do-lato" id="doSuo">
+        <span id="doNomeAvv">Avversario</span><b id="doPuntiAvv">0</b>
+        <i id="doDettAvv">—</i>
+      </div>
+    </div>
+    <div class="go-actions">
+      <div class="go-row">
+        <button class="btn-glow" id="btnDuelRivincita">Rivincita</button>
+        <button class="btn-ghost" id="btnDuelFine" style="flex:0 0 auto;padding:14px 16px">Esci</button>
+      </div>
     </div>
   </div>
 </div>
@@ -4231,8 +4590,11 @@ function showOverlay(el, choice){
   const o = el.querySelector(map[choice]); if (o) o.style.opacity = "1";
 }
 
-function judge(card, choice){
-  const ref = G.reference;
+/* Il riferimento è un parametro: il duello ha il suo, diverso da quello
+   della partita in singolo. Prima la funzione leggeva sempre G.reference
+   e le risposte del duello venivano giudicate contro la carta sbagliata. */
+function judge(card, choice, riferimento){
+  const ref = riferimento || G.reference;
   const sameYear = card.year === ref.year;
   if (choice === "same") return { ok: sameYear, bonus: sameYear ? 3 : 0, sameYear };
   if (card._ord === ref._ord) return { ok:true, bonus:1, sameYear };   // stessa data esatta: nessuna penalità
@@ -5515,6 +5877,746 @@ const PWA = {
   }
 };
 
+/* ==================================================================== *
+ * CHRONO-DUEL — 1v1 in tempo reale
+ *
+ * Sincronizzazione senza banda: il CODICE STANZA è il seme.
+ * Cinque caratteri diventano un intero a 32 bit, l'intero alimenta un
+ * generatore pseudo-casuale deterministico, e da lì escono riferimento e
+ * cinque carte. Due dispositivi con lo stesso codice pescano le stesse
+ * identiche carte senza scambiarsi un solo byte di dataset.
+ *
+ * Sul canale viaggiano solo eventi minuscoli:
+ *   ROOM_JOIN · PLAYER_READY · CARD_PLACED · USE_POWERUP · GAME_OVER
+ * ==================================================================== */
+
+/* Alfabeto senza caratteri che si confondono a voce o in foto:
+   niente 0/O, niente 1/I/L. */
+const DUEL_ALFABETO = "23456789ABCDEFGHJKMNPQRSTUVWXYZ";
+
+function codiceStanza(){
+  let c = "";
+  const buf = new Uint32Array(5);
+  try { crypto.getRandomValues(buf); }
+  catch(e){ for (let i = 0; i < 5; i++) buf[i] = (Math.random() * 4294967295) | 0; }
+  for (let i = 0; i < 5; i++) c += DUEL_ALFABETO[buf[i] % DUEL_ALFABETO.length];
+  return c;
+}
+
+/* Dal codice al seme: hash FNV-1a, deterministico e identico ovunque. */
+function semeDaCodice(codice){
+  let h = 2166136261;
+  const c = String(codice).toUpperCase();
+  for (let i = 0; i < c.length; i++){
+    h ^= c.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+/* mulberry32: piccolo, veloce e con la stessa sequenza su ogni browser. */
+function prng(seme){
+  let a = seme >>> 0;
+  return function(){
+    a = (a + 0x6D2B79F5) >>> 0;
+    let t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+/* Fisher-Yates guidato dal generatore: stesso seme, stesso ordine. */
+function mescolaConSeme(arr, rnd){
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(rnd() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+/* Le carte del duello: solo dal dataset locale, scelte dal seme.
+   Si usa EVENTS intero e non activePool(): i filtri sono personali, e due
+   giocatori con argomenti diversi otterrebbero mazzi diversi. */
+function carteDuello(codice){
+  const rnd = prng(semeDaCodice(codice));
+  const pool = mescolaConSeme(EVENTS.filter(e => e.wiki_slug), rnd);
+  const rif = pool[0];
+  const mazzo = [];
+  for (let i = 1; i < pool.length && mazzo.length < 6; i++){
+    const e = pool[i];
+    if (e.id === rif.id) continue;
+    if (Math.abs(e.year - rif.year) < 1) continue;     // troppo ambiguo per una gara a tempo
+    mazzo.push(e);
+  }
+  // la sesta è lo spareggio: la più vicina al riferimento, senza immagine
+  mazzo.sort((a, b) => Math.abs(a.year - rif.year) - Math.abs(b.year - rif.year));
+  const spareggio = mazzo.shift();
+  return { rif, mazzo: mescolaConSeme(mazzo, rnd).slice(0, 5), spareggio };
+}
+
+/* ---------- trasporto: stessa scheda, stesso browser, o due dispositivi ---------- */
+const TRASPORTI = {
+  /* Due giocatori sullo stesso telefono, a turno. Nessun canale. */
+  hotseat(){
+    return { tipo:"hotseat", live:false,
+             apri(){ return Promise.resolve(true); }, invia(){}, chiudi(){} };
+  },
+  /* Due schede dello stesso browser: BroadcastChannel, zero rete, va
+     anche in aereo. È il modo in cui si prova il duello senza server. */
+  locale(codice, onMsg){
+    let ch = null;
+    return {
+      tipo:"locale", live:true,
+      apri(){
+        try { ch = new BroadcastChannel("chronoglass-duel-" + codice); }
+        catch(e){ return Promise.resolve(false); }
+        ch.onmessage = e => onMsg(e.data);
+        return Promise.resolve(true);
+      },
+      invia(m){ if (ch) try { ch.postMessage(m); } catch(e){} },
+      chiudi(){ if (ch) try { ch.close(); } catch(e){} ch = null; }
+    };
+  },
+  /* Due dispositivi diversi: serve un intermediario per lo scambio di
+     indirizzi. PeerJS offre un broker pubblico gratuito e viene caricato
+     solo qui, su richiesta, per non pesare sull'avvio né sull'offline. */
+  remoto(codice, onMsg, onStato){
+    let peer = null, conn = null;
+    const ID = c => "chronoglass-" + String(c).toUpperCase();
+    function carica(){
+      if (window.Peer) return Promise.resolve(true);
+      return new Promise(res => {
+        const sc = document.createElement("script");
+        sc.src = "https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js";
+        sc.onload  = () => res(!!window.Peer);
+        sc.onerror = () => res(false);
+        document.head.appendChild(sc);
+        setTimeout(() => res(!!window.Peer), 9000);
+      });
+    }
+    return {
+      tipo:"remoto", live:true,
+      async apri(ospite){
+        const ok = await carica();
+        if (!ok) return false;
+        return new Promise(res => {
+          let chiuso = false;
+          const fine = v => { if (!chiuso){ chiuso = true; res(v); } };
+          try { peer = ospite ? new Peer() : new Peer(ID(codice)); }
+          catch(e){ return fine(false); }
+
+          peer.on("error", err => {
+            onStato && onStato("errore", err && err.type);
+            fine(false);
+          });
+          peer.on("open", () => {
+            if (ospite){
+              conn = peer.connect(ID(codice), { reliable:true });
+              conn.on("open", () => { onStato && onStato("connesso"); fine(true); });
+              conn.on("data", onMsg);
+              conn.on("close", () => onStato && onStato("chiuso"));
+            } else {
+              onStato && onStato("attesa");
+              fine(true);                       // stanza aperta, si aspetta l'ospite
+            }
+          });
+          peer.on("connection", c => {
+            conn = c;
+            c.on("data", onMsg);
+            c.on("open",  () => onStato && onStato("connesso"));
+            c.on("close", () => onStato && onStato("chiuso"));
+          });
+          setTimeout(() => fine(!!peer), 12000);
+        });
+      },
+      invia(m){ if (conn && conn.open) try { conn.send(m); } catch(e){} },
+      chiudi(){
+        try { if (conn) conn.close(); } catch(e){}
+        try { if (peer) peer.destroy(); } catch(e){}
+        conn = peer = null;
+      }
+    };
+  }
+};
+
+/* ---------- disturbi temporali ---------- */
+const DISTURBI = {
+  glitch:    { nome:"Glitch Cromatico",   icona:"\u{1F300}", costo:1, durata:3000,
+               desc:"Inverte i colori e sfoca l'interfaccia avversaria" },
+  serratura: { nome:"Serratura Temporale", icona:"\u{1F512}", costo:2, durata:2000,
+               desc:"Blocca la carta dell'avversario: non può trascinarla" },
+  nebbia:    { nome:"Nebbia del Passato",  icona:"\u{1F576}", costo:2, durata:4000,
+               desc:"Nasconde il titolo: resta solo l'immagine" }
+};
+const DUEL_CARICHE_MAX = 2;
+const DUEL_TEMPO = 12000;        // millisecondi a disposizione per carta
+const DUEL_SCUDO = 1200;         // finestra per riflettere un Glitch
+
+const DUEL = {
+  attivo: false,
+  codice: null,
+  host: false,
+  live: false,             // true se c'è davvero un avversario collegato
+  disturbi: false,         // scelta dell'host: disturbi oppure linea temporale pulita
+  tras: null,
+  fase: "chiuso",          // chiuso | lobby | attesa | gioco | spareggio | fine
+
+  rif: null, mazzo: [], spareggio: null,
+  indice: 0,
+  scadenza: 0, timer: null,
+
+  io:  { nome:"Tu",         punti:0, ok:0, err:0, esatti:0, cariche:0, fatte:0, pronto:false },
+  avv: { nome:"Avversario", punti:0, ok:0, err:0, esatti:0, cariche:0, fatte:0, pronto:false },
+
+  /* disturbi subiti: scadenze in ms */
+  subiti: { glitch:0, serratura:0, nebbia:0 },
+  scudoFinoA: 0,
+  ultimoGlitchDa: 0,
+
+  /* ---------------- ciclo di vita ---------------- */
+  reset(){
+    clearInterval(this.timer); this.timer = null;
+    [this.io, this.avv].forEach(g => {
+      g.punti = g.ok = g.err = g.esatti = g.cariche = g.fatte = 0; g.pronto = false;
+    });
+    this.indice = 0;
+    this.subiti = { glitch:0, serratura:0, nebbia:0 };
+    this.scudoFinoA = 0; this.ultimoGlitchDa = 0;
+    this.spareggioOk = false;
+  },
+
+  apriLobby(){
+    this.reset();
+    this.fase = "lobby";
+    $("#duelCodice").value = "";
+    $("#duelStato").textContent = "";
+    $("#duelLobbyModal").classList.add("on");
+    duelPaintLobby();
+    SFX.pop();
+  },
+  chiudiLobby(){
+    $("#duelLobbyModal").classList.remove("on");
+    if (this.fase === "lobby") this.fase = "chiuso";
+  },
+
+  async crea(modo){
+    this.codice = codiceStanza();
+    this.host = true;
+    this.disturbi = $("#duelDisturbi").getAttribute("aria-pressed") === "true";
+    await this.collega(modo, false);
+  },
+  async entra(modo){
+    const c = ($("#duelCodice").value || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+    if (c.length !== 5){ duelStato("Il codice è di 5 caratteri.", true); return; }
+    this.codice = c;
+    this.host = false;
+    await this.collega(modo, true);
+  },
+
+  async collega(modo, ospite){
+    const onMsg  = m => this.ricevi(m);
+    const onStat = (s, d) => duelStatoCanale(s, d);
+    this.tras = modo === "hotseat" ? TRASPORTI.hotseat()
+              : modo === "locale"  ? TRASPORTI.locale(this.codice, onMsg)
+                                   : TRASPORTI.remoto(this.codice, onMsg, onStat);
+    duelStato(modo === "remoto" ? "Apro la stanza…" : "Preparo la stanza…");
+    const ok = await this.tras.apri(ospite);
+    if (!ok){
+      duelStato(modo === "remoto"
+        ? "Non riesco a raggiungere il servizio di collegamento. Prova “Stesso dispositivo”."
+        : "Questo browser non supporta il canale locale.", true);
+      this.tras = null;
+      return;
+    }
+    this.live = this.tras.live;
+    const c = carteDuello(this.codice);
+    this.rif = c.rif; this.mazzo = c.mazzo; this.spareggio = c.spareggio;
+    WIKI.preload([this.rif].concat(this.mazzo));
+
+    if (this.tras.tipo === "hotseat"){ this.avviaHotseat(); return; }
+
+    this.tras.invia({ t:"ROOM_JOIN", codice:this.codice, host:this.host, disturbi:this.disturbi });
+    this.fase = "attesa";
+    duelPaintAttesa();
+  },
+
+  /* Hot-seat: stessa persona, due turni. Niente disturbi, non avrebbe
+     senso disturbare un avversario che in quel momento non gioca. */
+  avviaHotseat(){
+    this.disturbi = false;
+    this.turnoHotseat = 1;
+    this.indice = 0;
+    this.fase = "gioco";
+    this.io.nome = "Giocatore 1"; this.avv.nome = "Giocatore 2";
+    this.chiudiLobby();
+    $("#duelWait").classList.remove("on");
+    duelVai();
+  },
+
+  pronto(){
+    this.io.pronto = true;
+    if (this.tras) this.tras.invia({ t:"PLAYER_READY" });
+    if (!this.live || this.avv.pronto) this.parti();
+    else duelPaintAttesa();
+  },
+
+  parti(){
+    this.fase = "gioco";
+    this.indice = 0;
+    this.chiudiLobby();
+    duelVai();
+  },
+
+  /* ---------------- partita ---------------- */
+  cartaCorrente(){
+    if (this.fase === "spareggio") return this.spareggio;
+    return this.mazzo[this.indice] || null;
+  },
+
+  avviaTimer(){
+    clearInterval(this.timer);
+    this.scadenza = performance.now() + DUEL_TEMPO;
+    this.timer = setInterval(() => {
+      const resta = this.scadenza - performance.now();
+      duelPaintTimer(Math.max(0, resta));
+      if (resta <= 0){ clearInterval(this.timer); this.rispondi(null); }
+      duelPaintDisturbi();
+    }, 60);
+  },
+
+  /* Punteggio = corrette x1000 + anno esatto 500 + ms rimasti - errori x300.
+     La precisione conta più della pura velocità: un errore costa più del
+     tempo che si guadagna rispondendo a caso. */
+  rispondi(scelta){
+    if (this.fase !== "gioco" && this.fase !== "spareggio") return;
+    if (this.subiti.serratura > performance.now()) return;   // carta bloccata
+    clearInterval(this.timer);
+    const ev = this.cartaCorrente();
+    if (!ev) return;
+    const resta = Math.max(0, Math.round(this.scadenza - performance.now()));
+    const g = this.io;
+
+    let ok = false, esatto = false;
+    if (scelta){
+      const r = judge(ev, scelta, this.rif);
+      ok = !!r.ok;
+      esatto = ok && scelta === "same";
+    }
+    if (ok){
+      g.ok++; g.punti += 1000 + resta;
+      if (esatto){ g.esatti++; g.punti += 500; }
+      if (this.disturbi) g.cariche = Math.min(DUEL_CARICHE_MAX, g.cariche + 1);
+      SFX.playSuccess();
+    } else {
+      g.err++; g.punti = Math.max(0, g.punti - 300);
+      SFX.playError();
+    }
+    g.fatte++;
+    if (this.fase === "spareggio") this.spareggioOk = ok;
+    haptic(ok ? HAPTIC.correct : HAPTIC.wrong);
+
+    if (this.tras) this.tras.invia({ t:"CARD_PLACED", i:this.indice, ok, esatto,
+                                     punti:g.punti, fatte:g.fatte, cariche:g.cariche });
+    duelRivela(ev, ok, scelta);
+    setTimeout(() => this.prossima(), 1500);
+  },
+
+  prossima(){
+    if (this.fase === "spareggio") return this.chiudiPartita();
+    this.indice++;
+    if (this.indice >= this.mazzo.length){
+      // hot-seat: tocca al secondo giocatore, stesse carte e stesso seme
+      if (this.tras && this.tras.tipo === "hotseat" && this.turnoHotseat === 1){
+        this.turnoHotseat = 2;
+        const t = this.io; this.io = this.avv; this.avv = t;   // si scambiano i ruoli
+        this.indice = 0;
+        duelCambioTurno();
+        return;
+      }
+      return this.chiudiPartita();
+    }
+    duelVai();
+  },
+
+  chiudiPartita(){
+    clearInterval(this.timer);
+    if (this.tras) this.tras.invia({ t:"GAME_OVER", punti:this.io.punti, ok:this.io.ok, err:this.io.err });
+    /* Spareggio già giocato: senza un avversario che risponda in diretta,
+       decide la sesta carta. Indovinata vinci, sbagliata vince l'altro. */
+    if (this.fase === "spareggio"){
+      if (!this.live){
+        if (this.spareggioOk) this.io.punti  += 1;
+        else                  this.avv.punti += 1;
+      }
+      this.fase = "fine";
+      duelEsito();
+      return;
+    }
+    // pareggio: una sesta carta difficilissima e senza immagine
+    if (this.io.punti === this.avv.punti &&
+        (!this.live || this.avv.fatte >= this.mazzo.length)){
+      this.fase = "spareggio";
+      this.spareggioOk = false;
+      duelSuddenDeath();
+      return;
+    }
+    this.fase = "fine";
+    duelEsito();
+  },
+
+  /* ---------------- disturbi ---------------- */
+  usa(tipo){
+    const d = DISTURBI[tipo];
+    if (!d || !this.disturbi || this.fase !== "gioco") return;
+    if (this.io.cariche < d.costo) return;
+    this.io.cariche -= d.costo;
+    if (this.tras) this.tras.invia({ t:"USE_POWERUP", tipo, cariche:this.io.cariche });
+    SFX.laser();
+    haptic(HAPTIC.shield);
+    toast(d.icona + " " + d.nome + " lanciato!", 1800);
+    duelPaintCariche();
+  },
+
+  subisci(tipo){
+    const d = DISTURBI[tipo];
+    if (!d) return;
+    /* Lo Scudo riflette solo il Glitch, e solo se premuto in tempo. */
+    if (tipo === "glitch"){
+      this.ultimoGlitchDa = performance.now();
+      if (performance.now() < this.scudoFinoA){
+        if (this.tras) this.tras.invia({ t:"USE_POWERUP", tipo:"glitch", riflesso:true });
+        toast("\u{1F6E1} Glitch riflesso al mittente!", 2200);
+        SFX.playShatter();
+        return;
+      }
+    }
+    this.subiti[tipo] = performance.now() + d.durata;
+    duelPaintDisturbi();
+    this.scadenzaDisturbo(tipo, d.durata);
+    SFX.playShatter();
+    toast(d.icona + " " + d.nome + " in arrivo!", 1600);
+  },
+
+  /* Ogni disturbo si spegne da solo. */
+  scadenzaDisturbo(tipo, durata){
+    this._sc = this._sc || {};
+    clearTimeout(this._sc[tipo]);
+    this._sc[tipo] = setTimeout(() => {
+      if (performance.now() >= this.subiti[tipo]){
+        this.subiti[tipo] = 0;
+        duelPaintDisturbi();
+      }
+    }, durata + 60);
+  },
+
+  scudo(){
+    if (!this.disturbi || this.fase !== "gioco") return;
+    this.scudoFinoA = performance.now() + DUEL_SCUDO;
+    duelPaintScudo();
+    SFX.pop();
+    // se il glitch è appena arrivato, lo si rispedisce
+    if (this.subiti.glitch > performance.now() &&
+        performance.now() - this.ultimoGlitchDa < DUEL_SCUDO){
+      this.subiti.glitch = 0;
+      if (this.tras) this.tras.invia({ t:"USE_POWERUP", tipo:"glitch", riflesso:true });
+      toast("\u{1F6E1} Glitch riflesso al mittente!", 2200);
+      duelPaintDisturbi();
+    }
+  },
+
+  /* ---------------- messaggi in arrivo ---------------- */
+  ricevi(m){
+    if (!m || !m.t) return;
+    switch (m.t){
+      case "ROOM_JOIN":
+        // l'altro è entrato: si allinea la scelta dell'host sui disturbi
+        if (!this.host && typeof m.disturbi === "boolean") this.disturbi = m.disturbi;
+        if (this.host && this.tras) this.tras.invia({ t:"ROOM_JOIN", codice:this.codice,
+                                                      host:true, disturbi:this.disturbi, eco:true });
+        this.avv.pronto = this.avv.pronto || false;
+        duelPaintAttesa(true);
+        break;
+      case "PLAYER_READY":
+        this.avv.pronto = true;
+        if (this.io.pronto) this.parti(); else duelPaintAttesa(true);
+        break;
+      case "CARD_PLACED":
+        this.avv.punti = m.punti || 0;
+        this.avv.fatte = m.fatte || 0;
+        this.avv.cariche = m.cariche || 0;
+        if (m.ok) this.avv.ok++; else this.avv.err++;
+        duelPaintAvversario();
+        break;
+      case "USE_POWERUP":
+        if (typeof m.cariche === "number") this.avv.cariche = m.cariche;
+        if (m.riflesso){
+          const d = DISTURBI[m.tipo];
+          if (d){
+            this.subiti[m.tipo] = performance.now() + d.durata;
+            this.scadenzaDisturbo(m.tipo, d.durata);
+            toast("\u{1F6E1} Il tuo " + d.nome + " è stato riflesso!", 2200);
+          }
+        }
+        else this.subisci(m.tipo);
+        duelPaintDisturbi();
+        break;
+      case "GAME_OVER":
+        this.avv.punti = m.punti || 0;
+        this.avv.fatte = this.mazzo.length;
+        duelPaintAvversario();
+        if (this.fase === "fine" || this.io.fatte >= this.mazzo.length) this.chiudiPartita();
+        break;
+    }
+  },
+
+  esci(){
+    clearInterval(this.timer);
+    Object.values(this._sc || {}).forEach(t => clearTimeout(t));
+    this.subiti = { glitch:0, serratura:0, nebbia:0 };
+    duelPaintDisturbi();
+    if (this.tras) this.tras.chiudi();
+    this.tras = null; this.attivo = false; this.fase = "chiuso";
+    $("#duelScreen").classList.remove("on");
+    $("#duelLobbyModal").classList.remove("on");
+    document.documentElement.classList.remove("in-duello");
+    newGame();
+  }
+};
+
+/* ---------- disegno della schermata di duello ---------- */
+function duelStato(t, err){
+  ["#duelStato", "#duelStato2"].forEach(sel => {
+    const n = $(sel);
+    if (!n) return;
+    n.textContent = t || "";
+    n.classList.toggle("err", !!err);
+  });
+}
+function duelStatoCanale(s, d){
+  if (s === "attesa")   duelStato("Stanza aperta. Passa il codice all'avversario.");
+  if (s === "connesso"){ DUEL.avv.pronto = DUEL.avv.pronto || false; duelStato("Avversario collegato!"); duelPaintAttesa(true); }
+  if (s === "chiuso")   duelStato("L'avversario si è scollegato.", true);
+  if (s === "errore")   duelStato("Collegamento non riuscito" + (d ? " (" + d + ")" : "") +
+                                  ". Prova “Stesso dispositivo”.", true);
+}
+function duelPaintLobby(){
+  const modo = ($$("#duelModo .lobby-tab").find(b => b.getAttribute("aria-pressed") === "true") || {}).dataset;
+  const hot = !modo || modo.modo === "hotseat";
+  $("#duelSecRegole").style.opacity = hot ? ".5" : "1";
+  $("#duelDisturbi").disabled = hot;
+  $("#duelNotaDisturbi").hidden = !hot;
+  if (hot) $("#duelDisturbi").setAttribute("aria-pressed", "false");
+}
+function duelPaintAttesa(daRemoto){
+  $("#duelLobbyModal").classList.remove("on");
+  $("#duelWait").classList.add("on");
+  $("#duelCodeBig").textContent = DUEL.codice || "-----";
+  $("#dvIoStato").textContent  = DUEL.io.pronto  ? "Pronto!" : "In attesa";
+  $("#dvAvvStato").textContent = DUEL.avv.pronto ? "Pronto!" :
+                                 (daRemoto ? "Collegato" : "Non collegato");
+  $("#doSuo").classList.toggle("pronto", DUEL.avv.pronto);
+  $(".dv-lato.suo").classList.toggle("pronto", DUEL.avv.pronto);
+  $("#btnDuelPronto").disabled = DUEL.io.pronto && !DUEL.avv.pronto && DUEL.live;
+  $("#btnDuelPronto").textContent = DUEL.io.pronto ? "In attesa dell'avversario…" : "Sono pronto";
+}
+function duelPaintAvversario(){
+  const tot = DUEL.mazzo.length || 5;
+  $("#dtPunti").textContent = DUEL.avv.punti;
+  $("#dtProgresso").textContent = "Carta " + Math.min(tot, DUEL.avv.fatte + 1) + "/" + tot;
+  $("#dtBarra").style.width = Math.round(Math.min(1, DUEL.avv.fatte / tot) * 100) + "%";
+  $("#dtNome").textContent = DUEL.avv.nome;
+}
+function duelPaintMio(){
+  const tot = DUEL.mazzo.length || 5;
+  $("#dmPunti").textContent = DUEL.io.punti;
+  $("#dmProgresso").textContent = DUEL.fase === "spareggio"
+    ? "Spareggio" : "Carta " + Math.min(tot, DUEL.indice + 1) + "/" + tot;
+}
+function duelPaintTimer(resta){
+  const q = Math.max(0, Math.min(1, resta / DUEL_TEMPO));
+  $("#duelTimerFill").style.transform = "scaleX(" + q.toFixed(4) + ")";
+  $("#duelTimerTxt").textContent = (resta / 1000).toFixed(1);
+  $("#duelTimer").classList.toggle("caldo", q < .28);
+}
+function duelPaintCariche(){
+  const n = DUEL.io.cariche;
+  $$(".dp-c").forEach(e => e.classList.toggle("on", +e.dataset.c <= n));
+  $$(".dp-btn[data-pw]").forEach(b => {
+    const d = DISTURBI[b.dataset.pw];
+    b.disabled = !DUEL.disturbi || n < d.costo;
+    b.classList.toggle("pronto", DUEL.disturbi && n >= d.costo);
+  });
+}
+function duelPaintScudo(){
+  const on = performance.now() < DUEL.scudoFinoA;
+  $("#dpScudo").classList.toggle("attivo", on);
+  if (on) setTimeout(duelPaintScudo, 160);
+}
+/* Applica al proprio schermo i disturbi ricevuti, e li toglie a scadenza. */
+function duelPaintDisturbi(){
+  const sc = $("#duelScreen"), ora = performance.now();
+  sc.classList.toggle("glitch-active",    DUEL.subiti.glitch    > ora);
+  sc.classList.toggle("nebbia-active",    DUEL.subiti.nebbia    > ora);
+  sc.classList.toggle("serratura-active", DUEL.subiti.serratura > ora);
+}
+
+/* Prepara e mostra la carta corrente. */
+function duelVai(){
+  DUEL.attivo = true;
+  document.documentElement.classList.add("in-duello");
+  document.documentElement.classList.toggle("duello-pulito", !DUEL.disturbi);
+  $("#duelWait").classList.remove("on");
+  $("#duelOver").classList.remove("on");
+  if (LOBBY.aperta) LOBBY.chiudi();     // la lobby sta sopra: coprirebbe il duello
+  $("#duelScreen").classList.add("on");
+
+  $("#drTitolo").textContent = DUEL.rif.title;
+  $("#drAnno").textContent   = DUEL.rif.date_full || yearLabel(DUEL.rif.year);
+
+  const ev = DUEL.cartaCorrente();
+  const deck = $("#duelDeck");
+  deck.innerHTML = "";
+  if (!ev) return;
+  const card = buildCard(ev);
+  card.style.transform = "none";
+  card.style.opacity = "1";
+  /* Nello spareggio niente foto: solo titolo e mesh, come da regolamento. */
+  if (DUEL.fase === "spareggio"){
+    const fr = card.querySelector(".card-frame");
+    if (fr) fr.style.display = "none";
+  }
+  deck.appendChild(card);
+
+  duelPaintAvversario(); duelPaintMio(); duelPaintCariche(); duelPaintDisturbi();
+  duelPaintTimer(DUEL_TEMPO);
+  DUEL.avviaTimer();
+}
+
+/* Mostra l'esito della singola carta prima di passare alla successiva. */
+function duelRivela(ev, ok, scelta){
+  const card = $("#duelDeck .card");
+  if (card){
+    card.classList.add(ok ? "correct" : "wrong");
+    spinYear(card, ev.year);
+    if (ok) FX.burst(card, FX_OK, 26, 6);
+  }
+  duelPaintMio();
+  duelPaintCariche();
+  if (!scelta) toast("Tempo scaduto!", 1400);
+}
+
+function duelCambioTurno(){
+  clearInterval(DUEL.timer);
+  $("#duelScreen").classList.remove("on");   // altrimenti copre il pannello
+  $("#duelDeck").innerHTML = "";
+  $("#duelTimerTxt").textContent = "--";
+  duelStato("");
+  toast("Passa il telefono: tocca a " + DUEL.io.nome, 3000);
+  $("#duelWait").classList.add("on");
+  $("#duelCodeBig").textContent = DUEL.codice;
+  $("#dvIo").textContent = DUEL.io.nome;
+  $("#dvAvv").textContent = DUEL.avv.nome;
+  $("#dvIoStato").textContent = "Tocca a te";
+  $("#dvAvvStato").textContent = DUEL.avv.punti + " punti";
+  $("#btnDuelPronto").disabled = false;
+  $("#btnDuelPronto").textContent = "Inizia il turno";
+  DUEL.io.pronto = false;
+}
+
+function duelSuddenDeath(){
+  toast("⚡ Pareggio! Sesta carta, senza foto: chi sbaglia perde.", 3400);
+  SFX.gameover();
+  setTimeout(() => { DUEL.fase = "spareggio"; duelVai(); }, 900);
+}
+
+function duelEsito(){
+  clearInterval(DUEL.timer);
+  $("#duelScreen").classList.remove("on");
+  document.documentElement.classList.remove("in-duello");
+  const io = DUEL.io, avv = DUEL.avv;
+  const vinto = io.punti > avv.punti, pari = io.punti === avv.punti;
+
+  $("#doTitolo").textContent  = pari ? "Pareggio!" : vinto ? "Hai vinto!" : "Hai perso";
+  $("#doEyebrow").textContent = DUEL.codice ? "Stanza " + DUEL.codice : "Duello concluso";
+  $("#doPuntiIo").textContent  = io.punti;
+  $("#doPuntiAvv").textContent = avv.punti;
+  $("#doNomeAvv").textContent  = avv.nome;
+  $("#doDettIo").textContent   = io.ok + " giuste · " + io.err + " errori" +
+                                 (io.esatti ? " · " + io.esatti + " anno esatto" : "");
+  $("#doDettAvv").textContent  = DUEL.live || DUEL.tras && DUEL.tras.tipo === "hotseat"
+                                 ? avv.ok + " giuste · " + avv.err + " errori" : "—";
+  $("#doMio").classList.toggle("vincitore", vinto);
+  $("#doMio").classList.toggle("perdente", !vinto && !pari);
+  $("#doSuo").classList.toggle("vincitore", !vinto && !pari);
+  $("#doSuo").classList.toggle("perdente", vinto);
+  $("#duelOver").classList.add("on");
+
+  if (vinto){ SFX.playRecord(); winConfetti(); haptic([80,40,80]); }
+  else if (!pari) SFX.gameover();
+}
+
+/* ---------- cablaggio ---------- */
+function wireDuello(){
+  $$("#duelModo .lobby-tab").forEach(b => b.addEventListener("click", () => {
+    $$("#duelModo .lobby-tab").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    duelPaintLobby(); SFX.pop();
+  }));
+  $("#duelDisturbi").addEventListener("click", function(){
+    const on = this.getAttribute("aria-pressed") !== "true";
+    this.setAttribute("aria-pressed", String(on));
+    SFX.pop();
+  });
+  const modoScelto = () =>
+    ($$("#duelModo .lobby-tab").find(b => b.getAttribute("aria-pressed") === "true") || {})
+      .dataset.modo || "hotseat";
+
+  $("#btnDuelCrea").addEventListener("click",  () => DUEL.crea(modoScelto()));
+  $("#btnDuelEntra").addEventListener("click", () => DUEL.entra(modoScelto()));
+  $("#duelCodice").addEventListener("keydown", e => { if (e.key === "Enter") DUEL.entra(modoScelto()); });
+  $("#duelCodice").addEventListener("input", function(){
+    this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 5);
+  });
+
+  $("#btnDuelPronto").addEventListener("click", () => DUEL.pronto());
+  $("#btnDuelAnnulla").addEventListener("click", () => { $("#duelWait").classList.remove("on"); DUEL.esci(); });
+  $("#btnDuelCopia").addEventListener("click", () => copyShareLink(DUEL.codice));
+  $("#btnDuelCondividi").addEventListener("click", async () => {
+    const testo = "Ti sfido su ChronoGlass! Codice stanza: " + DUEL.codice + " — " + SHARE.url();
+    if (navigator.share){
+      try { await navigator.share({ title:"Chrono-Duel", text:testo, url:SHARE.url() }); return; }
+      catch(e){ if (e && e.name === "AbortError") return; }
+    }
+    copyShareLink(testo);
+  });
+
+  $("#dBtnPrima").addEventListener("click", () => DUEL.rispondi("prima"));
+  $("#dBtnDopo").addEventListener("click",  () => DUEL.rispondi("dopo"));
+  $("#dBtnSame").addEventListener("click",  () => DUEL.rispondi("same"));
+  $$(".dp-btn[data-pw]").forEach(b => b.addEventListener("click", () => DUEL.usa(b.dataset.pw)));
+  $("#dpScudo").addEventListener("click", () => DUEL.scudo());
+  $("#btnDuelEsci").addEventListener("click", () => DUEL.esci());
+  $("#btnDuelFine").addEventListener("click", () => { $("#duelOver").classList.remove("on"); DUEL.esci(); });
+  $("#btnDuelRivincita").addEventListener("click", () => {
+    $("#duelOver").classList.remove("on");
+    DUEL.reset();
+    DUEL.codice = codiceStanza();               // mazzo nuovo, stessa modalità
+    const c = carteDuello(DUEL.codice);
+    DUEL.rif = c.rif; DUEL.mazzo = c.mazzo; DUEL.spareggio = c.spareggio;
+    if (DUEL.tras && DUEL.tras.tipo === "hotseat"){ DUEL.avviaHotseat(); return; }
+    DUEL.fase = "attesa"; duelPaintAttesa(true);
+  });
+
+  // scorciatoie da tastiera durante il duello
+  window.addEventListener("keydown", e => {
+    if (!DUEL.attivo || DUEL.fase === "fine") return;
+    if (e.key === "ArrowLeft")  { e.preventDefault(); DUEL.rispondi("prima"); }
+    if (e.key === "ArrowRight") { e.preventDefault(); DUEL.rispondi("dopo"); }
+    if (e.key === "ArrowUp")    { e.preventDefault(); DUEL.rispondi("same"); }
+    if (e.key === " ")          { e.preventDefault(); DUEL.scudo(); }
+  }, true);
+}
+
 /* ------------------------------------------------------------------ *
  * TUTORIAL — tre carte guidate, solo alla primissima visita
  * Non è un simulatore a parte: guida la partita vera con un riferimento
@@ -5828,6 +6930,8 @@ function wire(){
   /* --- lobby pre-partita --- */
   $("#btnPlay").addEventListener("click", () => LOBBY.apri());
   $("#btnLobbyClose").addEventListener("click", () => { LOBBY.chiudi(); SFX.pop(); });
+  $("#btnDuello").addEventListener("click", () => { LOBBY.chiudi(); DUEL.apriLobby(); });
+  wireDuello();
   $("#preGameLobby").addEventListener("click", e => { if (e.target.id === "preGameLobby") LOBBY.chiudi(); });
   $("#btnOpenLobby").addEventListener("click", () => { closeSheet("statsModal"); LOBBY.apri(); });
   $("#btnChangeRun").addEventListener("click", () => LOBBY.apri());
