@@ -7503,6 +7503,59 @@ function boot(){
   FILTERS.load();
   SPLASH.step(12, "Inizializzazione…");
 
+const powerUpState = {
+    disturbiUsati: 0,
+    maxDisturbi: 2,
+    scudiUsati: 0,
+    maxScudi: 1,
+    disturboAttivo: false
+};
+
+function resetPowerUps() {
+    powerUpState.disturbiUsati = 0;
+    powerUpState.scudiUsati = 0;
+    powerUpState.disturboAttivo = false;
+    updatePowerUpUI();
+}
+
+function updatePowerUpUI() {
+    const btnDisturbo = document.getElementById('btn-disturbo');
+    const btnScudo = document.getElementById('btn-scudo');
+
+    if (btnDisturbo) {
+        const disabilitato = (powerUpState.disturbiUsati >= powerUpState.maxDisturbi) || powerUpState.disturboAttivo;
+        btnDisturbo.disabled = disabilitato;
+        btnDisturbo.style.opacity = disabilitato ? '0.4' : '1';
+        btnDisturbo.style.pointerEvents = disabilitato ? 'none' : 'auto';
+    }
+
+    if (btnScudo) {
+        const disabilitato = powerUpState.scudiUsati >= powerUpState.maxScudi;
+        btnScudo.disabled = disabilitato;
+        btnScudo.style.opacity = disabilitato ? '0.4' : '1';
+        btnScudo.style.pointerEvents = disabilitato ? 'none' : 'auto';
+    }
+}
+
+function avviaVorticeTemporale(callbackFinale) {
+    if (window.confettiInterval) {
+        clearInterval(window.confettiInterval);
+        window.confettiInterval = null;
+    }
+
+    const overlay = document.getElementById('chrono-shift-overlay');
+    if (!overlay) return;
+
+    overlay.classList.remove('hidden');
+
+    setTimeout(() => {
+        overlay.classList.add('hidden');
+        if (typeof callbackFinale === 'function') {
+            callbackFinale();
+        }
+    }, 3500);
+}
+
   FX.init();
   icons();
   wire();
@@ -7515,6 +7568,7 @@ function boot(){
   SPLASH.step(34, cached ? "Cache locale: " + cached + " schede" : "Verifica cache locale…");
 
   newGame();
+  resetPowerUps(); 
   renderFilters();
   SPLASH.step(58, "Preparo la timeline…");
 
@@ -7549,5 +7603,14 @@ function boot(){
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
 else boot();
 </script>
+<div id="chrono-shift-overlay" class="chrono-shift-overlay hidden">
+    <div class="vortex-container">
+        <div class="neon-ring ring-cyan"></div>
+        <div class="neon-ring ring-pink"></div>
+        <div class="clock-gear">⚙</div>
+        <div class="light-hand hour-hand"></div>
+        <div class="light-hand minute-hand"></div>
+    </div>
+</div>
 </body>
 </html>
