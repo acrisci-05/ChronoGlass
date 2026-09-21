@@ -129,7 +129,12 @@ gli elementi indicati.
    barra dello Scudo Temporale. Tasto "Inizia la sfida".
 
 "Salta" è sempre in alto a destra. In entrambi i casi si scrive
-`chronoglass_tutorial_done` in `localStorage`. Il riquadro del testo si colloca
+`chronoglass_tutorial_done` in `localStorage`.
+
+Si può **rivedere quando si vuole**: il pulsante `❓ Tutorial` in fondo alla
+lobby, accanto a Duello e Condividi, lo riapre ignorando quel flag. Al ritorno
+la lobby ritrova gli argomenti e i filtri esattamente com'erano, anche quelli
+toccati ma non ancora confermati con "Avvia partita". Il riquadro del testo si colloca
 sotto la zona illuminata, o sopra se sotto non c'è spazio: non copre mai ciò che
 sta indicando.
 

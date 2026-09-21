@@ -1705,8 +1705,19 @@ html.perf .sp-inner{animation:none}
   .streak-chip{padding:6px 9px;font-size:12px}
   .mode-btn{padding:6px 10px}
 }
-.lobby-extra{display:flex;gap:8px;margin-top:10px}
-.lobby-extra>button{flex:1;min-width:0;margin-top:0}
+/* Tre scorciatoie in fondo alla lobby. A colonne uguali stanno anche a
+   360px; sotto, vanno a capo da sole invece di schiacciarsi. */
+.lobby-extra{display:grid;grid-template-columns:repeat(auto-fit,minmax(94px,1fr));
+  gap:8px;margin-top:10px}
+.lobby-extra>button{min-width:0;margin-top:0;width:100%;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Sotto i 420px tre etichette intere non ci stanno: si stringono invece
+   di farsi tagliare a metà parola. */
+@media(max-width:420px){
+  .lobby-extra{gap:6px}
+  .lobby-extra>button{padding:9px 5px;font-size:10px;letter-spacing:.02em}
+  .lbl-xs{display:none}
+}
 .lobby-duel{padding:9px;border-radius:13px;font-size:11px;font-weight:850;
   letter-spacing:.06em;text-transform:uppercase;color:#ffd9ef;white-space:nowrap;
   background:linear-gradient(140deg,rgba(255,0,160,.22),rgba(112,0,255,.14));
@@ -1715,6 +1726,18 @@ html.perf .sp-inner{animation:none}
 .lobby-duel:hover{color:#fff;background:linear-gradient(140deg,rgba(255,0,160,.34),rgba(112,0,255,.2));
   box-shadow:0 0 26px -4px rgba(255,0,160,.95)}
 .lobby-duel:active{transform:scale(.95)}
+/* "Come si gioca": bagliore viola, distinto dal magenta del duello e dal
+   neutro della condivisione. */
+.lobby-howto{padding:9px;border-radius:13px;font-size:11px;font-weight:850;
+  letter-spacing:.06em;text-transform:uppercase;color:#d9d6ff;
+  background:linear-gradient(140deg,rgba(124,92,255,.22),rgba(0,243,255,.1));
+  border:1px solid rgba(124,92,255,.52);
+  box-shadow:0 0 20px -6px rgba(124,92,255,.85);transition:.22s var(--out)}
+.lobby-howto:hover{color:#fff;
+  background:linear-gradient(140deg,rgba(124,92,255,.34),rgba(0,243,255,.18));
+  box-shadow:0 0 26px -4px rgba(124,92,255,1)}
+.lobby-howto:active{transform:scale(.95)}
+.lobby-howto:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(124,92,255,.5)}
 .lobby-share{display:block;width:100%;margin-top:10px;padding:9px;border-radius:13px;
   font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
   background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);transition:.22s var(--out)}
@@ -2397,7 +2420,9 @@ html.perf .lobby-sheet{backdrop-filter:blur(10px)}
       <p id="lobbySummary"></p>
       <button id="btnStartRun">Avvia partita</button>
       <div class="lobby-extra">
-        <button class="lobby-duel" id="btnDuello">&#9876; Chrono-Duel 1v1</button>
+        <button class="lobby-duel" id="btnDuello">&#9876; Duello<span class="lbl-xs"> 1v1</span></button>
+        <button class="lobby-howto" id="btnTutorialManuale"
+                title="Rivedi come si gioca">&#10067; Tutorial</button>
         <button class="lobby-share" id="btnLobbyShare">&#128279; Condividi</button>
       </div>
     </div>
@@ -6078,6 +6103,10 @@ const PWA = {
   }
 };
 
+/* Scorciatoia con nome esplicito: apre la sandbox da qualsiasi punto. */
+function startTutorialSandbox(){ TUTORIAL.avviaManuale(); }
+window.startTutorialSandbox = startTutorialSandbox;
+
 /* ==================================================================== *
  * CHRONO-DUEL — 1v1 in tempo reale
  *
@@ -6980,6 +7009,21 @@ const TUTORIAL = {
     try { localStorage.setItem(this.KEY, "true"); } catch(e){}
   },
 
+  /* Avvio a richiesta dalla lobby. Non guarda chronoglass_tutorial_done:
+     è una scelta esplicita dell'utente, non il primo accesso.
+     LOBBY.apri() ricostruisce la bozza da FILTERS, quindi le categorie
+     toccate e non ancora confermate andrebbero perse: si mettono da parte
+     e si rimettono al ritorno. */
+  avviaManuale(){
+    this.bozzaSospesa = LOBBY.bozza
+      ? { mode: LOBBY.bozza.mode, run: LOBBY.bozza.run, cats: LOBBY.bozza.cats.slice() }
+      : null;
+    this.tornaInLobby = true;
+    const eraAperta = LOBBY.aperta;      // chiudi() la azzera: va letta prima
+    if (eraAperta) LOBBY.chiudi();
+    setTimeout(() => this.avvia(), eraAperta ? 280 : 0);   // tempo alla dissolvenza
+  },
+
   avvia(){
     this.attivo = true;
     this.passo = 0;
@@ -7084,8 +7128,21 @@ const TUTORIAL = {
     $("#tutorial").classList.remove("on");
     $("#tutSpot").classList.remove("on");
     $("#tutHand").classList.remove("on");
-    toast(salta ? "Tutorial saltato — buon viaggio!" : "Pronto: scegli argomenti e parti \u{1F680}", 2600);
-    setTimeout(() => LOBBY.apri(), salta ? 220 : 520);
+
+    const manuale = this.tornaInLobby;
+    const bozza = this.bozzaSospesa;
+    this.tornaInLobby = false;
+    this.bozzaSospesa = null;
+
+    if (!manuale){
+      toast(salta ? "Tutorial saltato — buon viaggio!"
+                  : "Pronto: scegli argomenti e parti \u{1F680}", 2600);
+    }
+    setTimeout(() => {
+      LOBBY.apri();
+      // filtri e argomenti tornano come li aveva lasciati
+      if (bozza){ LOBBY.bozza = bozza; LOBBY.render(); }
+    }, salta ? 220 : 520);
   }
 };
 
@@ -7279,6 +7336,7 @@ function wire(){
   $("#btnPlay").addEventListener("click", () => LOBBY.apri());
   $("#btnLobbyClose").addEventListener("click", () => { LOBBY.chiudi(); SFX.pop(); });
   $("#btnDuello").addEventListener("click", () => { LOBBY.chiudi(); DUEL.apriLobby(); });
+  $("#btnTutorialManuale").addEventListener("click", () => startTutorialSandbox());
   wireDuello();
   $("#preGameLobby").addEventListener("click", e => { if (e.target.id === "preGameLobby") LOBBY.chiudi(); });
   $("#btnOpenLobby").addEventListener("click", () => { closeSheet("statsModal"); LOBBY.apri(); });
